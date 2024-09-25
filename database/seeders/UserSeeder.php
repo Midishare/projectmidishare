@@ -18,8 +18,10 @@ class UserSeeder extends Seeder
         // Buat user admin
         $admin = User::create([
             'name' => 'Admin User',
-            'nik' => '1234567890', // NIK disimpan sebagai string
-            'password' => 'password', // Gunakan Hash::make() untuk mengenkripsi password
+            'nik' => 'Midishareadmin99777', // NIK disimpan sebagai string
+            'password' => 'M1d1s4har3@', // Gunakan Hash::make() untuk mengenkripsi password
+            'lokasi'=> 'HO',
+            'branch'=>'Head office',
         ]);
         $adminRole = Role::where('name', 'admin')->first();
         $admin->assignRole($adminRole);
@@ -31,6 +33,8 @@ class UserSeeder extends Seeder
                 'name' => 'User ' . $i,
                 'nik' => '100000000' . $i, // NIK disimpan sebagai string
                 'password' => 'password', // Gunakan Hash::make() untuk mengenkripsi password
+                'lokasi'=> 'HO',
+                'branch'=>'Head office',
             ]);
 
             $userRole = Role::where('name', 'user')->first();

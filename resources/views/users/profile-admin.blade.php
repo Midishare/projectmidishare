@@ -5,10 +5,8 @@
 <div>
     <p><strong>Name:</strong> {{ $user->name }}</p>
     <p><strong>Nik:</strong> {{ $user->nik }}</p>
-    <p><strong>Address:</strong></p>
-    <p>{{ $address->lokasi }}</p>
-    <p>{{ $address->branch }}</p>
-
-    <a href="{{ route('dashboard') }}" class="btn btn-primary mt-3">Kembali ke Dashboard</a>
+    <p><strong>Lokasi:</strong> {{ $user->lokasi }}</p>
+    <p><strong>Branch:</strong> {{ $user->branch }}</p>
+    <a href="{{ route('login') }}" class="btn btn-primary mt-3">Kembali ke Dashboard</a>
 </div> 
 @endsection

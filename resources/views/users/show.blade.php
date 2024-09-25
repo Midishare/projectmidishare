@@ -6,9 +6,8 @@
     <div>
         <p><strong>Name:</strong> {{ $user->name }}</p>
         <p><strong>Nik:</strong> {{ $user->nik }}</p>
-        <p><strong>Address:</strong></p>
-        <p>{{ $address->lokasi }}</p>
-        <p>{{ $address->branch }}</p>
+        <p><strong>Lokasi:</strong> {{ $user->lokasi }}</p>
+        <p><strong>Branch:</strong> {{ $user->branch }}</p>
 
         <div class="mt-3">
             <a href="{{ route('addresses.edit', $address->id) }}" class="btn btn-primary">Edit Address</a>
