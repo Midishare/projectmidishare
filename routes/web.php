@@ -66,6 +66,46 @@ Route::get('/materiadminmodogm', function () {
     return view('materiadminmodogm');
 });
 
+Route::get('/adminlogin', function () {
+    return view('adminlogin');
+});
+
+Route::get('/', [DashboardController::class, 'index'])->name('welcome');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/welcome', [DashboardController::class, 'index'])->name('welcome');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login'])->name('signin');
+
+Route::get('/add', function () {
+    return view('add');
+})->name('berita.add');
+
+Route::get('/detail', function () {
+    return view('berita.detail');
+});
+
+Route::get('/kmadmin', function () {
+    return view('kmadmin');
+});
+
+Route::get('/materiadmin', function () {
+    return view('materiadmin');
+});
+
+Route::get('/materiadminmodwh', function () {
+    return view('materiadminmodwh');
+});
+
+Route::get('/materiadminmodogm', function () {
+    return view('materiadminmodogm');
+});
+
 Route::middleware('auth', 'role:admin')->group(function () {
     Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
     Route::get('/addresses/{address}/create', [AddressController::class, 'create'])->name('addresses.create');
@@ -73,12 +113,14 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
     Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
     // Route::delete('/addresses/deleteAll', [AddressController::class, 'destroy'])->name('addresses.deleteAll');
+    // Route::delete('/addresses/deleteAll', [AddressController::class, 'destroy'])->name('addresses.deleteAll');
 
     Route::get('users/import', [UserController::class, 'showImportForm'])->name('users.import.form');
     Route::post('users/import', [UserController::class, 'import'])->name('users.import');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{address}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{address}', [UserController::class, 'update'])->name('users.update');
