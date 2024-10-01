@@ -6,9 +6,27 @@
     <title>Admin Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background-color: #ffffff; /* Warna latar belakang navbar putih */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan halus di bawah navbar */
+        }
+        .navbar-brand,
+        .nav-link {
+            color: #000000 !important; /* Warna teks navbar hitam */
+        }
+        .btn-logout {
+            border: none;
+            background: none;
+            color: #000000 !important; /* Warna teks tombol logout hitam */
+        }
+        .btn-logout:hover {
+            color: #dc3545 !important; /* Warna teks tombol logout saat dihover */
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Admin Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,15 +35,15 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('dashboard') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
                     <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
                             @csrf
-                            <button type="submit">Logout</button>
+                            <button type="submit" class="btn btn-logout nav-link"><i class="bi bi-power"></i> Logout</button>
                         </form>
                     </li>
                 </ul>

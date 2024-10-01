@@ -1,0 +1,104 @@
+/* Custom CSS for Login Page */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* Untuk mengatur kontainer vertikal */
+}
+
+.welcome-container {
+    text-align: center; 
+}
+
+.container {
+    background-color: #E62323;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 550px; 
+    height: 300px; 
+    margin-top: 80px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 150px; 
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 60%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-left: 120px;
+    margin-top: 20px;
+    color: #000000; 
+}
+
+button[type="submit"] {
+    background-color: #E62323;
+    color: white;
+    padding: 8px 5px; 
+    border: 2px solid white; /* Menambahkan garis pinggir berwarna putih */
+    border-radius: 10px;
+    cursor: pointer;
+    width: 30%; 
+    max-width: 300px; /* Batasi lebar tombol */
+    font-size: 16px;
+    margin-top: 50px; /* Memberikan jarak antara input dan tombol */
+    margin-left: 190px; 
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+footer {
+    background-color: #E62323;
+    color: white;
+    padding: 20px 0; /* Atur padding atas dan bawah */
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.container-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%; /* Maksimum lebar container sesuai dengan lebar layar */
+    padding: 0 20px; /* Berikan padding kanan dan kiri agar tidak terlalu dekat dengan tepi layar */
+    margin: 0 auto; /* Atur margin horizontal menjadi auto agar container footer tetap berada di tengah layar */
+}
+
+.container-footer p {
+    margin: 0; /* Menghilangkan margin default dari paragraf */
+}
+
+.container-footer img {
+    height: 4rem; 
+    width: 4rem;
+    margin-right: 5px; /* Atur margin kanan sedikit agar ada jarak dengan teks */
+}

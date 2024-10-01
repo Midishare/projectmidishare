@@ -12,7 +12,9 @@ class UserImport implements ToModel
         return new User([
             'name' => $row[0], // Sesuaikan dengan index kolom yang sesuai dalam file CSV
             'nik' =>  $row[1], // Sesuaikan dengan index kolom yang sesuai dalam file CSV
-            'password' => $row[2] // Gunakan Hash::make() untuk mengenkripsi password
+            'password' => $row[2], // Gunakan Hash::make() untuk mengenkripsi password
+            'lokasi' => $row[3],
+            'branch' => $row[4],
         ]);
     }
 }
