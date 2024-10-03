@@ -24,7 +24,7 @@
 <div class="center-content" style="margin-top: 3rem;">
     <div class="content-wrapper">  
         <div>
-            <a href="{{ route('events.show') }}" class="btn" style="margin-right:30rem;">
+            <a href="{{ route('berita.show') }}" class="btn" style="margin-right:30rem;">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a> 
         </div>     

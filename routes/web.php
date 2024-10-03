@@ -226,6 +226,11 @@ Route::get('/admin/events/delete/{id}', [EventController::class, 'destroy'])->na
 
 //Livestream
 Route::get('/livestream', [LivestreamController::class, 'index'])->name('livestream')->middleware('auth');
+Route::get('/admin/livestream', [LivestreamController::class, 'adminView'])->name('admin.livestream')->middleware('auth');
+Route::post('/admin/livestream', [LivestreamController::class, 'updateLivestream'])->name('livestream.store')->middleware('auth');
+Route::post('/admin/livestream/update', [LivestreamController::class, 'updateLivestream'])->name('admin.updateLivestream');
+Route::put('/livestream/update', [LivestreamController::class, 'updateLivestream'])->name('livestream.update');
+Route::delete('/livestream/delete', [LivestreamController::class, 'deleteLivestream'])->name('livestream.delete');
 
 
 

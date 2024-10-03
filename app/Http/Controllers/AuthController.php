@@ -56,7 +56,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             // Log the login event
             Login::create(['user_id' => Auth::id()]);
-            
+
             return redirect()->intended(route('dashboard'));
         } else {
             return redirect()->back()->withInput()->withErrors(['nik' => 'Nik atau password salah']);
@@ -67,8 +67,8 @@ class AuthController extends Controller
     {
         // Log the logout event
         Logout::create(['user_id' => Auth::id()]);
-        
+
         Auth::logout();
-        return redirect('login');
+        return redirect()->route('welcome');
     }
 }
