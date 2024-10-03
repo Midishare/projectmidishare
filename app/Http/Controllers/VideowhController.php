@@ -17,12 +17,12 @@ class VideowhController extends Controller
 
         // Query data dengan pagination
         $videowh = DB::table('videowh')
-                        ->when($search, function($query, $search) {
-                            // Jika terdapat kata kunci pencarian, tambahkan kondisi WHERE
-                            return $query->where('judulvidwh', 'like', '%'.$search.'%');
-                        })
-                        ->orderBy('id', 'desc')
-                        ->paginate(10); // Menampilkan 10 video per halaman
+            ->when($search, function ($query, $search) {
+                // Jika terdapat kata kunci pencarian, tambahkan kondisi WHERE
+                return $query->where('judulvidwh', 'like', '%' . $search . '%');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(10); // Menampilkan 10 video per halaman
 
         return view('modwh', ['videowh' => $videowh]);
     }
@@ -92,15 +92,15 @@ class VideowhController extends Controller
     public function show_by_adminvidwhshow(Request $request)
     {
         $search = $request->input('search');
-        
+
         // Query data dengan pagination
         $videowh = DB::table('videowh')
-                        ->when($search, function($query, $search) {
-                            return $query->where('judulvidwh', 'like', '%'.$search.'%');
-                        })
-                        ->orderBy('id', 'desc')
-                        ->paginate(9); // Menampilkan 9 video per halaman
-        
+            ->when($search, function ($query, $search) {
+                return $query->where('judulvidwh', 'like', '%' . $search . '%');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(9); // Menampilkan 9 video per halaman
+
         return view('showvideomodwh', ['videowh' => $videowh]);
     }
 
@@ -144,7 +144,7 @@ class VideowhController extends Controller
     //             }
     //         endif;
 
-            
+
     //         DB::table('videowh')->where('id', $id)->update([
     //             'judulvidwh' => $judulvidwh,
     //             'dokumenvideowh' => $dokumenNama,
@@ -185,58 +185,57 @@ class VideowhController extends Controller
     }
 
     public function deletevidmodwh($id)
-{
-    $videowh = DB::table('videowh')->where('id', $id)->first();
+    {
+        $videowh = DB::table('videowh')->where('id', $id)->first();
 
-    if (!$videowh) {
-        // Handle video not found
-        return redirect()->back()->withErrors(['error' => 'Video tidak ditemukan.']);
-    }
+        if (!$videowh) {
+            // Handle video not found
+            return redirect()->back()->withErrors(['error' => 'Video tidak ditemukan.']);
+        }
 
-    // Periksa apakah properti 'dokumenvideowh' ada sebelum mencoba menghapus file
-    if (isset($videowh->dokumenvideowh)) {
-        $dokumenPath = $videowh->dokumenvideowh;
+        // Periksa apakah properti 'dokumenvideowh' ada sebelum mencoba menghapus file
+        if (isset($videowh->dokumenvideowh)) {
+            $dokumenPath = $videowh->dokumenvideowh;
+
+            try {
+                Storage::delete('public/dokumen/' . $dokumenPath);
+            } catch (\Exception $e) {
+                // Handle file deletion error
+                return redirect()->back()->withErrors(['error' => 'Gagal menghapus file.']);
+            }
+        }
 
         try {
-            Storage::delete('public/dokumen/' . $dokumenPath);
+            DB::table('videowh')->where('id', $id)->delete();
+            Session::flash('success', 'Video berhasil dihapus.');
         } catch (\Exception $e) {
-            // Handle file deletion error
-            return redirect()->back()->withErrors(['error' => 'Gagal menghapus file.']);
+            // Handle database deletion error
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
+
+        return redirect()->route('videowh.show_by_adminvidwhshow');
     }
 
-    try {
-        DB::table('videowh')->where('id', $id)->delete();
-        Session::flash('success', 'Video berhasil dihapus.');
-    } catch (\Exception $e) {
-        // Handle database deletion error
-        return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
-    }
-
-    return redirect()->route('videowh.show_by_adminvidwhshow');
-}
-
-public function deleteMultiplewh(Request $request)
+    public function deleteMultiplewh(Request $request)
     {
         $ids = $request->input('selected_videos');
-    
+
         if ($ids) {
             $videos = DB::table('videowh')->whereIn('id', $ids)->get();
-            
+
             foreach ($videos as $video) {
                 if (isset($video->dokumenvideowh)) {
                     Storage::delete('public/dokumen/' . $video->dokumenvideowh);
                 }
             }
-    
+
             DB::table('videowh')->whereIn('id', $ids)->delete();
-    
+
             Session::flash('success', 'Video yang dipilih berhasil dihapus.');
         } else {
             Session::flash('error', 'Tidak ada video yang dipilih.');
         }
-    
-        return redirect()->route('videowh.show_by_adminvidwhshow');
-    } 
 
+        return redirect()->route('videowh.show_by_adminvidwhshow');
+    }
 }

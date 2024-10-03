@@ -58,7 +58,7 @@
                         <h2 class="card-title">Materi Dokumen</h2>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-secondary" href="/materilinkwh">View details &raquo;</a>
+                        <a class="btn btn-secondary" href="materilinkwh">View details &raquo;</a>
                     </div>
                 </div>
             </div>

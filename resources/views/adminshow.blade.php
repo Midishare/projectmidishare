@@ -23,7 +23,8 @@
     <div class="col-md-12 bg-white p-4">
         <div class="row">
             <div class="col-md-6">
-                <a href="/add">
+                
+                <a href="{{ route('berita.add') }}">
                     <button class="btn btn-primary mb-3"><strong>+</strong>Tambah</button>
                 </a>
             </div>

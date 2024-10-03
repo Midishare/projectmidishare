@@ -37,8 +37,8 @@ class DashboardController extends Controller
 
         foreach ($loginsToday as $login) {
             $logout = Logout::where('user_id', $login->user_id)
-                            ->whereDate('created_at', $today)
-                            ->first();
+                ->whereDate('created_at', $today)
+                ->first();
             if (!$logout || $logout->created_at > $login->created_at) {
                 $onlineUsersCount++;
             }
@@ -166,5 +166,4 @@ class DashboardController extends Controller
             return redirect()->back()->withErrors(['error' => 'An error occurred. Please try again.']);
         }
     }
-
 }

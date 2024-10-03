@@ -28,11 +28,11 @@
                 <i class="bi bi-arrow-left"></i> Kembali
             </a> 
         </div>     
-        @if($event)
-            <h3 style="margin-top: 1rem;"><strong>{{ $event->title }}</strong></h3>
+        @if($news)
+            <h3 style="margin-top: 1rem;"><strong>{{ $news->title }}</strong></h3>
             <div class="content">
-                <img class="card-img-top" src="{{ asset('storage/event_images/' . $event->image) }}" alt="Event image" style="margin-top: 1rem;">
-                <p class="description mt-3">{!! $event->description !!}</p>
+                <img class="card-img-top" src="{{ asset('storage/icon/' . $news->gambar) }}" alt="Event image" style="margin-top: 1rem;">
+                <p class="description mt-3">{!! $news->deskripsi !!}</p>
             </div>
         @else
             <div class="alert alert-danger">Data tidak ditemukan.</div>

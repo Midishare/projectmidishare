@@ -64,7 +64,7 @@
                     {{-- <p class="card-text">Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p> --}}
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary"  href="/materilinkogm">View details &raquo;</a>
+                    <a class="btn btn-secondary"  href="materilinkogm">View details &raquo;</a>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                     {{-- <p class="card-text">Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p> --}}
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary" href="/showvideomodogm">View details &raquo;</a>
+                    <a class="btn btn-secondary" href="showvideomodogm">View details &raquo;</a>
                 </div>
             </div>
         </div>

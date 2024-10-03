@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Log;
 
 class VideoogmController extends Controller
 {
-   
+
     public function showvideomodogm(Request $request)
     {
         $search = $request->input('search');
         $videoogm = DB::table('videoogm')
-                        ->when($search, function($query, $search) {
-                            return $query->where('judulvidogm', 'like', '%'.$search.'%');
-                        })
-                        ->orderBy('id', 'desc')
-                        ->paginate(10);
+            ->when($search, function ($query, $search) {
+                return $query->where('judulvidogm', 'like', '%' . $search . '%');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(10);
 
         return view('modogm', ['videoogm' => $videoogm]);
     }
@@ -58,14 +58,14 @@ class VideoogmController extends Controller
     public function show_by_adminvidogmshow(Request $request)
     {
         $search = $request->input('search');
-        
+
         $videoogm = DB::table('videoogm')
-                        ->when($search, function($query, $search) {
-                            return $query->where('judulvidogm', 'like', '%'.$search.'%');
-                        })
-                        ->orderBy('id', 'desc')
-                        ->paginate(9); 
-        
+            ->when($search, function ($query, $search) {
+                return $query->where('judulvidogm', 'like', '%' . $search . '%');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(9);
+
         return view('showvideomodogm', ['videoogm' => $videoogm]);
     }
 
@@ -119,60 +119,59 @@ class VideoogmController extends Controller
     // }
 
     public function deletevidmodogm($id)
-{
-    $videoogm = DB::table('videoogm')->where('id', $id)->first();
+    {
+        $videoogm = DB::table('videoogm')->where('id', $id)->first();
 
-    if (!$videoogm) {
-        // Handle video not found
-        return redirect()->back()->withErrors(['error' => 'Video tidak ditemukan.']);
-    }
+        if (!$videoogm) {
+            // Handle video not found
+            return redirect()->back()->withErrors(['error' => 'Video tidak ditemukan.']);
+        }
 
-    // Periksa apakah properti 'dokumenvideoogm' ada sebelum mencoba menghapus file
-    if (isset($videoogm->dokumenvideoogm)) {
-        $dokumenPath = $videoogm->dokumenvideoogm;
+        // Periksa apakah properti 'dokumenvideoogm' ada sebelum mencoba menghapus file
+        if (isset($videoogm->dokumenvideoogm)) {
+            $dokumenPath = $videoogm->dokumenvideoogm;
+
+            try {
+                Storage::delete('public/dokumen/' . $dokumenPath);
+            } catch (\Exception $e) {
+                // Handle file deletion error
+                return redirect()->back()->withErrors(['error' => 'Gagal menghapus file.']);
+            }
+        }
 
         try {
-            Storage::delete('public/dokumen/' . $dokumenPath);
+            DB::table('videoogm')->where('id', $id)->delete();
+            Session::flash('success', 'Video berhasil dihapus.');
         } catch (\Exception $e) {
-            // Handle file deletion error
-            return redirect()->back()->withErrors(['error' => 'Gagal menghapus file.']);
+            // Handle database deletion error
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
-    }
 
-    try {
-        DB::table('videoogm')->where('id', $id)->delete();
-        Session::flash('success', 'Video berhasil dihapus.');
-    } catch (\Exception $e) {
-        // Handle database deletion error
-        return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
+        return redirect()->route('videoogm.show_by_adminvidogmshow');
     }
-
-    return redirect()->route('videoogm.show_by_adminvidogmshow');
-}
 
 
     public function deleteMultiple(Request $request)
     {
         $ids = $request->input('selected_videos');
-    
+
         if ($ids) {
             $videos = DB::table('videoogm')->whereIn('id', $ids)->get();
-            
+
             foreach ($videos as $video) {
                 // Periksa apakah properti 'dokumenvideoogm' ada sebelum menghapus file
                 if (isset($video->dokumenvideoogm)) {
                     Storage::delete('public/dokumen/' . $video->dokumenvideoogm);
                 }
             }
-    
+
             DB::table('videoogm')->whereIn('id', $ids)->delete();
-    
+
             Session::flash('success', 'Video yang dipilih berhasil dihapus.');
         } else {
             Session::flash('error', 'Tidak ada video yang dipilih.');
         }
-    
-        return redirect()->route('videoogm.show_by_adminvidogmshow');
-    }    
 
+        return redirect()->route('videoogm.show_by_adminvidogmshow');
+    }
 }

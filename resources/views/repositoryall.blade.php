@@ -30,7 +30,7 @@
                             <h4 class="card-title text-center">People Development Manager</h4>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <a class="btn btn-secondary" href="/materi">View details &raquo;</a>
+                            <a class="btn btn-secondary" href="materi">View details &raquo;</a>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             <h4 class="card-title text-center">Operation General Manager</h4>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <a class="btn btn-secondary" href="/materiogm">View details &raquo;</a>
+                            <a class="btn btn-secondary" href="materiogm">View details &raquo;</a>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                             <h4 class="card-title text-center">Ware House</h4>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <a class="btn btn-secondary" href="/materiwh" >View details &raquo;</a>
+                            <a class="btn btn-secondary" href="materiwh" >View details &raquo;</a>
                         </div>
                     </div>
                 </div>

@@ -22,37 +22,19 @@ use App\Http\Controllers\CrudloginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserloginController;
 
-Route::middleware('auth', 'permission:read user')->group(function () {
-    Route::get('/users/profile', [UserController::class, 'showProfile'])->name('users.profile');
-});
-
-Route::get('/adminlogin', function () {
-    return view('adminlogin');
-});
 
 Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/welcome', [DashboardController::class, 'index'])->name('welcome');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('signin');
 
-Route::get('/add', function () {
-    return view('add');
-})->name('berita.add');
 
-Route::get('/detail', function () {
-    return view('berita.detail');
-});
-
-Route::get('/kmadmin', function () {
-    return view('kmadmin');
-});
 
 Route::get('/materiadmin', function () {
     return view('materiadmin');
@@ -66,45 +48,6 @@ Route::get('/materiadminmodogm', function () {
     return view('materiadminmodogm');
 });
 
-Route::get('/adminlogin', function () {
-    return view('adminlogin');
-});
-
-Route::get('/', [DashboardController::class, 'index'])->name('welcome');
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/welcome', [DashboardController::class, 'index'])->name('welcome');
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-});
-
-Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('login', [AuthController::class, 'login'])->name('signin');
-
-Route::get('/add', function () {
-    return view('add');
-})->name('berita.add');
-
-Route::get('/detail', function () {
-    return view('berita.detail');
-});
-
-Route::get('/kmadmin', function () {
-    return view('kmadmin');
-});
-
-Route::get('/materiadmin', function () {
-    return view('materiadmin');
-});
-
-Route::get('/materiadminmodwh', function () {
-    return view('materiadminmodwh');
-});
-
-Route::get('/materiadminmodogm', function () {
-    return view('materiadminmodogm');
-});
 
 Route::middleware('auth', 'role:admin')->group(function () {
     Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
@@ -304,18 +247,6 @@ Route::get('/materiwh', function () {
 
 Route::get('/materiogm', function () {
     return view('materiogm');
-});
-
-Route::get('/materilinkmod', function () {
-    return view('materilinkmod');
-});
-
-Route::get('/materilinkogm', function () {
-    return view('materilinkogm');
-});
-
-Route::get('/materilinkwh', function () {
-    return view('materilinkwh');
 });
 
 Route::get('/materilinkmod', function () {

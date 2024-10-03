@@ -52,7 +52,7 @@
                     <h2 class="card-title">Materi Dokumen</h2>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary" href="/materilinkmod">View details &raquo;</a>
+                    <a class="btn btn-secondary" href="materilinkmod">View details &raquo;</a>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                     <h2 class="card-title">Video</h2>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary" href="/showvideomod">View details &raquo;</a>
+                    <a class="btn btn-secondary" href="showvideomod">View details &raquo;</a>
                 </div>
             </div>
         </div>
