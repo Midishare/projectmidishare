@@ -19,10 +19,43 @@ class VideoogmController extends Controller
                 return $query->where('judulvidogm', 'like', '%' . $search . '%');
             })
             ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->paginate(9); // or paginate(10) based on your requirement
+
+
+        // Looping untuk setiap video untuk menyiapkan thumbnail URL
+        foreach ($videoogm as $video) {
+            $video_id = '';
+            $video_url = $video->linkogm;
+
+            // Cek apakah URL adalah YouTube
+            if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+                $url_parts = parse_url($video_url);
+
+                if (isset($url_parts['query'])) {
+                    parse_str($url_parts['query'], $query);
+                    if (isset($query['v'])) {
+                        $video_id = $query['v']; // Mendapatkan ID video dari parameter 'v'
+                    }
+                } elseif (isset($url_parts['path'])) {
+                    $path_parts = explode('/', trim($url_parts['path'], '/'));
+                    $video_id = end($path_parts); // Untuk URL singkat youtu.be
+                }
+
+                // Set thumbnail URL jika ID video ditemukan
+                if ($video_id) {
+                    $video->thumbnail_url = "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg";
+                } else {
+                    $video->thumbnail_url = null;
+                }
+            } else {
+                $video->thumbnail_url = null;
+            }
+        }
 
         return view('modogm', ['videoogm' => $videoogm]);
     }
+
+
 
     public function addvidmodogm()
     {
@@ -33,20 +66,26 @@ class VideoogmController extends Controller
     {
         $request->validate([
             'judulvidogm' => 'required',
-            'linkogm' => 'required|url', // Memvalidasi input link sebagai URL
+            'linkogm' => 'required|url', // Memvalidasi bahwa input adalah URL
         ]);
+
+        // Memeriksa apakah link adalah link YouTube
+        $linkogm = $request->input('linkogm');
+        if (strpos($linkogm, 'youtube.com') === false && strpos($linkogm, 'youtu.be') === false) {
+            return redirect()->back()->withErrors(['error' => 'Harap masukkan URL YouTube yang valid.']);
+        }
 
         try {
             DB::table('videoogm')->insert([
                 'judulvidogm' => $request->input('judulvidogm'),
-                'linkogm' => $request->input('linkogm'),
+                'linkogm' => $linkogm,
             ]);
             return redirect()->route('videoogm.show_by_adminvidogmshow')->with('success', 'Video berhasil ditambahkan.');
         } catch (\Exception $e) {
-            // Redirect dengan pesan error jika terjadi kesalahan
             return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
     }
+
 
     public function detailvidogm($id)
     {
@@ -81,27 +120,28 @@ class VideoogmController extends Controller
         $request->validate([
             'id' => 'required',
             'judulvidogm' => 'required',
-            'linkogm' => 'required|url', // Memvalidasi input link sebagai URL
+            'linkogm' => 'required|url',
         ]);
 
-        $id = $request->id;
-        $judulvidogm = $request->judulvidogm;
+        $id = $request->input('id');
+        $linkogm = $request->input('linkogm');
 
-        $videoogm = DB::table('videoogm')->where('id', $id)->first();
-        $linkogmLama = $videoogm->linkogm;
+        // Memeriksa apakah link yang diedit adalah link YouTube
+        if (strpos($linkogm, 'youtube.com') === false && strpos($linkogm, 'youtu.be') === false) {
+            return redirect()->back()->withErrors(['error' => 'Harap masukkan URL YouTube yang valid.']);
+        }
 
         try {
             DB::table('videoogm')->where('id', $id)->update([
-                'judulvidogm' => $judulvidogm,
-                'linkogm' => $request->input('linkogm'),
+                'judulvidogm' => $request->input('judulvidogm'),
+                'linkogm' => $linkogm,
             ]);
-
-            Session::flash('success', 'Video berhasil diupdate.');
-            return redirect()->route('videoogm.show_by_adminvidogmshow');
+            return redirect()->route('videoogm.show_by_adminvidogmshow')->with('success', 'Video berhasil diupdate.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
     }
+
 
     // public function deletevidmodogm($id)
     // {

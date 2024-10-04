@@ -5,12 +5,12 @@
 <style>
     /* Gaya CSS tambahan */
     .back-button {
-        margin-top: 1rem; /* Menambahkan margin-top untuk jarak antara judul dan navbar */
+        margin-top: 1rem;
     }
 
     @media (max-width: 768px) {
         .gradient-bg.py-5 {
-            padding-top: 2rem; /* Penyesuaian padding atas untuk tampilan responsif */
+            padding-top: 2rem;
         }
     }
 
@@ -50,28 +50,25 @@
         </a>
     </div>
     <div class="container text-center">
-      <h3>Repository Knowledge OGM</h3>
+        <h3>Repository Knowledge OGM</h3>
     </div>
-  </section>
+</section>
 
-
-  <section style="margin-top: 0.25rem;"> <!-- Mengurangi margin-top -->
+<section style="margin-top: 0.25rem;">
     <div class="container">
-        <div class="row align-items-center justify-content-end"> <!-- Menggunakan justify-content-end untuk memulai item dari kanan -->
-            <div class="col-auto"> <!-- Menggunakan class 'col-auto' untuk bagian search -->
+        <div class="row align-items-center justify-content-end">
             <div class="col-auto">
-            <div class="col-auto">
-                    <form action="{{ route('videoogm.showvideomodogm') }}" method="GET" class="flex-grow-4">
-                        <div class="input-group">
-                            <input type="text" name="search" class="form-control" aria-describedby="searchHelpInline" placeholder="Search...">
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
-                        </div>
-                    </form>
-                </div>
+                <form action="{{ route('videoogm.showvideomodogm') }}" method="GET" class="flex-grow-4">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" aria-describedby="searchHelpInline" placeholder="Search...">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
+
 <section style="margin-top: 2rem;">
     <div class="container">
         <div class="row">
@@ -80,38 +77,45 @@
                 <div class="card h-180">
                     <div class="card-body">
                         <p class="card-text">
-                            @php
-                                $video_id = '';
-                                $video_url = $video->linkogm;
-                                if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
-                                    $url_parts = parse_url($video_url);
-                                    parse_str($url_parts['query'], $query);
-                                    
-                                    if (isset($query['v'])) {
-                                        $video_id = $query['v'];
-                                    } else {
-                                        $path_parts = explode('/', $url_parts['path']);
-                                        $video_id = end($path_parts);
-                                    }
-                                }
-                            @endphp
-                            @if(!empty($video_id))
-                                <a href="{{ $video_url }}" target="_blank" class="card-link">
-                                    <img src="https://img.youtube.com/vi/{{ $video_id }}/0.jpg" alt="Thumbnail" class="video-thumbnail" width="100%" height="200">
-                                </a>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $video->judulvidogm }}</h6>
-                            @else
-                                <span>Format tidak didukung</span>
-                            @endif
-                        </p>
-                    </div>
-                </div>
-            </div>
-            @endforeach
+                    @php
+                    $video_id = '';
+                    $video_url = $video->linkogm;
+                    
+                        // Cek apakah URL berasal dari YouTube
+                        if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+                            if (strpos($video_url, 'youtu.be') !== false) {
+                                // Format pendek (youtu.be)
+                                $url_parts = explode('/', $video_url);
+                                $video_id = end($url_parts);
+                                // Hapus parameter setelah tanda tanya jika ada
+                                $video_id = explode('?', $video_id)[0];
+                            } elseif (strpos($video_url, 'youtube.com') !== false) {
+                                // Format panjang (youtube.com)
+                                parse_str(parse_url($video_url, PHP_URL_QUERY), $query);
+                                $video_id = $query['v'] ?? '';
+                            }
+                        }
+                        
+                        // Periksa nilai $video_id
+                        // dd($video_id); // Uncomment ini jika ingin melihat output
+                    @endphp
+            @if(!empty($video_id))
+                <a href="{{ $video_url }}" target="_blank" class="card-link">
+                    <img src="https://img.youtube.com/vi/{{ $video_id }}/0.jpg" alt="Thumbnail" class="video-thumbnail" width="100%" height="200">
+                </a>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $video->judulvidogm }}</h6>
+            @else
+                <span>Format tidak didukung</span>
+            @endif
+            </p>
+        </div>
+    </div>
+</div>
+@endforeach
+           
         </div>
         {{ $videoogm->links() }}
     </div>
 </section>
+
 @endsection
-
-

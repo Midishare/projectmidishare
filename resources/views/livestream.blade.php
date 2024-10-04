@@ -6,7 +6,7 @@
 
     @if($livestream && $livestream->url)
         <div style="position: relative; width: 1270px; height: 315px;">
-            <iframe width="560" height="315" src="{{ $livestream->url }}?autoplay=1&mute=1" 
+            <iframe width="560" height="315" src="{{ $livestream->url }}?autoplay" 
                     title="YouTube livestream" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowfullscreen>
