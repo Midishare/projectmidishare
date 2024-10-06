@@ -2,72 +2,73 @@
 
 @section('content')
 
+<!-- Bootstrap and Custom Styles -->
 <style>
-      .animated {
-        animation-duration: 0.5s;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 2; }
-    }
-
-    /* Efek hover untuk card */
+    /* Custom styles */
     .card:hover {
-        transform: translateY(-5px); /* Mengangkat card sedikit saat dihover */
+        transform: translateY(-5px);
         transition: transform 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Efek hover untuk tombol */
     .btn-secondary:hover {
         transform: scale(1.05);
         transition: transform 0.3s ease;
     }
-
-    .back-button {
-        position: absolute;
-        top: 90px;
-        left: 20px;
-    }
-
-    .judul {
-        font-size: 1.5rem;
-    }
 </style>
 
-<section class="gradient-bg py-5">
-    <div class="container-fluid p-4 text-center mt-4">
-        {{-- <a href="javascript:history.back()" class="btn back-button" style="margin-right: 20px;"> <!-- Ubah nilai margin-right sesuai keinginan -->
-            <i class="bi bi-arrow-left"></i> Kembali
-        </a> --}}
-        <h2>Materi Pembelajaran People Development Manager</h2>
+<!-- Main Section -->
+<section>
+    <div class="container text-center p-5 mt-5">
+        <h2>MOD</h2>
+    </div>
+    <div class="container text-center mt-4">
+        <section class="py-1">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+                    <!-- MDP Card -->
+                    <div class="col">
+                        <div class="card h-100 p-3">
+                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms5.png') }}" alt="People Development Manager">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">MDP</h4>
+                            </div>
+                            <div class="card-footer d-flex justify-content-center">
+                                <a class="btn btn-secondary" href="{{ route('admin.mdp.index') }}">View details &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DP Card -->
+                    <div class="col">
+                        <div class="card h-100 p-3">
+                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms2.png') }}" alt="Operation General Manager">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">DP</h4>
+                            </div>
+                            <div class="card-footer d-flex justify-content-center">
+                                <a class="btn btn-secondary" href="{{ route('admin.dp.index') }}">View details &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- IP Card -->
+                    <div class="col">
+                        <div class="card h-100 p-3">
+                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms10.png') }}" alt="Ware House">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">IP</h4>
+                            </div>
+                            <div class="card-footer d-flex justify-content-center">
+                                <a class="btn btn-secondary" href="{{ route('admin.ip.index') }}">View details &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </section>
 
-<div class="container text-center animated fadeIn">
-    <div class="row row-cols-1 row-cols-md-2 g-8 justify-content-center align-items-center">
-        <div class="col">
-            <div class="card h-100">
-                <img class="bd-placeholder-img rounded-circle mx-auto" width="180" height="180" src="{{ asset('icon/dokumen.png') }}" alt="Operation General Manager">
-                <div class="card-body">
-                    <h2 class="card-title">Materi Dokumen</h2>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-secondary" href="materilinkmod">View details &raquo;</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img class="bd-placeholder-img rounded-circle mx-auto" width="180" height="180" src="{{ asset('icon/video player.png') }}" alt="Operation General Manager">
-                <div class="card-body">
-                    <h2 class="card-title">Video</h2>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-secondary" href="showvideomod">View details &raquo;</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Spacer -->
 <div style="height: 60px;"></div>
+
 @endsection

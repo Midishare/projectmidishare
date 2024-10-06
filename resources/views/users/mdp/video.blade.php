@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="container text-center">
-        <h3>Repository Knowledge OGM</h3>
+        <h3>MDP - Video</h3>
     </div>
 </section>
 
@@ -58,7 +58,7 @@
     <div class="container">
         <div class="row align-items-center justify-content-end">
             <div class="col-auto">
-                <form action="{{ route('videoogm.showvideomodogm') }}" method="GET" class="flex-grow-4">
+                <form action="{{ route('mdp.video') }}" method="GET" class="flex-grow-4">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" aria-describedby="searchHelpInline" placeholder="Search...">
                         <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
@@ -72,14 +72,14 @@
 <section style="margin-top: 2rem;">
     <div class="container">
         <div class="row">
-            @foreach($videoogm as $i => $video)
+            @foreach($videos as $i => $video)
             <div class="col-lg-4 mb-4">
                 <div class="card h-180">
                     <div class="card-body">
                         <p class="card-text">
                     @php
                     $video_id = '';
-                    $video_url = $video->linkogm;
+                    $video_url = $video->link;
                     
                         // Cek apakah URL berasal dari YouTube
                         if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
@@ -100,7 +100,7 @@
                 <a href="{{ $video_url }}" target="_blank" class="card-link">
                     <img src="https://img.youtube.com/vi/{{ $video_id }}/0.jpg" alt="Thumbnail" class="video-thumbnail" width="100%" height="200">
                 </a>
-                <h6 class="card-subtitle mb-2 text-muted">{{ $video->judulvidogm }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $video->title }}</h6>
             @else
                 <span>Format tidak didukung</span>
             @endif
@@ -111,7 +111,7 @@
 @endforeach
            
         </div>
-        {{ $videoogm->links() }}
+        {{ $videos->links() }}
     </div>
 </section>
 

@@ -18,6 +18,15 @@ use App\Http\Controllers\LinkogmController;
 use App\Http\Controllers\LinkwhController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LivestreamController;
+use App\Http\Controllers\MdpController;
+use App\Http\Controllers\DpController;
+use App\Http\Controllers\IpController;
+use App\Http\Controllers\Admin\MdpController as AdminMdpController;
+use App\Http\Controllers\Admin\DpController as AdminDpController;
+use App\Http\Controllers\Admin\IpController as AdminIpController;
+use App\Http\Controllers\Admin\VideoMdpController;
+use App\Http\Controllers\Admin\VideoDpController;
+use App\Http\Controllers\Admin\VideoIpController;
 use App\Http\Controllers\CrudloginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserloginController;
@@ -69,7 +78,92 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::put('/users/{address}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{address}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::delete('/selected-users', [UserController::class, 'deleteCheckedUser'])->name('user.deleteSelected');
+
+    // Route untuk Admin MDP
+    Route::prefix('admin/mdp')->group(function () {
+        Route::get('/', [AdminMdpController::class, 'index'])->name('admin.mdp.index');
+        Route::get('/materi', [AdminMdpController::class, 'materidokumen'])->name('admin.mdp.materi');
+        Route::post('/materi/create', [AdminMdpController::class, 'storeDokumen'])->name('admin.mdp.materi.store'); // Add this line
+        Route::get('/mdp/materi/create', [AdminMdpController::class, 'create'])->name('admin.mdp.materi.create');
+        Route::get('/video', [AdminMdpController::class, 'video'])->name('admin.mdp.video');
+        Route::get('/mdp/materi/{id}/edit', [AdminMdpController::class, 'edit'])->name('admin.mdp.materi.edit');
+        Route::put('/mdp/materi/{id}', [AdminMdpController::class, 'update'])->name('admin.mdp.materi.update');
+        Route::get('/mdp/materi/{id}', [AdminMdpController::class, 'destroy'])->name('admin.mdp.materi.destroy');
+        Route::post('/mdp/materi/bulk-delete', [AdminMdpController::class, 'bulkDelete'])->name('admin.mdp.materi.bulkDelete');
+        Route::resource('mdp', MdpController::class);
+        // Ensure this route exists and points to the correct controller method
+        Route::get('/video', [VideoMdpController::class, 'index'])->name('admin.video');
+        Route::get('/video/create', [VideoMdpController::class, 'create'])->name('admin.video.create');
+        Route::post('/video', [VideoMdpController::class, 'store'])->name('admin.video.store');
+        Route::get('/video/{id}/edit', [VideoMdpController::class, 'edit'])->name('admin.video.edit');
+        Route::put('/video/{id}', [VideoMdpController::class, 'update'])->name('admin.video.update');
+        Route::get('/video/{id}', [VideoMdpController::class, 'destroy'])->name('admin.video.destroy');
+        Route::post('/admin/video/bulk-delete', [VideoController::class, 'bulkDelete'])->name('admin.video.bulk_delete');
+    });
+
+    // Route untuk Admin DP
+    Route::prefix('admin/dp')->group(function () {
+        Route::get('/', [AdminDpController::class, 'index'])->name('admin.dp.index');
+        Route::get('/materi', [AdminDpController::class, 'materidokumen'])->name('admin.dp.materi');
+        Route::post('/materi/create', [AdminDpController::class, 'storeDokumen'])->name('admin.dp.materi.store');
+        Route::get('/materi/create', [AdminDpController::class, 'create'])->name('admin.dp.materi.create');
+        Route::get('/video', [AdminDpController::class, 'video'])->name('admin.dp.video');
+        Route::get('/materi/{id}/edit', [AdminDpController::class, 'edit'])->name('admin.dp.materi.edit');
+        Route::put('/materi/{id}', [AdminDpController::class, 'update'])->name('admin.dp.materi.update');
+        Route::get('/materi/{id}', [AdminDpController::class, 'destroy'])->name('admin.dp.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminDpController::class, 'bulkDelete'])->name('admin.dp.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoDpController::class, 'index'])->name('admin.video');
+        Route::get('/video/create', [VideoDpController::class, 'create'])->name('admin.video.create');
+        Route::post('/video', [VideoDpController::class, 'store'])->name('admin.video.store');
+        Route::get('/video/{id}/edit', [VideoDpController::class, 'edit'])->name('admin.video.edit');
+        Route::put('/video/{id}', [VideoDpController::class, 'update'])->name('admin.video.update');
+        Route::get('/video/{id}', [VideoDpController::class, 'destroy'])->name('admin.video.destroy');
+        Route::post('/video/bulk-delete', [VideoDpController::class, 'bulkDelete'])->name('admin.video.bulk_delete');
+    });
+
+
+    // Route untuk Admin IP
+    Route::prefix('admin/ip')->group(function () {
+        Route::get('/', [AdminIpController::class, 'index'])->name('admin.ip.index');
+        Route::get('/materi', [AdminIpController::class, 'materiDokumen'])->name('admin.ip.materi');
+        Route::post('/materi/create', [AdminIpController::class, 'store'])->name('admin.ip.materi.store');
+        Route::get('/materi/create', [AdminIpController::class, 'create'])->name('admin.ip.materi.create');
+        Route::get('/materi/{id}/edit', [AdminIpController::class, 'edit'])->name('admin.ip.materi.edit');
+        Route::put('/materi/{id}', [AdminIpController::class, 'update'])->name('admin.ip.materi.update');
+        Route::get('/materi/{id}', [AdminIpController::class, 'destroy'])->name('admin.ip.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminIpController::class, 'bulkDelete'])->name('admin.ip.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoIpController::class, 'index'])->name('admin.video');
+        Route::get('/video/create', [VideoIpController::class, 'create'])->name('admin.video.create');
+        Route::post('/video', [VideoIpController::class, 'store'])->name('admin.video.store');
+        Route::get('/video/{id}/edit', [VideoIpController::class, 'edit'])->name('admin.video.edit');
+        Route::put('/video/{id}', [VideoIpController::class, 'update'])->name('admin.video.update');
+        Route::get('/video/{id}', [VideoIpController::class, 'destroy'])->name('admin.video.destroy');
+        Route::post('/video/bulk-delete', [VideoIpController::class, 'bulkDelete'])->name('admin.video.bulk_delete');
+    });
 });
+
+// Route untuk MDP
+Route::get('/mdp', [MdpController::class, 'index'])->name('mdp.index');
+Route::get('/mdp/materi', [MdpController::class, 'materiDokumen'])->name('mdp.materi');
+Route::get('/mdp/video', [MdpController::class, 'video'])->name('mdp.video');
+
+
+
+// Route untuk DP
+Route::get('/dp', [DpController::class, 'index'])->name('dp.index');
+Route::get('/dp/materi', [DpController::class, 'materiDokumen'])->name('dp.materi');
+Route::get('/dp/video', [DpController::class, 'video'])->name('dp.video');
+
+// Route untuk IP
+Route::get('/ip', [IpController::class, 'index'])->name('ip.index');
+Route::get('/ip/materi', [IpController::class, 'materiDokumen'])->name('ip.materi');
+Route::get('/ip/video', [IpController::class, 'video'])->name('ip.video');
+
+
 
 
 Route::get('/addhome', [DashboardController::class, 'addhome'])->name('dashboard.addhome');
@@ -95,6 +189,9 @@ Route::delete('/bulk_delete', [BeritaController::class, 'bulkDelete'])->name('be
 Route::get('/kmadmin', [BeritaController::class, 'kmadmin'])->name('kmadmin');
 Route::get('/repositoryall', [BeritaController::class, 'repositoryall'])->name('repositoryall');
 
+// Route for user 
+// routes/web.php
+
 
 
 
@@ -113,7 +210,7 @@ Route::get('/addkm', [KnowledgeController::class, 'addkm'])->name('knowledge.add
 Route::post('/addkm_process', [KnowledgeController::class, 'addkm_process'])->name('knowledge.addkm_process');
 Route::get('/repositorykm', [KnowledgeController::class, 'showkm'])->name('knowledge.showkm');
 Route::get('/detailkm/{id}', [KnowledgeController::class, 'detailkm'])->name('knowledge.detailkm');
-Route::get('/showkm', [KnowledgeController::class, 'show_by_adminkmshow'])->name('knowledge.show_by_adminkmshow');
+// Route::get('/showkm', [KnowledgeController::class, 'show_by_adminkmshow'])->name('knowledge.show_by_adminkmshow');
 Route::get('/editkm/{id}', [KnowledgeController::class, 'editkm'])->name('knowledge.editkm');
 Route::post('/editkm_process', [KnowledgeController::class, 'editkm_process'])->name('knowledge.editkm_process');
 Route::get('/deletekm/{id}', [KnowledgeController::class, 'deletekm'])->name('knowledge.deletekm');

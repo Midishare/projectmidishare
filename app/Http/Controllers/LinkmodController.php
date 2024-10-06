@@ -15,11 +15,11 @@ class LinkmodController extends Controller
         $search = $request->input('search');
 
         $linkmod = DB::table('linkmod')
-                        ->when($search, function($query, $search) {
-                            return $query->where('judullinkmod', 'like', '%'.$search.'%');
-                        })
-                        ->orderBy('id', 'desc')
-                        ->paginate(10);
+            ->when($search, function ($query, $search) {
+                return $query->where('judullinkmod', 'like', '%' . $search . '%');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(10);
 
         return view('modlink', ['linkmod' => $linkmod]);
     }
@@ -28,12 +28,12 @@ class LinkmodController extends Controller
     {
         return view('addlinkmod');
     }
-    
+
     public function addlinkmod_process(Request $request)
     {
         $request->validate([
             'judullinkmod' => 'required',
-            'linkdrivemod' => 'required|url', 
+            'linkdrivemod' => 'required|url',
         ]);
 
         try {
@@ -58,12 +58,12 @@ class LinkmodController extends Controller
     {
         $search = $request->input('search');
         $linkmod = DB::table('linkmod')
-                        ->when($search, function($query, $search) {
-                            return $query->where('judullinkmod', 'like', '%'.$search.'%');
-                        })
-                        ->orderBy('id', 'desc')
-                        ->paginate(9);
-        
+            ->when($search, function ($query, $search) {
+                return $query->where('judullinkmod', 'like', '%' . $search . '%');
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(9);
+
         return view('showlinkmod', ['linkmod' => $linkmod]);
     }
 
@@ -72,22 +72,22 @@ class LinkmodController extends Controller
         $linkmod = DB::table('linkmod')->where('id', $id)->first();
         return view('editlinkmod', ['linkmod' => $linkmod]);
     }
-    
+
     public function editlink_process(Request $request)
     {
         $request->validate([
             'id' => 'required',
             'judullinkmod' => 'required',
-            'linkdrivemod' => 'required|url', 
+            'linkdrivemod' => 'required|url',
         ]);
-    
+
         $id = $request->id;
         $judullinkmod = $request->judullinkmod;
         $linkmod = DB::table('linkmod')->where('id', $id)->first();
         if (!$linkmod) {
             return redirect()->back()->withInput()->withErrors(['error' => 'Data tidak ditemukan.']);
         }
-    
+
         try {
             DB::table('linkmod')->where('id', $id)->update([
                 'judullinkmod' => $judullinkmod,
@@ -98,22 +98,22 @@ class LinkmodController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
-    }    
+    }
 
     public function deletelinkmod($id)
     {
         $linkmod = DB::table('linkmod')->where('id', $id)->first();
-    
+
         try {
             DB::table('linkmod')->where('id', $id)->delete();
-    
+
             Session::flash('success', 'Video berhasil dihapus.');
             return redirect()->route('linkmod.show_by_adminlinkshow');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
     }
-  
+
     public function bulkDelete(Request $request)
     {
         $ids = $request->input('ids');

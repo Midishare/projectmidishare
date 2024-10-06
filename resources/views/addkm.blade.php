@@ -11,36 +11,31 @@
     <div class="col-md-8 col-sm-12 bg-white p-4">
         <div class="container" style="margin-left: 3.5rem;">
             <div class="card">
-            <div class="card-body">
-            <form method="post" action="{{ route('knowledge.addkm_process') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label>Judul</label>
-                    <input type="text" class="form-control" name="judul" placeholder="Judul artikel">
+                <div class="card-body">
+                    <form method="post" action="{{ route('knowledge.addkm_process') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label>Judul</label>
+                            <input type="text" class="form-control" name="judul" placeholder="Judul artikel" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Gambar</label>
+                            <input type="file" class="form-control" name="gambar" placeholder="Gambar file" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Link Dokumen</label>
+                            <input type="url" class="form-control" name="dokumenlink" placeholder="Masukkan URL dokumen" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Upload">
+                        </div>
+                    </form>
                 </div>
-                <br>
-                <div class="form-group">
-                    <label>Gambar</label>
-                    <input type="file" class="form-control" name="gambar" placeholder="gambar file">
-                </div>
-                <br>
-                <div class="form-group">
-                    <label>Dokumen File</label>
-                    <input type="file" class="form-control" name="dokumenfile" placeholder="dokumen file">
-                </div>
-                <br>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Upload">
-                </div>
+            </div>    
         </div>
-    </div>    
-    </form>
-</div>
-</div>
-</div>
-</div>
+    </div>
 </section>
-
-
-
 @endsection

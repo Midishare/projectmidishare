@@ -13,6 +13,7 @@
             padding-top: 2rem; /* Penyesuaian padding atas untuk tampilan responsif */
         }
     }
+
     .card-title a {
         color: black;
         text-decoration: none;
@@ -39,6 +40,13 @@
     h4 {
         margin-top: 0.2rem;
         margin-bottom: 0;
+    }
+
+    .repo-image {
+        width: 100%; /* Make the image responsive */
+        height: auto; /* Maintain aspect ratio */
+        max-height: 150px; /* Limit the height if necessary */
+        object-fit: cover; /* Crop if necessary */
     }
 </style>
 
@@ -73,6 +81,7 @@
         @foreach($linkmod as $repo)
         <div class="col-md-4 col-sm-6 mb-4"> <!-- Added col-sm-6 for responsiveness -->
             <div class="card h-100"> <!-- Ensure cards have equal height -->
+                <img src="{{ asset('storage/' . $repo->gambar) }}" alt="Image" class="repo-image"> <!-- Image Display -->
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-dark">{{ $repo->judullinkmod }}</h5>
                     <a href="{{ $repo->linkdrivemod }}" target="_blank" class="mt-auto">{{ $repo->linkdrivemod }}</a>
