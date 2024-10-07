@@ -15,6 +15,10 @@
                 <div class="form-group">
                     <label>Link</label>
                     <input type="text" class="form-control" value="{{ $linkogm->linkdriveogm }}" name="linkdriveogm" placeholder="Link Drive">
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Gambar</label>
+                    <input type="file" name="image" class="form-control">
                 </div>           
                 <div class="form-group" style="margin-top: 2rem;">
                     <input type="submit" class="btn btn-primary" value="Edit">

@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="container text-center">
-        <h3>Repository Knowledge OGM</h3>
+        <h3>Materi SME</h3>
     </div>
 </section>
 

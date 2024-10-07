@@ -3,7 +3,7 @@
 @section('content')
 <section style="margin-top: 95px;">
     <div class="container" style="margin-left: 5rem;">
-        <h4>Add Link Dokumen Pembelajaran ogm</h4>
+        <h4>Add Link Dokumen Pembelajaran SME</h4>
     </div>
 </section>
 
@@ -12,7 +12,7 @@
         <div class="container" style="margin-left: 3.5rem;">
             <div class="card">
             <div class="card-body">
-                <form action="{{ route('linkogm.addlinkogm_process') }}" method="POST">
+                <form action="{{ route('linkogm.addlinkogm_process') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="judullinkogm">Judul</label>
@@ -21,6 +21,10 @@
                     <div class="form-group">
                         <label for="linkdriveogm">Link</label>
                         <input type="text" class="form-control" id="linkdriveogm" name="linkdriveogm" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Upload Gambar</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-primary">Tambah Link</button>

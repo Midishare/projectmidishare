@@ -24,7 +24,7 @@
     </style>
 
     <div style="margin-top: 7rem;">
-        <h2 class="text-center">List Link Dokumen Operation General Manager</h2>
+        <h2 class="text-center">Admin materi - SME</h2>
         
         @if($message = Session::get('success'))
         <div class="alert alert-success alert-block">

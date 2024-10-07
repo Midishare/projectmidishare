@@ -64,7 +64,7 @@
                     {{-- <p class="card-text">Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p> --}}
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary"  href="materilinkogm">View details &raquo;</a>
+                    <a class="btn btn-secondary"  href="{{ route('linkogm.show_by_adminlinkogmshow') }}">View details &raquo;</a>
                 </div>
             </div>
         </div>

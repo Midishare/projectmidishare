@@ -298,6 +298,8 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::post('/editlinkogm_process', [LinkogmController::class, 'editlinkogm_process'])->name('linkogm.editlinkogm_process');
     Route::get('/deletelinkogm/{id}', [LinkogmController::class, 'deletelinkogm'])->name('linkogm.deletelinkogm');
     Route::delete('/deleteSelected', [LinkogmController::class, 'deleteSelected'])->name('linkogm.deleteSelected');
+    Route::get('/addlinkogm', [LinkogmController::class, 'addlinkogm'])->name('linkogm.addlinkogm');
+    Route::post('/addlinkogm_process', [LinkogmController::class, 'addlinkogm_process'])->name('linkogm.addlinkogm_process');
 
 
     Route::get('/generallearnadmin', function () {
@@ -455,8 +457,7 @@ Route::get('/deletelinkmod/{id}', [LinkmodController::class, 'deletelinkmod'])->
 Route::delete('/linkmod/bulk_delete', [LinkmodController::class, 'bulkDelete'])->name('linkmod.bulk_delete');
 
 
-Route::get('/addlinkogm', [LinkogmController::class, 'addlinkogm'])->name('linkogm.addlinkogm');
-Route::post('/addlinkogm_process', [LinkogmController::class, 'addlinkogm_process'])->name('linkogm.addlinkogm_process');
+
 Route::get('/detaillinkogm/{id}', [LinkogmController::class, 'detaillinkogm'])->name('linkogm.detaillinkogm');
 
 

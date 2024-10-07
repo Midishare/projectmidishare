@@ -53,7 +53,7 @@
         <i class="bi bi-arrow-left"></i> Kembali
       </a>
       <div class="container text-center mt-3">
-      <h2>Materi Pembelajaran People Development Manager</h3>
+      <h2>Materi Pembelajaran SME</h3>
       <div></div> <!-- Placeholder div to balance the flex container -->
     </div>
   </section>
@@ -69,7 +69,7 @@
                     {{-- <p class="card-text">Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p> --}}
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary"  href="repositorylinkogm">View details &raquo;</a>
+                    <a class="btn btn-secondary"  href="{{ route('linkogm.showlinkogm') }}">View details &raquo;</a>
                 </div>
             </div>
         </div>

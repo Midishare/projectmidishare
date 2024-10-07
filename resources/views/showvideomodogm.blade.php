@@ -33,7 +33,7 @@
 
 <section class="animated fadeIn">
     <div style="margin-top: 7rem;">
-        <h2 class="text-center">List Video Operation General Manager</h2>
+        <h2 class="text-center">Materi Video SME</h2>
         @if($message = Session::get('success'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">x</button>

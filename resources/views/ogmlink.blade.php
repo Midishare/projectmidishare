@@ -73,7 +73,7 @@
         </a>
     </div>
     <div class="container text-center">
-        <h4>Repository Link Dokumen ogm</h4>
+        <h4>Materi SME</h4>
     </div>
 </section>
 
@@ -97,6 +97,11 @@
         @foreach($linkogm as $repo)
         <div class="col-md-4 mb-4">
             <div class="card">
+                @if($repo->image_path)
+                    <img src="{{ asset('storage/' . $repo->image_path) }}" class="card-img-top" alt="{{ $repo->judullinkogm }}">
+                @else
+                    <img src="{{ asset('images/default-image.png') }}" class="card-img-top" alt="Default Image"> <!-- Fallback image -->
+                @endif
                 <div class="card-body">
                     <h5 class="card-title text-dark">
                         {{ $repo->judullinkogm }}
