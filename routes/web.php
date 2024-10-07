@@ -65,9 +65,7 @@ Route::get('/materiadminmodwh', function () {
     return view('materiadminmodwh');
 });
 
-Route::get('/materiadminmodogm', function () {
-    return view('materiadminmodogm');
-});
+
 
 
 Route::middleware('auth', 'role:admin')->group(function () {
@@ -237,55 +235,139 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/video/bulk-delete', [VideoFinlitController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
     });
 
+    // news
+    Route::get('/add', [BeritaController::class, 'add'])->name('berita.add');
+    Route::post('/add_process', [BeritaController::class, 'add_process'])->name('berita.add_process');
+    Route::get('/adminshow', [BeritaController::class, 'show_by_admin'])->name('berita.show_by_admin');
+    Route::get('/edit/{id}', [BeritaController::class, 'edit'])->name('berita.edit');
+    Route::post('/edit_process', [BeritaController::class, 'edit_process'])->name('berita.edit_process');
+    Route::get('/delete/{id}', [BeritaController::class, 'delete'])->name('berita.delete');
+    Route::delete('/bulk_delete', [BeritaController::class, 'bulkDelete'])->name('berita.bulk_delete');
+
+
+
+    // For managing events events
+    Route::get('/admin/events/create', [EventController::class, 'create'])->name('events.create');
+    Route::get('/admin/events', [EventController::class, 'index'])->name('events.admin');
+    Route::post('/admin/events/store', [EventController::class, 'store'])->name('events.store');
+    Route::get('/admin/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::put('/admin/events/{id}', [EventController::class, 'update'])->name('events.update');
+    Route::delete('/admin/events/bulk_delete', [EventController::class, 'bulkDelete'])->name('events.bulk_delete');
+    Route::get('/admin/events/delete/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+
+    // livestream
+    Route::get('/admin/livestream', [LivestreamController::class, 'adminView'])->name('admin.livestream')->middleware('auth');
+    Route::post('/admin/livestream', [LivestreamController::class, 'updateLivestream'])->name('livestream.store')->middleware('auth');
+    Route::post('/admin/livestream/update', [LivestreamController::class, 'updateLivestream'])->name('admin.updateLivestream');
+    Route::put('/livestream/update', [LivestreamController::class, 'updateLivestream'])->name('livestream.update');
+    Route::delete('/livestream/delete', [LivestreamController::class, 'deleteLivestream'])->name('livestream.delete');
+
+    // belajar mandiri
+    Route::get('/addmandiri', [BelajarmandiriController::class, 'addmandiri'])->name('belajarmandiri.addmandiri');
+    Route::post('/addmandiri_process', [BelajarmandiriController::class, 'addmandiri_process'])->name('belajarmandiri.addmandiri_process');
+    Route::get('/adminmandirishow', [BelajarmandiriController::class, 'show_by_adminmandirishow'])->name('belajarmandiri.show_by_adminmandirishow');
+    Route::get('/editmandiri/{id}', [BelajarmandiriController::class, 'editmandiri'])->name('belajarmandiri.editmandiri');
+    Route::post('/editmandiri_process', [BelajarmandiriController::class, 'editmandiri_process'])->name('belajarmandiri.editmandiri_process');
+    Route::get('/deletemandiri/{id}', [BelajarmandiriController::class, 'deletemandiri'])->name('belajarmandiri.deletemandiri');
+    Route::post('/deleteSelected', [BelajarmandiriController::class, 'deleteSelected'])->name('belajarmandiri.deleteSelected');
+
+    // SME
+    Route::get('/materiadminmodogm', function () {
+        return view('materiadminmodogm');
+    });
+    Route::get('/materilinkogm', function () {
+        return view('materilinkogm');
+    });
+    Route::get('/addvidmodogm', [VideoogmController::class, 'addvidmodogm'])->name('videoogm.addvidmodogm');
+    Route::post('/addvidmodogm_process', [VideoogmController::class, 'addvidmodogm_process'])->name('videoogm.addvidmodogm_process');
+    Route::get('/detailvidogm/{id}', [VideoogmController::class, 'detailvidogm'])->name('videoogm.detailvidogm');
+    Route::get('/showvideomodogm', [VideoogmController::class, 'show_by_adminvidogmshow'])->name('videoogm.show_by_adminvidogmshow');
+    Route::get('/editvidogm/{id}', [VideoogmController::class, 'editvidogm'])->name('videoogm.editvidogm');
+    Route::post('/editvidogm_process', [VideoogmController::class, 'editvidogm_process'])->name('videoogm.editvidogm_process');
+    Route::get('/deletevidmodogm/{id}', [VideoogmController::class, 'deletevidmodogm'])->name('videoogm.deletevidmodogm');
+    Route::post('/delete_multiple', [VideoogmController::class, 'deleteMultiple'])->name('videoogm.delete_multiple');
+    Route::get('/showkmogm', [KnowledgeogmController::class, 'show_by_adminkmogmshow'])->name('knowledgeogm.show_by_adminkmogmshow');
+    Route::get('/editkmogm/{id}', [KnowledgeogmController::class, 'editkmogm'])->name('knowledgeogm.editkmogm');
+    Route::post('/editkmogm_process', [KnowledgeogmController::class, 'editkmogm_process'])->name('knowledgeogm.editkmogm_process');
+    Route::get('/deletekmogm/{id}', [KnowledgeogmController::class, 'deletekmogm'])->name('knowledgeogm.deletekmogm');
+    Route::delete('/delete-selected-kmogm', [KnowledgeogmController::class, 'deleteSelected'])->name('knowledgeogm.deleteSelected');
+    Route::get('/addkmogm', [KnowledgeogmController::class, 'addkmogm'])->name('knowledgeogm.addkmogm');
+    Route::post('/addkmogm_process', [KnowledgeogmController::class, 'addkmogm_process'])->name('knowledgeogm.addkmogm_process');
+    Route::get('/showlinkogm', [LinkogmController::class, 'show_by_adminlinkogmshow'])->name('linkogm.show_by_adminlinkogmshow');
+    Route::get('/editlinkogm/{id}', [LinkogmController::class, 'editlinkogm'])->name('linkogm.editlinkogm');
+    Route::post('/editlinkogm_process', [LinkogmController::class, 'editlinkogm_process'])->name('linkogm.editlinkogm_process');
+    Route::get('/deletelinkogm/{id}', [LinkogmController::class, 'deletelinkogm'])->name('linkogm.deletelinkogm');
+    Route::delete('/deleteSelected', [LinkogmController::class, 'deleteSelected'])->name('linkogm.deleteSelected');
+
+
     Route::get('/generallearnadmin', function () {
         return view('generallearnadmin');
     });
-});
 
-// Route untuk MDP
-Route::get('/mdp', [MdpController::class, 'index'])->name('mdp.index');
-Route::get('/mdp/materi', [MdpController::class, 'materiDokumen'])->name('mdp.materi');
-Route::get('/mdp/video', [MdpController::class, 'video'])->name('mdp.video');
-
-
-
-// Route untuk DP
-Route::get('/dp', [DpController::class, 'index'])->name('dp.index');
-Route::get('/dp/materi', [DpController::class, 'materiDokumen'])->name('dp.materi');
-Route::get('/dp/video', [DpController::class, 'video'])->name('dp.video');
-
-// Route untuk IP
-Route::get('/ip', [IpController::class, 'index'])->name('ip.index');
-Route::get('/ip/materi', [IpController::class, 'materiDokumen'])->name('ip.materi');
-Route::get('/ip/video', [IpController::class, 'video'])->name('ip.video');
-
-// Route untuk IKT
-Route::get('/ikt', [IktController::class, 'index'])->name('ikt.index');
-Route::get('/ikt/materi', [IktController::class, 'materiDokumen'])->name('ikt.materi');
-Route::get('/ikt/video', [IktController::class, 'video'])->name('ikt.video');
-
-// Route untuk MVP
-Route::get('/mvp', [MvpController::class, 'index'])->name('mvp.index');
-Route::get('/mvp/materi', [MvpController::class, 'materiDokumen'])->name('mvp.materi');
-Route::get('/mvp/video', [MvpController::class, 'video'])->name('mvp.video');
-
-// Route untuk Inofest
-Route::get('/ino', [InoController::class, 'index'])->name('ino.index');
-Route::get('/ino/materi', [InoController::class, 'materiDokumen'])->name('ino.materi');
-Route::get('/ino/video', [InoController::class, 'video'])->name('ino.video');
-
-// Route untuk Finlit
-Route::get('/finlit', [FinlitController::class, 'index'])->name('finlit.index');
-Route::get('/finlit/materi', [FinlitController::class, 'materiDokumen'])->name('finlit.materi');
-Route::get('/finlit/video', [FinlitController::class, 'video'])->name('finlit.video');
-
-
-Route::get('/generallearn', function () {
-    return view('generallearn');
+    Route::get('/kmadmin', [BeritaController::class, 'kmadmin'])->name('kmadmin');
 });
 
 
+Route::middleware('auth', 'role:user')->group(function () {
+    // Route untuk MDP
+    Route::get('/mdp', [MdpController::class, 'index'])->name('mdp.index');
+    Route::get('/mdp/materi', [MdpController::class, 'materiDokumen'])->name('mdp.materi');
+    Route::get('/mdp/video', [MdpController::class, 'video'])->name('mdp.video');
+    // Route untuk DP
+    Route::get('/dp', [DpController::class, 'index'])->name('dp.index');
+    Route::get('/dp/materi', [DpController::class, 'materiDokumen'])->name('dp.materi');
+    Route::get('/dp/video', [DpController::class, 'video'])->name('dp.video');
 
+    // Route untuk IP
+    Route::get('/ip', [IpController::class, 'index'])->name('ip.index');
+    Route::get('/ip/materi', [IpController::class, 'materiDokumen'])->name('ip.materi');
+    Route::get('/ip/video', [IpController::class, 'video'])->name('ip.video');
+
+    // Route untuk IKT
+    Route::get('/ikt', [IktController::class, 'index'])->name('ikt.index');
+    Route::get('/ikt/materi', [IktController::class, 'materiDokumen'])->name('ikt.materi');
+    Route::get('/ikt/video', [IktController::class, 'video'])->name('ikt.video');
+
+    // Route untuk MVP
+    Route::get('/mvp', [MvpController::class, 'index'])->name('mvp.index');
+    Route::get('/mvp/materi', [MvpController::class, 'materiDokumen'])->name('mvp.materi');
+    Route::get('/mvp/video', [MvpController::class, 'video'])->name('mvp.video');
+
+    // Route untuk Inofest
+    Route::get('/ino', [InoController::class, 'index'])->name('ino.index');
+    Route::get('/ino/materi', [InoController::class, 'materiDokumen'])->name('ino.materi');
+    Route::get('/ino/video', [InoController::class, 'video'])->name('ino.video');
+
+    // Route untuk Finlit
+    Route::get('/finlit', [FinlitController::class, 'index'])->name('finlit.index');
+    Route::get('/finlit/materi', [FinlitController::class, 'materiDokumen'])->name('finlit.materi');
+    Route::get('/finlit/video', [FinlitController::class, 'video'])->name('finlit.video');
+
+
+    Route::get('/generallearn', function () {
+        return view('generallearn');
+    });
+
+    // SME
+    Route::get('/repositorylinkogm', function () {
+        return view('repositorylinkogm');
+    });
+
+    Route::get('/materiogm', function () {
+        return view('materiogm');
+    });
+
+    Route::get('/detailkmogm/{id}', [KnowledgeogmController::class, 'detailkmogm'])->name('knowledgeogm.detailkmogm');
+    Route::get('/repositorykmogm', [KnowledgeogmController::class, 'showkmogm'])->name('knowledgeogm.showkmogm');
+
+    Route::get('/modogm', [VideoogmController::class, 'showvideomodogm'])->name('videoogm.showvideomodogm');
+
+    Route::get('/repositoryall', [BeritaController::class, 'repositoryall'])->name('repositoryall');
+
+    Route::get('/livestream', [LivestreamController::class, 'index'])->name('livestream')->middleware('auth');
+
+    Route::get('/ogmlink', [LinkogmController::class, 'showlinkogm'])->name('linkogm.showlinkogm');
+});
 
 Route::get('/addhome', [DashboardController::class, 'addhome'])->name('dashboard.addhome');
 Route::post('/addhome_process', [DashboardController::class, 'addhome_process'])->name('dashboard.addhome_process');
@@ -298,33 +380,14 @@ Route::post('/deleteSelectedHome', [DashboardController::class, 'deleteSelectedH
 Route::get('/deletehome/{id}', [DashboardController::class, 'deletehome'])->name('dashboard.deletehome');
 
 
-Route::get('/add', [BeritaController::class, 'add'])->name('berita.add');
-Route::post('/add_process', [BeritaController::class, 'add_process'])->name('berita.add_process');
+//news
 Route::get('/beritamidi', [BeritaController::class, 'show'])->name('berita.show');
 Route::get('/detail/{id}', [BeritaController::class, 'detail'])->name('berita.detail');
-Route::get('/adminshow', [BeritaController::class, 'show_by_admin'])->name('berita.show_by_admin');
-Route::get('/edit/{id}', [BeritaController::class, 'edit'])->name('berita.edit');
-Route::post('/edit_process', [BeritaController::class, 'edit_process'])->name('berita.edit_process');
-Route::get('/delete/{id}', [BeritaController::class, 'delete'])->name('berita.delete');
-Route::delete('/bulk_delete', [BeritaController::class, 'bulkDelete'])->name('berita.bulk_delete');
-Route::get('/kmadmin', [BeritaController::class, 'kmadmin'])->name('kmadmin');
-Route::get('/repositoryall', [BeritaController::class, 'repositoryall'])->name('repositoryall');
-
-// Route for user 
-// routes/web.php
 
 
 
-
-Route::get('/addmandiri', [BelajarmandiriController::class, 'addmandiri'])->name('belajarmandiri.addmandiri');
-Route::post('/addmandiri_process', [BelajarmandiriController::class, 'addmandiri_process'])->name('belajarmandiri.addmandiri_process');
 Route::get('/belajarmandiri', [BelajarmandiriController::class, 'showmandiri'])->name('belajarmandiri.show');
 Route::get('/detailmandiri/{id}', [BelajarmandiriController::class, 'detailmandiri'])->name('belajarmandiri.detailmandiri');
-Route::get('/adminmandirishow', [BelajarmandiriController::class, 'show_by_adminmandirishow'])->name('belajarmandiri.show_by_adminmandirishow');
-Route::get('/editmandiri/{id}', [BelajarmandiriController::class, 'editmandiri'])->name('belajarmandiri.editmandiri');
-Route::post('/editmandiri_process', [BelajarmandiriController::class, 'editmandiri_process'])->name('belajarmandiri.editmandiri_process');
-Route::get('/deletemandiri/{id}', [BelajarmandiriController::class, 'deletemandiri'])->name('belajarmandiri.deletemandiri');
-Route::post('/deleteSelected', [BelajarmandiriController::class, 'deleteSelected'])->name('belajarmandiri.deleteSelected');
 
 
 Route::get('/addkm', [KnowledgeController::class, 'addkm'])->name('knowledge.addmandiri');
@@ -351,15 +414,8 @@ Route::delete('/bulkDelete', [KnowledgewhController::class, 'bulkDelete'])->name
 
 
 // Route::get('/show_by_adminogm', [KnowledgeogmController::class, 'show_by_adminkmogmshow'])->name('knowledgeogm.show_by_adminogm');
-Route::get('/addkmogm', [KnowledgeogmController::class, 'addkmogm'])->name('knowledgeogm.addkmogm');
-Route::post('/addkmogm_process', [KnowledgeogmController::class, 'addkmogm_process'])->name('knowledgeogm.addkmogm_process');
-Route::get('/repositorykmogm', [KnowledgeogmController::class, 'showkmogm'])->name('knowledgeogm.showkmogm');
-Route::get('/detailkmogm/{id}', [KnowledgeogmController::class, 'detailkmogm'])->name('knowledgeogm.detailkmogm');
-Route::get('/showkmogm', [KnowledgeogmController::class, 'show_by_adminkmogmshow'])->name('knowledgeogm.show_by_adminkmogmshow');
-Route::get('/editkmogm/{id}', [KnowledgeogmController::class, 'editkmogm'])->name('knowledgeogm.editkmogm');
-Route::post('/editkmogm_process', [KnowledgeogmController::class, 'editkmogm_process'])->name('knowledgeogm.editkmogm_process');
-Route::get('/deletekmogm/{id}', [KnowledgeogmController::class, 'deletekmogm'])->name('knowledgeogm.deletekmogm');
-Route::delete('/delete-selected-kmogm', [KnowledgeogmController::class, 'deleteSelected'])->name('knowledgeogm.deleteSelected');
+
+
 
 
 Route::get('/addvidmod', [VideoController::class, 'addvidmod'])->name('video.addvidmod');
@@ -383,15 +439,7 @@ Route::get('/deletevidmodwh/{id}', [VideowhController::class, 'deletevidmodwh'])
 Route::delete('videowh/bulk_delete', [VideowhController::class, 'bulkDelete'])->name('videowh.bulk_delete');
 Route::post('/delete_multiplewh', [VideowhController::class, 'deleteMultiplewh'])->name('videowh.delete_multiplewh');
 
-Route::get('/addvidmodogm', [VideoogmController::class, 'addvidmodogm'])->name('videoogm.addvidmodogm');
-Route::post('/addvidmodogm_process', [VideoogmController::class, 'addvidmodogm_process'])->name('videoogm.addvidmodogm_process');
-Route::get('/modogm', [VideoogmController::class, 'showvideomodogm'])->name('videoogm.showvideomodogm');
-Route::get('/detailvidogm/{id}', [VideoogmController::class, 'detailvidogm'])->name('videoogm.detailvidogm');
-Route::get('/showvideomodogm', [VideoogmController::class, 'show_by_adminvidogmshow'])->name('videoogm.show_by_adminvidogmshow');
-Route::get('/editvidogm/{id}', [VideoogmController::class, 'editvidogm'])->name('videoogm.editvidogm');
-Route::post('/editvidogm_process', [VideoogmController::class, 'editvidogm_process'])->name('videoogm.editvidogm_process');
-Route::get('/deletevidmodogm/{id}', [VideoogmController::class, 'deletevidmodogm'])->name('videoogm.deletevidmodogm');
-Route::post('/delete_multiple', [VideoogmController::class, 'deleteMultiple'])->name('videoogm.delete_multiple');
+
 
 
 
@@ -409,13 +457,8 @@ Route::delete('/linkmod/bulk_delete', [LinkmodController::class, 'bulkDelete'])-
 
 Route::get('/addlinkogm', [LinkogmController::class, 'addlinkogm'])->name('linkogm.addlinkogm');
 Route::post('/addlinkogm_process', [LinkogmController::class, 'addlinkogm_process'])->name('linkogm.addlinkogm_process');
-Route::get('/ogmlink', [LinkogmController::class, 'showlinkogm'])->name('linkogm.showlinkogm');
 Route::get('/detaillinkogm/{id}', [LinkogmController::class, 'detaillinkogm'])->name('linkogm.detaillinkogm');
-Route::get('/showlinkogm', [LinkogmController::class, 'show_by_adminlinkogmshow'])->name('linkogm.show_by_adminlinkogmshow');
-Route::get('/editlinkogm/{id}', [LinkogmController::class, 'editlinkogm'])->name('linkogm.editlinkogm');
-Route::post('/editlinkogm_process', [LinkogmController::class, 'editlinkogm_process'])->name('linkogm.editlinkogm_process');
-Route::get('/deletelinkogm/{id}', [LinkogmController::class, 'deletelinkogm'])->name('linkogm.deletelinkogm');
-Route::delete('/deleteSelected', [LinkogmController::class, 'deleteSelected'])->name('linkogm.deleteSelected');
+
 
 Route::get('/addlinkwh', [LinkwhController::class, 'addlinkwh'])->name('linkwh.addlinkwh');
 Route::post('/addlinkwh_process', [LinkwhController::class, 'addlinkwh_process'])->name('linkwh.addlinkwh_process');
@@ -427,38 +470,9 @@ Route::post('/editlinkwh_process', [LinkwhController::class, 'editlinkwh_process
 Route::get('/deletelinkwh/{id}', [LinkwhController::class, 'deletelinkwh'])->name('linkwh.deletelinkwh');
 Route::delete('/deleteSelectedwh', [LinkwhController::class, 'deleteSelectedwh'])->name('linkwh.deleteSelectedwh');
 
-
 // For users
 Route::get('/events', [EventController::class, 'showAll'])->name('events.show');
 Route::get('/events/{id}', [EventController::class, 'detail'])->name('events.detail');
-
-
-// For managing events
-Route::get('/admin/events/create', [EventController::class, 'create'])->name('events.create');
-Route::get('/admin/events', [EventController::class, 'index'])->name('events.admin');
-Route::post('/admin/events/store', [EventController::class, 'store'])->name('events.store');
-Route::get('/admin/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit');
-Route::put('/admin/events/{id}', [EventController::class, 'update'])->name('events.update');
-Route::delete('/admin/events/bulk_delete', [EventController::class, 'bulkDelete'])->name('events.bulk_delete');
-Route::get('/admin/events/delete/{id}', [EventController::class, 'destroy'])->name('events.destroy');
-
-//Livestream
-Route::get('/livestream', [LivestreamController::class, 'index'])->name('livestream')->middleware('auth');
-Route::get('/admin/livestream', [LivestreamController::class, 'adminView'])->name('admin.livestream')->middleware('auth');
-Route::post('/admin/livestream', [LivestreamController::class, 'updateLivestream'])->name('livestream.store')->middleware('auth');
-Route::post('/admin/livestream/update', [LivestreamController::class, 'updateLivestream'])->name('admin.updateLivestream');
-Route::put('/livestream/update', [LivestreamController::class, 'updateLivestream'])->name('livestream.update');
-Route::delete('/livestream/delete', [LivestreamController::class, 'deleteLivestream'])->name('livestream.delete');
-
-
-
-
-
-
-
-
-
-
 
 Route::get('/materi', function () {
     return view('materi');
@@ -468,17 +482,13 @@ Route::get('/materiwh', function () {
     return view('materiwh');
 });
 
-Route::get('/materiogm', function () {
-    return view('materiogm');
-});
+
 
 Route::get('/materilinkmod', function () {
     return view('materilinkmod');
 });
 
-Route::get('/materilinkogm', function () {
-    return view('materilinkogm');
-});
+
 
 Route::get('/materilinkwh', function () {
     return view('materilinkwh');
@@ -488,9 +498,7 @@ Route::get('/repositorylinkmod', function () {
     return view('repositorylinkmod');
 });
 
-Route::get('/repositorylinkogm', function () {
-    return view('repositorylinkogm');
-});
+
 
 Route::get('/repositorylinkwh', function () {
     return view('repositorylinkwh');
