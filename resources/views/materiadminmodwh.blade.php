@@ -46,7 +46,7 @@
         {{-- <a href="javascript:history.back()" class="btn back-button" style="margin-right: 20px;"> <!-- Ubah nilai margin-right sesuai keinginan -->
             <i class="bi bi-arrow-left"></i> Kembali
         </a> --}}
-        <h2>Materi Pembelajaran Warehouse</h2>
+        <h2>Materi Pembelajaran General Learning</h2>
     </div>
 </section>
     <div class="container text-center mt-5">

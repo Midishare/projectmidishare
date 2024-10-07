@@ -62,7 +62,7 @@
                 <div class="card h-100 p-3">
                     <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms2.png') }}" alt="Operation General Manager">
                     <div class="card-body">
-                        <h4 class="card-title text-center">Operation General Manager</h4>
+                        <h4 class="card-title text-center">Subject Meter Expert</h4>
                     </div>
                     <div class="card-footer d-flex justify-content-center">
                         <a class="btn btn-secondary" href="/materiadminmodogm">View details &raquo;</a>
@@ -73,10 +73,10 @@
                 <div class="card h-100 p-3">
                     <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms10.png') }}" alt="Ware House">
                     <div class="card-body">
-                        <h4 class="card-title text-center">Ware House</h4>
+                        <h4 class="card-title text-center">General Learning</h4>
                     </div>
                     <div class="card-footer d-flex justify-content-center">
-                        <a class="btn btn-secondary" href="/materiadminmodwh">View details &raquo;</a>
+                        <a class="btn btn-secondary" href="/generallearnadmin">View details &raquo;</a>
                     </div>
                 </div>
             </div>

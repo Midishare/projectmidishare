@@ -21,12 +21,24 @@ use App\Http\Controllers\LivestreamController;
 use App\Http\Controllers\MdpController;
 use App\Http\Controllers\DpController;
 use App\Http\Controllers\IpController;
+use App\Http\Controllers\IktController;
+use App\Http\Controllers\MvpController;
+use App\Http\Controllers\InoController;
+use App\Http\Controllers\FinlitController;
 use App\Http\Controllers\Admin\MdpController as AdminMdpController;
 use App\Http\Controllers\Admin\DpController as AdminDpController;
 use App\Http\Controllers\Admin\IpController as AdminIpController;
+use App\Http\Controllers\Admin\IktController as AdminIktController;
+use App\Http\Controllers\Admin\MvpController as AdminMvpController;
+use App\Http\Controllers\Admin\InoController as AdminInoController;
+use App\Http\Controllers\Admin\FinlitController as AdminFinlitController;
 use App\Http\Controllers\Admin\VideoMdpController;
 use App\Http\Controllers\Admin\VideoDpController;
 use App\Http\Controllers\Admin\VideoIpController;
+use App\Http\Controllers\Admin\VideoIktController;
+use App\Http\Controllers\Admin\VideoMvpController;
+use App\Http\Controllers\Admin\VideoInoController;
+use App\Http\Controllers\Admin\VideoFinlitController;
 use App\Http\Controllers\CrudloginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserloginController;
@@ -144,6 +156,90 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::get('/video/{id}', [VideoIpController::class, 'destroy'])->name('admin.video.destroy');
         Route::post('/video/bulk-delete', [VideoIpController::class, 'bulkDelete'])->name('admin.video.bulk_delete');
     });
+
+    Route::prefix('admin/ikt')->group(function () {
+        Route::get('/', [AdminIktController::class, 'index'])->name('admin.ikt.index');
+        Route::get('/materi', [AdminIktController::class, 'materiDokumen'])->name('admin.ikt.materi');
+        Route::post('/materi/create', [AdminIktController::class, 'store'])->name('admin.ikt.materi.store');
+        Route::get('/materi/create', [AdminIktController::class, 'create'])->name('admin.ikt.materi.create');
+        Route::get('/materi/{id}/edit', [AdminIktController::class, 'edit'])->name('admin.ikt.materi.edit');
+        Route::put('/materi/{id}', [AdminIktController::class, 'update'])->name('admin.ikt.materi.update');
+        Route::get('/materi/{id}', [AdminIktController::class, 'destroy'])->name('admin.ikt.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminIktController::class, 'bulkDelete'])->name('admin.ikt.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoIktController::class, 'index'])->name('admin.video');
+        Route::get('/video/create', [VideoIktController::class, 'create'])->name('admin.video.create');
+        Route::post('/video', [VideoIktController::class, 'store'])->name('admin.video.store');
+        Route::get('/video/{id}/edit', [VideoIktController::class, 'edit'])->name('admin.video.edit');
+        Route::put('/video/{id}', [VideoIktController::class, 'update'])->name('admin.video.update');
+        Route::get('/video/{id}', [VideoIktController::class, 'destroy'])->name('admin.video.destroy');
+        Route::post('/video/bulk-delete', [VideoIktController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
+    });
+
+    Route::prefix('admin/mvp')->group(function () {
+        Route::get('/', [AdminMvpController::class, 'index'])->name('admin.mvp.index');
+        Route::get('/materi', [AdminMvpController::class, 'materiDokumen'])->name('admin.mvp.materi');
+        Route::post('/materi/create', [AdminMvpController::class, 'store'])->name('admin.mvp.materi.store');
+        Route::get('/materi/create', [AdminMvpController::class, 'create'])->name('admin.mvp.materi.create');
+        Route::get('/materi/{id}/edit', [AdminMvpController::class, 'edit'])->name('admin.mvp.materi.edit');
+        Route::put('/materi/{id}', [AdminMvpController::class, 'update'])->name('admin.mvp.materi.update');
+        Route::get('/materi/{id}', [AdminMvpController::class, 'destroy'])->name('admin.mvp.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminMvpController::class, 'bulkDelete'])->name('admin.mvp.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoMvpController::class, 'index'])->name('admin.video');
+        Route::get('/video/create', [VideoMvpController::class, 'create'])->name('admin.video.create');
+        Route::post('/video', [VideoMvpController::class, 'store'])->name('admin.video.store');
+        Route::get('/video/{id}/edit', [VideoMvpController::class, 'edit'])->name('admin.video.edit');
+        Route::put('/video/{id}', [VideoMvpController::class, 'update'])->name('admin.video.update');
+        Route::get('/video/{id}', [VideoMvpController::class, 'destroy'])->name('admin.video.destroy');
+        Route::post('/video/bulk-delete', [VideoMvpController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
+    });
+
+    Route::prefix('admin/ino')->group(function () {
+        Route::get('/', [AdminInoController::class, 'index'])->name('admin.ino.index');
+        Route::get('/materi', [AdminInoController::class, 'materiDokumen'])->name('admin.ino.materi');
+        Route::post('/materi/create', [AdminInoController::class, 'store'])->name('admin.ino.materi.store');
+        Route::get('/materi/create', [AdminInoController::class, 'create'])->name('admin.ino.materi.create');
+        Route::get('/materi/{id}/edit', [AdminInoController::class, 'edit'])->name('admin.ino.materi.edit');
+        Route::put('/materi/{id}', [AdminInoController::class, 'update'])->name('admin.ino.materi.update');
+        Route::get('/materi/{id}', [AdminInoController::class, 'destroy'])->name('admin.ino.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminInoController::class, 'bulkDelete'])->name('admin.ino.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoInoController::class, 'index'])->name('admin.video');
+        Route::get('/video/create', [VideoInoController::class, 'create'])->name('admin.video.create');
+        Route::post('/video', [VideoInoController::class, 'store'])->name('admin.video.store');
+        Route::get('/video/{id}/edit', [VideoInoController::class, 'edit'])->name('admin.video.edit');
+        Route::put('/video/{id}', [VideoInoController::class, 'update'])->name('admin.video.update');
+        Route::get('/video/{id}', [VideoInoController::class, 'destroy'])->name('admin.video.destroy');
+        Route::post('/video/bulk-delete', [VideoInoController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
+    });
+
+    Route::prefix('admin/finlit')->group(function () {
+        Route::get('/', [AdminFinlitController::class, 'index'])->name('admin.finlit.index');
+        Route::get('/materi', [AdminFinlitController::class, 'materiDokumen'])->name('admin.finlit.materi');
+        Route::post('/materi/create', [AdminFinlitController::class, 'store'])->name('admin.finlit.materi.store');
+        Route::get('/materi/create', [AdminFinlitController::class, 'create'])->name('admin.finlit.materi.create');
+        Route::get('/materi/{id}/edit', [AdminFinlitController::class, 'edit'])->name('admin.finlit.materi.edit');
+        Route::put('/materi/{id}', [AdminFinlitController::class, 'update'])->name('admin.finlit.materi.update');
+        Route::get('/materi/{id}', [AdminFinlitController::class, 'destroy'])->name('admin.finlit.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminFinlitController::class, 'bulkDelete'])->name('admin.finlit.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoFinlitController::class, 'index'])->name('admin.video');
+        Route::get('/video/create', [VideoFinlitController::class, 'create'])->name('admin.video.create');
+        Route::post('/video', [VideoFinlitController::class, 'store'])->name('admin.video.store');
+        Route::get('/video/{id}/edit', [VideoFinlitController::class, 'edit'])->name('admin.video.edit');
+        Route::put('/video/{id}', [VideoFinlitController::class, 'update'])->name('admin.video.update');
+        Route::get('/video/{id}', [VideoFinlitController::class, 'destroy'])->name('admin.video.destroy');
+        Route::post('/video/bulk-delete', [VideoFinlitController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
+    });
+
+    Route::get('/generallearnadmin', function () {
+        return view('generallearnadmin');
+    });
 });
 
 // Route untuk MDP
@@ -162,6 +258,31 @@ Route::get('/dp/video', [DpController::class, 'video'])->name('dp.video');
 Route::get('/ip', [IpController::class, 'index'])->name('ip.index');
 Route::get('/ip/materi', [IpController::class, 'materiDokumen'])->name('ip.materi');
 Route::get('/ip/video', [IpController::class, 'video'])->name('ip.video');
+
+// Route untuk IKT
+Route::get('/ikt', [IktController::class, 'index'])->name('ikt.index');
+Route::get('/ikt/materi', [IktController::class, 'materiDokumen'])->name('ikt.materi');
+Route::get('/ikt/video', [IktController::class, 'video'])->name('ikt.video');
+
+// Route untuk MVP
+Route::get('/mvp', [MvpController::class, 'index'])->name('mvp.index');
+Route::get('/mvp/materi', [MvpController::class, 'materiDokumen'])->name('mvp.materi');
+Route::get('/mvp/video', [MvpController::class, 'video'])->name('mvp.video');
+
+// Route untuk Inofest
+Route::get('/ino', [InoController::class, 'index'])->name('ino.index');
+Route::get('/ino/materi', [InoController::class, 'materiDokumen'])->name('ino.materi');
+Route::get('/ino/video', [InoController::class, 'video'])->name('ino.video');
+
+// Route untuk Finlit
+Route::get('/finlit', [FinlitController::class, 'index'])->name('finlit.index');
+Route::get('/finlit/materi', [FinlitController::class, 'materiDokumen'])->name('finlit.materi');
+Route::get('/finlit/video', [FinlitController::class, 'video'])->name('finlit.video');
+
+
+Route::get('/generallearn', function () {
+    return view('generallearn');
+});
 
 
 

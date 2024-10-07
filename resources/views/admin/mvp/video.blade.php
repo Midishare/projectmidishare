@@ -12,7 +12,7 @@
 </style>
 
 <div style="margin-top: 7rem;" class="animated fadeIn">
-    <h2 class="text-center">DP - Video</h2>
+    <h2 class="text-center">MVP - Video</h2>
     @if($message = Session::get('success'))
     <div class="alert alert-success alert-block">
         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-6">
                 <a href="{{ route('admin.video.create') }}">
-                    <button class="btn btn-primary mb-3"><strong>+</strong>Tambah</button>
+                    <button class="btn btn-primary mb-3"><strong>+</strong>Tambah Video</button>
                 </a>
             </div>
             <div class="col-md-6 text-right">
@@ -39,33 +39,26 @@
         </div>
         <form id="bulkDeleteForm" method="POST" action="{{ route('admin.video.bulkDelete') }}">
             @csrf
-            @method('DELETE')
             <button type="button" class="btn btn-danger mt-4" onclick="confirmBulkDelete()">Hapus yang dipilih</button>
             <table class="table table-responsive table-bordered table-hover table-striped" style="margin-top: 1rem;">
                 <thead>
                     <tr>
                         <th><input type="checkbox" id="selectAll"></th>
-                        <th>No.</th>
-                        <th>Title</th>
-                        <th>Video Link</th>
-                        <th>Publish Date</th>
-                        <th>Actions</th>
+                        <th>Judul</th>
+                        <th>Link Video</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($videos as $i => $video)
                     <tr>
-                        <td><input type="checkbox" name="ids[]" value="{{ $video->id }}"></td>
-                        <td>{{ $videos->firstItem() + $i }}</td>
+                        <td><input type="checkbox" name="ids[]" value="{{ $video->  id }}"></td>
                         <td>{{ $video->title }}</td>
-                        <td><a href="{{ $video->link }}" target="_blank">{{ $video->link }}</a></td>
-                        <td>{{ $video->created_at->format('d M Y') }}</td>
+                        <td><a href="{{ $video->video_link }}" target="_blank">View Video</a></td>
                         <td>
-                            <a href="{{ route('admin.video.edit', $video->id) }}" class="btn btn-warning">
-                                <i class="bi bi-pencil-square" style="color: azure"></i>
-                            </a>
-                            <a href="javascript:void(0);" onclick="confirmDelete({{ $video->id }})" class="btn btn-danger" style="color: azure">
-                                <i class="bi bi-trash"></i>
+                            <a href="{{ route('admin.video.edit', $video->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="javascript:void(0);" onclick="confirmDelete({{ $video->id }})" class="btn btn-danger">
+                                Hapus
                             </a>
                         </td>
                     </tr>
@@ -80,6 +73,7 @@
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function searchVideo() {

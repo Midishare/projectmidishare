@@ -78,7 +78,7 @@
           <a href="javascript:history.back()" class="btn back-button">
             <i class="bi bi-arrow-left"></i> Kembali
           </a>
-          <h2 class="mx-auto">Materi Pembelajaran Warehouse</h3>
+          <h2 class="mx-auto">Materi Pembelajaran General Learning</h3>
       </div> <!-- Placeholder div to balance the flex container -->
     </div>
   </section>
