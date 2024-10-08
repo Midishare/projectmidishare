@@ -53,20 +53,22 @@
             background-color: #0056b3; /* Warna latar belakang dropdown saat hover dan aktif */
             color: #ffffff !important; /* Warna teks dropdown saat hover dan aktif */
         }
+        .dropdown-menu {
+            left: 50%;
+            transform: translateX(-18%);
+        }
 
         /* Glassmorphism navbar */
         .navbar-glass {
-            background-color: rgba(255, 255, 255, 0.2); /* Transparansi */
-            backdrop-filter: blur(10px); /* Efek blur */
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Shadow */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Border transparan */
+            
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         /* Navbar saat di-scroll */
         .navbar-scroll {
-            background-color: rgba(255, 255, 255, 0.7); /* Background lebih solid saat di-scroll */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow lebih tajam */
+            background-color: rgba(255, 255, 255, 0.2); /* Transparansi */
+            backdrop-filter: blur(10px); /* Efek blur */
         }
 
         .footer {
@@ -91,12 +93,26 @@
             .navbar-nav {
                 flex-direction: column;
             }
+            .navbar-glass {
+            
+            background-color: rgba(255, 255, 255, 0.7); /* Background lebih solid saat di-scroll */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link:focus,
+            .navbar-nav .nav-link.active {
+                color: #E62323 !important; /* Warna teks saat hover dan aktif */
+                text-decoration: underline;
+                text-underline-offset: 5px; /* Jarak antara teks dan underline */
+                border-bottom: 0px; /* Menambahkan garis bawah custom */
+                padding-bottom: 0px; /* Jarak antara teks dan garis bawah */
+            }
+            .dropdown-menu{
+                margin-left: 50px !important;
+            }
         }
 
-        .dropdown-menu {
-            left: 50%;
-            transform: translateX(-18%);
-        }
+        
     </style>
 </head>
 <body>
@@ -108,8 +124,8 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="col justify-content-center navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
@@ -138,13 +154,13 @@
                             <li><a class="dropdown-item" href="{{ route('belajarmandiri.show_by_adminmandirishow') }}">Belajar Mandiri</a></li>
                         </ul>                            
                     </li>
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-link nav-link"><i class="bi bi-power me-2"></i></button>
-                        </form>
-                    </li>
                 </ul>
+                <div class="">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-link nav-link text-center fs-2"><i class="bi bi-power me-2"></i></button>
+                    </form>
+                </div>
             </div>                
         </div>
     </nav>

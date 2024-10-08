@@ -16,68 +16,66 @@
                     <img class="card-img-top" src="{{ Storage::url('public/gambar/' . $item->image) }}" alt="Card image cap">
                 </div>
             </div> --}}
-            <div class="container-fluid" >
+            <div class="" >
                 <div class="card mb-3 border border-0" >
-                    <img class="card-img-top image1 object-fit-cover"  src="{{ asset('icon/ALFAMIDI-4.jpg') }}" alt="Card image cap">
+                  <div class="bg-midi rounded text-white">
+                    <h1 class="text-center">Knowledge Management Activity</h1>
+                    <img class="card-img-top image1 object-fit-cover"  src="{{ asset('icon/header-image.jpg') }}" alt="Card image cap">
+                  </div>
                     <div class="card-body ">
                         <div class="d-flex flex-column flex-md-row justify-content-between">
                             <div class="p-2">
-                                <h1>Knowledge Management Activity</h1>
                                 <p>Divisi Knowledge Management merupakan divisi yang bertujuan untuk menyimpan dan menyebarkan pengetahuan pembelajaran yang ada di Alfamidi. Kami juga menyimpan informasi-informasi mengenai berbagai acara. Yuk kepoin Knowledge Management!</p>
-                                <p>Kami memiliki:</p>
-                                <ul style="list-style-type: none;">
-                                    <li> <b>10+</b> Repository</li>
-                                    <li> <b>10+</b> Jurnal Belajar</li>
-                                    <li> <b>10+</b> Self Learning</li>
-                                </ul>
+                                <p>Kami memiliki:</p>    
+                                <div class="stats-container">
+                                  <div class="stat-item">
+                                      <div class="stat-number">10+</div>
+                                      <div class="stat-label">Repository</div>
+                                  </div>
+                                  <div class="stat-item">
+                                      <div class="stat-number">10+</div>
+                                      <div class="stat-label">Jurnal Belajar</div>
+                                  </div>
+                                  <div class="stat-item">
+                                      <div class="stat-number">10+</div>
+                                      <div class="stat-label">Self Learning</div>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="p-2">
-                              <img src="{{ asset('icon/karaktermidi-10.png') }}" height="300"  class="rounded mx-auto d-block" alt="...">
-                            </div>
-                            
-                          </div>
+                            {{-- <div class="p-2">
+                                <img src="{{ asset('icon/karaktermidi-10.png') }}" height="300"  class="rounded mx-auto d-block" alt="...">
+                            </div>                             --}}
                       </div>
+                      
                 </div>
-                <div class="card-body p-3">
-                    <h1 class="h1 text-center">Knowledge Management Memiliki Banyak Program Belajar</h1>
-                    <div class="row flex-column flex-md-row bg-primary-subtle p-5 rounded justify-content-between">
-                        <div class="col col-md-3 mb-3 mb-sm-0">
-                          <div class="card mb-3">
-                            <div class="card-body">
-                              <h5 class="card-title">Webinar</h5>
-                              <p class="card-text" style="height: 90px">Kumpulan Rekaman Webinar Alfamidi yang informatif
-                                dan relevan dengan kebutuhan sekarang
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col col-md-3">
-                          <div class="card mb-3">
-                            <div class="card-body">
-                              <h5 class="card-title">Training</h5>
-                              <p class="card-text" style="height: 90px">Kumpulan rekaman dan informasi mengenai Training Kompetensi di Alfamidi</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col col-md-3">
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title">COP</h5>
-                              <p class="card-text" style="height: 90px">Kumpulan infomasi mengenai community of practice di Alfamidi</p>
-                            </div>
-                          </div>
-                        </div>
+                <div class="container-program">
+                  <p class="font-head-program">Knowledge Management Memiliki Banyak Program Belajar</p>
+                  {{-- <p class="subtitle-program">Consolidate Your People Operations with Our All-in-One HR Software and Say Goodbye to Fragmented Tools</p> --}}
+                  
+                  <div class="stats-container-program">
+                      <div class="stat-card-program">
+                          <div class="stat-number-program">Webinar</div>
+                          <div class="stat-description-program">Kumpulan Rekaman Webinar Alfamidi yang informatif dan relevan dengan kebutuhan sekarang</div>
                       </div>
-                </div>
+                      <div class="stat-card-program">
+                          <div class="stat-number-program">Training</div>
+                          <div class="stat-description-program">Kumpulan rekaman dan informasi mengenai Training Kompetensi di Alfamidi</div>
+                      </div>
+                      <div class="stat-card-program">
+                          <div class="stat-number-program">COP</div>
+                          <div class="stat-description-program">Kumpulan infomasi mengenai community of practice di Alfamidi</div>
+                      </div>
+                  </div>
+              </div>
                 <div class="card mb-3 mt-5 border border-0" >
-                    <div class="card-body bg-primary-subtle p-5 ">
-                        <div class="d-flex flex-column flex-md-row justify-content-between">
-                            <div class="p-2">
+                    <div class="">
+                        <div class="d-flex flex-column flex-md-row justify-content-between bg-midi rounded text-white">
+                            <div class="p-3">
                                 <h1>Dapatkan Ilmu dengan materi yang bisa kamu pelajari!</h1>
-                                <p>Pelajari Lebih Lanjut di <a href="">Knowledge Center</a></p>
+                                <p>Pelajari Lebih Lanjut di Knowledge Center</p>
                                 <img class="card-img-top image1 object-fit-fill "  src="{{ asset('icon/gmbr3.png') }}"  alt="Card image cap">
                             </div>
-                            <div class="p-2">
+                            <div class="p-3 margin-materi">
                                 <ol type="1">
                                     <li>Dapatkan Informasi terkini mengenai Webinar, Artikel dan Podcast Alfamidi</li>
                                     <li>Dapatkan materi pembelajaran dari repositori, training, courses, dan masih banyak lagi!</li>
@@ -100,4 +98,89 @@
         width: 80vw;
         height: 50vh;
     }
+    .bg-midi{
+      background-color: #0253BB;
+    }
+    .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            flex: 1 1 300px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .container-program {
+            text-align: center;
+        }
+        .font-head-program {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .subtitle-program {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .stats-container-program {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            flex-wrap: wrap;
+        }
+        .stat-card-program {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-number-program {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .stat-description-program {
+            font-size: 0.9rem;
+        }
+       
+        .stat-card-program:hover{
+          background-color: #0253BB;
+          color: white;
+        }
+        .margin-materi{
+          margin-top: 150px;
+          line-height: 30px;
+        }
+        @media (max-width: 768px) {
+            .stat-item {
+                flex-basis: 50%;
+                text-align: start
+            }
+            .font-head{
+                font-size: 65px;
+            }
+            .font-head-program {
+                font-size: 2rem;
+            }
+            .stat-card-program {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
 </style>

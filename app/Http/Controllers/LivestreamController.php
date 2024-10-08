@@ -11,9 +11,6 @@ class LivestreamController extends Controller
 {
     public function index()
     {
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You need to log in to view the livestream.');
-        }
 
         // Fetch the livestream URL
         $livestream = DB::table('livestreams')->latest()->first();

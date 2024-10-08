@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -40,9 +42,29 @@
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link:focus,
         .navbar-nav .nav-link.active {
-            color: #007bff !important; /* Warna teks saat hover dan aktif */
+            color: #E62323 !important; /* Warna teks saat hover dan aktif */
+            text-decoration: none; /* Menghapus underline default */
+            border-bottom: 2px solid #E62323; /* Menambahkan garis bawah custom */
+            padding-bottom: 2px; /* Jarak antara teks dan garis bawah */
+        } 
+        
+        .dropdown-menu {
+            left: 50%;
+            transform: translateX(-18%);
         }
 
+        /* Glassmorphism navbar */
+        .navbar-glass {
+            
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Navbar saat di-scroll */
+        .navbar-scroll {
+            background-color: rgba(255, 255, 255, 0.2); /* Transparansi */
+            backdrop-filter: blur(10px); /* Efek blur */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow lebih tajam */
+        }
         .dropdown-menu .dropdown-item:hover,
         .dropdown-menu .dropdown-item:focus,
         .dropdown-menu .dropdown-item.active {
@@ -71,27 +93,26 @@
             .navbar-nav {
                 flex-direction: column;
             }
-        }
-
-        .dropdown-menu {
-            left: 50%;
-            transform: translateX(-18%);
-        }
-
-        /* Glassmorphism navbar */
-        .navbar-glass {
-            background-color: rgba(255, 255, 255, 0.2); /* Transparansi */
-            backdrop-filter: blur(10px); /* Efek blur */
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Shadow */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Border transparan */
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link:focus,
+            .navbar-nav .nav-link.active {
+                color: #E62323 !important; /* Warna teks saat hover dan aktif */
+                text-decoration: underline;
+                text-underline-offset: 5px; /* Jarak antara teks dan underline */
+                border-bottom: 0px; /* Menambahkan garis bawah custom */
+                padding-bottom: 0px; /* Jarak antara teks dan garis bawah */
+            }
+            .navbar-glass {
+            
+            background-color: rgba(255, 255, 255, 0.7); /* Background lebih solid saat di-scroll */
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Navbar saat di-scroll */
-        .navbar-scroll {
-            background-color: rgba(255, 255, 255, 0.7); /* Background lebih solid saat di-scroll */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow lebih tajam */
+        .dropdown-menu{
+                margin-left: 70px !important;
+            }
         }
+
+        
     </style>
 </head>
 <body>
@@ -101,8 +122,8 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="col justify-content-center navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
@@ -113,15 +134,8 @@
                         <a class="nav-link" href="{{ route('events.show') }}">Event</a>
                     </li>
                     <li class="nav-item">
-                        @guest
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        @endguest
-                    </li>
-                    @auth
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('livestream') }}">Livestream</a>
                     </li>
-                    @endauth
                     <li class="nav-item dropdown">
                         @auth
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -133,15 +147,20 @@
                         </ul>
                         @endauth
                     </li> 
-                    <li class="nav-item">
-                        @auth
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-link nav-link"><i class="bi bi-power me-2"></i></button>
-                        </form>
-                        @endauth
-                    </li>
                 </ul>
+                <div class="nav-item">
+                    @auth
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-link nav-link fs-2"><i class="bi bi-power me-2"></i></button>
+                    </form>
+                    @endauth
+                </div>
+                @guest
+                <div class="btn btn-danger">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </div>
+                @endguest
             </div>                
         </div>
     </nav>

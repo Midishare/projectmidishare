@@ -366,7 +366,7 @@ Route::middleware('auth', 'role:user')->group(function () {
 
     Route::get('/repositoryall', [BeritaController::class, 'repositoryall'])->name('repositoryall');
 
-    Route::get('/livestream', [LivestreamController::class, 'index'])->name('livestream')->middleware('auth');
+
 
     Route::get('/ogmlink', [LinkogmController::class, 'showlinkogm'])->name('linkogm.showlinkogm');
 });
@@ -386,6 +386,8 @@ Route::get('/deletehome/{id}', [DashboardController::class, 'deletehome'])->name
 Route::get('/beritamidi', [BeritaController::class, 'show'])->name('berita.show');
 Route::get('/detail/{id}', [BeritaController::class, 'detail'])->name('berita.detail');
 
+// livestream
+Route::get('/livestream', [LivestreamController::class, 'index'])->name('livestream');
 
 
 Route::get('/belajarmandiri', [BelajarmandiriController::class, 'showmandiri'])->name('belajarmandiri.show');
