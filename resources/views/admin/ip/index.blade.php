@@ -81,8 +81,8 @@
                     {{-- <p class="card-text">Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p> --}}
                 </div>
                 <div class="card-footer">
-                    {{--             <a href="{{ route('mdp.video') }}" class="btn btn-secondary btn-lg">Video</a> --}}
-                    <a class="btn btn-secondary" href="{{ route('admin.video') }}">View details &raquo;</a>
+                    {{--             <a href="{{ route('ip.video') }}" class="btn btn-secondary btn-lg">Video</a> --}}
+                    <a class="btn btn-secondary" href="{{ route('admin.ip.video') }}">View details &raquo;</a>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <h2 style="margin-top: 100px;">Add New Video</h2>
-    <form action="{{ route('admin.video.update', $video->id) }}" method="POST">
+    <form action="{{ route('admin.ip.video.update', $video->id) }}" method="POST">
         @csrf
         @method('PUT') <!-- Indicate that this is a PUT request for updating -->
     

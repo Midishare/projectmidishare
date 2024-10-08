@@ -38,7 +38,7 @@ class VideoIktController extends Controller
         ]);
 
         // Redirect to the video list with a success message
-        return redirect()->route('admin.video')->with('success', 'Video added successfully');
+        return redirect()->route('admin.ikt.video')->with('success', 'Video added successfully');
     }
 
     public function edit($id)
@@ -63,7 +63,7 @@ class VideoIktController extends Controller
         $video->video_link = $request->input('video_link');
         $video->save();
 
-        return redirect()->route('admin.video')->with('success', 'Video updated successfully.');
+        return redirect()->route('admin.ikt.video')->with('success', 'Video updated successfully.');
     }
 
 
@@ -72,7 +72,7 @@ class VideoIktController extends Controller
         $video = VideoIkt::findOrFail($id); // Changed to use VideoIkt
         $video->delete();
 
-        return redirect()->route('admin.video')->with('success', 'Video deleted successfully.');
+        return redirect()->route('admin.ikt.video')->with('success', 'Video deleted successfully.');
     }
 
     public function bulkDelete(Request $request)
@@ -81,9 +81,9 @@ class VideoIktController extends Controller
 
         if (!empty($ids)) {
             VideoIkt::whereIn('id', $ids)->delete();
-            return redirect()->route('admin.video')->with('success', 'Selected videos deleted successfully.');
+            return redirect()->route('admin.ikt.video')->with('success', 'Selected videos deleted successfully.');
         } else {
-            return redirect()->route('admin.video')->with('error', 'No videos selected for deletion.');
+            return redirect()->route('admin.ikt.video')->with('error', 'No videos selected for deletion.');
         }
     }
 }

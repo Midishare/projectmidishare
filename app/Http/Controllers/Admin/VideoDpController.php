@@ -41,7 +41,7 @@ class VideoDpController extends Controller
         ]);
 
         // Redirect to the video list with a success message
-        return redirect()->route('admin.video')->with('success', 'Video added successfully');
+        return redirect()->route('admin.dp.video')->with('success', 'Video added successfully');
     }
 
     public function edit($id)
@@ -74,7 +74,7 @@ class VideoDpController extends Controller
         // Save the updated video
         $video->save();
 
-        return redirect()->route('admin.video')->with('success', 'Video updated successfully');
+        return redirect()->route('admin.dp.video')->with('success', 'Video updated successfully');
     }
 
 
@@ -83,7 +83,7 @@ class VideoDpController extends Controller
         $video = VideoDp::findOrFail($id);
         $video->delete();
 
-        return redirect()->route('admin.video')->with('success', 'Video deleted successfully.');
+        return redirect()->route('admin.dp.video')->with('success', 'Video deleted successfully.');
     }
 
     public function bulkDelete(Request $request)
@@ -92,9 +92,9 @@ class VideoDpController extends Controller
 
         if (!empty($ids)) {
             VideoDp::whereIn('id', $ids)->delete();
-            return redirect()->route('admin.video')->with('success', 'Selected videos deleted successfully.');
+            return redirect()->route('admin.dp.video')->with('success', 'Selected videos deleted successfully.');
         } else {
-            return redirect()->route('admin.video')->with('error', 'No videos selected for deletion.');
+            return redirect()->route('admin.dp.video')->with('error', 'No videos selected for deletion.');
         }
     }
 }

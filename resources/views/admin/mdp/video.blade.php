@@ -22,7 +22,7 @@
     <div class="col-md-12 bg-white p-4">
         <div class="row">
             <div class="col-md-6">
-                <a href="{{ route('admin.video.create') }}">
+                <a href="{{ route('admin.mdp.video.create') }}">
                     <button class="btn btn-primary mb-3"><strong>+</strong>Tambah</button>
                 </a>
             </div>
@@ -37,9 +37,8 @@
                 </div>
             </div>
         </div>
-        <form id="bulkDeleteForm" method="POST" action="{{ route('admin.video.bulk_delete') }}">
+        <form id="bulkDeleteForm" method="POST" action="{{ route('admin.mdp.video.bulk_delete') }}">
             @csrf
-            @method('DELETE')
             <button type="button" class="btn btn-danger mt-4" onclick="confirmBulkDelete()">Hapus yang dipilih</button>
             <table class="table table-responsive table-bordered table-hover table-striped" style="margin-top: 1rem;">
                 <thead>
@@ -61,7 +60,7 @@
                         <td><a href="{{ $video->link }}" target="_blank">{{ $video->link }}</a></td>
                         <td>{{ $video->created_at->format('d M Y') }}</td>
                         <td>
-                            <a href="{{ route('admin.video.edit', $video->id) }}" class="btn btn-warning">
+                            <a href="{{ route('admin.mdp.video.edit', $video->id) }}" class="btn btn-warning">
                                 <i class="bi bi-pencil-square" style="color: azure"></i>
                             </a>
                             <a href="javascript:void(0);" onclick="confirmDelete({{ $video->id }})" class="btn btn-danger" style="color: azure">
@@ -84,7 +83,7 @@
 <script>
     function searchVideo() {
         var keyword = document.getElementById('searchInput').value;
-        window.location.href = "{{ route('admin.video') }}?search=" + keyword;
+        window.location.href = "{{ route('admin.mdp.video') }}?search=" + keyword;
     }
 
     function confirmDelete(id) {
@@ -99,7 +98,7 @@
             cancelButtonText: 'Batal',
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "{{ route('admin.video.destroy', '') }}/" + id;
+                window.location.href = "{{ route('admin.mdp.video.destroy', '') }}/" + id;
             }
         })
     }

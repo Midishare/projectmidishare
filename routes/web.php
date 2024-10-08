@@ -102,13 +102,13 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/mdp/materi/bulk-delete', [AdminMdpController::class, 'bulkDelete'])->name('admin.mdp.materi.bulkDelete');
         Route::resource('mdp', MdpController::class);
         // Ensure this route exists and points to the correct controller method
-        Route::get('/video', [VideoMdpController::class, 'index'])->name('admin.video');
-        Route::get('/video/create', [VideoMdpController::class, 'create'])->name('admin.video.create');
-        Route::post('/video', [VideoMdpController::class, 'store'])->name('admin.video.store');
-        Route::get('/video/{id}/edit', [VideoMdpController::class, 'edit'])->name('admin.video.edit');
-        Route::put('/video/{id}', [VideoMdpController::class, 'update'])->name('admin.video.update');
-        Route::get('/video/{id}', [VideoMdpController::class, 'destroy'])->name('admin.video.destroy');
-        Route::post('/admin/video/bulk-delete', [VideoController::class, 'bulkDelete'])->name('admin.video.bulk_delete');
+        Route::get('/video', [VideoMdpController::class, 'index'])->name('admin.mdp.video');
+        Route::get('/video/create', [VideoMdpController::class, 'create'])->name('admin.mdp.video.create');
+        Route::post('/video', [VideoMdpController::class, 'store'])->name('admin.mdp.video.store');
+        Route::get('/video/{id}/edit', [VideoMdpController::class, 'edit'])->name('admin.mdp.video.edit');
+        Route::put('/video/{id}', [VideoMdpController::class, 'update'])->name('admin.mdp.video.update');
+        Route::get('/video/{id}', [VideoMdpController::class, 'destroy'])->name('admin.mdp.video.destroy');
+        Route::post('/video/bulk-delete', [VideoMdpController::class, 'bulkDelete'])->name('admin.mdp.video.bulk_delete');
     });
 
     // Route untuk Admin DP
@@ -124,13 +124,13 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/materi/bulk-delete', [AdminDpController::class, 'bulkDelete'])->name('admin.dp.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideoDpController::class, 'index'])->name('admin.video');
-        Route::get('/video/create', [VideoDpController::class, 'create'])->name('admin.video.create');
-        Route::post('/video', [VideoDpController::class, 'store'])->name('admin.video.store');
-        Route::get('/video/{id}/edit', [VideoDpController::class, 'edit'])->name('admin.video.edit');
-        Route::put('/video/{id}', [VideoDpController::class, 'update'])->name('admin.video.update');
-        Route::get('/video/{id}', [VideoDpController::class, 'destroy'])->name('admin.video.destroy');
-        Route::post('/video/bulk-delete', [VideoDpController::class, 'bulkDelete'])->name('admin.video.bulk_delete');
+        Route::get('/video', [VideoDpController::class, 'index'])->name('admin.dp.video');
+        Route::get('/video/create', [VideoDpController::class, 'create'])->name('admin.dp.video.create');
+        Route::post('/video', [VideoDpController::class, 'store'])->name('admin.dp.video.store');
+        Route::get('/video/{id}/edit', [VideoDpController::class, 'edit'])->name('admin.dp.video.edit');
+        Route::put('/video/{id}', [VideoDpController::class, 'update'])->name('admin.dp.video.update');
+        Route::get('/video/{id}', [VideoDpController::class, 'destroy'])->name('admin.dp.video.destroy');
+        Route::post('/video/bulk-delete', [VideoDpController::class, 'bulkDelete'])->name('admin.dp.video.bulk_delete');
     });
 
 
@@ -146,13 +146,13 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/materi/bulk-delete', [AdminIpController::class, 'bulkDelete'])->name('admin.ip.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideoIpController::class, 'index'])->name('admin.video');
-        Route::get('/video/create', [VideoIpController::class, 'create'])->name('admin.video.create');
-        Route::post('/video', [VideoIpController::class, 'store'])->name('admin.video.store');
-        Route::get('/video/{id}/edit', [VideoIpController::class, 'edit'])->name('admin.video.edit');
-        Route::put('/video/{id}', [VideoIpController::class, 'update'])->name('admin.video.update');
-        Route::get('/video/{id}', [VideoIpController::class, 'destroy'])->name('admin.video.destroy');
-        Route::post('/video/bulk-delete', [VideoIpController::class, 'bulkDelete'])->name('admin.video.bulk_delete');
+        Route::get('/video', [VideoIpController::class, 'index'])->name('admin.ip.video');
+        Route::get('/video/create', [VideoIpController::class, 'create'])->name('admin.ip.video.create');
+        Route::post('/video', [VideoIpController::class, 'store'])->name('admin.ip.video.store');
+        Route::get('/video/{id}/edit', [VideoIpController::class, 'edit'])->name('admin.ip.video.edit');
+        Route::put('/video/{id}', [VideoIpController::class, 'update'])->name('admin.ip.video.update');
+        Route::get('/video/{id}', [VideoIpController::class, 'destroy'])->name('admin.ip.video.destroy');
+        Route::post('/video/bulk-delete', [VideoIpController::class, 'bulkDelete'])->name('admin.ip.video.bulk_delete');
     });
 
     Route::prefix('admin/ikt')->group(function () {
@@ -166,13 +166,13 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/materi/bulk-delete', [AdminIktController::class, 'bulkDelete'])->name('admin.ikt.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideoIktController::class, 'index'])->name('admin.video');
-        Route::get('/video/create', [VideoIktController::class, 'create'])->name('admin.video.create');
-        Route::post('/video', [VideoIktController::class, 'store'])->name('admin.video.store');
-        Route::get('/video/{id}/edit', [VideoIktController::class, 'edit'])->name('admin.video.edit');
-        Route::put('/video/{id}', [VideoIktController::class, 'update'])->name('admin.video.update');
-        Route::get('/video/{id}', [VideoIktController::class, 'destroy'])->name('admin.video.destroy');
-        Route::post('/video/bulk-delete', [VideoIktController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
+        Route::get('/video', [VideoIktController::class, 'index'])->name('admin.ikt.video');
+        Route::get('/video/create', [VideoIktController::class, 'create'])->name('admin.ikt.video.create');
+        Route::post('/video', [VideoIktController::class, 'store'])->name('admin.ikt.video.store');
+        Route::get('/video/{id}/edit', [VideoIktController::class, 'edit'])->name('admin.ikt.video.edit');
+        Route::put('/video/{id}', [VideoIktController::class, 'update'])->name('admin.ikt.video.update');
+        Route::get('/video/{id}', [VideoIktController::class, 'destroy'])->name('admin.ikt.video.destroy');
+        Route::post('/video/bulk-delete', [VideoIktController::class, 'bulkDelete'])->name('admin.ikt.video.bulkDelete');
     });
 
     Route::prefix('admin/mvp')->group(function () {
@@ -186,13 +186,13 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/materi/bulk-delete', [AdminMvpController::class, 'bulkDelete'])->name('admin.mvp.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideoMvpController::class, 'index'])->name('admin.video');
-        Route::get('/video/create', [VideoMvpController::class, 'create'])->name('admin.video.create');
-        Route::post('/video', [VideoMvpController::class, 'store'])->name('admin.video.store');
-        Route::get('/video/{id}/edit', [VideoMvpController::class, 'edit'])->name('admin.video.edit');
-        Route::put('/video/{id}', [VideoMvpController::class, 'update'])->name('admin.video.update');
-        Route::get('/video/{id}', [VideoMvpController::class, 'destroy'])->name('admin.video.destroy');
-        Route::post('/video/bulk-delete', [VideoMvpController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
+        Route::get('/video', [VideoMvpController::class, 'index'])->name('admin.mvp.video');
+        Route::get('/video/create', [VideoMvpController::class, 'create'])->name('admin.mvp.video.create');
+        Route::post('/video', [VideoMvpController::class, 'store'])->name('admin.mvp.video.store');
+        Route::get('/video/{id}/edit', [VideoMvpController::class, 'edit'])->name('admin.mvp.video.edit');
+        Route::put('/video/{id}', [VideoMvpController::class, 'update'])->name('admin.mvp.video.update');
+        Route::get('/video/{id}', [VideoMvpController::class, 'destroy'])->name('admin.mvp.video.destroy');
+        Route::post('/video/bulk-delete', [VideoMvpController::class, 'bulkDelete'])->name('admin.mvp.video.bulkDelete');
     });
 
     Route::prefix('admin/ino')->group(function () {
@@ -206,13 +206,13 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/materi/bulk-delete', [AdminInoController::class, 'bulkDelete'])->name('admin.ino.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideoInoController::class, 'index'])->name('admin.video');
-        Route::get('/video/create', [VideoInoController::class, 'create'])->name('admin.video.create');
-        Route::post('/video', [VideoInoController::class, 'store'])->name('admin.video.store');
-        Route::get('/video/{id}/edit', [VideoInoController::class, 'edit'])->name('admin.video.edit');
-        Route::put('/video/{id}', [VideoInoController::class, 'update'])->name('admin.video.update');
-        Route::get('/video/{id}', [VideoInoController::class, 'destroy'])->name('admin.video.destroy');
-        Route::post('/video/bulk-delete', [VideoInoController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
+        Route::get('/video', [VideoInoController::class, 'index'])->name('admin.ino.video');
+        Route::get('/video/create', [VideoInoController::class, 'create'])->name('admin.ino.video.create');
+        Route::post('/video', [VideoInoController::class, 'store'])->name('admin.ino.video.store');
+        Route::get('/video/{id}/edit', [VideoInoController::class, 'edit'])->name('admin.ino.video.edit');
+        Route::put('/video/{id}', [VideoInoController::class, 'update'])->name('admin.ino.video.update');
+        Route::get('/video/{id}', [VideoInoController::class, 'destroy'])->name('admin.ino.video.destroy');
+        Route::post('/video/bulk-delete', [VideoInoController::class, 'bulkDelete'])->name('admin.ino.video.bulkDelete');
     });
 
     Route::prefix('admin/finlit')->group(function () {
@@ -226,13 +226,13 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/materi/bulk-delete', [AdminFinlitController::class, 'bulkDelete'])->name('admin.finlit.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideoFinlitController::class, 'index'])->name('admin.video');
-        Route::get('/video/create', [VideoFinlitController::class, 'create'])->name('admin.video.create');
-        Route::post('/video', [VideoFinlitController::class, 'store'])->name('admin.video.store');
-        Route::get('/video/{id}/edit', [VideoFinlitController::class, 'edit'])->name('admin.video.edit');
-        Route::put('/video/{id}', [VideoFinlitController::class, 'update'])->name('admin.video.update');
-        Route::get('/video/{id}', [VideoFinlitController::class, 'destroy'])->name('admin.video.destroy');
-        Route::post('/video/bulk-delete', [VideoFinlitController::class, 'bulkDelete'])->name('admin.video.bulkDelete');
+        Route::get('/video', [VideoFinlitController::class, 'index'])->name('admin.finlit.video');
+        Route::get('/video/create', [VideoFinlitController::class, 'create'])->name('admin.finlit.video.create');
+        Route::post('/video', [VideoFinlitController::class, 'store'])->name('admin.finlit.video.store');
+        Route::get('/video/{id}/edit', [VideoFinlitController::class, 'edit'])->name('admin.finlit.video.edit');
+        Route::put('/video/{id}', [VideoFinlitController::class, 'update'])->name('admin.finlit.video.update');
+        Route::get('/video/{id}', [VideoFinlitController::class, 'destroy'])->name('admin.finlit.video.destroy');
+        Route::post('/video/bulk-delete', [VideoFinlitController::class, 'bulkDelete'])->name('admin.finlit.video.bulkDelete');
     });
 
     // news

@@ -82,7 +82,7 @@
                 </div>
                 <div class="card-footer">
                     {{--             <a href="{{ route('mdp.video') }}" class="btn btn-secondary btn-lg">Video</a> --}}
-                    <a class="btn btn-secondary" href="{{ route('admin.video') }}">View details &raquo;</a>
+                    <a class="btn btn-secondary" href="{{ route('admin.mvp.video') }}">View details &raquo;</a>
                 </div>
             </div>
         </div>

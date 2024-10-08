@@ -22,7 +22,7 @@
     <div class="col-md-12 bg-white p-4">
         <div class="row">
             <div class="col-md-6">
-                <a href="{{ route('admin.video.create') }}">
+                <a href="{{ route('admin.ikt.video.create') }}">
                     <button class="btn btn-primary mb-3"><strong>+</strong>Tambah Video</button>
                 </a>
             </div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <form id="bulkDeleteForm" method="POST" action="{{ route('admin.video.bulkDelete') }}">
+        <form id="bulkDeleteForm" method="POST" action="{{ route('admin.ikt.video.bulkDelete') }}">
             @csrf
             <button type="button" class="btn btn-danger mt-4" onclick="confirmBulkDelete()">Hapus yang dipilih</button>
             <table class="table table-responsive table-bordered table-hover table-striped" style="margin-top: 1rem;">
@@ -56,7 +56,7 @@
                         <td>{{ $video->title }}</td>
                         <td><a href="{{ $video->video_link }}" target="_blank">View Video</a></td>
                         <td>
-                            <a href="{{ route('admin.video.edit', $video->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.ikt.video.edit', $video->id) }}" class="btn btn-warning">Edit</a>
                             <a href="javascript:void(0);" onclick="confirmDelete({{ $video->id }})" class="btn btn-danger">
                                 Hapus
                             </a>
@@ -78,7 +78,7 @@
 <script>
     function searchVideo() {
         var keyword = document.getElementById('searchInput').value;
-        window.location.href = "{{ route('admin.video') }}?search=" + keyword;
+        window.location.href = "{{ route('admin.ikt.video') }}?search=" + keyword;
     }
 
     function confirmDelete(id) {
@@ -93,7 +93,7 @@
             cancelButtonText: 'Batal',
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "{{ route('admin.video.destroy', '') }}/" + id;
+                window.location.href = "{{ route('admin.ikt.video.destroy', '') }}/" + id;
             }
         })
     }

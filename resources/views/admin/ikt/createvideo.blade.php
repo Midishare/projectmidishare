@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h2 style="margin-top: 100px;">Add New Video</h2>
-    <form action="{{ route('admin.video.store') }}" method="POST">
+    <form action="{{ route('admin.ikt.video.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="title">Title</label>

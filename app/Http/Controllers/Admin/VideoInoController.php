@@ -38,7 +38,7 @@ class VideoInoController extends Controller
         ]);
 
         // Redirect to the video list with a success message
-        return redirect()->route('admin.video')->with('success', 'Video added successfully');
+        return redirect()->route('admin.ino.video')->with('success', 'Video added successfully');
     }
 
     public function edit($id)
@@ -63,7 +63,7 @@ class VideoInoController extends Controller
         $video->video_link = $request->input('video_link');
         $video->save();
 
-        return redirect()->route('admin.video')->with('success', 'Video updated successfully.');
+        return redirect()->route('admin.ino.video')->with('success', 'Video updated successfully.');
     }
 
 
@@ -72,7 +72,7 @@ class VideoInoController extends Controller
         $video = VideoIno::findOrFail($id); // Changed to use Videoino
         $video->delete();
 
-        return redirect()->route('admin.video')->with('success', 'Video deleted successfully.');
+        return redirect()->route('admin.ino.video')->with('success', 'Video deleted successfully.');
     }
 
     public function bulkDelete(Request $request)
@@ -81,9 +81,9 @@ class VideoInoController extends Controller
 
         if (!empty($ids)) {
             VideoIno::whereIn('id', $ids)->delete();
-            return redirect()->route('admin.video')->with('success', 'Selected videos deleted successfully.');
+            return redirect()->route('admin.ino.video')->with('success', 'Selected videos deleted successfully.');
         } else {
-            return redirect()->route('admin.video')->with('error', 'No videos selected for deletion.');
+            return redirect()->route('admin.ino.video')->with('error', 'No videos selected for deletion.');
         }
     }
 }
