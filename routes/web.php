@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\VideoInoController;
 use App\Http\Controllers\Admin\VideoFinlitController;
 use App\Http\Controllers\CrudloginController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RepositoryallController;
 use App\Http\Controllers\UserloginController;
 
 
@@ -345,19 +346,22 @@ Route::middleware('auth', 'role:user')->group(function () {
     Route::get('/finlit/materi', [FinlitController::class, 'materiDokumen'])->name('finlit.materi');
     Route::get('/finlit/video', [FinlitController::class, 'video'])->name('finlit.video');
 
+    Route::get('/materi', [RepositoryallController::class, 'materi'])->name('materimod');
+    Route::get('/materiogm', [RepositoryallController::class, 'materiogm'])->name('materiogm');
+    Route::get('/generallearn', [RepositoryallController::class, 'generallearn'])->name('generallearn');
 
-    Route::get('/generallearn', function () {
-        return view('generallearn');
-    });
+    // Route::get('/generallearn', function () {
+    //     return view('generallearn');
+    // });
 
     // SME
     Route::get('/repositorylinkogm', function () {
         return view('repositorylinkogm');
     });
 
-    Route::get('/materiogm', function () {
-        return view('materiogm');
-    });
+    // Route::get('/materiogm', function () {
+    //     return view('materiogm');
+    // });
 
     Route::get('/detailkmogm/{id}', [KnowledgeogmController::class, 'detailkmogm'])->name('knowledgeogm.detailkmogm');
     Route::get('/repositorykmogm', [KnowledgeogmController::class, 'showkmogm'])->name('knowledgeogm.showkmogm');
@@ -477,9 +481,9 @@ Route::delete('/deleteSelectedwh', [LinkwhController::class, 'deleteSelectedwh']
 Route::get('/events', [EventController::class, 'showAll'])->name('events.show');
 Route::get('/events/{id}', [EventController::class, 'detail'])->name('events.detail');
 
-Route::get('/materi', function () {
-    return view('materi');
-});
+// Route::get('/materi', function () {
+//     return view('materi');
+// });
 
 Route::get('/materiwh', function () {
     return view('materiwh');

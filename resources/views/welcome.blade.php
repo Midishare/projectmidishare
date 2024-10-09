@@ -18,35 +18,32 @@
             </div> --}}
             <div class="" >
                 <div class="card mb-3 border border-0" >
-                  <div class="bg-midi rounded text-white">
-                    <h1 class="text-center">Knowledge Management Activity</h1>
-                    <img class="card-img-top image1 object-fit-cover"  src="{{ asset('icon/header-image.jpg') }}" alt="Card image cap">
-                  </div>
-                    <div class="card-body ">
-                        <div class="d-flex flex-column flex-md-row justify-content-between">
-                            <div class="p-2">
-                                <p>Divisi Knowledge Management merupakan divisi yang bertujuan untuk menyimpan dan menyebarkan pengetahuan pembelajaran yang ada di Alfamidi. Kami juga menyimpan informasi-informasi mengenai berbagai acara. Yuk kepoin Knowledge Management!</p>
-                                <p>Kami memiliki:</p>    
-                                <div class="stats-container">
-                                  <div class="stat-item">
-                                      <div class="stat-number">10+</div>
-                                      <div class="stat-label">Repository</div>
-                                  </div>
-                                  <div class="stat-item">
-                                      <div class="stat-number">10+</div>
-                                      <div class="stat-label">Jurnal Belajar</div>
-                                  </div>
-                                  <div class="stat-item">
-                                      <div class="stat-number">10+</div>
-                                      <div class="stat-label">Self Learning</div>
-                                  </div>
+                    <div class="bg-midi rounded text-white">
+                      <h1 class="text-center">Knowledge Management Activity</h1>
+                      <img class="card-img-top image1 object-fit-cover"  src="{{ asset('icon/header-image.jpg') }}" alt="Card image cap">
+                    </div>
+                      <div class="card-body ">
+                          <div class="d-flex flex-column flex-md-row justify-content-between">
+                              <div class="p-2">
+                                  <p>Divisi Knowledge Management merupakan divisi yang bertujuan untuk menyimpan dan menyebarkan pengetahuan pembelajaran yang ada di Alfamidi. Kami juga menyimpan informasi-informasi mengenai berbagai acara. Yuk kepoin Knowledge Management!</p>
+                                  <p>Kami memiliki:</p>    
+                                  <div class="stats-container">
+                                    <div class="stat-item">
+                                        <div class="stat-number" id="repository-count">0</div>
+                                        <div class="stat-label">Repository</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number" id="jurnal-count">0</div>
+                                        <div class="stat-label">Jurnal Belajar</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-number" id="learning-count">0</div>
+                                        <div class="stat-label">Self Learning</div>
+                                    </div>
+                                </div>
                               </div>
-                            </div>
-                            {{-- <div class="p-2">
-                                <img src="{{ asset('icon/karaktermidi-10.png') }}" height="300"  class="rounded mx-auto d-block" alt="...">
-                            </div>                             --}}
-                      </div>
-                      
+                        </div>
+                  </div>
                 </div>
                 <div class="container-program">
                   <p class="font-head-program">Knowledge Management Memiliki Banyak Program Belajar</p>
@@ -91,7 +88,29 @@
         </div>        
     </div>
 </section>
-
+<script>
+    function animateValue(id, start, end, duration) {
+        let current = start;
+        const range = end - start;
+        const increment = end > start ? 1 : -1;
+        const stepTime = Math.abs(Math.floor(duration / range));
+        const obj = document.getElementById(id);
+        const timer = setInterval(function() {
+            current += increment;
+            obj.innerHTML = current + "+";
+            if (current == end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
+        animateValue("repository-count", 0, 10, 500);
+        animateValue("jurnal-count", 0, 10, 500);
+        animateValue("learning-count", 0, 10, 500);
+    });
+    </script>
+    
 @endsection
 <style>
     .image1{

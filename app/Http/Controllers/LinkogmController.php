@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 
@@ -12,16 +13,20 @@ class LinkogmController extends Controller
 {
     public function showlinkogm(Request $request)
     {
-        $search = $request->input('search');
+        $user = Auth::user();
+        if ($user->class == 'SME') {
+            $search = $request->input('search');
 
-        $linkogm = DB::table('linkogm')
-            ->when($search, function ($query, $search) {
-                return $query->where('judullinkogm', 'like', '%' . $search . '%');
-            })
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+            $linkogm = DB::table('linkogm')
+                ->when($search, function ($query, $search) {
+                    return $query->where('judullinkogm', 'like', '%' . $search . '%');
+                })
+                ->orderBy('id', 'desc')
+                ->paginate(10);
 
-        return view('ogmlink', ['linkogm' => $linkogm]);
+            return view('ogmlink', ['linkogm' => $linkogm]);
+        }
+        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 
     public function addlinkogm_process(Request $request)

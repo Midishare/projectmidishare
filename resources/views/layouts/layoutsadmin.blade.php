@@ -44,7 +44,10 @@
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link:focus,
         .navbar-nav .nav-link.active {
-            color: #007bff !important; /* Warna teks saat hover dan aktif */
+            color: #E62323 !important; /* Warna teks saat hover dan aktif */
+            text-decoration: none; /* Menghapus underline default */
+            border-bottom: 2px solid #E62323; /* Menambahkan garis bawah custom */
+            padding-bottom: 2px; /* Jarak antara teks dan garis bawah */
         }
 
         .dropdown-menu .dropdown-item:hover,

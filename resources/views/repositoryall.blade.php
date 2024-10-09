@@ -18,6 +18,11 @@
 <section>
 <div class="container text-center p-5 mt-5">
     <h2>Repository</h2>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            {{ $errors->first() }}
+        </div>
+    @endif
 </div>
 </section>
     <section class="py-1">
@@ -30,7 +35,7 @@
                             <h4 class="card-title text-center">Method Of Development</h4>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <a class="btn btn-secondary" href="materi">View details &raquo;</a>
+                            <a class="btn btn-secondary" href="{{ route('materimod') }}">View details &raquo;</a>
                         </div>
                     </div>
                 </div>
@@ -41,7 +46,7 @@
                             <h4 class="card-title text-center">Subject Meter Expert</h4>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <a class="btn btn-secondary" href="materiogm">View details &raquo;</a>
+                            <a class="btn btn-secondary" href="{{ route('materiogm') }}">View details &raquo;</a>
                         </div>
                     </div>
                 </div>
@@ -52,7 +57,7 @@
                             <h4 class="card-title text-center">General Learning</h4>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <a class="btn btn-secondary" href="generallearn" >View details &raquo;</a>
+                            <a class="btn btn-secondary" href="{{ route('generallearn') }}">View details &raquo;</a>
                         </div>
                     </div>
                 </div>

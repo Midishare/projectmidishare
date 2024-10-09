@@ -164,6 +164,9 @@
             </div>                
         </div>
     </nav>
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
     <div class="container content">
         @yield('content') 
     </div>

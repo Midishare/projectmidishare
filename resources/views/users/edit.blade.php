@@ -33,6 +33,10 @@
             <input type="text" name="branch" id="branch" class="form-control" value="{{ $user->branch }}" required>
         </div>
         <div class="mb-3">
+            <label for="branch" class="form-label">Class</label>
+            <input type="text" name="class" id="branch" class="form-control" value="{{ $user->class }}" required>
+        </div>
+        <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="text" name="password" id="branch" class="form-control" value="{{ $user->password }}" required>
         </div>

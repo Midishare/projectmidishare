@@ -16,11 +16,11 @@ class UserController extends Controller
         $query = $request->input('query');
         if ($query) {
             $users = User::where('name', 'LIKE', "%{$query}%")
-                        ->orWhere('nik', 'LIKE', "%{$query}%")
-                        ->orWhere('lokasi', 'LIKE', "%{$query}%")
-                        ->orWhere('branch', 'LIKE', "%{$query}%")
-                        ->with('address')
-                        ->get();
+                ->orWhere('nik', 'LIKE', "%{$query}%")
+                ->orWhere('lokasi', 'LIKE', "%{$query}%")
+                ->orWhere('branch', 'LIKE', "%{$query}%")
+                ->with('address')
+                ->get();
         } else {
             $users = User::with('address')->get();
         }
@@ -63,22 +63,21 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'nik' => 'required|unique:users',
+            'nik' => 'required|string|max:255',
             'password' => 'required|string|min:8',
-            'lokasi' => 'nullable|string|max:255',
-            'branch' => 'nullable|string|max:255',
+            'lokasi' => 'required|string|max:255',
+            'branch' => 'required|string|max:255',
+            'class' => 'required|string|max:255', // Validate class input
         ]);
 
-        // $validatedData['password'] = bcrypt($validatedData['password']);
         $user = User::create($validatedData);
-        $userRole = Role::where('name','user')->first();
+        $userRole = Role::where('name', 'user')->first();
         $user->assignRole($userRole);
-        if($user->hasRole('user')){
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
-        }else{
-        var_dump($user);
+        if ($user->hasRole('user')) {
+            return redirect()->route('users.index')->with('success', 'User created successfully.');
+        } else {
+            var_dump($user);
         }
-        
     }
 
     public function edit($id)
@@ -90,20 +89,23 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
-
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'nik' => 'required|min:7',
-            'password' => 'required|string|min:8',
-            // 'lokasi' => 'required|string|max:255',
-            // 'branch' => 'required|string|max:255',
+            'nik' => 'required|string|max:255',
+            'lokasi' => 'required|string|max:255',
+            'branch' => 'required|string|max:255',
+            'class' => 'required|string|max:255', // Validate class input
         ]);
 
-
-        $user->update($validatedData);
+        $user->update([
+            'name' => $request->name,
+            'nik' => $request->nik,
+            'lokasi' => $request->lokasi,
+            'branch' => $request->branch,
+            'class' => $request->class, // Update class input
+        ]);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
@@ -129,7 +131,7 @@ class UserController extends Controller
         User::whereIn('id', $ids)->delete();
         return response()->json(['success' => "Users have been deleted!"]);
     }
-    
+
 
     // Method untuk menampilkan form import
     public function showImportForm()
@@ -157,6 +159,5 @@ class UserController extends Controller
         }
 
         return redirect()->route('users.index')->with('success', 'Users imported successfully.');
-}
-
+    }
 }
