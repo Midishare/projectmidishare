@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Imports\UserImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
@@ -89,26 +90,40 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        // Mencari pengguna berdasarkan ID
+        $user = User::findOrFail($id);
+
+        // Melakukan validasi data
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'nik' => 'required|string|max:255',
-            'lokasi' => 'required|string|max:255',
-            'branch' => 'required|string|max:255',
-            'class' => 'required|string|max:255', // Validate class input
+            'nik' => 'required|min:7',
+            'lokasi' => 'required|string|max:255', // Jika kolom lokasi diperlukan
+            'branch' => 'required|string|max:255', // Jika kolom branch diperlukan
+            'class' => 'required|string|max:10', // Validasi untuk kolom kelas
+            'password' => 'nullable|string|min:8', // Password bersifat opsional
         ]);
 
-        $user->update([
-            'name' => $request->name,
-            'nik' => $request->nik,
-            'lokasi' => $request->lokasi,
-            'branch' => $request->branch,
-            'class' => $request->class, // Update class input
-        ]);
+        // Mengupdate informasi pengguna
+        $user->name = $validatedData['name'];
+        $user->nik = $validatedData['nik'];
+        $user->lokasi = $validatedData['lokasi'];
+        $user->branch = $validatedData['branch'];
+        $user->class = $validatedData['class'];
+
+        // Hanya mengupdate password jika ada perubahan
+        if ($request->filled('password')) {
+            $user->password = $validatedData['password']; // Menyimpan password tanpa hashing
+        }
+
+        $user->save(); // Simpan perubahan ke database
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.

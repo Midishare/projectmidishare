@@ -56,7 +56,7 @@
                         <td>{{ $video->title }}</td>
                         <td><a href="{{ $video->video_link }}" target="_blank">View Video</a></td>
                         <td>
-                            <a href="{{ route('admin.video.edit', $video->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.ip.video.edit', $video->id) }}" class="btn btn-warning">Edit</a>
                             <a href="javascript:void(0);" onclick="confirmDelete({{ $video->id }})" class="btn btn-danger">
                                 Hapus
                             </a>
