@@ -11,56 +11,50 @@ class FinlitController extends Controller
 {
     public function index(Request $request)
     {
-
         $user = Auth::user();
 
         if ($user->class == 'FL') {
-            // Fetch search query from the request
             $query = $request->input('search');
 
-            // Fetch documents with pagination and search
             $dokumens = Dokumenfinlit::when($query, function ($queryBuilder) use ($query) {
-                return $queryBuilder->where('title', 'like', '%' . $query . '%') // Ensure column names are correct
-                    ->orWhere('title', 'like', '%' . $query . '%'); // Adjust column names as necessary
-            })->paginate(10); // Adjust pagination as needed
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })->paginate(10);
 
-            return view('users.finlit.index', compact('dokumens')); // Use 'dokumens' for consistency
+            return view('users.finlit.index', compact('dokumens'));
         }
+
         return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 
     public function materiDokumen(Request $request)
-    {
-        // Fetch search query from the request
-        $query = $request->input('search');
+{
+    $search = $request->input('search');
+    $documents = Dokumenfinlit::when($search, function ($query, $search) {
+        return $query->where('title', 'like', "%{$search}%");
+    })->orderBy('created_at', 'desc') 
+      ->paginate(10); 
 
-        // Fetch documents with pagination and search
-        $dokumens = Dokumenfinlit::when($query, function ($queryBuilder) use ($query) {
-            return $queryBuilder->where('title', 'like', '%' . $query . '%') // Ensure column names are correct
-                ->orWhere('title', 'like', '%' . $query . '%'); // Adjust column names as necessary
-        })->paginate(10); // Adjust pagination as needed
+    return view('admin.finlit.materi', compact('documents', 'search'));
+}
 
-        // Return the view for Materi Dokumen with the documents
-        return view('users.finlit.materi', compact('dokumens')); // Use 'dokumens' for consistency
-    }
 
-    public function video(Request $request)
-    {
-        $user = Auth::user();
+public function video(Request $request)
+{
+    $user = Auth::user();
 
-        if ($user->class == 'FL') {
-            // Ambil semua video dari database
-            $query = VideoFinlit::query();
+    if ($user->class == 'FL') {
+        $query = VideoFinlit::query();
 
-            // Jika ada query pencarian
-            if ($request->has('search')) {
-                $query->where('title', 'like', '%' . $request->input('search') . '%');
-            }
-
-            $videos = $query->paginate(10); // Menampilkan 10 video per halaman
-            return view('users.finlit.video', compact('videos'));
-            // Return the view for Video
+        if ($request->has('search')) {
+            $query->where('title', 'like', '%' . $request->input('search') . '%');
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
+
+        $videos = $query->orderBy('created_at', 'desc')->paginate(10);
+
+        return view('users.finlit.video', compact('videos'));
     }
+
+    return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
+}
+
 }

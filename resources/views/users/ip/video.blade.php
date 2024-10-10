@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="container text-center">
-        <h3>MDP - Video</h3>
+        <h3>IP - Video</h3>
     </div>
 </section>
 

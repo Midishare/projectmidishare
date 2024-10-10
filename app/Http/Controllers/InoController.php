@@ -16,54 +16,47 @@ class InoController extends Controller
         if ($user->class == 'FL') {
             $query = $request->input('search');
 
-            // Fetch documents with pagination and search
             $dokumens = Dokumenino::when($query, function ($queryBuilder) use ($query) {
-                return $queryBuilder->where('title', 'like', '%' . $query . '%') // Ensure column names are correct
-                    ->orWhere('title', 'like', '%' . $query . '%'); // Adjust column names as necessary
-            })->paginate(10); // Adjust pagination as needed
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
 
-            return view('users.ino.index', compact('dokumens')); // Use 'dokumens' for consistency
-
+            return view('users.ino.index', compact('dokumens'));
         }
+
         return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
-
-        // Fetch search query from the request
-
     }
 
     public function materiDokumen(Request $request)
     {
-        // Fetch search query from the request
         $query = $request->input('search');
 
-        // Fetch documents with pagination and search
         $dokumens = Dokumenino::when($query, function ($queryBuilder) use ($query) {
-            return $queryBuilder->where('title', 'like', '%' . $query . '%') // Ensure column names are correct
-                ->orWhere('title', 'like', '%' . $query . '%'); // Adjust column names as necessary
-        })->paginate(10); // Adjust pagination as needed
+            return $queryBuilder->where('title', 'like', '%' . $query . '%');
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
-        // Return the view for Materi Dokumen with the documents
-        return view('users.ino.materi', compact('dokumens')); // Use 'dokumens' for consistency
+        return view('users.ino.materi', compact('dokumens'));
     }
 
     public function video(Request $request)
     {
-
         $user = Auth::user();
 
         if ($user->class == 'FL') {
-            // Ambil semua video dari database
             $query = Videoino::query();
 
-            // Jika ada query pencarian
             if ($request->has('search')) {
                 $query->where('title', 'like', '%' . $request->input('search') . '%');
             }
 
-            $videos = $query->paginate(10); // Menampilkan 10 video per halaman
+            $videos = $query->orderBy('created_at', 'desc')->paginate(10);
+
             return view('users.ino.video', compact('videos'));
-            // Return the view for Video
         }
+
         return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 }
