@@ -46,17 +46,21 @@ class IktController extends Controller
 
     public function video(Request $request)
     {
+        $user = Auth::user();
 
-        // Ambil semua video dari database
-        $query = VideoIkt::query();
+        if ($user->class == 'FL') {
+            // Ambil semua video dari database
+            $query = VideoIkt::query();
 
-        // Jika ada query pencarian
-        if ($request->has('search')) {
-            $query->where('title', 'like', '%' . $request->input('search') . '%');
+            // Jika ada query pencarian
+            if ($request->has('search')) {
+                $query->where('title', 'like', '%' . $request->input('search') . '%');
+            }
+
+            $videos = $query->paginate(10); // Menampilkan 10 video per halaman
+            return view('users.ikt.video', compact('videos'));
+            // Return the view for Video
         }
-
-        $videos = $query->paginate(10); // Menampilkan 10 video per halaman
-        return view('users.ikt.video', compact('videos'));
-        // Return the view for Video
+        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 }

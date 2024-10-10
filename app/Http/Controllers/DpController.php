@@ -46,16 +46,23 @@ class DpController extends Controller
     public function video(Request $request)
     {
 
-        // Ambil semua video dari database
-        $query = VideoDp::query();
+        $user = Auth::user();
+        if ($user->class == 'MOD') {
 
-        // Jika ada query pencarian
-        if ($request->has('search')) {
-            $query->where('title', 'like', '%' . $request->input('search') . '%');
+
+
+            // Ambil semua video dari database
+            $query = VideoDp::query();
+
+            // Jika ada query pencarian
+            if ($request->has('search')) {
+                $query->where('title', 'like', '%' . $request->input('search') . '%');
+            }
+
+            $videos = $query->paginate(10); // Menampilkan 10 video per halaman
+            return view('users.dp.video', compact('videos'));
         }
-
-        $videos = $query->paginate(10); // Menampilkan 10 video per halaman
-        return view('users.dp.video', compact('videos'));
+        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         // Return the view for Video
     }
 }

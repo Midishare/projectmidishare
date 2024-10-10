@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class VideoogmController extends Controller
@@ -13,46 +14,51 @@ class VideoogmController extends Controller
 
     public function showvideomodogm(Request $request)
     {
-        $search = $request->input('search');
-        $videoogm = DB::table('videoogm')
-            ->when($search, function ($query, $search) {
-                return $query->where('judulvidogm', 'like', '%' . $search . '%');
-            })
-            ->orderBy('id', 'desc')
-            ->paginate(9); // or paginate(10) based on your requirement
+        $user = Auth::user();
+
+        if ($user->class == 'SME') {
+
+            $search = $request->input('search');
+            $videoogm = DB::table('videoogm')
+                ->when($search, function ($query, $search) {
+                    return $query->where('judulvidogm', 'like', '%' . $search . '%');
+                })
+                ->orderBy('id', 'desc')
+                ->paginate(9); // or paginate(10) based on your requirement
 
 
-        // Looping untuk setiap video untuk menyiapkan thumbnail URL
-        foreach ($videoogm as $video) {
-            $video_id = '';
-            $video_url = $video->linkogm;
+            // Looping untuk setiap video untuk menyiapkan thumbnail URL
+            foreach ($videoogm as $video) {
+                $video_id = '';
+                $video_url = $video->linkogm;
 
-            // Cek apakah URL adalah YouTube
-            if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
-                $url_parts = parse_url($video_url);
+                // Cek apakah URL adalah YouTube
+                if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+                    $url_parts = parse_url($video_url);
 
-                if (isset($url_parts['query'])) {
-                    parse_str($url_parts['query'], $query);
-                    if (isset($query['v'])) {
-                        $video_id = $query['v']; // Mendapatkan ID video dari parameter 'v'
+                    if (isset($url_parts['query'])) {
+                        parse_str($url_parts['query'], $query);
+                        if (isset($query['v'])) {
+                            $video_id = $query['v']; // Mendapatkan ID video dari parameter 'v'
+                        }
+                    } elseif (isset($url_parts['path'])) {
+                        $path_parts = explode('/', trim($url_parts['path'], '/'));
+                        $video_id = end($path_parts); // Untuk URL singkat youtu.be
                     }
-                } elseif (isset($url_parts['path'])) {
-                    $path_parts = explode('/', trim($url_parts['path'], '/'));
-                    $video_id = end($path_parts); // Untuk URL singkat youtu.be
-                }
 
-                // Set thumbnail URL jika ID video ditemukan
-                if ($video_id) {
-                    $video->thumbnail_url = "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg";
+                    // Set thumbnail URL jika ID video ditemukan
+                    if ($video_id) {
+                        $video->thumbnail_url = "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg";
+                    } else {
+                        $video->thumbnail_url = null;
+                    }
                 } else {
                     $video->thumbnail_url = null;
                 }
-            } else {
-                $video->thumbnail_url = null;
             }
+            return view('modogm', ['videoogm' => $videoogm]);
         }
-
-        return view('modogm', ['videoogm' => $videoogm]);
+        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 
 

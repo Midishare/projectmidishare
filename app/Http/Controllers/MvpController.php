@@ -48,16 +48,21 @@ class MvpController extends Controller
     public function video(Request $request)
     {
 
-        // Ambil semua video dari database
-        $query = VideoMvp::query();
+        $user = Auth::user();
 
-        // Jika ada query pencarian
-        if ($request->has('search')) {
-            $query->where('title', 'like', '%' . $request->input('search') . '%');
+        if ($user->class == 'FL') {
+            // Ambil semua video dari database
+            $query = VideoMvp::query();
+
+            // Jika ada query pencarian
+            if ($request->has('search')) {
+                $query->where('title', 'like', '%' . $request->input('search') . '%');
+            }
+
+            $videos = $query->paginate(10); // Menampilkan 10 video per halaman
+            return view('users.mvp.video', compact('videos'));
+            // Return the view for Video
         }
-
-        $videos = $query->paginate(10); // Menampilkan 10 video per halaman
-        return view('users.mvp.video', compact('videos'));
-        // Return the view for Video
+        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 }
