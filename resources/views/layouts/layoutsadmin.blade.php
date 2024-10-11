@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{asset('icon/logomidi.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('icon/LogoMidishare.png')}}" type="image/x-icon">
     <title>Midishare</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,17 +74,55 @@
             backdrop-filter: blur(10px); /* Efek blur */
         }
 
-        .footer {
+        .custom-footer {
             background-color: #E62323; /* Warna latar belakang footer */
             color: #ffffff;
             padding: 1rem 0;
             text-align: center;
-            margin-top: auto;
             width: 100%;
         }
 
         .footer-container {
             margin-top: auto;
+        }
+
+        .footer-logo {
+            height: 4rem;
+            width: 4rem;
+        }
+
+        .footer-text {
+            text-align: left;
+            width: 300px;
+        }
+
+        .footer-address {
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .footer-links-about{
+            text-align: center;
+            margin-top: 65px;
+        }
+        
+        .footer-links-about a{
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .footer-links {
+            text-align: right;
+            margin-top: 65px;
+        }
+        .footer-links a{
+            text-decoration: none;
+            color: #ffffff
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: white;
         }
 
         @media (max-width: 768px) {
@@ -112,6 +150,24 @@
             }
             .dropdown-menu{
                 margin-left: 50px !important;
+            }
+            .footer-links-about{
+                text-align: left;
+                margin-top: 65px;
+            }
+        
+            .footer-links-about a{
+                text-decoration: none;
+                color: #ffffff;
+            }
+            .footer-links {
+                text-align: left;
+                margin-top: 65px;
+            }
+            .footer-links a{
+                text-align: left;
+                text-decoration: none;
+                color: #ffffff
             }
         }
 
@@ -171,22 +227,40 @@
         @yield('content') 
     </div>
     
-    <footer class="footer">
+    <footer class="custom-footer" style="margin-top: 200px;">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="d-flex justify-content-start align-items-center">
-                        <img class="img-fluid mr-1" src="{{ asset('icon/logomidifooter.png') }}" alt="Logo" style="height: 4rem; width: 4rem;">
-                    </div>  
+                        <img class="footer-logo" src="{{ asset('icon/logomidifooter.png') }}" alt="Logo">
+                    </div> 
+                    <p class="footer-text"><b>PT Midi Utama Indonesia, Tbk</b></p>
+                    <p class="footer-address">Alfa Tower Lt 10 - 12, Jl Jalur Sutera Barat Kav 7-9 Alam<br>
+                    Sutera, Panunggangan Timur, Pinang, Tangerang</p>
                 </div>
-                <div class="col-md-6">
-                    <p style="text-align: right;">PT Midi Utama Indonesia, Tbk<br>
-                        Alfa Tower Lt 10 - 12, Jl Jalur Sutera Barat Kav 7-9 Alam<br>
-                        Sutera, Panunggangan Timur, Pinang, Tangerang</p>
+                <div class="col-md-4 footer-links-about">
+                    <p><b>Tentang Kami</b></p>
+                    <p><a href="{{ route('berita.show') }}">News</a></p>
+                    <p><a href="{{ route('events.show') }}">Event</a></p>
+                    <p><a href="{{ route('livestream') }}">Livestream</a></p>
                 </div>
-            </div>                  
+                <div class="col-md-4 footer-links">
+                    <p><b>Sosial Media Kami</b></p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/alfamidigemabudaya?igsh=MXdsa2EwZW12bDhkcA==" target="_blank">
+                            <i class="bi bi-instagram text-white mx-2"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@midishare_alfamidi?_t=8qRXDkSedOR&_r=1" target="_blank">
+                            <i class="bi bi-tiktok text-white mx-2"></i>
+                        </a>
+                        <a href="https://youtube.com/@alfamidigemabudaya8446?si=fMM_oXtcBdi6XZfX" target="_blank">
+                            <i class="bi bi-youtube text-white mx-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>        
+    </footer>       
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>

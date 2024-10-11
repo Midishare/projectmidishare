@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ asset('icon/logomidi.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('icon/LogoMidishare.png') }}" type="image/x-icon">
     <title>Midishare</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -55,7 +55,6 @@
 
         /* Glassmorphism navbar */
         .navbar-glass {
-            
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -84,6 +83,45 @@
             margin-top: auto;
         }
 
+        .footer-logo {
+            height: 4rem;
+            width: 4rem;
+        }
+
+        .footer-text {
+            text-align: left;
+            width: 300px;
+        }
+
+        .footer-address {
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .footer-links-about{
+            text-align: center;
+            margin-top: 65px;
+        }
+        
+        .footer-links-about a{
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .footer-links {
+            text-align: right;
+            margin-top: 65px;
+        }
+        .footer-links a{
+            text-decoration: none;
+            color: #ffffff
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: white;
+        }
+
         @media (max-width: 768px) {
             .navbar-nav .nav-item {
                 margin-right: 0;
@@ -93,36 +131,55 @@
             .navbar-nav {
                 flex-direction: column;
             }
+
             .navbar-nav .nav-link:hover,
             .navbar-nav .nav-link:focus,
             .navbar-nav .nav-link.active {
                 color: #E62323 !important; /* Warna teks saat hover dan aktif */
                 text-decoration: underline;
                 text-underline-offset: 5px; /* Jarak antara teks dan underline */
-                border-bottom: 0px; /* Menambahkan garis bawah custom */
+                border-bottom: 0px; /* Menghapus garis bawah custom */
                 padding-bottom: 0px; /* Jarak antara teks dan garis bawah */
             }
+
             .navbar-glass {
-            
-            background-color: rgba(255, 255, 255, 0.7); /* Background lebih solid saat di-scroll */
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .dropdown-menu{
+                background-color: rgba(255, 255, 255, 0.7); /* Background lebih solid saat di-scroll */
+            }
+
+            .dropdown-menu {
                 margin-left: 70px !important;
             }
-        }
-
+            .footer-links-about{
+                text-align: left;
+                margin-top: 65px;
+            }
         
+            .footer-links-about a{
+                text-decoration: none;
+                color: #ffffff;
+            }
+            .footer-links {
+                text-align: left;
+                margin-top: 65px;
+            }
+            .footer-links a{
+                text-align: left;
+                text-decoration: none;
+                color: #ffffff
+            }
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg py-3 fixed-top navbar-glass">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"> <img src="{{ asset('icon/logomidi.png') }}" height="24" width="110" alt=""> </a>
+            <a class="navbar-brand" href="/"> 
+                <img src="{{ asset('icon/logomidi.png') }}" height="24" width="110" alt="">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="col justify-content-center navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/">Home</a>
@@ -158,8 +215,8 @@
                 </div>
                 @guest
                 <div class="btn btn-danger">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </div>
+                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                </div>
                 @endguest
             </div>                
         </div>
@@ -170,23 +227,41 @@
     <div class="container content">
         @yield('content') 
     </div>
-    <footer class="custom-footer " style="margin-top: 200px;">
+    <footer class="custom-footer" style="margin-top: 200px;">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="d-flex justify-content-start align-items-center">
-                        <img class="img-fluid mr-1" src="{{ asset('icon/logomidifooter.png') }}" alt="Logo" style="height: 4rem; width: 4rem;">
-                    </div>  
+                        <img class="footer-logo" src="{{ asset('icon/logomidifooter.png') }}" alt="Logo">
+                    </div> 
+                    <p class="footer-text"><b>PT Midi Utama Indonesia, Tbk</b></p>
+                    <p class="footer-address">Alfa Tower Lt 10 - 12, Jl Jalur Sutera Barat Kav 7-9 Alam<br>
+                    Sutera, Panunggangan Timur, Pinang, Tangerang</p>
                 </div>
-                <div class="col-md-6" >
-                    <p style="text-align: right;">PT Midi Utama Indonesia, Tbk<br>
-                        Alfa Tower Lt 10 - 12, Jl  Jalur Sutera Barat Kav 7-9 Alam<br>
-                        Sutera, Panunggangan Timur, Pinang, Tangerang</p>
+                <div class="col-md-4 footer-links-about">
+                    <p><b>Tentang Kami</b></p>
+                    <p><a href="{{ route('berita.show') }}">News</a></p>
+                    <p><a href="{{ route('events.show') }}">Event</a></p>
+                    <p><a href="{{ route('livestream') }}">Livestream</a></p>
                 </div>
-            </div>                  
+                <div class="col-md-4 footer-links">
+                    <p><b>Sosial Media Kami</b></p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/alfamidigemabudaya?igsh=MXdsa2EwZW12bDhkcA==" target="_blank">
+                            <i class="bi bi-instagram text-white mx-2"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@midishare_alfamidi?_t=8qRXDkSedOR&_r=1" target="_blank">
+                            <i class="bi bi-tiktok text-white mx-2"></i>
+                        </a>
+                        <a href="https://youtube.com/@alfamidigemabudaya8446?si=fMM_oXtcBdi6XZfX" target="_blank">
+                            <i class="bi bi-youtube text-white mx-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>        
-    
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-qSRokYzQjCdY4lSTIGYpOwNk8jZYrWZRa3JxYYoM3S4lKa8RgZXEe3H2P6DrTDnx" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
