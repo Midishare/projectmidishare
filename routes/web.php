@@ -350,18 +350,10 @@ Route::middleware('auth', 'role:user')->group(function () {
     Route::get('/materiogm', [RepositoryallController::class, 'materiogm'])->name('materiogm');
     Route::get('/generallearn', [RepositoryallController::class, 'generallearn'])->name('generallearn');
 
-    // Route::get('/generallearn', function () {
-    //     return view('generallearn');
-    // });
-
     // SME
     Route::get('/repositorylinkogm', function () {
         return view('repositorylinkogm');
     });
-
-    // Route::get('/materiogm', function () {
-    //     return view('materiogm');
-    // });
 
     Route::get('/detailkmogm/{id}', [KnowledgeogmController::class, 'detailkmogm'])->name('knowledgeogm.detailkmogm');
     Route::get('/repositorykmogm', [KnowledgeogmController::class, 'showkmogm'])->name('knowledgeogm.showkmogm');
@@ -446,9 +438,6 @@ Route::post('/editvidwh_process', [VideowhController::class, 'editvidwh_process'
 Route::get('/deletevidmodwh/{id}', [VideowhController::class, 'deletevidmodwh'])->name('videowh.deletevidmodwh');
 Route::delete('videowh/bulk_delete', [VideowhController::class, 'bulkDelete'])->name('videowh.bulk_delete');
 Route::post('/delete_multiplewh', [VideowhController::class, 'deleteMultiplewh'])->name('videowh.delete_multiplewh');
-
-
-
 
 
 

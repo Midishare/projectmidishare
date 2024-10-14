@@ -2,9 +2,7 @@
 
 @section('content')
 
-<!-- Bootstrap and Custom Styles -->
 <style>
-    /* Custom styles */
     .card:hover {
         transform: translateY(-5px);
         transition: transform 0.3s ease;
@@ -16,16 +14,14 @@
         transition: transform 0.3s ease;
     }
 </style>
-
-<!-- Main Section -->
 <section>
-    @if ($errors->any())
+    <div class="container text-center p-5 mt-5">
+        <h2>MOD</h2>
+        @if ($errors->any())
     <div class="alert alert-danger">
         {{ $errors->first() }}
     </div>
 @endif
-    <div class="container text-center p-5 mt-5">
-        <h2>MOD</h2>
     </div>
     <div class="container text-center mt-4">
         <section class="py-1">
@@ -72,8 +68,6 @@
         </section>
     </div>
 </section>
-
-<!-- Spacer -->
 <div style="height: 60px;"></div>
 
 @endsection

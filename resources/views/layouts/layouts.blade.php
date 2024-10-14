@@ -97,6 +97,10 @@
             font-size: 14px;
             text-align: left;
         }
+        .footer-copy{
+            font-size: 14px;
+            text-align: left;  
+        }
 
         .footer-links-about{
             text-align: center;
@@ -120,6 +124,33 @@
         .social-icons a {
             text-decoration: none;
             color: white;
+        }
+        .loading-overlay {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #E62323;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @media (max-width: 768px) {
@@ -207,7 +238,7 @@
                 </ul>
                 <div class="nav-item">
                     @auth
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-link nav-link fs-2"><i class="bi bi-power me-2"></i></button>
                     </form>
@@ -225,6 +256,10 @@
         <div id="progress-bar"></div>
     </div>
     <div class="container content">
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="spinner"></div>
+            <div><b>Mohon Tunggu...</b></div>
+        </div>
         @yield('content') 
     </div>
     <footer class="custom-footer" style="margin-top: 200px;">
@@ -237,6 +272,7 @@
                     <p class="footer-text"><b>PT Midi Utama Indonesia, Tbk</b></p>
                     <p class="footer-address">Alfa Tower Lt 10 - 12, Jl Jalur Sutera Barat Kav 7-9 Alam<br>
                     Sutera, Panunggangan Timur, Pinang, Tangerang</p>
+                    <p class="footer-copy">&copy; 2024 Midishare</p>
                 </div>
                 <div class="col-md-4 footer-links-about">
                     <p><b>Tentang Kami</b></p>
@@ -272,6 +308,10 @@
             } else {
                 navbar.classList.remove('navbar-scroll');
             }
+        });
+        document.getElementById('logoutForm').addEventListener('submit', function(e) {
+            // Show loading overlay
+            document.getElementById('loadingOverlay').style.display = 'flex';
         });
     </script>
 </body>
