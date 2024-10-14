@@ -13,8 +13,7 @@ class LinkogmController extends Controller
 {
     public function showlinkogm(Request $request)
     {
-        $user = Auth::user();
-        if ($user->class == 'SME') {
+        try {
             $search = $request->input('search');
 
             $linkogm = DB::table('linkogm')
@@ -25,9 +24,11 @@ class LinkogmController extends Controller
                 ->paginate(10);
 
             return view('ogmlink', ['linkogm' => $linkogm]);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
+
 
     public function addlinkogm_process(Request $request)
     {

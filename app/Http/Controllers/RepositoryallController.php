@@ -2,47 +2,37 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\Auth;
 
 class RepositoryallController extends Controller
 {
     public function materi()
     {
-        $user = Auth::user();
-
-        // Check if the user has access
-        if ($user->class == 'MOD') {
+        try {
+            $user = Auth::user();
             return view('materi', ['users' => $user]);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['access' => 'An error occurred while accessing this section.']);
         }
-
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
-        // Continue with the logic to show the view
     }
 
     public function materiogm()
     {
-        $user = Auth::user();
-
-        // Check if the user has access
-        if ($user->class == 'SME') {
+        try {
+            $user = Auth::user();
             return view('materiogm');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['access' => 'An error occurred while accessing this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
-
-        // Continue with the logic to show the view
     }
 
     public function generallearn()
     {
-        $user = Auth::user();
-
-        // Check if the user has access
-        if ($user->class == 'FL') {
+        try {
+            $user = Auth::user();
             return view('generallearn');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['access' => 'An error occurred while accessing this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
-
-        // Continue with the logic to show the view
     }
 }

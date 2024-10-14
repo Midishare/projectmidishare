@@ -14,10 +14,8 @@ class VideoogmController extends Controller
 
     public function showvideomodogm(Request $request)
     {
-        $user = Auth::user();
 
-        if ($user->class == 'SME') {
-
+        try {
             $search = $request->input('search');
             $videoogm = DB::table('videoogm')
                 ->when($search, function ($query, $search) {
@@ -57,8 +55,9 @@ class VideoogmController extends Controller
                 }
             }
             return view('modogm', ['videoogm' => $videoogm]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 
 
@@ -147,22 +146,6 @@ class VideoogmController extends Controller
             return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
     }
-
-
-    // public function deletevidmodogm($id)
-    // {
-    //     $videoogm = DB::table('videoogm')->where('id', $id)->first();
-    //     $dokumenPath = $videoogm->dokumenvideoogm;
-
-    //     try {
-    //         Storage::delete('public/dokumen/' . $dokumenPath);
-    //         DB::table('videoogm')->where('id', $id)->delete();
-    //         Session::flash('success', 'Video berhasil dihapus.');
-    //         return redirect()->route('videoogm.show_by_adminvidogmshow');
-    //     } catch (\Exception $e) {
-    //         return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
-    //     }
-    // }
 
     public function deletevidmodogm($id)
     {

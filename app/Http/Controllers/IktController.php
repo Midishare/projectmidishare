@@ -11,9 +11,7 @@ class IktController extends Controller
 {
     public function index(Request $request)
     {
-        $user = Auth::user();
-
-        if ($user->class == 'FL') {
+        try {
             $query = $request->input('search');
 
             $dokumens = Dokumenikt::when($query, function ($queryBuilder) use ($query) {
@@ -23,9 +21,9 @@ class IktController extends Controller
                 ->paginate(10);
 
             return view('users.ikt.index', compact('dokumens'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 
     public function materiDokumen(Request $request)
@@ -43,9 +41,8 @@ class IktController extends Controller
 
     public function video(Request $request)
     {
-        $user = Auth::user();
 
-        if ($user->class == 'FL') {
+        try {
             $query = VideoIkt::query();
 
             if ($request->has('search')) {
@@ -55,8 +52,8 @@ class IktController extends Controller
             $videos = $query->orderBy('created_at', 'desc')->paginate(10);
 
             return view('users.ikt.video', compact('videos'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 }

@@ -14,7 +14,7 @@ class IpController extends Controller
 
         $user = Auth::user();
 
-        if ($user->class == 'MOD') {
+        if ($user->class == 'IP') {
             $query = $request->input('search');
             $dokumens = Dokumenip::when($query, function ($queryBuilder) use ($query) {
                 return $queryBuilder->where('title', 'like', '%' . $query . '%')
@@ -22,8 +22,9 @@ class IpController extends Controller
             })->paginate(10);
 
             return view('users.ip.index', compact('dokumens'));
+        } else {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 
     public function materiDokumen(Request $request)
@@ -42,15 +43,15 @@ class IpController extends Controller
     public function video(Request $request)
     {
         $user = Auth::user();
-
-        if ($user->class == 'MOD') {
+        if ($user->class == 'IP') {
             $query = VideoIp::query();
             if ($request->has('search')) {
                 $query->where('title', 'like', '%' . $request->input('search') . '%');
             }
             $videos = $query->orderBy('created_at', 'asc')->paginate(10);
             return view('users.ip.video', compact('videos'));
+        } else {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 }

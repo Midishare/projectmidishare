@@ -13,7 +13,7 @@ class MdpController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->class == 'MOD') {
+        if ($user->class == 'MDP') {
             $query = $request->input('search');
             $dokumens = Dokumenmdp::when($query, function ($queryBuilder) use ($query) {
                 return $queryBuilder->where('title', 'like', '%' . $query . '%')
@@ -23,8 +23,10 @@ class MdpController extends Controller
                 ->paginate(10);
 
             return view('users.mdp.index', compact('dokumens'));
+        } else {
+
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 
     public function materiDokumen(Request $request)
@@ -45,7 +47,7 @@ class MdpController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->class == 'MOD') {
+        if ($user->class == 'MDP') {
             $query = VideoMdp::query();
 
             if ($request->has('search')) {
@@ -54,7 +56,8 @@ class MdpController extends Controller
 
             $videos = $query->orderBy('created_at', 'desc')->paginate(10);
             return view('users.mdp.video', compact('videos'));
+        } else {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 }

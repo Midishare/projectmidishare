@@ -11,21 +11,18 @@ class MvpController extends Controller
 {
     public function index(Request $request)
     {
-        $user = Auth::user();
+        try {
+            $query = $request->input('search');
+            $dokumens = Dokumenmvp::when($query, function ($queryBuilder) use ($query) {
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
 
-        if ($user->class != 'FL') {
+            return view('users.mvp.index', compact('dokumens'));
+        } catch (\Exception $e) {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-
-        $query = $request->input('search');
-
-        $dokumens = Dokumenmvp::when($query, function ($queryBuilder) use ($query) {
-            return $queryBuilder->where('title', 'like', '%' . $query . '%');
-        })
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-
-        return view('users.mvp.index', compact('dokumens'));
     }
 
     public function materiDokumen(Request $request)
@@ -43,20 +40,18 @@ class MvpController extends Controller
 
     public function video(Request $request)
     {
-        $user = Auth::user();
+        try {
+            $query = $request->input('search');
 
-        if ($user->class != 'FL') {
+            $videos = VideoMvp::when($query, function ($queryBuilder) use ($query) {
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            return view('users.mvp.video', compact('videos'));
+        } catch (\Exception $e) {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-
-        $query = $request->input('search');
-
-        $videos = VideoMvp::when($query, function ($queryBuilder) use ($query) {
-            return $queryBuilder->where('title', 'like', '%' . $query . '%');
-        })
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-
-        return view('users.mvp.video', compact('videos'));
     }
 }

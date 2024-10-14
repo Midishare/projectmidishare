@@ -11,16 +11,18 @@ class DpController extends Controller
 {
     public function index(Request $request)
     {
+
         $user = Auth::user();
-        if ($user->class == 'MOD') {
+        if ($user->class == 'DP') {
             $query = $request->input('search');
             $dokumens = Dokumendp::when($query, function ($queryBuilder) use ($query) {
                 return $queryBuilder->where('title', 'like', '%' . $query . '%')
                     ->orWhere('title', 'like', '%' . $query . '%');
             })->orderBy('created_at', 'desc')->paginate(10);
             return view('users.dp.index', compact('dokumens'));
+        } else {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 
     public function materiDokumen(Request $request)
@@ -36,14 +38,15 @@ class DpController extends Controller
     public function video(Request $request)
     {
         $user = Auth::user();
-        if ($user->class == 'MOD') {
+        if ($user->class == 'DP') {
             $query = VideoDp::query();
             if ($request->has('search')) {
                 $query->where('title', 'like', '%' . $request->input('search') . '%');
             }
             $videos = $query->orderBy('created_at', 'desc')->paginate(10);
             return view('users.dp.video', compact('videos'));
+        } else {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
-        return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
     }
 }

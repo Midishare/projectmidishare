@@ -19,6 +19,11 @@
 
 <!-- Main Section -->
 <section>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
     <div class="container text-center p-5 mt-5">
         <h2>MOD</h2>
     </div>
