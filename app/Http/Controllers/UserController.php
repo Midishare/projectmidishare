@@ -116,7 +116,7 @@ class UserController extends Controller
         if ($request->filled('password')) {
             $user->password = $validatedData['password']; // Menyimpan password tanpa hashing
         }
-
+        $user->class = ($request->class == 'None') ? null : $request->class;
         $user->save(); // Simpan perubahan ke database
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');

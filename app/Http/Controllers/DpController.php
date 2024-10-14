@@ -27,12 +27,17 @@ class DpController extends Controller
 
     public function materiDokumen(Request $request)
     {
-        $query = $request->input('search');
-        $dokumens = Dokumendp::when($query, function ($queryBuilder) use ($query) {
-            return $queryBuilder->where('title', 'like', '%' . $query . '%')
-                ->orWhere('title', 'like', '%' . $query . '%');
-        })->orderBy('created_at', 'desc')->paginate(10);
-        return view('users.dp.materi', compact('dokumens'));
+        $user = Auth::user();
+        if ($user->class == 'DP') {
+            $query = $request->input('search');
+            $dokumens = Dokumendp::when($query, function ($queryBuilder) use ($query) {
+                return $queryBuilder->where('title', 'like', '%' . $query . '%')
+                    ->orWhere('title', 'like', '%' . $query . '%');
+            })->orderBy('created_at', 'desc')->paginate(10);
+            return view('users.dp.materi', compact('dokumens'));
+        } else {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
+        }
     }
 
     public function video(Request $request)

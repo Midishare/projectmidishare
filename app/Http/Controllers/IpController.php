@@ -29,14 +29,20 @@ class IpController extends Controller
 
     public function materiDokumen(Request $request)
     {
-        $query = $request->input('search');
+        $user = Auth::user();
 
-        $dokumens = Dokumenip::when($query, function ($queryBuilder) use ($query) {
-            return $queryBuilder->where('title', 'like', '%' . $query . '%');
-        })
-            ->orderBy('created_at', 'asc')
-            ->paginate(10);
-        return view('users.ip.materi', compact('dokumens'));
+        if ($user->class == 'IP') {
+            $query = $request->input('search');
+
+            $dokumens = Dokumenip::when($query, function ($queryBuilder) use ($query) {
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })
+                ->orderBy('created_at', 'asc')
+                ->paginate(10);
+            return view('users.ip.materi', compact('dokumens'));
+        } else {
+            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
+        }
     }
 
 

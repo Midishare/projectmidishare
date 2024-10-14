@@ -67,16 +67,15 @@
     
             <div class="form-group row">
                 <label for="class" class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
-    
                 <div class="col-md-6">
                     <select id="class" class="form-control @error('class') is-invalid @enderror" name="class" required>
                         <option value="">-- Select Kelas --</option>
+                        <option value="None" {{ old('class', $user->class) == null ? 'selected' : '' }}>None</option>
                         <option value="MDP" {{ old('class', $user->class) == 'MDP' ? 'selected' : '' }}>MDP</option>
                         <option value="DP" {{ old('class', $user->class) == 'DP' ? 'selected' : '' }}>DP</option>
                         <option value="IP" {{ old('class', $user->class) == 'IP' ? 'selected' : '' }}>IP</option>
                         <!-- Add more classes as needed -->
                     </select>
-    
                     @error('class')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

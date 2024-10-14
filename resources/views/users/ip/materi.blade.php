@@ -10,6 +10,7 @@
             </div>
             <div class="col-auto">
                 <form action="{{ route('ip.materi') }}" method="GET">
+                    @csrf
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
                         <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>

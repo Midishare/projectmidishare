@@ -46,7 +46,6 @@
 </section>
 @endsection
 
-/* Custom CSS for card hover effect */
 <style>
     .card:hover {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
