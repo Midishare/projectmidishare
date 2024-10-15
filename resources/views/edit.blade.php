@@ -34,9 +34,9 @@
     </div>
 </div>
 </section>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --}}
 <script>
     $(document).ready(function() {
         $('#deskripsi').summernote({
@@ -48,6 +48,7 @@
                 ['fontsize', ['fontsize']],
                 ['color', ['forecolor', 'backcolor']],
                 ['para', ['ul', 'ol', 'paragraph', 'height']], // Add 'height' for line height setting
+                ['insert', ['link']],
                 ['align', ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify']], // Add align buttons
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
