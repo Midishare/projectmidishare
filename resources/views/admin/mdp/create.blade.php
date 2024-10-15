@@ -21,6 +21,24 @@
             <input type="url" class="form-control" id="link" name="link" required>
         </div>
 
+        <div class="form-group mb-3">
+            <label for="category">Category</label>
+            <select name="category" class="form-control" id="category" required>
+                <option value="">-- Select Category --</option>
+                <option value="Business Controlling" {{ old('category') == 'Business Controlling' ? 'selected' : '' }}>Business Controlling</option>
+                <option value="Corporate Audit" {{ old('category') == 'Corporate Audit' ? 'selected' : '' }}>Corporate Audit</option>
+                <option value="Finance" {{ old('category') == 'Finance' ? 'selected' : '' }}>Finance</option>
+                <option value="IT" {{ old('category') == 'IT' ? 'selected' : '' }}>IT</option>
+                <option value="Merchandising" {{ old('category') == 'Merchandising' ? 'selected' : '' }}>Merchandising</option>
+                <option value="Marketing" {{ old('category') == 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                <option value="Operation" {{ old('category') == 'Operation' ? 'selected' : '' }}>Operation</option>
+                <option value="Property Development" {{ old('category') == 'Property Development' ? 'selected' : '' }}>Property Development</option>
+                <option value="Service Quality" {{ old('category') == 'Service Quality' ? 'selected' : '' }}>Service Quality</option>
+                <option value="Corporate Legal & Compliance" {{ old('category') == 'Corporate Legal & Compliance' ? 'selected' : '' }}>Corporate Legal & Compliance</option>
+            </select>
+        </div>
+        
+
         <button type="submit" class="btn btn-primary">Create Document</button>
     </form>
 </div>

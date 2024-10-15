@@ -33,13 +33,18 @@ class IpController extends Controller
 
         if ($user->class == 'IP') {
             $query = $request->input('search');
-
+            $category = $request->input('category');
             $dokumens = Dokumenip::when($query, function ($queryBuilder) use ($query) {
                 return $queryBuilder->where('title', 'like', '%' . $query . '%');
             })
+                ->when($category, function ($queryBuilder) use ($category) {
+                    return $queryBuilder->where('category', $category);
+                })
                 ->orderBy('created_at', 'asc')
                 ->paginate(10);
-            return view('users.ip.materi', compact('dokumens'));
+            $categories = Dokumenip::select('category')->distinct()->get();
+
+            return view('users.ip.materi', compact('dokumens', 'categories'));
         } else {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
@@ -50,12 +55,29 @@ class IpController extends Controller
     {
         $user = Auth::user();
         if ($user->class == 'IP') {
-            $query = VideoIp::query();
-            if ($request->has('search')) {
-                $query->where('title', 'like', '%' . $request->input('search') . '%');
-            }
-            $videos = $query->orderBy('created_at', 'asc')->paginate(10);
-            return view('users.ip.video', compact('videos'));
+            $query = $request->input('search');
+            $category = $request->input('category');
+            $categories = [
+                'Business Controlling',
+                'Corporate Audit',
+                'Finance',
+                'IT',
+                'Merchandising',
+                'Marketing',
+                'Operation',
+                'Property Development',
+                'Service Quality',
+                'Corporate Legal & Compliance'
+            ];
+            $videos = VideoIp::when($query, function ($queryBuilder) use ($query) {
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })
+                ->when($category, function ($queryBuilder) use ($category) {
+                    return $queryBuilder->where('category', $category);
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            return view('users.ip.video', compact('videos', 'categories'));
         } else {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }

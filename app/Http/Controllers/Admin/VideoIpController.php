@@ -29,12 +29,14 @@ class VideoIpController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'video_link' => 'required|url', // Consistent with VideoIp
+            'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
         ]);
 
         // Store the video in the database
         VideoIp::create([ // Changed to use VideoIp
             'title' => $request->input('title'),
             'video_link' => $request->input('video_link'), // Updated field name
+            'category' => $request->input('category'),
         ]);
 
         // Redirect to the video list with a success message
@@ -56,11 +58,13 @@ class VideoIpController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'video_link' => 'required|url',
+            'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
         ]);
 
         // Update video
         $video->title = $request->input('title');
         $video->video_link = $request->input('video_link');
+        $video->category = $request->input('category');
         $video->save();
 
         return redirect()->route('admin.ip.video')->with('success', 'Video updated successfully.');

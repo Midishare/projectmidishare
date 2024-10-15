@@ -14,5 +14,6 @@ class Dokumendp extends Model
         'title',
         'image_path',
         'link',
+        'category',
     ];
 }

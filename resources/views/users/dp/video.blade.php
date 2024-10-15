@@ -59,7 +59,16 @@
         <div class="row align-items-center justify-content-end">
             <div class="col-auto">
                 <form action="{{ route('dp.video') }}" method="GET" class="flex-grow-4">
+                    @csrf
                     <div class="input-group">
+                        <select name="category" class="form-control mx-2" onchange="this.form.submit()">
+                            <option value="">-- Select Category --</option>
+                            @foreach($categories as $cat)
+                                <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
+                                    {{ $cat }}
+                                </option>
+                            @endforeach
+                        </select>
                         <input type="text" name="search" class="form-control" aria-describedby="searchHelpInline" placeholder="Search...">
                         <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
                     </div>

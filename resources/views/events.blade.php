@@ -27,7 +27,7 @@
                     <img class="card-img-top" src="{{ asset('storage/event_images/' . $event->image) }}" alt="Event image" style="height: 200px; width: auto; object-fit: cover;">
                     <div class="card-body d-flex flex-row justify-content-between">
                         <h5 class="">
-                            <a href="{{ route('events.detail', ['id' => $event->id]) }}" class="news-title-link">{{ $event->title }}</a>
+                            <a href="{{ route('events.detail', ['id' => $event->id]) }}" class="news-title-link">{{ \Illuminate\Support\Str::limit($event->title, 20, '...') }}</a>
                         </h5>
                     </div>
                     <p class="card-text ms-auto"><small class="text-muted">{{ \Carbon\Carbon::parse($event->created_at)->format('d M Y') }}</small></p>

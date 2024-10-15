@@ -1,4 +1,3 @@
-<!-- In your index.blade.php or materi.blade.php -->
 @extends('layouts.layouts')
 
 @section('content')
@@ -10,7 +9,16 @@
             </div>
             <div class="col-auto">
                 <form action="{{ route('mdp.materi') }}" method="GET">
+                    @csrf
                     <div class="input-group">
+                        <select name="category" class="form-control mx-2" onchange="this.form.submit()">
+                            <option value="">-- Select Category --</option>
+                            @foreach($categories as $cat)
+                                <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
+                                    {{ $cat }}
+                                </option>
+                            @endforeach
+                        </select>
                         <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
                         <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
                     </div>
@@ -23,6 +31,7 @@
 <section>
     <div class="container" style="margin-top: 2rem;">
         <div class="row">
+            <!-- Loop dokumen untuk menampilkan daftar konten -->
             @foreach($dokumens as $dokumen)
             <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
                 <div class="card shadow-sm h-100 w-100 p-1">
@@ -42,10 +51,9 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-                {{ $dokumens->appends(request()->input())->links() }} <!-- Ensure pagination is working -->
+                {{ $dokumens->appends(request()->input())->links() }} <!-- Pagination with query strings -->
             </div>
         </div>
     </div>
 </section>
-
 @endsection

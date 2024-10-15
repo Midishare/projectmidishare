@@ -32,12 +32,14 @@ class VideoDpController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'link' => 'required|url',
+            'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
         ]);
 
         // Store the video in the database
         VideoDp::create([
             'title' => $request->input('title'),
             'link' => $request->input('link'),
+            'category' => $request->input('category'),
         ]);
 
         // Redirect to the video list with a success message
@@ -58,12 +60,14 @@ class VideoDpController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'link' => 'required|url',
+            'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Update title and link
         $video->title = $request->input('title');
         $video->link = $request->input('link');
+        $video->category = $request->input('category');
 
         // Handle image update if uploaded
         if ($request->hasFile('image')) {

@@ -28,13 +28,19 @@ class DpController extends Controller
     public function materiDokumen(Request $request)
     {
         $user = Auth::user();
+
         if ($user->class == 'DP') {
             $query = $request->input('search');
+            $category = $request->input('category');
             $dokumens = Dokumendp::when($query, function ($queryBuilder) use ($query) {
-                return $queryBuilder->where('title', 'like', '%' . $query . '%')
-                    ->orWhere('title', 'like', '%' . $query . '%');
-            })->orderBy('created_at', 'desc')->paginate(10);
-            return view('users.dp.materi', compact('dokumens'));
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })
+                ->when($category, function ($queryBuilder) use ($category) {
+                    return $queryBuilder->where('category', $category);
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            $categories = Dokumendp::select('category')->distinct()->get();
         } else {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
@@ -44,12 +50,29 @@ class DpController extends Controller
     {
         $user = Auth::user();
         if ($user->class == 'DP') {
-            $query = VideoDp::query();
-            if ($request->has('search')) {
-                $query->where('title', 'like', '%' . $request->input('search') . '%');
-            }
-            $videos = $query->orderBy('created_at', 'desc')->paginate(10);
-            return view('users.dp.video', compact('videos'));
+            $query = $request->input('search');
+            $category = $request->input('category');
+            $categories = [
+                'Business Controlling',
+                'Corporate Audit',
+                'Finance',
+                'IT',
+                'Merchandising',
+                'Marketing',
+                'Operation',
+                'Property Development',
+                'Service Quality',
+                'Corporate Legal & Compliance'
+            ];
+            $videos = VideoDp::when($query, function ($queryBuilder) use ($query) {
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })
+                ->when($category, function ($queryBuilder) use ($category) {
+                    return $queryBuilder->where('category', $category);
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            return view('users.dp.video', compact('videos', 'categories'));
         } else {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }

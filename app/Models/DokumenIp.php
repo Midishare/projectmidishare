@@ -13,5 +13,6 @@ class DokumenIp extends Model
         'title',
         'image_path',
         'link',
+        'category',
     ];
 }

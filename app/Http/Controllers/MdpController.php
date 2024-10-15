@@ -32,19 +32,34 @@ class MdpController extends Controller
     public function materiDokumen(Request $request)
     {
         $user = Auth::user();
+
         if ($user->class == 'MDP') {
             $query = $request->input('search');
-
+            $category = $request->input('category');
+            $categories = [
+                'Business Controlling',
+                'Corporate Audit',
+                'Finance',
+                'IT',
+                'Merchandising',
+                'Marketing',
+                'Operation',
+                'Property Development',
+                'Service Quality',
+                'Corporate Legal & Compliance'
+            ];
             $dokumens = Dokumenmdp::when($query, function ($queryBuilder) use ($query) {
-                return $queryBuilder->where('title', 'like', '%' . $query . '%')
-                    ->orWhere('title', 'like', '%' . $query . '%');
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
             })
+                ->when($category, function ($queryBuilder) use ($category) {
+                    return $queryBuilder->where('category', $category); // Filter berdasarkan kategori
+                })
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
 
-            return view('users.mdp.materi', compact('dokumens'));
+            // Kirim variabel dokumens dan categories ke view
+            return view('users.mdp.materi', compact('dokumens', 'categories'));
         } else {
-
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }
     }
@@ -54,14 +69,29 @@ class MdpController extends Controller
         $user = Auth::user();
 
         if ($user->class == 'MDP') {
-            $query = VideoMdp::query();
-
-            if ($request->has('search')) {
-                $query->where('title', 'like', '%' . $request->input('search') . '%');
-            }
-
-            $videos = $query->orderBy('created_at', 'desc')->paginate(10);
-            return view('users.mdp.video', compact('videos'));
+            $query = $request->input('search');
+            $category = $request->input('category');
+            $categories = [
+                'Business Controlling',
+                'Corporate Audit',
+                'Finance',
+                'IT',
+                'Merchandising',
+                'Marketing',
+                'Operation',
+                'Property Development',
+                'Service Quality',
+                'Corporate Legal & Compliance'
+            ];
+            $videos = VideoMdp::when($query, function ($queryBuilder) use ($query) {
+                return $queryBuilder->where('title', 'like', '%' . $query . '%');
+            })
+                ->when($category, function ($queryBuilder) use ($category) {
+                    return $queryBuilder->where('category', $category);
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            return view('users.mdp.video', compact('videos', 'categories'));
         } else {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
         }

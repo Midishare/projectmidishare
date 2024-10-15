@@ -24,9 +24,8 @@
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                         <img src="{{ asset('storage/icon/' . $item->gambar) }}" class="d-block w-100" alt="{{ $item->judul }}" style="height: 400px; object-fit: fill;">
                         <div class="carousel-caption d-md-block">
-                            <h5>{{ $item->judul }}</h5>
-                            {{-- <p>{{ \Carbon\Carbon::parse($item->published_at)->format('d M Y') }}</p> --}}
-                        </div>
+                            <h5>{{ \Illuminate\Support\Str::limit($item->judul, 20, '...') }}</h5> 
+                        </div>                                               
                     </div>
                 @endforeach
             </div>
@@ -60,11 +59,13 @@
             @foreach($news as $berita)
             <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
                 <div class="card shadow-sm h-100 w-100 p-1">
-                    <img class="card-img-top" src="{{ asset('storage/icon/' . $berita->gambar) }}" alt="Card image cap" style="height: 200px; width: auto; object-fit: cover;">
+                    <img class="card-img-top card-img-headline" src="{{ asset('storage/icon/' . $berita->gambar) }}" alt="Card image cap" style="height: 200px; width: auto; object-fit: cover;">
                     <div class="card-body d-flex flex-row justify-content-between">
                         <h5 class="">
-                            <a href="{{ route('berita.detail', ['id' => $berita->id]) }}"  class="news-title-link">{{ $berita->judul }}</a>
-                        </h5>
+                            <a href="{{ route('berita.detail', ['id' => $berita->id]) }}" class="news-title-link"> 
+                                {{ \Illuminate\Support\Str::limit($berita->judul, 20, '...') }}
+                            </a>
+                        </h5>                                              
                     </div>
                     <p class="card-text ms-auto"><small class="text-muted">{{ \Carbon\Carbon::parse($berita->published_at)->format('d M Y') }}</small></p>
                 </div>
@@ -91,7 +92,7 @@
     .card-title a:hover {
         color: #007bff;
     }
-   
+
     .news-title-link {
         text-decoration: none;
         color: black;
@@ -102,7 +103,6 @@
         color: #007bff; 
     }
 
-    /* Carousel Styles */
     .carousel-item img {
         height: 400px;
         object-fit: cover;

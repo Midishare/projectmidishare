@@ -11,5 +11,5 @@ class VideoDp extends Model
 
     protected $table = 'video_dp';
 
-    protected $fillable = ['title', 'link'];
+    protected $fillable = ['title', 'link', 'category'];
 }

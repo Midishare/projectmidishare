@@ -14,5 +14,6 @@ class Dokumenmdp extends Model
         'title',
         'image_path',
         'link',
+        'category',
     ];
 }

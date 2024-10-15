@@ -13,5 +13,6 @@ class VideoIp extends Model
     protected $fillable = [
         'title',
         'video_link',
+        'category',
     ];
 }

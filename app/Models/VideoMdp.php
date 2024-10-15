@@ -11,5 +11,5 @@ class VideoMdp extends Model
 
     protected $table = 'video_mdp';
 
-    protected $fillable = ['title', 'link'];
+    protected $fillable = ['title', 'link', 'category'];
 }

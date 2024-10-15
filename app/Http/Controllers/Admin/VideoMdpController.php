@@ -28,21 +28,21 @@ class VideoMdpController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'title' => 'required|string|max:255',
             'link' => 'required|url',
+            'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
         ]);
 
-        // Store the video in the database
         VideoMdp::create([
             'title' => $request->input('title'),
             'link' => $request->input('link'),
+            'category' => $request->input('category'),
         ]);
 
-        // Redirect to the video list with a success message
         return redirect()->route('admin.mdp.video')->with('success', 'Video added successfully');
     }
+
 
     public function edit($id)
     {
@@ -54,28 +54,27 @@ class VideoMdpController extends Controller
     {
         $video = VideoMdp::findOrFail($id);
 
-        // Validation
         $request->validate([
             'title' => 'required|string|max:255',
             'link' => 'required|url',
+            'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Update title and link
         $video->title = $request->input('title');
         $video->link = $request->input('link');
+        $video->category = $request->input('category');
 
-        // Handle image update if uploaded
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('videos', 'public');
             $video->image = $imagePath;
         }
 
-        // Save the updated video
         $video->save();
 
         return redirect()->route('admin.mdp.video')->with('success', 'Video updated successfully');
     }
+
 
 
     public function destroy($id)

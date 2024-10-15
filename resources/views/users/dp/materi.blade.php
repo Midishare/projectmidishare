@@ -10,7 +10,16 @@
             </div>
             <div class="col-auto">
                 <form action="{{ route('dp.materi') }}" method="GET">
+                    @csrf
                     <div class="input-group">
+                        <select name="category" class="form-control mx-2" onchange="this.form.submit()">
+                            <option value="">-- Select Category --</option>
+                            @foreach($categories as $cat)
+                                <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
+                                    {{ $cat }}
+                                </option>
+                            @endforeach
+                        </select>
                         <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
                         <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
                     </div>
