@@ -50,7 +50,7 @@
         </a>
     </div>
     <div class="container text-center">
-        <h3>Materi SME</h3>
+        <h3>Video SME</h3>
     </div>
 </section>
 
@@ -75,7 +75,7 @@
             @foreach($videoogm as $i => $video)
             <div class="col-lg-4 mb-4">
                 <div class="card h-180">
-                    <div class="card-body">
+                    <div class="">
                         <p class="card-text">
                     @php
                     $video_id = '';
@@ -98,9 +98,9 @@
                     @endphp
             @if(!empty($video_id))
                 <a href="{{ $video_url }}" target="_blank" class="card-link">
-                    <img src="https://img.youtube.com/vi/{{ $video_id }}/0.jpg" alt="Thumbnail" class="video-thumbnail" width="100%" height="200">
+                    <img src="https://img.youtube.com/vi/{{ $video_id }}/0.jpg" alt="Thumbnail" class="" width="100%" height="200" style="object-fit: cover;">
                 </a>
-                <h6 class="card-subtitle mb-2 text-muted">{{ $video->judulvidogm }}</h6>
+                <h5 class="card-subtitle mb-2 text-bold p-2">{{ $video->judulvidogm }}</h5>
             @else
                 <span>Format tidak didukung</span>
             @endif

@@ -103,12 +103,9 @@
                     <img src="{{ asset('images/default-image.png') }}" class="card-img-top" alt="Default Image"> <!-- Fallback image -->
                 @endif
                 <div class="card-body">
-                    <h5 class="card-title text-dark">
-                        {{ $repo->judullinkogm }}
+                    <h5 class="card-text text-dark p-2">
+                        <a style="text-decoration: none" class="text-reset" href="{{ $repo->linkdriveogm }}" target="_blank">{{ $repo->judullinkogm }}</a>
                     </h5>
-                    <p class="card-text text-muted">
-                        <a href="{{ $repo->linkdriveogm }}" target="_blank">{{ $repo->linkdriveogm }}</a>
-                    </p>
                 </div>
             </div>
         </div>

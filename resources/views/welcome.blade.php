@@ -81,10 +81,36 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="form-container mx-auto">
+                    <h1 class="form-header">Ayo Bergabung Bersama Midishare!</h1>
+                    <p class="form-label">Daftarkan diri anda sekarag juga</p>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="firstName">Nama Depan</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Nama Belakang</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="kelas">Kelas</label>
+                            <select id="kelas" name="kelas" required>
+                                <option value="Tidak">Tidak</option>
+                                <option value="MDP">MDP</option>
+                                <option value="DP">DP</option>
+                                <option value="IP">IP</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <button class="buton-form" type="submit">Kirim!</button>
+                    </form>
                 </div>
             </div>                                   
-           
         </div>        
     </div>
 </section>
@@ -109,6 +135,23 @@
         animateValue("jurnal-count", 0, 10, 500);
         animateValue("learning-count", 0, 10, 500);
     });
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();   
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const kelas = document.getElementById('kelas').value;
+            const email = document.getElementById('email').value;
+
+            const whatsappMessage = `Halo kak! saya ingin mendaftar menjadi anggota midishare:%0A
+Name: ${firstName} ${lastName}%0A
+Email: ${email}%0A
+kelas: ${kelas}`;
+
+            const whatsappNumber = '+6287884597637';
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
     </script>
     
 @endsection
@@ -185,6 +228,53 @@
         .margin-materi{
           margin-top: 150px;
           line-height: 30px;
+        }
+        .form-container {
+            color: white;
+            background-color: #0253BB;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .form-header {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .form-label {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .buton-form {
+            background-color: #E62323;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .buton-form:hover {
+            background-color: #964141;
         }
         @media (max-width: 768px) {
             .stat-item {
