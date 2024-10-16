@@ -52,9 +52,10 @@
       <a href="javascript:history.back()" class="btn back-button">
         <i class="bi bi-arrow-left"></i> Kembali
       </a>
-      <div class="container text-center mt-3">
-      <h2>IKT - Pilih Materi</h3>
-      <div></div> <!-- Placeholder div to balance the flex container -->
+        <div class="container text-center mt-3">
+            <h2>IKT - Pilih Materi</h3>
+            <div></div> <!-- Placeholder div to balance the flex container -->
+        </div>
     </div>
   </section>
 

@@ -48,13 +48,14 @@
     }
 </style>
 <section class="gradient-bg py-5">
-    <div class="container-fluid p-4 d-flex align-items-center justify-content-between">
-      <a href="javascript:history.back()" class="btn back-button">
+    <div class="container-fluid row p-4 d-flex align-items-center justify-content-between">
+      <a href="javascript:history.back()" class="btn back-button col-12">
         <i class="bi bi-arrow-left"></i> Kembali
       </a>
-      <div class="container text-center mt-3">
-      <h2>Inofest - Pilih Materi</h3>
-      <div></div> <!-- Placeholder div to balance the flex container -->
+        <div class="container text-center mt-3 col-12">
+            <h2>Inofest - Pilih Materi</h3>
+            <div></div>
+        </div>
     </div>
   </section>
 

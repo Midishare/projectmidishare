@@ -12,7 +12,7 @@
                     @csrf
                     <div class="input-group">
                         <select name="category" class="form-control mx-2" onchange="this.form.submit()">
-                            <option value="">-- Select Category --</option>
+                            <option value="">-- Select All --</option>
                             @foreach($categories as $cat)
                                 <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
                                     {{ $cat }}

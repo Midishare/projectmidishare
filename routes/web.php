@@ -365,6 +365,10 @@ Route::middleware('auth', 'role:user')->group(function () {
 
 
     Route::get('/ogmlink', [LinkogmController::class, 'showlinkogm'])->name('linkogm.showlinkogm');
+
+    // belajar mandiri
+    Route::get('/belajarmandiri', [BelajarmandiriController::class, 'showmandiri'])->name('belajarmandiri.show');
+    Route::get('/detailmandiri/{id}', [BelajarmandiriController::class, 'detailmandiri'])->name('belajarmandiri.detailmandiri');
 });
 
 Route::get('/addhome', [DashboardController::class, 'addhome'])->name('dashboard.addhome');
@@ -386,8 +390,7 @@ Route::get('/detail/{id}', [BeritaController::class, 'detail'])->name('berita.de
 Route::get('/livestream', [LivestreamController::class, 'index'])->name('livestream');
 
 
-Route::get('/belajarmandiri', [BelajarmandiriController::class, 'showmandiri'])->name('belajarmandiri.show');
-Route::get('/detailmandiri/{id}', [BelajarmandiriController::class, 'detailmandiri'])->name('belajarmandiri.detailmandiri');
+
 
 
 Route::get('/addkm', [KnowledgeController::class, 'addkm'])->name('knowledge.addmandiri');
