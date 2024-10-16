@@ -62,7 +62,7 @@
                     @csrf
                     <div class="input-group">
                         <select name="category" class="form-control mx-2" onchange="this.form.submit()">
-                            <option value="">-- Select Category --</option>
+                            <option value="">-- Select All --</option>
                             @foreach($categories as $cat)
                                 <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
                                     {{ $cat }}
@@ -109,7 +109,7 @@
                 <a href="{{ $video_url }}" target="_blank" class="card-link">
                     <img src="https://img.youtube.com/vi/{{ $video_id }}/0.jpg" alt="Thumbnail" class="video-thumbnail" width="100%" height="200">
                 </a>
-                <h6 class="card-subtitle mb-2 text-muted">{{ $video->title }}</h6>
+                <h5 class="card-subtitle mb-2 text-bold p-2">{{ $video->title }}</h5>
             @else
                 <span>Format tidak didukung</span>
             @endif
