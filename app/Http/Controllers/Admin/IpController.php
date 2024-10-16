@@ -38,7 +38,7 @@ class IpController extends Controller
             'title' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'link' => 'required|url',
-            'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
+            'category' => 'required|in:Human Capital,Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
         ]);
 
         if ($request->hasFile('image')) {
@@ -63,7 +63,7 @@ class IpController extends Controller
             'title' => 'required|string|max:255',
             'link' => 'required|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
+            'category' => 'required|in:Human Capital,Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
         ]);
 
         $document = DokumenIp::findOrFail($id);

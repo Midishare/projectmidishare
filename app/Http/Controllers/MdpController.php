@@ -37,6 +37,7 @@ class MdpController extends Controller
             $query = $request->input('search');
             $category = $request->input('category');
             $categories = [
+                'Human Capital',
                 'Business Controlling',
                 'Corporate Audit',
                 'Finance',
@@ -72,6 +73,7 @@ class MdpController extends Controller
             $query = $request->input('search');
             $category = $request->input('category');
             $categories = [
+                'Human Capital',
                 'Business Controlling',
                 'Corporate Audit',
                 'Finance',

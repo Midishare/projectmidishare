@@ -34,16 +34,29 @@ class IpController extends Controller
         if ($user->class == 'IP') {
             $query = $request->input('search');
             $category = $request->input('category');
+            $categories = [
+                'Human Capital',
+                'Business Controlling',
+                'Corporate Audit',
+                'Finance',
+                'IT',
+                'Merchandising',
+                'Marketing',
+                'Operation',
+                'Property Development',
+                'Service Quality',
+                'Corporate Legal & Compliance'
+            ];
             $dokumens = Dokumenip::when($query, function ($queryBuilder) use ($query) {
                 return $queryBuilder->where('title', 'like', '%' . $query . '%');
             })
                 ->when($category, function ($queryBuilder) use ($category) {
-                    return $queryBuilder->where('category', $category);
+                    return $queryBuilder->where('category', $category); // Filter berdasarkan kategori
                 })
-                ->orderBy('created_at', 'asc')
+                ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $categories = Dokumenip::select('category')->distinct()->get();
 
+            // Kirim variabel dokumens dan categories ke view
             return view('users.ip.materi', compact('dokumens', 'categories'));
         } else {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);

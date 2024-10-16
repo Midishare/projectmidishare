@@ -37,6 +37,7 @@
             <label for="category">Category</label>
             <select name="category" class="form-control" id="category" required>
                 <option value="">-- Select Category --</option>
+                <option value="Human Capital" {{ $dokumen->category == 'Human Capital' ? 'selected' : '' }}>Human Capital</option>
                 <option value="Business Controlling" {{ $dokumen->category == 'Business Controlling' ? 'selected' : '' }}>Business Controlling</option>
                 <option value="Corporate Audit" {{ $dokumen->category == 'Corporate Audit' ? 'selected' : '' }}>Corporate Audit</option>
                 <option value="Finance" {{ $dokumen->category == 'Finance' ? 'selected' : '' }}>Finance</option>
