@@ -10,12 +10,6 @@
 <section>
     <div class="container center">
         <div class="row">
-           
-            {{-- <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="{{ Storage::url('public/gambar/' . $item->image) }}" alt="Card image cap">
-                </div>
-            </div> --}}
             <div class="" >
                 <div class="card mb-3 border border-0" >
                     <div class="bg-midi rounded text-white">
@@ -25,7 +19,7 @@
                       <div class="card-body ">
                           <div class="d-flex flex-column flex-md-row justify-content-between">
                               <div class="p-2">
-                                  <p>Divisi Knowledge Management merupakan divisi yang bertujuan untuk menyimpan dan menyebarkan pengetahuan pembelajaran yang ada di Alfamidi. Kami juga menyimpan informasi-informasi mengenai berbagai acara. Yuk kepoin Knowledge Management!</p>
+                                  <p>Knowledge Management mempunyai tujuan untuk menyimpan dan menyebarkan pengetahuan pembelajaran yang ada di Alfamidi. Kami juga menyimpan informasi-informasi mengenai berbagai acara. Yuk kepoin Knowledge Management!</p>
                                   <p>Kami memiliki:</p>    
                                   <div class="stats-container">
                                     <div class="stat-item">
@@ -83,9 +77,9 @@
                     </div>
                 </div>
                 <div class="form-container mx-auto">
-                    <h1 class="form-header">Ayo Bergabung Bersama Midishare!</h1>
-                    <p class="form-label">Daftarkan diri anda sekarag juga</p>
-                    <form id="contactForm">
+                    <h1 class="form-header text-center">Ayo Bergabung Bersama Midishare!</h1>
+                    <p class="form-label text-center">Daftarkan diri anda sekarang juga</p>
+                    <form id="contactForm" class="mx-auto">
                         <div class="form-group">
                             <label for="firstName">Nama Depan</label>
                             <input type="text" id="firstName" name="firstName" required>
@@ -235,6 +229,9 @@ kelas: ${kelas}`;
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        #contactForm{
             width: 100%;
             max-width: 500px;
         }

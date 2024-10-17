@@ -6,6 +6,10 @@
     .animated {
         animation-duration: 0.5s;
     }
+    .table-news {
+        margin-top: 1rem;   
+        overflow:scroll !important;
+    }
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -44,7 +48,7 @@
             @csrf
             @method('DELETE')
             <button type="button" class="btn btn-danger mt-4" onclick="confirmBulkDelete()">Hapus yang dipilih</button>
-            <table class="table table-responsive table-bordered table-hover table-striped" style="margin-top: 1rem;">
+            <table class="table table-responsive table-bordered table-hover table-striped table-news">
                 <thead>
                     <tr>
                         <th><input type="checkbox" id="selectAll"></th>

@@ -25,6 +25,7 @@ use App\Http\Controllers\IktController;
 use App\Http\Controllers\MvpController;
 use App\Http\Controllers\InoController;
 use App\Http\Controllers\FinlitController;
+use App\Http\Controllers\WebinController;
 use App\Http\Controllers\Admin\MdpController as AdminMdpController;
 use App\Http\Controllers\Admin\DpController as AdminDpController;
 use App\Http\Controllers\Admin\IpController as AdminIpController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\Admin\IktController as AdminIktController;
 use App\Http\Controllers\Admin\MvpController as AdminMvpController;
 use App\Http\Controllers\Admin\InoController as AdminInoController;
 use App\Http\Controllers\Admin\FinlitController as AdminFinlitController;
+use App\Http\Controllers\Admin\WebinController as AdminWebinarController;
 use App\Http\Controllers\Admin\VideoMdpController;
 use App\Http\Controllers\Admin\VideoDpController;
 use App\Http\Controllers\Admin\VideoIpController;
@@ -39,6 +41,7 @@ use App\Http\Controllers\Admin\VideoIktController;
 use App\Http\Controllers\Admin\VideoMvpController;
 use App\Http\Controllers\Admin\VideoInoController;
 use App\Http\Controllers\Admin\VideoFinlitController;
+use App\Http\Controllers\Admin\VideoWebinController;
 use App\Http\Controllers\CrudloginController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RepositoryallController;
@@ -236,6 +239,26 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('/video/bulk-delete', [VideoFinlitController::class, 'bulkDelete'])->name('admin.finlit.video.bulkDelete');
     });
 
+    Route::prefix('admin/webinar')->group(function () {
+        Route::get('/', [AdminWebinarController::class, 'index'])->name('admin.webinar.index');
+        Route::get('/materi', [AdminWebinarController::class, 'materiDokumen'])->name('admin.webinar.materi');
+        Route::post('/materi/create', [AdminWebinarController::class, 'store'])->name('admin.webinar.materi.store');
+        Route::get('/materi/create', [AdminWebinarController::class, 'create'])->name('admin.webinar.materi.create');
+        Route::get('/materi/{id}/edit', [AdminWebinarController::class, 'edit'])->name('admin.webinar.materi.edit');
+        Route::put('/materi/{id}', [AdminWebinarController::class, 'update'])->name('admin.webinar.materi.update');
+        Route::get('/materi/{id}', [AdminWebinarController::class, 'destroy'])->name('admin.webinar.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminWebinarController::class, 'bulkDelete'])->name('admin.webinar.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoWebinController::class, 'index'])->name('admin.webinar.video');
+        Route::get('/video/create', [VideoWebinController::class, 'create'])->name('admin.webinar.video.create');
+        Route::post('/video', [VideoWebinController::class, 'store'])->name('admin.webinar.video.store');
+        Route::get('/video/{id}/edit', [VideoWebinController::class, 'edit'])->name('admin.webinar.video.edit');
+        Route::put('/video/{id}', [VideoWebinController::class, 'update'])->name('admin.webinar.video.update');
+        Route::get('/video/{id}', [VideoWebinController::class, 'destroy'])->name('admin.webinar.video.destroy');
+        Route::post('/video/bulk-delete', [VideoWebinController::class, 'bulkDelete'])->name('admin.webinar.video.bulkDelete');
+    });
+
     // news
     Route::get('/add', [BeritaController::class, 'add'])->name('berita.add');
     Route::post('/add_process', [BeritaController::class, 'add_process'])->name('berita.add_process');
@@ -345,6 +368,11 @@ Route::middleware('auth', 'role:user')->group(function () {
     Route::get('/finlit', [FinlitController::class, 'index'])->name('finlit.index');
     Route::get('/finlit/materi', [FinlitController::class, 'materiDokumen'])->name('finlit.materi');
     Route::get('/finlit/video', [FinlitController::class, 'video'])->name('finlit.video');
+
+    // Route untuk Webinar
+    Route::get('/webinar', [WebinController::class, 'index'])->name('webinar.index');
+    Route::get('/webinar/materi', [WebinController::class, 'materiDokumen'])->name('webinar.materi');
+    Route::get('/webinar/video', [WebinController::class, 'video'])->name('webinar.video');
 
     Route::get('/materi', [RepositoryallController::class, 'materi'])->name('materimod');
     Route::get('/materiogm', [RepositoryallController::class, 'materiogm'])->name('materiogm');

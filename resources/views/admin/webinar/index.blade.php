@@ -1,4 +1,4 @@
-@extends('layouts.layouts')
+@extends('layouts.layoutsadmin')
 
 @section('content')
 
@@ -48,14 +48,13 @@
     }
 </style>
 <section class="gradient-bg py-5">
-    <div class="container-fluid row p-4 d-flex align-items-center justify-content-between">
-      <a href="javascript:history.back()" class="btn back-button col-12">
+    <div class="container-fluid p-4 d-flex align-items-center justify-content-between">
+      <a href="javascript:history.back()" class="btn back-button">
         <i class="bi bi-arrow-left"></i> Kembali
       </a>
-        <div class="container text-center mt-3 col-12">
-        <h2>Webinar - Pilih Materi</h3>
-        <div></div> <!-- Placeholder div to balance the flex container -->
-        </div>
+      <div class="container text-center mt-3">
+      <h2>webinar - Pilih Materi</h3>
+      <div></div> <!-- Placeholder div to balance the flex container -->
     </div>
   </section>
 
@@ -70,7 +69,7 @@
                     {{-- <p class="card-text">Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p> --}}
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary" href="{{ route('webinar.materi') }}" class="btn btn-primary btn-lg">Vies Details</a>
+                    <a class="btn btn-secondary" href="{{ route('admin.webinar.materi') }}" class="btn btn-primary btn-lg">Vies Details</a>
                 </div>
             </div>
         </div>
@@ -82,8 +81,8 @@
                     {{-- <p class="card-text">Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p> --}}
                 </div>
                 <div class="card-footer">
-                    {{--             <a href="{{ route('webinar.video') }}" class="btn btn-secondary btn-lg">Video</a> --}}
-                    <a class="btn btn-secondary" href="{{ route('webinar.video') }}">View details &raquo;</a>
+                    {{--             <a href="{{ route('mdp.video') }}" class="btn btn-secondary btn-lg">Video</a> --}}
+                    <a class="btn btn-secondary" href="{{ route('admin.webinar.video') }}">View details &raquo;</a>
                 </div>
             </div>
         </div>
