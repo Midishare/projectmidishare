@@ -29,7 +29,7 @@
                     <!-- MDP Card -->
                     <div class="col">
                         <div class="card h-100 p-3">
-                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms5.png') }}" alt="People Development Manager">
+                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms5.png') }}" alt="IKT">
                             <div class="card-body">
                                 <h4 class="card-title text-center">IKT</h4>
                             </div>
@@ -41,7 +41,7 @@
                     <!-- DP Card -->
                     <div class="col">
                         <div class="card h-100 p-3">
-                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms2.png') }}" alt="Operation General Manager">
+                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms2.png') }}" alt="MVp">
                             <div class="card-body">
                                 <h4 class="card-title text-center">MVP</h4>
                             </div>
@@ -53,7 +53,7 @@
                     <!-- IP Card -->
                     <div class="col">
                         <div class="card h-100 p-3">
-                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms10.png') }}" alt="Ware House">
+                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms10.png') }}" alt="Inofest">
                             <div class="card-body">
                                 <h4 class="card-title text-center">Inofest</h4>
                             </div>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="col">
                         <div class="card h-100 p-3">
-                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms10.png') }}" alt="Ware House">
+                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/literasifinancial.png') }}" alt="Financial Literasi">
                             <div class="card-body">
                                 <h4 class="card-title text-center">Financial Literasi</h4>
                             </div>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col">
                         <div class="card h-100 p-3">
-                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms10.png') }}" alt="Ware House">
+                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/webinar.png') }}" alt="Webinar">
                             <div class="card-body">
                                 <h4 class="card-title text-center">Webinar</h4>
                             </div>

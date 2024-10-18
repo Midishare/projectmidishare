@@ -73,11 +73,11 @@ Route::get('/materiadminmodwh', function () {
 
 
 Route::middleware('auth', 'role:admin')->group(function () {
-    Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
-    Route::get('/addresses/{address}/create', [AddressController::class, 'create'])->name('addresses.create');
-    Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('addresses.edit');
-    Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
-    Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
+    // Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
+    // Route::get('/addresses/{address}/create', [AddressController::class, 'create'])->name('addresses.create');
+    // Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('addresses.edit');
+    // Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
+    // Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
     // Route::delete('/addresses/deleteAll', [AddressController::class, 'destroy'])->name('addresses.deleteAll');
     // Route::delete('/addresses/deleteAll', [AddressController::class, 'destroy'])->name('addresses.deleteAll');
 

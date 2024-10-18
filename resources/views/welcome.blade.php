@@ -137,7 +137,7 @@
             const email = document.getElementById('email').value;
 
             const whatsappMessage = `Halo kak! saya ingin mendaftar menjadi anggota midishare:%0A
-Name: ${fullname} ${lastName}%0A
+Name: ${fullname}%0A
 Email: ${email}%0A
 kelas: ${kelas}`;
 
