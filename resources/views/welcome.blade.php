@@ -76,33 +76,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-container mx-auto">
+                <div class="form-container">
                     <h1 class="form-header text-center">Ayo Bergabung Bersama Midishare!</h1>
                     <p class="form-label text-center">Daftarkan diri anda sekarang juga</p>
-                    <form id="contactForm" class="mx-auto">
-                        <div class="form-group">
-                            <label for="firstName">Nama Depan</label>
-                            <input type="text" id="firstName" name="firstName" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-5">
+                            <img class="icon-form" src="{{ asset('icon/icon-midi.png') }}" alt="">
                         </div>
-                        <div class="form-group">
-                            <label for="lastName">Nama Belakang</label>
-                            <input type="text" id="lastName" name="lastName" required>
+                        <div class="col-md-6">
+                            <form id="contactForm" class="mt-5">
+                                <div class="form-group">
+                                    <label for="fullname">Nama lengkap</label>
+                                    <input type="text" id="fullname" name="fullname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="kelas">Kelas</label>
+                                    <select id="kelas" name="kelas" required>
+                                        <option value="Tidak">Tidak</option>
+                                        <option value="MDP">MDP</option>
+                                        <option value="DP">DP</option>
+                                        <option value="IP">IP</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <button class="buton-form" type="submit">Kirim!</button>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="kelas">Kelas</label>
-                            <select id="kelas" name="kelas" required>
-                                <option value="Tidak">Tidak</option>
-                                <option value="MDP">MDP</option>
-                                <option value="DP">DP</option>
-                                <option value="IP">IP</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <button class="buton-form" type="submit">Kirim!</button>
-                    </form>
+                    </div>
                 </div>
             </div>                                   
         </div>        
@@ -131,13 +134,12 @@
     });
     document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();   
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
+            const fullname = document.getElementById('fullname').value;
             const kelas = document.getElementById('kelas').value;
             const email = document.getElementById('email').value;
 
             const whatsappMessage = `Halo kak! saya ingin mendaftar menjadi anggota midishare:%0A
-Name: ${firstName} ${lastName}%0A
+Name: ${fullname} ${lastName}%0A
 Email: ${email}%0A
 kelas: ${kelas}`;
 
@@ -234,6 +236,9 @@ kelas: ${kelas}`;
         #contactForm{
             width: 100%;
             max-width: 500px;
+        }
+        .icon-form{
+            height: 50vh;
         }
         .form-header {
             color: white;

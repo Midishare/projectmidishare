@@ -84,40 +84,51 @@
             @foreach($videos as $i => $video)
             <div class="col-lg-4 mb-4">
                 <div class="card h-180">
-                    <div class="card-body">
+                    <div class="">
                         <p class="card-text">
-                    @php
-                    $video_id = '';
-                    $video_url = $video->link;
-                    
-                        // Cek apakah URL berasal dari YouTube
-                        if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
-                            if (strpos($video_url, 'youtu.be') !== false) {
-                                // Format pendek (youtu.be)
-                                $url_parts = explode('/', $video_url);
-                                $video_id = end($url_parts);
-                                // Hapus parameter setelah tanda tanya jika ada
-                                $video_id = explode('?', $video_id)[0];
-                            } elseif (strpos($video_url, 'youtube.com') !== false) {
-                                // Format panjang (youtube.com)
-                                parse_str(parse_url($video_url, PHP_URL_QUERY), $query);
-                                $video_id = $query['v'] ?? '';
+                            @php
+                            $video_id = '';
+                            $video_url = $video->link;
+                            $thumbnail_url = '';
+                            
+                            // Check if the URL is from YouTube
+                            if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+                                if (strpos($video_url, 'youtu.be') !== false) {
+                                    // Short format (youtu.be)
+                                    $url_parts = explode('/', $video_url);
+                                    $video_id = end($url_parts);
+                                    // Remove parameters after the question mark if any
+                                    $video_id = explode('?', $video_id)[0];
+                                } elseif (strpos($video_url, 'youtube.com') !== false) {
+                                    // Long format (youtube.com)
+                                    parse_str(parse_url($video_url, PHP_URL_QUERY), $query);
+                                    $video_id = $query['v'] ?? '';
+                                }
+                                $thumbnail_url = "https://img.youtube.com/vi/{$video_id}/0.jpg";
                             }
-                        }
-                    @endphp
-            @if(!empty($video_id))
-                <a href="{{ $video_url }}" target="_blank" class="card-link">
-                    <img src="https://img.youtube.com/vi/{{ $video_id }}/0.jpg" alt="Thumbnail" class="video-thumbnail" width="100%" height="200">
-                </a>
-                <h5 class="card-subtitle mb-2 text-bold p-2">{{ $video->title }}</h5>
-            @else
-                <span>Format tidak didukung</span>
-            @endif
-            </p>
-        </div>
-    </div>
-</div>
-@endforeach
+                            // Check if the URL is from Google Drive
+                            elseif (strpos($video_url, 'drive.google.com') !== false) {
+                                $pattern = '/[-\w]{25,}(?!.*[-\w]{25,})/';
+                                if (preg_match($pattern, $video_url, $matches)) {
+                                    $video_id = $matches[0];
+                                    $thumbnail_url = "https://drive.google.com/thumbnail?id={$video_id}";
+                                }
+                            }
+                            @endphp
+                            
+                            @if(!empty($video_id) && !empty($thumbnail_url))
+                                <a href="{{ $video_url }}" target="_blank" class="card-link">
+                                    <img src="{{ $thumbnail_url }}" alt="Thumbnail" class="video-thumbnail rounded" width="100%" height="200">
+                                </a>
+                                <h5 class="card-subtitle mb-2 text-bold p-2">{{ $video->title }}</h5>
+                            @else
+                                <span>Format tidak didukung</span>
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
            
         </div>
         {{ $videos->links() }}

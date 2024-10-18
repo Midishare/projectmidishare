@@ -115,10 +115,10 @@
                             @else
                                 <span>Format tidak didukung</span>
                             @endif
-            </p>
-        </div>
-    </div>
-</div>
+                        </p>
+                    </div>
+                </div>
+            </div>
 @endforeach
            
         </div>
