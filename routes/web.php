@@ -399,15 +399,15 @@ Route::middleware('auth', 'role:user')->group(function () {
     Route::get('/detailmandiri/{id}', [BelajarmandiriController::class, 'detailmandiri'])->name('belajarmandiri.detailmandiri');
 });
 
-Route::get('/addhome', [DashboardController::class, 'addhome'])->name('dashboard.addhome');
-Route::post('/addhome_process', [DashboardController::class, 'addhome_process'])->name('dashboard.addhome_process');
-Route::get('/showhome', [DashboardController::class, 'show_by_adminhomeshow'])->name('dashboard.show_by_adminhomeshow');
-Route::get('/edithome/{id}', [DashboardController::class, 'edithome'])->name('dashboard.edithome');
-Route::post('/edithome_process', [DashboardController::class, 'edithome_process'])->name('dashboard.edithome_process');
-Route::get('/deletehome/{id}', [DashboardController::class, 'deletehome'])->name('dashboard.deletehome');
+// Route::get('/addhome', [DashboardController::class, 'addhome'])->name('dashboard.addhome');
+// Route::post('/addhome_process', [DashboardController::class, 'addhome_process'])->name('dashboard.addhome_process');
+// Route::get('/showhome', [DashboardController::class, 'show_by_adminhomeshow'])->name('dashboard.show_by_adminhomeshow');
+// Route::get('/edithome/{id}', [DashboardController::class, 'edithome'])->name('dashboard.edithome');
+// Route::post('/edithome_process', [DashboardController::class, 'edithome_process'])->name('dashboard.edithome_process');
+// Route::get('/deletehome/{id}', [DashboardController::class, 'deletehome'])->name('dashboard.deletehome');
 // Route::post('/deleteSelectedHome', [DashboardController::class, 'deleteSelectedHome'])->name('dashboard.deleteSelectedHome');
-Route::post('/deleteSelectedHome', [DashboardController::class, 'deleteSelectedHome'])->name('dashboard.deleteSelectedHome');
-Route::get('/deletehome/{id}', [DashboardController::class, 'deletehome'])->name('dashboard.deletehome');
+// Route::post('/deleteSelectedHome', [DashboardController::class, 'deleteSelectedHome'])->name('dashboard.deleteSelectedHome');
+// Route::get('/deletehome/{id}', [DashboardController::class, 'deletehome'])->name('dashboard.deletehome');
 
 
 //news
@@ -421,27 +421,27 @@ Route::get('/livestream', [LivestreamController::class, 'index'])->name('livestr
 
 
 
-Route::get('/addkm', [KnowledgeController::class, 'addkm'])->name('knowledge.addmandiri');
-Route::post('/addkm_process', [KnowledgeController::class, 'addkm_process'])->name('knowledge.addkm_process');
-Route::get('/repositorykm', [KnowledgeController::class, 'showkm'])->name('knowledge.showkm');
-Route::get('/detailkm/{id}', [KnowledgeController::class, 'detailkm'])->name('knowledge.detailkm');
+// Route::get('/addkm', [KnowledgeController::class, 'addkm'])->name('knowledge.addmandiri');
+// Route::post('/addkm_process', [KnowledgeController::class, 'addkm_process'])->name('knowledge.addkm_process');
+// Route::get('/repositorykm', [KnowledgeController::class, 'showkm'])->name('knowledge.showkm');
+// Route::get('/detailkm/{id}', [KnowledgeController::class, 'detailkm'])->name('knowledge.detailkm');
 // Route::get('/showkm', [KnowledgeController::class, 'show_by_adminkmshow'])->name('knowledge.show_by_adminkmshow');
-Route::get('/editkm/{id}', [KnowledgeController::class, 'editkm'])->name('knowledge.editkm');
-Route::post('/editkm_process', [KnowledgeController::class, 'editkm_process'])->name('knowledge.editkm_process');
-Route::get('/deletekm/{id}', [KnowledgeController::class, 'deletekm'])->name('knowledge.deletekm');
-Route::delete('/knowledge/bulk_delete', [KnowledgeController::class, 'bulkDelete'])->name('knowledge.bulk_delete');
+// Route::get('/editkm/{id}', [KnowledgeController::class, 'editkm'])->name('knowledge.editkm');
+// Route::post('/editkm_process', [KnowledgeController::class, 'editkm_process'])->name('knowledge.editkm_process');
+// Route::get('/deletekm/{id}', [KnowledgeController::class, 'deletekm'])->name('knowledge.deletekm');
+// Route::delete('/knowledge/bulk_delete', [KnowledgeController::class, 'bulkDelete'])->name('knowledge.bulk_delete');
 
 
 // Route::get('/show_by_admin', [KnowledgewhController::class, 'show_by_adminkmwhshow'])->name('knowledgewh.show_by_admin');
-Route::get('/addkmwh', [KnowledgewhController::class, 'addkmwh'])->name('knowledgewh.addkmwh');
-Route::post('/addkmwh_process', [KnowledgewhController::class, 'addkmwh_process'])->name('knowledgewh.addkmwh_process');
-Route::get('/repositorykmwh', [KnowledgewhController::class, 'showkmwh'])->name('knowledgewh.showkmwh');
-Route::get('/detailkmwh/{id}', [KnowledgewhController::class, 'detailkmwh'])->name('knowledgewh.detailkmwh');
-Route::get('/showkmwh', [KnowledgewhController::class, 'show_by_adminkmwhshow'])->name('knowledgewh.show_by_adminkmwhshow');
-Route::get('/editkmwh/{id}', [KnowledgewhController::class, 'editkmwh'])->name('knowledgewh.editkmwh');
-Route::post('/editkmwh_process', [KnowledgewhController::class, 'editkmwh_process'])->name('knowledgewh.editkmwh_process');
-Route::get('/deletekmwh/{id}', [KnowledgewhController::class, 'deletekmwh'])->name('knowledgewh.deletekm');
-Route::delete('/bulkDelete', [KnowledgewhController::class, 'bulkDelete'])->name('deletekmwh.bulkDelete');
+// Route::get('/addkmwh', [KnowledgewhController::class, 'addkmwh'])->name('knowledgewh.addkmwh');
+// Route::post('/addkmwh_process', [KnowledgewhController::class, 'addkmwh_process'])->name('knowledgewh.addkmwh_process');
+// Route::get('/repositorykmwh', [KnowledgewhController::class, 'showkmwh'])->name('knowledgewh.showkmwh');
+// Route::get('/detailkmwh/{id}', [KnowledgewhController::class, 'detailkmwh'])->name('knowledgewh.detailkmwh');
+// Route::get('/showkmwh', [KnowledgewhController::class, 'show_by_adminkmwhshow'])->name('knowledgewh.show_by_adminkmwhshow');
+// Route::get('/editkmwh/{id}', [KnowledgewhController::class, 'editkmwh'])->name('knowledgewh.editkmwh');
+// Route::post('/editkmwh_process', [KnowledgewhController::class, 'editkmwh_process'])->name('knowledgewh.editkmwh_process');
+// Route::get('/deletekmwh/{id}', [KnowledgewhController::class, 'deletekmwh'])->name('knowledgewh.deletekm');
+// Route::delete('/bulkDelete', [KnowledgewhController::class, 'bulkDelete'])->name('deletekmwh.bulkDelete');
 
 
 // Route::get('/show_by_adminogm', [KnowledgeogmController::class, 'show_by_adminkmogmshow'])->name('knowledgeogm.show_by_adminogm');
@@ -449,53 +449,53 @@ Route::delete('/bulkDelete', [KnowledgewhController::class, 'bulkDelete'])->name
 
 
 
-Route::get('/addvidmod', [VideoController::class, 'addvidmod'])->name('video.addvidmod');
-Route::post('/addvidmod_process', [VideoController::class, 'addvidmod_process'])->name('video.addvidmod_process');
-Route::get('/modkm', [VideoController::class, 'showvideomod'])->name('video.showvideomod');
-Route::get('/detailvidmod/{id}', [VideoController::class, 'detailvidmod'])->name('video.detailkm');
-Route::get('/showvideomod', [VideoController::class, 'show_by_adminvidshow'])->name('video.show_by_adminvidshow');
-Route::get('/editvidmod/{id}', [VideoController::class, 'editvidmod'])->name('video.editvidmod');
-Route::post('/editvid_process', [VideoController::class, 'editvid_process'])->name('video.editvid_process');
-Route::get('/deletevidmod/{id}', [VideoController::class, 'deletevidmod'])->name('video.deletevidmod');
-Route::delete('/video/bulk_delete', [VideoController::class, 'bulkDelete'])->name('video.bulk_delete');
+// Route::get('/addvidmod', [VideoController::class, 'addvidmod'])->name('video.addvidmod');
+// Route::post('/addvidmod_process', [VideoController::class, 'addvidmod_process'])->name('video.addvidmod_process');
+// Route::get('/modkm', [VideoController::class, 'showvideomod'])->name('video.showvideomod');
+// Route::get('/detailvidmod/{id}', [VideoController::class, 'detailvidmod'])->name('video.detailkm');
+// Route::get('/showvideomod', [VideoController::class, 'show_by_adminvidshow'])->name('video.show_by_adminvidshow');
+// Route::get('/editvidmod/{id}', [VideoController::class, 'editvidmod'])->name('video.editvidmod');
+// Route::post('/editvid_process', [VideoController::class, 'editvid_process'])->name('video.editvid_process');
+// Route::get('/deletevidmod/{id}', [VideoController::class, 'deletevidmod'])->name('video.deletevidmod');
+// Route::delete('/video/bulk_delete', [VideoController::class, 'bulkDelete'])->name('video.bulk_delete');
 
-Route::get('/addvidmodwh', [VideowhController::class, 'addvidmodwh'])->name('videowh.addvidmodwh');
-Route::post('/addvidmodwh_process', [VideowhController::class, 'addvidmodwh_process'])->name('videowh.addvidmodwh_process');
-Route::get('/modwh', [VideowhController::class, 'showvideomodwh'])->name('videowh.showvideomodwh');
-Route::get('/detailvidwh/{id}', [VideowhController::class, 'detailvidwh'])->name('videowh.detailvidwh');
-Route::get('/showvideomodwh', [VideowhController::class, 'show_by_adminvidwhshow'])->name('videowh.show_by_adminvidwhshow');
-Route::get('/editvidwh/{id}', [VideowhController::class, 'editvidwh'])->name('videowh.editvidwh');
-Route::post('/editvidwh_process', [VideowhController::class, 'editvidwh_process'])->name('videowh.editvidwh_process');
-Route::get('/deletevidmodwh/{id}', [VideowhController::class, 'deletevidmodwh'])->name('videowh.deletevidmodwh');
-Route::delete('videowh/bulk_delete', [VideowhController::class, 'bulkDelete'])->name('videowh.bulk_delete');
-Route::post('/delete_multiplewh', [VideowhController::class, 'deleteMultiplewh'])->name('videowh.delete_multiplewh');
-
-
-
-Route::get('/addlinkmod', [LinkmodController::class, 'addlinkmod'])->name('linkmod.addlinkmod');
-Route::post('/addlinkmod_process', [LinkmodController::class, 'addlinkmod_process'])->name('linkmod.addlinkmod_process');
-Route::get('/modlink', [LinkmodController::class, 'showlinkmod'])->name('linkmod.showlinkmod');
-Route::get('/detaillinkmod/{id}', [LinkmodController::class, 'detaillinkmod'])->name('linkmod.detaillinkmod');
-Route::get('/showlinkmod', [LinkmodController::class, 'show_by_adminlinkshow'])->name('linkmod.show_by_adminlinkshow');
-Route::get('/editlinkmod/{id}', [LinkmodController::class, 'editlinkmod'])->name('linkmod.editlinkmod');
-Route::post('/editlink_process', [LinkmodController::class, 'editlink_process'])->name('linkmod.editlink_process');
-Route::get('/deletelinkmod/{id}', [LinkmodController::class, 'deletelinkmod'])->name('linkmod.deletelinkmod');
-Route::delete('/linkmod/bulk_delete', [LinkmodController::class, 'bulkDelete'])->name('linkmod.bulk_delete');
+// Route::get('/addvidmodwh', [VideowhController::class, 'addvidmodwh'])->name('videowh.addvidmodwh');
+// Route::post('/addvidmodwh_process', [VideowhController::class, 'addvidmodwh_process'])->name('videowh.addvidmodwh_process');
+// Route::get('/modwh', [VideowhController::class, 'showvideomodwh'])->name('videowh.showvideomodwh');
+// Route::get('/detailvidwh/{id}', [VideowhController::class, 'detailvidwh'])->name('videowh.detailvidwh');
+// Route::get('/showvideomodwh', [VideowhController::class, 'show_by_adminvidwhshow'])->name('videowh.show_by_adminvidwhshow');
+// Route::get('/editvidwh/{id}', [VideowhController::class, 'editvidwh'])->name('videowh.editvidwh');
+// Route::post('/editvidwh_process', [VideowhController::class, 'editvidwh_process'])->name('videowh.editvidwh_process');
+// Route::get('/deletevidmodwh/{id}', [VideowhController::class, 'deletevidmodwh'])->name('videowh.deletevidmodwh');
+// Route::delete('videowh/bulk_delete', [VideowhController::class, 'bulkDelete'])->name('videowh.bulk_delete');
+// Route::post('/delete_multiplewh', [VideowhController::class, 'deleteMultiplewh'])->name('videowh.delete_multiplewh');
 
 
 
-Route::get('/detaillinkogm/{id}', [LinkogmController::class, 'detaillinkogm'])->name('linkogm.detaillinkogm');
+// Route::get('/addlinkmod', [LinkmodController::class, 'addlinkmod'])->name('linkmod.addlinkmod');
+// Route::post('/addlinkmod_process', [LinkmodController::class, 'addlinkmod_process'])->name('linkmod.addlinkmod_process');
+// Route::get('/modlink', [LinkmodController::class, 'showlinkmod'])->name('linkmod.showlinkmod');
+// Route::get('/detaillinkmod/{id}', [LinkmodController::class, 'detaillinkmod'])->name('linkmod.detaillinkmod');
+// Route::get('/showlinkmod', [LinkmodController::class, 'show_by_adminlinkshow'])->name('linkmod.show_by_adminlinkshow');
+// Route::get('/editlinkmod/{id}', [LinkmodController::class, 'editlinkmod'])->name('linkmod.editlinkmod');
+// Route::post('/editlink_process', [LinkmodController::class, 'editlink_process'])->name('linkmod.editlink_process');
+// Route::get('/deletelinkmod/{id}', [LinkmodController::class, 'deletelinkmod'])->name('linkmod.deletelinkmod');
+// Route::delete('/linkmod/bulk_delete', [LinkmodController::class, 'bulkDelete'])->name('linkmod.bulk_delete');
 
 
-Route::get('/addlinkwh', [LinkwhController::class, 'addlinkwh'])->name('linkwh.addlinkwh');
-Route::post('/addlinkwh_process', [LinkwhController::class, 'addlinkwh_process'])->name('linkwh.addlinkwh_process');
-Route::get('/whlink', [LinkwhController::class, 'showlinkwh'])->name('linkwh.showlinkwh');
-Route::get('/detaillinkwh/{id}', [LinkwhController::class, 'detaillinkwh'])->name('linkwh.detaillinkwh');
-Route::get('/showlinkwh', [LinkwhController::class, 'show_by_adminlinkwhshow'])->name('linkwh.show_by_adminlinkwhshow');
-Route::get('/editlinkwh/{id}', [LinkwhController::class, 'editlinkwh'])->name('linkwh.editlinkwh');
-Route::post('/editlinkwh_process', [LinkwhController::class, 'editlinkwh_process'])->name('linkwh.editlinkwh_process');
-Route::get('/deletelinkwh/{id}', [LinkwhController::class, 'deletelinkwh'])->name('linkwh.deletelinkwh');
-Route::delete('/deleteSelectedwh', [LinkwhController::class, 'deleteSelectedwh'])->name('linkwh.deleteSelectedwh');
+
+// Route::get('/detaillinkogm/{id}', [LinkogmController::class, 'detaillinkogm'])->name('linkogm.detaillinkogm');
+
+
+// Route::get('/addlinkwh', [LinkwhController::class, 'addlinkwh'])->name('linkwh.addlinkwh');
+// Route::post('/addlinkwh_process', [LinkwhController::class, 'addlinkwh_process'])->name('linkwh.addlinkwh_process');
+// Route::get('/whlink', [LinkwhController::class, 'showlinkwh'])->name('linkwh.showlinkwh');
+// Route::get('/detaillinkwh/{id}', [LinkwhController::class, 'detaillinkwh'])->name('linkwh.detaillinkwh');
+// Route::get('/showlinkwh', [LinkwhController::class, 'show_by_adminlinkwhshow'])->name('linkwh.show_by_adminlinkwhshow');
+// Route::get('/editlinkwh/{id}', [LinkwhController::class, 'editlinkwh'])->name('linkwh.editlinkwh');
+// Route::post('/editlinkwh_process', [LinkwhController::class, 'editlinkwh_process'])->name('linkwh.editlinkwh_process');
+// Route::get('/deletelinkwh/{id}', [LinkwhController::class, 'deletelinkwh'])->name('linkwh.deletelinkwh');
+// Route::delete('/deleteSelectedwh', [LinkwhController::class, 'deleteSelectedwh'])->name('linkwh.deleteSelectedwh');
 
 // For users
 Route::get('/events', [EventController::class, 'showAll'])->name('events.show');
@@ -505,28 +505,28 @@ Route::get('/events/{id}', [EventController::class, 'detail'])->name('events.det
 //     return view('materi');
 // });
 
-Route::get('/materiwh', function () {
-    return view('materiwh');
-});
+// Route::get('/materiwh', function () {
+//     return view('materiwh');
+// });
 
 
 
-Route::get('/materilinkmod', function () {
-    return view('materilinkmod');
-});
+// Route::get('/materilinkmod', function () {
+//     return view('materilinkmod');
+// });
 
 
 
-Route::get('/materilinkwh', function () {
-    return view('materilinkwh');
-});
+// Route::get('/materilinkwh', function () {
+//     return view('materilinkwh');
+// });
 
-Route::get('/repositorylinkmod', function () {
-    return view('repositorylinkmod');
-});
+// Route::get('/repositorylinkmod', function () {
+//     return view('repositorylinkmod');
+// });
 
 
 
-Route::get('/repositorylinkwh', function () {
-    return view('repositorylinkwh');
-});
+// Route::get('/repositorylinkwh', function () {
+//     return view('repositorylinkwh');
+// });

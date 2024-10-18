@@ -41,8 +41,6 @@
                 </div>
                 <div class="container-program">
                   <p class="font-head-program">Knowledge Management Memiliki Banyak Program Belajar</p>
-                  {{-- <p class="subtitle-program">Consolidate Your People Operations with Our All-in-One HR Software and Say Goodbye to Fragmented Tools</p> --}}
-                  
                   <div class="stats-container-program">
                       <div class="stat-card-program">
                           <div class="stat-number-program">Webinar</div>

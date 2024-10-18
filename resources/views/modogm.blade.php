@@ -79,7 +79,7 @@
                         <p class="card-text">
                             @php
                             $video_id = '';
-                            $video_url = $video->video_link;
+                            $video_url = $video->linkogm;
                             $thumbnail_url = '';
                             
                             // Check if the URL is from YouTube
@@ -111,7 +111,7 @@
                                 <a href="{{ $video_url }}" target="_blank" class="card-link">
                                     <img src="{{ $thumbnail_url }}" alt="Thumbnail" class="video-thumbnail rounded" width="100%" height="200">
                                 </a>
-                                <h5 class="card-subtitle mb-2 text-bold p-2">{{ $video->title }}</h5>
+                                <h5 class="card-subtitle mb-2 text-bold p-2">{{ $video->judulvidogm }}</h5>
                             @else
                                 <span>Format tidak didukung</span>
                             @endif
