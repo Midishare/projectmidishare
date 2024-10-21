@@ -97,7 +97,7 @@ class WebinController extends Controller
     {
         $request->validate([
             'document_ids' => 'required|array',
-            'document_ids.*' => 'exists:dokumeweDokumenwebin,id',
+            'document_ids.*' => 'exists:Dokumenwebin,id',
         ]);
 
         foreach ($request->document_ids as $id) {

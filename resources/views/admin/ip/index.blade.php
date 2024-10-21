@@ -69,7 +69,7 @@
                     {{-- <p class="card-text">Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p> --}}
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary" href="{{ route('admin.ip.materi') }}" class="btn btn-primary btn-lg">Vies Details</a>
+                    <a class="btn btn-secondary" href="{{ route('admin.ip.materi') }}" class="btn btn-primary btn-lg">Views Details</a>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="card-footer">
                     {{--             <a href="{{ route('ip.video') }}" class="btn btn-secondary btn-lg">Video</a> --}}
-                    <a class="btn btn-secondary" href="{{ route('admin.ip.video') }}">View details &raquo;</a>
+                    <a class="btn btn-secondary" href="{{ route('admin.ip.video') }}">Views details &raquo;</a>
                 </div>
             </div>
         </div>

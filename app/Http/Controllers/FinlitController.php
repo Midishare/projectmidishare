@@ -28,12 +28,12 @@ class FinlitController extends Controller
     public function materiDokumen(Request $request)
     {
         $search = $request->input('search');
-        $documents = Dokumenfinlit::when($search, function ($query, $search) {
+        $dokumens = Dokumenfinlit::when($search, function ($query, $search) {
             return $query->where('title', 'like', "%{$search}%");
         })->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('admin.finlit.materi', compact('documents', 'search'));
+        return view('users.finlit.materi', compact('dokumens', 'search'));
     }
 
 

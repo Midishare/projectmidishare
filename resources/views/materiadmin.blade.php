@@ -26,18 +26,6 @@
         <section class="py-1">
             <div class="container">
                 <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-                    <!-- MDP Card -->
-                    <div class="col">
-                        <div class="card h-100 p-3">
-                            <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150" src="{{ asset('icon/ms5.png') }}" alt="People Development Manager">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">MDP</h4>
-                            </div>
-                            <div class="card-footer d-flex justify-content-center">
-                                <a class="btn btn-secondary" href="{{ route('admin.mdp.index') }}">View details &raquo;</a>
-                            </div>
-                        </div>
-                    </div>
                     <!-- DP Card -->
                     <div class="col">
                         <div class="card h-100 p-3">

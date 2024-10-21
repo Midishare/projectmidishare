@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col">`
-                <h4>Dokumen Inofest</h4>
+                <h4>Dokumen Finansial Literasi</h4>
             </div>
             <div class="col-auto">
                 <form action="{{ route('ino.materi') }}" method="GET">

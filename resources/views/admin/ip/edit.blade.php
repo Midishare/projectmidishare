@@ -38,16 +38,16 @@
             <label for="category">Category</label>
             <select name="category" class="form-control" id="category" required>
                 <option value="">-- Select All --</option>
-                <option value="Human Capital" {{ $dokumen->category == 'Human Capital' ? 'selected' : '' }}>Human Capital</option>
-                <option value="Corporate Audit" {{ $dokumen->category == 'Corporate Audit' ? 'selected' : '' }}>Corporate Audit</option>
-                <option value="Finance" {{ $dokumen->category == 'Finance' ? 'selected' : '' }}>Finance</option>
-                <option value="IT" {{ $dokumen->category == 'IT' ? 'selected' : '' }}>IT</option>
-                <option value="Merchandising" {{ $dokumen->category == 'Merchandising' ? 'selected' : '' }}>Merchandising</option>
-                <option value="Marketing" {{ $dokumen->category == 'Marketing' ? 'selected' : '' }}>Marketing</option>
-                <option value="Operation" {{ $dokumen->category == 'Operation' ? 'selected' : '' }}>Operation</option>
-                <option value="Property Development" {{ $dokumen->category == 'Property Development' ? 'selected' : '' }}>Property Development</option>
-                <option value="Service Quality" {{ $dokumen->category == 'Service Quality' ? 'selected' : '' }}>Service Quality</option>
-                <option value="Corporate Legal & Compliance" {{ $dokumen->category == 'Corporate Legal & Compliance' ? 'selected' : '' }}>Corporate Legal & Compliance</option>
+                <option value="Human Capital" {{ $document->category == 'Human Capital' ? 'selected' : '' }}>Human Capital</option>
+                <option value="Corporate Audit" {{ $document->category == 'Corporate Audit' ? 'selected' : '' }}>Corporate Audit</option>
+                <option value="Finance" {{ $document->category == 'Finance' ? 'selected' : '' }}>Finance</option>
+                <option value="IT" {{ $document->category == 'IT' ? 'selected' : '' }}>IT</option>
+                <option value="Merchandising" {{ $document->category == 'Merchandising' ? 'selected' : '' }}>Merchandising</option>
+                <option value="Marketing" {{ $document->category == 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                <option value="Operation" {{ $document->category == 'Operation' ? 'selected' : '' }}>Operation</option>
+                <option value="Property Development" {{ $document->category == 'Property Development' ? 'selected' : '' }}>Property Development</option>
+                <option value="Service Quality" {{ $document->category == 'Service Quality' ? 'selected' : '' }}>Service Quality</option>
+                <option value="Corporate Legal & Compliance" {{ $document->category == 'Corporate Legal & Compliance' ? 'selected' : '' }}>Corporate Legal & Compliance</option>
             </select>
         </div>
 

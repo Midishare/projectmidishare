@@ -13,15 +13,7 @@
                 <h1 class="card-title mb-5">{{ $news->judul }}</h1>
                 <img src="{{ asset('storage/icon/' . $news->gambar) }}" class=" image-head" alt="{{ $news->judul }}">
                 <div class="card-body">
-                    {{-- <span class="badge bg-primary mb-2">{{ $news->category }}</span> --}}
-                    
                     <p class="text-muted">
-                        {{-- <small>
-                            <i class="bi bi-clock"></i> {{ $news->created_at->diffForHumans() }}
-                            @if($news->author)
-                                • <i class="bi bi-person"></i> {{ $news->author }}
-                            @endif
-                        </small> --}}
                     </p>
                     <div class="card-text mt-4">
                         {!! $news->deskripsi !!}
