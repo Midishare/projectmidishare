@@ -12,7 +12,7 @@
         <div class="container" style="margin-left: 3.5rem;">
             <div class="card">
             <div class="card-body">
-            <form method="post" action="/addmandiri_process" enctype="multipart/form-data">
+            <form method="post" action="{{ route('belajarmandiri.addmandiri_process') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Belajar Mandiri</label>

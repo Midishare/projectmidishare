@@ -12,7 +12,7 @@
 </style>
 
 <div style="margin-top: 7rem;" class="animated fadeIn">
-    <h2 class="text-center">IP - Video</h2>
+    <h2 class="text-center">Inofest - Video</h2>
     @if($message = Session::get('success'))
     <div class="alert alert-success alert-block">
         <button type="button" class="close" data-dismiss="alert">x</button>

@@ -1,10 +1,8 @@
-
 @extends('layouts.layouts')
 
 @section('content')
 <section style="margin-top: 90px; margin-left : 1rem;">
     <div class="container">
-        {{-- <h4>Home</h4> --}}
     </div>
 </section>
 <section>

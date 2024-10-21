@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokumenino;
 use App\Models\VideoIno;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class InoController extends Controller

@@ -87,9 +87,9 @@
                                 <div class="col-md-6">
                                     <select id="class" class="form-control @error('class') is-invalid @enderror" name="class" required>
                                         <option value="">-- Select Kelas --</option>
-                                        <option value="MOD" {{ old('class') == 'MOD' ? 'selected' : '' }}>MOD</option>
-                                        <option value="SME" {{ old('class') == 'SME' ? 'selected' : '' }}>SME</option>
-                                        <option value="FL" {{ old('class') == 'FL' ? 'selected' : '' }}>Financial Literasi</option>
+                                        <option value="None" {{ old('class') == 'None' ? 'selected' : '' }}>None</option>
+                                        <option value="DP" {{ old('class') == 'DP' ? 'selected' : '' }}>DP</option>
+                                        <option value="IP" {{ old('class') == 'IP' ? 'selected' : '' }}>IP</option>
                                         <!-- Add more classes as needed -->
                                     </select>
 

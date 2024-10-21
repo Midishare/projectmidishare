@@ -95,7 +95,7 @@
                                     parse_str(parse_url($video_url, PHP_URL_QUERY), $query);
                                     $video_id = $query['v'] ?? '';
                                 }
-                                $thumbnail_url = "https://img.youtube.com/vi/{$video_id}/0.jpg";
+                                    $thumbnail_url = "https://img.youtube.com/vi/{$video_id}/0.jpg";
                             }
                             // Check if the URL is from Google Drive
                             elseif (strpos($video_url, 'drive.google.com') !== false) {

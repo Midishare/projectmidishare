@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-sm-12 bg-white p-4">
             <h2 class="text-center">Edit Belajar Mandiri</h2>
-            <form method="post" action="/editmandiri_process" enctype="multipart/form-data">
+            <form method="post" action="{{ route('belajarmandiri.editmandiri_process') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="{{$mandiri->id}}" name="id">
                 <div class="form-group">

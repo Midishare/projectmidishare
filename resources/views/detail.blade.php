@@ -10,10 +10,11 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
+                <h1 class="card-title mb-5">{{ $news->judul }}</h1>
                 <img src="{{ asset('storage/icon/' . $news->gambar) }}" class=" image-head" alt="{{ $news->judul }}">
                 <div class="card-body">
                     {{-- <span class="badge bg-primary mb-2">{{ $news->category }}</span> --}}
-                    <h1 class="card-title">{{ $news->judul }}</h1>
+                    
                     <p class="text-muted">
                         {{-- <small>
                             <i class="bi bi-clock"></i> {{ $news->created_at->diffForHumans() }}

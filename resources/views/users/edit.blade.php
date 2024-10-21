@@ -71,7 +71,6 @@
                     <select id="class" class="form-control @error('class') is-invalid @enderror" name="class" required>
                         <option value="">-- Select Kelas --</option>
                         <option value="None" {{ old('class', $user->class) == null ? 'selected' : '' }}>None</option>
-                        <option value="MDP" {{ old('class', $user->class) == 'MDP' ? 'selected' : '' }}>MDP</option>
                         <option value="DP" {{ old('class', $user->class) == 'DP' ? 'selected' : '' }}>DP</option>
                         <option value="IP" {{ old('class', $user->class) == 'IP' ? 'selected' : '' }}>IP</option>
                         <!-- Add more classes as needed -->

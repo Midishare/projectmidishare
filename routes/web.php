@@ -93,27 +93,6 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::delete('/selected-users', [UserController::class, 'deleteCheckedUser'])->name('user.deleteSelected');
 
-    // Route untuk Admin MDP
-    Route::prefix('admin/mdp')->group(function () {
-        Route::get('/', [AdminMdpController::class, 'index'])->name('admin.mdp.index');
-        Route::get('/materi', [AdminMdpController::class, 'materidokumen'])->name('admin.mdp.materi');
-        Route::post('/materi/create', [AdminMdpController::class, 'storeDokumen'])->name('admin.mdp.materi.store'); // Add this line
-        Route::get('/mdp/materi/create', [AdminMdpController::class, 'create'])->name('admin.mdp.materi.create');
-        Route::get('/video', [AdminMdpController::class, 'video'])->name('admin.mdp.video');
-        Route::get('/mdp/materi/{id}/edit', [AdminMdpController::class, 'edit'])->name('admin.mdp.materi.edit');
-        Route::put('/mdp/materi/{id}', [AdminMdpController::class, 'update'])->name('admin.mdp.materi.update');
-        Route::get('/mdp/materi/{id}', [AdminMdpController::class, 'destroy'])->name('admin.mdp.materi.destroy');
-        Route::post('/mdp/materi/bulk-delete', [AdminMdpController::class, 'bulkDelete'])->name('admin.mdp.materi.bulkDelete');
-        Route::resource('mdp', MdpController::class);
-        // Ensure this route exists and points to the correct controller method
-        Route::get('/video', [VideoMdpController::class, 'index'])->name('admin.mdp.video');
-        Route::get('/video/create', [VideoMdpController::class, 'create'])->name('admin.mdp.video.create');
-        Route::post('/video', [VideoMdpController::class, 'store'])->name('admin.mdp.video.store');
-        Route::get('/video/{id}/edit', [VideoMdpController::class, 'edit'])->name('admin.mdp.video.edit');
-        Route::put('/video/{id}', [VideoMdpController::class, 'update'])->name('admin.mdp.video.update');
-        Route::get('/video/{id}', [VideoMdpController::class, 'destroy'])->name('admin.mdp.video.destroy');
-        Route::post('/video/bulk-delete', [VideoMdpController::class, 'bulkDelete'])->name('admin.mdp.video.bulk_delete');
-    });
 
     // Route untuk Admin DP
     Route::prefix('admin/dp')->group(function () {
@@ -335,10 +314,6 @@ Route::middleware('auth', 'role:admin')->group(function () {
 
 
 Route::middleware('auth', 'role:user')->group(function () {
-    // Route untuk MDP
-    Route::get('/mdp', [MdpController::class, 'index'])->name('mdp.index');
-    Route::get('/mdp/materi', [MdpController::class, 'materiDokumen'])->name('mdp.materi');
-    Route::get('/mdp/video', [MdpController::class, 'video'])->name('mdp.video');
     // Route untuk DP
     Route::get('/dp', [DpController::class, 'index'])->name('dp.index');
     Route::get('/dp/materi', [DpController::class, 'materiDokumen'])->name('dp.materi');
