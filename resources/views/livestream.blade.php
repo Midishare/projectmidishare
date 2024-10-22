@@ -21,10 +21,10 @@
                 <img id="rotatingIcon" class="icon-form" src="{{ asset('icon/waitinglivestream.png') }}" alt="">
             </div>
             <div class="col-md-6 text-desktop">
-                <p>Satu bulan</p>
+                <p>Mars Alfamidi</p>
                 <div class="audio-player">
                     <audio id="waitingAudio" controls>
-                        <source src="{{ asset('audio/Satu_bulan.mp3') }}" type="audio/mpeg">
+                        <source src="{{ asset('audio/MARS-ALFAMIDI-2023.mp3') }}" type="audio/mpeg">
                         Browser anda tidak support!
                     </audio>
                 </div>
@@ -96,6 +96,23 @@
 
         h1 {
             font-size: 1.5rem;
+        }
+        .audio-player{
+            margin-top: 0px;
+        }
+        .icon-form {
+        height: 30vh;
+        transition: transform 0.5s ease-in-out;
+    }
+    .icon-form.rotating {
+        animation: rotate 10s linear infinite;
+    }
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
         }
     }
 </style>
