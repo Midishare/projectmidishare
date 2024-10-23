@@ -51,41 +51,36 @@
         </div>
     </div>
 </section>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
         // Initialize Summernote for description
         $('#description').summernote({
             height: 300,
-            placeholder: 'Tulis deskripsi event di sini...',
+            minHeight: null, 
+            maxHeight: null, 
+            focus: true,
+            placeholder: 'Tulis isi event di sini...',
             toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-            ]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['forecolor', 'backcolor']],
+                    ['para', ['ul', 'ol', 'paragraph', 'height']],
+                    ['align', ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
         });
 
-        // SweetAlert on Form Submit
         $('form').on('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); // Mencegah form terkirim secara default
 
-            Swal.fire({
-                title: 'Upload Event Sekarang?',
-                text: "Pastikan semua data sudah benar!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, unggah sekarang!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.submit(); // If confirmed, submit the form
-                }
-            });
-        });
+    // Menampilkan jendela konfirmasi standar browser
+    if (window.confirm('Upload event Sekarang?\nPastikan semua data sudah benar!')) {
+        // Jika pengguna memilih "OK", form akan dikirim
+        this.submit();
+    }
+});
     });
 </script>
 @endsection

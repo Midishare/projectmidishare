@@ -34,7 +34,7 @@ use App\Http\Controllers\Admin\VideoInoController;
 use App\Http\Controllers\Admin\VideoFinlitController;
 use App\Http\Controllers\Admin\VideoWebinController;
 use App\Http\Controllers\RepositoryallController;
-
+use App\Models\Belajarmandiri;
 
 Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
@@ -260,7 +260,8 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/editmandiri/{id}', [BelajarmandiriController::class, 'editmandiri'])->name('belajarmandiri.editmandiri');
     Route::post('/editmandiri_process', [BelajarmandiriController::class, 'editmandiri_process'])->name('belajarmandiri.editmandiri_process');
     Route::get('/deletemandiri/{id}', [BelajarmandiriController::class, 'deletemandiri'])->name('belajarmandiri.deletemandiri');
-    Route::post('/deleteSelected', [BelajarmandiriController::class, 'deleteSelected'])->name('belajarmandiri.deleteSelected');
+    Route::delete('/bulk_deleted', [BelajarmandiriController::class, 'bulkDeleteMandiri'])->name('belajarmandiri.berita_bulk_delete');
+    // Route::delete('/adminmandirisho/deleteSelected', [BelajarmandiriController::class, 'deleteSelected'])->name('belajarmandiri.deleteSelected');
 
     // SME
     Route::get('/materiadminmodogm', function () {

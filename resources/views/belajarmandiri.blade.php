@@ -1,68 +1,14 @@
 @extends('layouts.layouts')
 
 @section('content')
-<style>
-    .card-title a {
-        text-decoration: none;
-        color: #333;
-    }
-
-    .card-title a:hover {
-        text-decoration: underline;
-    }
-
-    .card {
-        transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar {
-        margin-top: 1rem;
-    }
-
-    .search-bar input {
-        border-radius: 20px 0 0 20px;
-    }
-
-    .search-bar button {
-        border-radius: 0 20px 20px 0;
-    }
-
-    .container h4 {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .card-img-top {
-        height: 200px;
-        object-fit: cover;
-        border-radius: 10px 10px 0 0;
-    }
-
-    @media (max-width: 768px) {
-        .container {
-            margin-left: 0;
-        }
-
-        .card-img-top {
-            height: 150px;
-        }
-    }
-</style>
-
-<section style="margin-top: 110px;">
+<section style="margin-top: 100px;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col">
-                <h4>Belajar Mandiri</h4>
+                <h4>Events</h4>
             </div>
             <div class="col-auto">
-                <form action="{{ route('belajarmandiri.show') }}" method="GET" class="search-bar">
+                <form action="{{ route('belajarmandiri.show') }}" method="GET">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" aria-describedby="searchHelpInline" placeholder="Search...">
                         <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
@@ -72,28 +18,47 @@
         </div>
     </div>
 </section>
-
 <section>
-    <div class="container mt-4">
+    <div class="container" style="margin-top: 2rem;">
         <div class="row">
-            @foreach($mandiri as $item)
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="{{ asset('storage/icon/' . $item->gambarmandiri) }}" alt="Gambar Belajar Mandiri">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">
-                            <a href="{{ $item->link }}" target="_blank">{{ $item->judul }}</a>
+            @foreach($belajarmandiri as $item)
+            <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
+                <div class="card shadow-sm h-100 w-100 p-1">
+                    <img class="card-img-top" src="{{ asset('storage/icon/' . $item->gambar) }}" alt="item image" style="height: 200px; width: auto; object-fit: cover;">
+                    <div class="card-body d-flex flex-row justify-content-between">
+                        <h5 class="">
+                            <a href="{{ route('belajarmandiri.detailmandiri', ['id' => $item->id]) }}" class="news-title-link">{{ \Illuminate\Support\Str::limit($item->judul, 20, '...') }}</a>
                         </h5>
                     </div>
+                    <p class="card-text ms-auto"><small class="text-muted">{{ \Carbon\Carbon::parse($item->published_at)->format('d M Y') }}</small></p>
                 </div>
             </div>
             @endforeach
         </div>
-        <div class="row mt-4">
-            <div class="col-md-12 d-flex justify-content-center">
-                {{ $mandiri->links() }} <!-- Menggunakan links() untuk menampilkan pagination -->
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                {{ $belajarmandiri->appends(request()->input())->links() }}
             </div>
         </div>
     </div>
 </section>
 @endsection
+
+<style>
+    .card:hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-title-link {
+        text-decoration: none;
+        color: black;
+        transition: color 0.3s ease; 
+    }
+
+    .news-title-link:hover {
+        color: #007bff; 
+    }
+</style>

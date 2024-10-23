@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use App\Models\Belajarmandiri;
+use Carbon\Carbon;
+use DOMDocument;
 
 class BelajarmandiriController extends Controller
 {
@@ -13,14 +16,11 @@ class BelajarmandiriController extends Controller
     {
         $search = $request->input('search');
 
-        $mandiri = DB::table('mandiri')
-            ->when($search, function ($query) use ($search) {
-                return $query->where('judul', 'like', '%' . $search . '%');
-            })
-            ->orderBy('id', 'desc')
-            ->paginate(6); // Menggunakan paginate() untuk pagination
+        $belajarmandiri = Belajarmandiri::when($search, function ($query) use ($search) {
+            return $query->where('judul', 'like', '%' . $search . '%');
+        })->orderBy('id', 'desc')->paginate(6);
 
-        return view('belajarmandiri', compact('mandiri'));
+        return view('belajarmandiri', compact('belajarmandiri'));
     }
 
     public function addmandiri()
@@ -32,93 +32,144 @@ class BelajarmandiriController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'link' => 'required',
-            'gambarmandiri' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'deskripsi' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'published_at' => 'required|date',
         ]);
 
-        $gambarPath = $request->file('gambarmandiri')->store('public/icon');
-        $gambarNama = basename($gambarPath);
+        $judul = $request->judul;
+        $deskripsi = $request->deskripsi;
+        $published_at = $request->published_at;
 
-        DB::table('mandiri')->insert([
-            'judul' => $request->input('judul'),
-            'link' => $request->input('link'),
-            'gambarmandiri' => $gambarNama,
+        // Proses konten dari Summernote sebelum disimpan
+        $deskripsi = $this->processSummernoteContent($deskripsi);
+
+        try {
+            // Simpan berita ke database
+            $belajarmandiri = new Belajarmandiri();
+            $belajarmandiri->judul = $judul;
+            $belajarmandiri->deskripsi = $deskripsi;
+            $belajarmandiri->published_at = Carbon::parse($published_at);
+
+            // Simpan gambar
+            if ($request->hasFile('gambar')) {
+                $gambarPath = $request->file('gambar')->store('public/icon');
+                $gambarNama = basename($gambarPath);
+                $belajarmandiri->gambar = $gambarNama;
+            }
+
+            $belajarmandiri->save();
+
+            Session::flash('success', 'Belajarmandiri berhasil ditambahkan.');
+            return redirect()->route('belajarmandiri.show_by_adminmandirishow');
+        } catch (\Exception $e) {
+            Log::error('Error adding news: ' . $e->getMessage());
+            return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
+        }
+    }
+
+    // Fungsi edit juga perlu diperbaiki dengan cara yang sama
+    public function editmandiri_process(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'published_at' => 'required|date',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
-        return redirect()->action([BelajarmandiriController::class, 'show_by_adminmandirishow']);
+
+        $id = $request->id;
+        $judul = $request->judul;
+        $deskripsi = $request->deskripsi;
+        $published_at = $request->published_at;
+
+        $belajarmandiri = Belajarmandiri::findOrFail($id);
+
+        $belajarmandiri->deskripsi = $this->processSummernoteContent($deskripsi);
+        $belajarmandiri->judul = $judul;
+        $belajarmandiri->published_at = Carbon::parse($published_at);
+
+        if ($request->hasFile('gambar')) {
+            if ($belajarmandiri->gambar && Storage::exists('public/icon/' . $belajarmandiri->gambar)) {
+                Storage::delete('public/icon/' . $belajarmandiri->gambar);
+            }
+            $gambarPath = $request->file('gambar')->store('public/icon');
+            $gambarNama = basename($gambarPath);
+            $belajarmandiri->gambar = $gambarNama;
+        }
+
+        $belajarmandiri->save();
+
+        Session::flash('success', 'Belajar mandiri berhasil diedit.');
+        return redirect()->route('belajarmandiri.show_by_adminmandirishow');
+    }
+
+    private function processSummernoteContent($content)
+    {
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+        $images = $dom->getElementsByTagName('img');
+        foreach ($images as $image) {
+            $data = base64_decode(explode(',', explode(';', $image->getAttribute('src'))[1])[1]);
+            $imagePath = 'public/icon/' . time() . rand() . '.png';
+
+            Storage::put($imagePath, $data);
+            $image->setAttribute('src', asset('storage/' . $imagePath));
+        }
+
+        return $dom->saveHTML();
     }
 
     public function detailmandiri($id)
     {
-        $mandiri = DB::table('mandiri')->where('id', $id)->first();
-        return view('detailmandiri', ['mandiri' => $mandiri]);
+        $belajarmandiri = Belajarmandiri::findOrFail($id);
+        return view('detailmandiri', ['belajarmandiri' => $belajarmandiri]);
     }
 
     public function show_by_adminmandirishow(Request $request)
     {
         $search = $request->input('search');
 
-        // Query data "Belajar Mandiri" dengan filter pencarian jika ada
-        $mandiri = DB::table('mandiri')
-            ->when($search, function ($query) use ($search) {
-                return $query->where('judul', 'like', '%' . $search . '%');
-            })
-            ->orderBy('id', 'desc')
-            ->paginate(10); // Ganti '10' dengan jumlah item per halaman yang diinginkan
+        $belajarmandiri = Belajarmandiri::when($search, function ($query) use ($search) {
+            return $query->where('judul', 'like', '%' . $search . '%');
+        })->orderBy('id', 'desc')->paginate(6);
 
-        return view('adminmandirishow', compact('mandiri'));
+        return view('adminmandirishow', compact('belajarmandiri'));
     }
 
     public function editmandiri($id)
     {
-        $mandiri = DB::table('mandiri')->where('id', $id)->first();
-        return view('editmandiri', ['mandiri' => $mandiri]);
-    }
-
-    public function editmandiri_process(Request $request)
-    {
-        $id = $request->id;
-        $judul = $request->judul;
-        $link = $request->link;
-        $mandiri = DB::table('mandiri')->where('id', $id)->first();
-        $gambarLama = $mandiri->gambarmandiri;
-        if ($request->hasFile('gambar')) {
-            $gambarPath = $request->file('gambar')->store('public/icon');
-            $gambarNama = basename($gambarPath);
-        } else {
-            $gambarNama = $gambarLama;
-        }
-        DB::table('mandiri')->where('id', $id)
-            ->update(['judul' => $judul, 'link' => $link, 'gambarmandiri' => $gambarNama]);
-        if ($request->hasFile('gambar')) {
-            Storage::delete('public/icon/' . $gambarLama);
-        }
-        Session::flash('success', 'Berita Berhasil diedit');
-        return redirect()->route('belajarmandiri.show_by_adminmandirishow');
+        $belajarmandiri = Belajarmandiri::findOrFail($id);
+        $belajarmandiri->published_at = Carbon::parse($belajarmandiri->published_at);
+        return view('editmandiri', ['belajarmandiri' => $belajarmandiri]);
     }
 
     public function deletemandiri($id)
     {
-        DB::table('mandiri')->where('id', $id)->delete();
-        Session::flash('success', 'Berita berhasil dihapus.');
-        return redirect()->action([BelajarmandiriController::class, 'show_by_adminmandirishow']);
+        Belajarmandiri::destroy($id);
+
+        Session::flash('success', 'Belajar mandiri berhasil dihapus.');
+        return redirect()->route('belajarmandiri.show_by_adminmandirishow');
     }
-
-    public function deleteSelected(Request $request)
+    public function bulkDeleteMandiri(Request $request)
     {
-        $selectedItems = $request->selectedItems;
+        $ids = $request->ids;
 
-        // Periksa apakah $selectedItems tidak null dan merupakan array
-        if ($selectedItems !== null && is_array($selectedItems)) {
-            try {
-                DB::table('mandiri')->whereIn('id', $selectedItems)->delete();
-                Session::flash('success', 'Data terpilih berhasil dihapus.');
-                return redirect()->route('belajarmandiri.show_by_adminmandirishow');
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
-            }
-        } else {
-            // Handle kasus jika $selectedItems adalah null atau bukan array
-            return redirect()->back()->withErrors(['error' => 'Tidak ada item yang dipilih untuk dihapus.']);
+        if (empty($ids)) {
+            return redirect()->back()->withErrors(['error' => 'Tidak ada berita yang dipilih.']);
+        }
+
+        try {
+            Belajarmandiri::whereIn('id', $ids)->delete();
+
+            Session::flash('success', 'Belajar mandiri berhasil dihapus.');
+            return redirect()->route('belajarmandiri.show_by_adminmandirishow');
+        } catch (\Exception $e) {
+            Log::error('Error deleting news: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
     }
 }

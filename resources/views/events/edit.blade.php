@@ -42,24 +42,24 @@
     </div>
 </div>
 </section>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#description').summernote({
-            height: 300,  // Set height for Summernote editor
-            placeholder: 'Tulis deskripsi event di sini...',  // Placeholder for the description field
+            height: 300,
+            minHeight: null, 
+            maxHeight: null, 
+            focus: true,
+            placeholder: 'Tulis isi event di sini...',
             toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['fontsize', ['fontsize']],
-                ['color', ['forecolor', 'backcolor']],
-                ['para', ['ul', 'ol', 'paragraph', 'height']],
-                ['align', ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-            ]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['forecolor', 'backcolor']],
+                    ['para', ['ul', 'ol', 'paragraph', 'height']],
+                    ['align', ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
         });
     });
 </script>

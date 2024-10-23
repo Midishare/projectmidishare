@@ -89,7 +89,6 @@
                                     <label for="kelas">Kelas</label>
                                     <select id="kelas" name="kelas" required>
                                         <option value="Tidak">Tidak</option>
-                                        <option value="MDP">MDP</option>
                                         <option value="DP">DP</option>
                                         <option value="IP">IP</option>
                                     </select>
