@@ -232,7 +232,7 @@ kelas: ${kelas}`;
             width: 100%;
             max-width: 500px;
         }
-        .icon-form{
+        .icon-form img{
             height: 50vh;
         }
         .form-header {
