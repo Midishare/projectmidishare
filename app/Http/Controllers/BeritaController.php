@@ -35,6 +35,11 @@ class BeritaController extends Controller
 
         return view('repositoryall');
     }
+    public function helpcenter()
+    {
+
+        return view('helpcenter');
+    }
 
     public function add()
     {

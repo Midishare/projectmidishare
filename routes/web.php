@@ -34,7 +34,6 @@ use App\Http\Controllers\Admin\VideoInoController;
 use App\Http\Controllers\Admin\VideoFinlitController;
 use App\Http\Controllers\Admin\VideoWebinController;
 use App\Http\Controllers\RepositoryallController;
-use App\Models\Belajarmandiri;
 
 Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
@@ -47,16 +46,7 @@ Route::middleware('auth')->group(function () {
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('signin');
 
-
-
-Route::get('/materiadmin', function () {
-    return view('materiadmin');
-});
-
-Route::get('/materiadminmodwh', function () {
-    return view('materiadminmodwh');
-});
-
+Route::get('/helpcenter', [BeritaController::class, 'helpcenter'])->name('helpcenter');
 
 
 
@@ -80,6 +70,7 @@ Route::middleware('auth', 'role:admin')->group(function () {
     // Route::put('/users/{address}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::delete('/selected-users', [UserController::class, 'deleteCheckedUser'])->name('user.deleteSelected');
+
 
 
     // Route untuk Admin DP
@@ -292,6 +283,10 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::delete('/deleteSelected', [LinkogmController::class, 'deleteSelected'])->name('linkogm.deleteSelected');
     Route::get('/addlinkogm', [LinkogmController::class, 'addlinkogm'])->name('linkogm.addlinkogm');
     Route::post('/addlinkogm_process', [LinkogmController::class, 'addlinkogm_process'])->name('linkogm.addlinkogm_process');
+
+    Route::get('/materiadmin', function () {
+        return view('materiadmin');
+    });
 
 
     Route::get('/generallearnadmin', function () {

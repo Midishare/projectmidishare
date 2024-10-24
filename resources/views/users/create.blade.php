@@ -1,7 +1,7 @@
-@extends('template.admin.main')
+@extends('layouts.layoutsadmin')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 70px;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">

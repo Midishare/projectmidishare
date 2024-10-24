@@ -198,6 +198,7 @@
                 text-decoration: none;
                 color: #ffffff
             }
+
         }
     </style>
 </head>
@@ -282,16 +283,24 @@
                 </div>
                 <div class="col-md-4 footer-links">
                     <p><b>Sosial Media Kami</b></p>
-                    <div class="social-icons">
-                        <a href="https://www.instagram.com/alfamidigemabudaya?igsh=MXdsa2EwZW12bDhkcA==" target="_blank">
-                            <i class="bi bi-instagram text-white mx-2"></i>
-                        </a>
-                        <a href="https://www.tiktok.com/@midishare_alfamidi?_t=8qRXDkSedOR&_r=1" target="_blank">
-                            <i class="bi bi-tiktok text-white mx-2"></i>
-                        </a>
-                        <a href="https://youtube.com/@alfamidigemabudaya8446?si=fMM_oXtcBdi6XZfX" target="_blank">
-                            <i class="bi bi-youtube text-white mx-2"></i>
-                        </a>
+                    <div class="social-icons row">
+                        <div class="col-md-12 col-sm-6">
+                            <a href="https://www.instagram.com/alfamidigemabudaya?igsh=MXdsa2EwZW12bDhkcA==" target="_blank">
+                                <i class="bi bi-instagram text-white mx-2"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@midishare_alfamidi?_t=8qRXDkSedOR&_r=1" target="_blank">
+                                <i class="bi bi-tiktok text-white mx-2"></i>
+                            </a>
+                            <a href="https://youtube.com/@alfamidigemabudaya8446?si=fMM_oXtcBdi6XZfX" target="_blank">
+                                <i class="bi bi-youtube text-white mx-2"></i>
+                            </a>
+                        </div>
+                        <div class="col-md-12 mt-md-3">
+                            <p><b>Help Center</b></p>
+                            <a href="{{ route('helpcenter')}}" target="_blank">
+                                <i class="bi bi-headset fs-5"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

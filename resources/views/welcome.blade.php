@@ -76,8 +76,8 @@
                     <h1 class="form-header text-center">Ayo Bergabung Bersama Midishare!</h1>
                     <p class="form-label text-center">Daftarkan diri anda sekarang juga</p>
                     <div class="row">
-                        <div class="col-md-6 mb-5">
-                            <img class="icon-form" src="{{ asset('icon/icon-midi.png') }}" alt="">
+                        <div class="col-md-6 mb-5 icon-form">
+                            <img src="{{ asset('icon/icon-midi.png') }}" alt="">
                         </div>
                         <div class="col-md-6">
                             <form id="contactForm" class="mt-5">
@@ -287,6 +287,9 @@ kelas: ${kelas}`;
             .stat-card-program {
                 width: 100%;
                 max-width: 300px;
+            }
+            .icon-form img{
+                height: 40vh !important;
             }
         }
 </style>
