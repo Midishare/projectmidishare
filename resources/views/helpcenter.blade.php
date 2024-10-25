@@ -92,17 +92,19 @@
 </style>
 <script>
     document.getElementById('contactForm').addEventListener('submit', function(e){
-        e.preventDefault()
-        const fullname = document.getElementById('fullname').value
-        const branch = document.getElementById('branch').value
-        const pengaduan = document.getElementById('pengaduan').value
+        e.preventDefault();
+        
+        const fullname = document.getElementById('fullname').value;
+        const branch = document.getElementById('branch').value;
+        const pengaduan = document.getElementById('pengaduan').value;
 
-        const WhatsAppMessage = `Halo kak! saya dari branch ${branch} mengalami sebuah permasalahan
-                                 yaitu: 
-                                 ${pengaduan}`
-        const WhatsAppNumber = '6287884597637'
-        const whatsappUrl = `https://wa.me/${WhatsAppNumber}?text=${WhatsAppMessage}`;
-        window.open(whatsappUrl, '_blank');
-    })
+        const email = "teddy.a.pradipta@mu.ac.id";
+        const subject = `${branch}`;
+        const body = `Halo, saya dari branch ${branch} mengalami sebuah permasalahan yaitu:\n\n${pengaduan}\n\nTerima kasih`;
+
+        const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoUrl;
+    });
+
 </script>
 @endsection
