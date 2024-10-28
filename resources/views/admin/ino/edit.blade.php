@@ -38,17 +38,18 @@
             <label for="category">Category</label>
             <select name="category" class="form-control" id="category" required>
                 <option value="">-- Select All --</option>
-                <option value="Human Capital" {{ $dokumen->category == 'Human Capital' ? 'selected' : '' }}>Human Capital</option>
-                <option value="Business Controlling" {{ $dokumen->category == 'Business Controlling' ? 'selected' : '' }}>Business Controlling</option>
-                <option value="Corporate Audit" {{ $dokumen->category == 'Corporate Audit' ? 'selected' : '' }}>Corporate Audit</option>
-                <option value="Finance" {{ $dokumen->category == 'Finance' ? 'selected' : '' }}>Finance</option>
-                <option value="IT" {{ $dokumen->category == 'IT' ? 'selected' : '' }}>IT</option>
-                <option value="Merchandising" {{ $dokumen->category == 'Merchandising' ? 'selected' : '' }}>Merchandising</option>
-                <option value="Marketing" {{ $dokumen->category == 'Marketing' ? 'selected' : '' }}>Marketing</option>
-                <option value="Operation" {{ $dokumen->category == 'Operation' ? 'selected' : '' }}>Operation</option>
-                <option value="Property Development" {{ $dokumen->category == 'Property Development' ? 'selected' : '' }}>Property Development</option>
-                <option value="Service Quality" {{ $dokumen->category == 'Service Quality' ? 'selected' : '' }}>Service Quality</option>
-                <option value="Corporate Legal & Compliance" {{ $dokumen->category == 'Corporate Legal & Compliance' ? 'selected' : '' }}>Corporate Legal & Compliance</option>
+                <option value="Ambon" {{ $dokumen->category == 'Ambon' ? 'selected' : '' }}>Ambon</option>
+                <option value="Bekasi" {{ $dokumen->category == 'Bekasi' ? 'selected' : '' }}>Bekasi</option>
+                <option value="Bitung" {{ $dokumen->category == 'Bitung' ? 'selected' : '' }}>Bitung</option>
+                <option value="Boyolali" {{ $dokumen->category == 'Boyolali' ? 'selected' : '' }}>Boyolali</option>
+                <option value="Head Office" {{ $dokumen->category == 'Head Office' ? 'selected' : '' }}>Head Office</option>
+                <option value="Kendari" {{ $dokumen->category == 'Kendari' ? 'selected' : '' }}>Kendari</option>
+                <option value="Makasar" {{ $dokumen->category == 'Makasar' ? 'selected' : '' }}>Makasar</option>
+                <option value="Manado" {{ $dokumen->category == 'Manado' ? 'selected' : '' }}>Manado</option>
+                <option value="Medan" {{ $dokumen->category == 'Medan' ? 'selected' : '' }}>Medan</option>
+                <option value="Palu" {{ $dokumen->category == 'Palu' ? 'selected' : '' }}>Palu</option>
+                <option value="Pasuruan" {{ $dokumen->category == 'Pasuruan' ? 'selected' : '' }}>Pasuruan</option>
+                <option value="Samarinda" {{ $dokumen->category == 'Samarinda' ? 'selected' : '' }}>Samarinda</option>
             </select>
         </div>
 
