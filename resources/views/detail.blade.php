@@ -30,7 +30,7 @@
         object-fit: fill;
     }
     .margin-news{
-        margin-top:50px;
+        margin-top:40px;
     }
     .card {
         border: none;
