@@ -50,6 +50,7 @@ class InoController extends Controller
             'title' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'link' => 'required|url',
+            'category' => 'required|in:Ambon,Bekasi,Bitung,Boyolali,Head Office,Kendari,Makasar,Manado,Medan,Palu,Pasuruan,Samarinda',
         ]);
 
         if ($request->hasFile('image')) {
@@ -68,11 +69,13 @@ class InoController extends Controller
             'title' => 'required|string|max:255',
             'link' => 'required|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category' => 'required|in:Ambon,Bekasi,Bitung,Boyolali,Head Office,Kendari,Makasar,Manado,Medan,Palu,Pasuruan,Samarinda',
         ]);
 
         $dokumen = Dokumenino::findOrFail($id);
         $dokumen->title = $request->title;
         $dokumen->link = $request->link;
+        $dokumen->category = $request->category;
 
         if ($request->hasFile('image')) {
             if ($dokumen->image_path) {

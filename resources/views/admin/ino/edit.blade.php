@@ -34,6 +34,24 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="category">Category</label>
+            <select name="category" class="form-control" id="category" required>
+                <option value="">-- Select All --</option>
+                <option value="Human Capital" {{ $dokumen->category == 'Human Capital' ? 'selected' : '' }}>Human Capital</option>
+                <option value="Business Controlling" {{ $dokumen->category == 'Business Controlling' ? 'selected' : '' }}>Business Controlling</option>
+                <option value="Corporate Audit" {{ $dokumen->category == 'Corporate Audit' ? 'selected' : '' }}>Corporate Audit</option>
+                <option value="Finance" {{ $dokumen->category == 'Finance' ? 'selected' : '' }}>Finance</option>
+                <option value="IT" {{ $dokumen->category == 'IT' ? 'selected' : '' }}>IT</option>
+                <option value="Merchandising" {{ $dokumen->category == 'Merchandising' ? 'selected' : '' }}>Merchandising</option>
+                <option value="Marketing" {{ $dokumen->category == 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                <option value="Operation" {{ $dokumen->category == 'Operation' ? 'selected' : '' }}>Operation</option>
+                <option value="Property Development" {{ $dokumen->category == 'Property Development' ? 'selected' : '' }}>Property Development</option>
+                <option value="Service Quality" {{ $dokumen->category == 'Service Quality' ? 'selected' : '' }}>Service Quality</option>
+                <option value="Corporate Legal & Compliance" {{ $dokumen->category == 'Corporate Legal & Compliance' ? 'selected' : '' }}>Corporate Legal & Compliance</option>
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Update Document</button>
     </form>
 </div>

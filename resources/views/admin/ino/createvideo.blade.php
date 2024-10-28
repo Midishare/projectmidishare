@@ -13,6 +13,24 @@
             <label for="link">Video Link</label>
             <input type="url" class="form-control" id="link" name="video_link" required>
         </div>
+        <div class="form-group mb-3">
+            <label for="category">Category</label>
+            <select name="category" class="form-control" id="category" required>
+                <option value="">-- Select All --</option>
+                <option value="Ambon">Ambon</option>
+                <option value="Bekasi">Bekasi</option>
+                <option value="Bitung">Bitung</option>
+                <option value="Boyolali">Boyolali</option>
+                <option value="Head Office">Head Office</option>
+                <option value="Kendari">Kendari</option>
+                <option value="Makasar">Makasar</option>
+                <option value="Manado">Manado</option>
+                <option value="Medan">Medan</option>
+                <option value="Palu">Palu</option>
+                <option value="Pasuruan">Pasuruan</option>
+                <option value="Samarinda">Samarinda</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Add Video</button>
     </form>
 </div>

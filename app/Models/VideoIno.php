@@ -11,5 +11,5 @@ class VideoIno extends Model
 
     protected $table = 'video_ino';
 
-    protected $fillable = ['title', 'video_link'];
+    protected $fillable = ['title', 'video_link', 'category'];
 }

@@ -29,12 +29,14 @@ class VideoInoController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'video_link' => 'required|url', // Consistent with Videoino
+            'category' => 'required|in:Ambon,Bekasi,Bitung,Boyolali,Head Office,Kendari,Makasar,Manado,Medan,Palu,Pasuruan,Samarinda',
         ]);
 
         // Store the video in the database
         VideoIno::create([ // Changed to use Videoino
             'title' => $request->input('title'),
             'video_link' => $request->input('video_link'), // Updated field name
+            'category' => $request->input('category'),
         ]);
 
         // Redirect to the video list with a success message
@@ -56,11 +58,13 @@ class VideoInoController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'video_link' => 'required|url',
+            'category' => 'required|in:Ambon,Bekasi,Bitung,Boyolali,Head Office,Kendari,Makasar,Manado,Medan,Palu,Pasuruan,Samarinda',
         ]);
 
         // Update video
         $video->title = $request->input('title');
         $video->video_link = $request->input('video_link');
+        $video->category = $request->input('category');
         $video->save();
 
         return redirect()->route('admin.ino.video')->with('success', 'Video updated successfully.');
