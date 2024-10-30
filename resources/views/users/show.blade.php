@@ -7,7 +7,8 @@
         <p><strong>Name:</strong> {{ $user->name }}</p>
         <p><strong>Nik:</strong> {{ $user->nik }}</p>
         <p><strong>Lokasi:</strong> {{ $user->lokasi }}</p>
-        <p><strong>Branch:</strong> {{ $user->branch }}</p>
+        <p><strong>branch:</strong> {{ $user->branch }}</p>
+        <p><strong>Jabatan:</strong> {{ $user->jabatan }}</p>
 
         <div class="mt-3">
             <a href="{{ route('addresses.edit', $address->id) }}" class="btn btn-primary">Edit Address</a>

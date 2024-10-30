@@ -52,12 +52,24 @@
                     @enderror
                 </div>
             </div>
-            
+
             <div class="form-group row">
                 <label for="branch" class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
                 <div class="col-md-6">
                     <input type="text" name="branch" id="branch" class="form-control @error('branch') is-invalid @enderror" value="{{ old('branch', $user->branch) }}" required>
                     @error('branch')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="jabatan" class="col-md-4 col-form-label text-md-right">{{ __('Jabatan') }}</label>
+                <div class="col-md-6">
+                    <input type="text" name="jabatan" id="jabatan" class="form-control @error('jabatan') is-invalid @enderror" value="{{ old('jabatan', $user->jabatan) }}" required>
+                    @error('jabatan')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

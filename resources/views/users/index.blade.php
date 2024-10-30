@@ -55,6 +55,7 @@
                             <th class="text-center">Name</th>
                             <th class="text-center">Lokasi</th>
                             <th class="text-center">Branch</th>
+                            <th class="text-center">Jabatan</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -66,6 +67,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->lokasi }}</td>
                             <td>{{ $user->branch }}</td>
+                            <td>{{ $user->jabatan }}</td>
                             <td class="text-center">
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil" style="color: white;"></i></a>
                                 @if (!$user->hasRole('admin'))

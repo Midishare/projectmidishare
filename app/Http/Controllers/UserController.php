@@ -19,7 +19,8 @@ class UserController extends Controller
             $users = User::where('name', 'LIKE', "%{$query}%")
                 ->orWhere('nik', 'LIKE', "%{$query}%")
                 ->orWhere('lokasi', 'LIKE', "%{$query}%")
-                ->orWhere('branch', 'LIKE', "%{$query}%")
+                ->orWhere('lokasi', 'LIKE', "%{$query}%")
+                ->orWhere('jabatan', 'LIKE', "%{$query}%")
                 ->with('address')
                 ->get();
         } else {
@@ -65,10 +66,11 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'nik' => 'required|string|max:255',
-            'password' => 'required|string|min:8',
             'lokasi' => 'required|string|max:255',
             'branch' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
             'class' => 'required|string|max:255', // Validate class input
+            'password' => 'required|string|min:8',
         ]);
 
         $user = User::create($validatedData);
@@ -87,29 +89,25 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
-        // Mencari pengguna berdasarkan ID
         $user = User::findOrFail($id);
 
-        // Melakukan validasi data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'nik' => 'required|min:7',
-            'lokasi' => 'required|string|max:255', // Jika kolom lokasi diperlukan
-            'branch' => 'required|string|max:255', // Jika kolom branch diperlukan
-            'class' => 'required|string|max:10', // Validasi untuk kolom kelas
-            'password' => 'nullable|string|min:8', // Password bersifat opsional
+            'lokasi' => 'required|string|max:255',
+            'branch' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'class' => 'required|string|max:10',
+            'password' => 'nullable|string|min:8',
         ]);
 
-        // Mengupdate informasi pengguna
         $user->name = $validatedData['name'];
         $user->nik = $validatedData['nik'];
         $user->lokasi = $validatedData['lokasi'];
         $user->branch = $validatedData['branch'];
+        $user->jabatan = $validatedData['jabatan'];
         $user->class = $validatedData['class'];
 
         // Hanya mengupdate password jika ada perubahan
@@ -117,23 +115,17 @@ class UserController extends Controller
             $user->password = $validatedData['password']; // Menyimpan password tanpa hashing
         }
         $user->class = ($request->class == 'None') ? null : $request->class;
-        $user->save(); // Simpan perubahan ke database
+        $user->save();
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        // Periksa relasi dengan tabel teachers
+
         if ($user->address()->exists()) {
-            $user->address()->delete(); // Hapus data di tabel teachers jika ada relasi
+            $user->address()->delete();
         }
         $user->delete();
 
@@ -147,28 +139,23 @@ class UserController extends Controller
         return response()->json(['success' => "Users have been deleted!"]);
     }
 
-
-    // Method untuk menampilkan form import
     public function showImportForm()
     {
-        return view('users.import'); // Ganti 'users.import' dengan nama view yang kamu inginkan
+        return view('users.import');
     }
 
-    // Method untuk memproses import data pengguna
-    // Method untuk memproses import data pengguna
     public function import(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,xls', // Validasi file hanya boleh format Excel (xlsx, xls)
+            'file' => 'required|mimes:xlsx,xls',
         ]);
 
         $file = $request->file('file');
-
-        // Proses import menggunakan package Laravel Excel
         Excel::import(new UserImport, $file);
 
         $userRole = Role::where('name', 'user')->first();
-        $users = User::all(); // Ambil semua data pengguna setelah proses import
+        $users = User::whereDoesntHave('roles')->get();
+
         foreach ($users as $user) {
             $user->assignRole($userRole);
         }

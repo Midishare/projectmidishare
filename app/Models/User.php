@@ -24,6 +24,7 @@ class User extends Authenticatable
         'nik',
         'lokasi',
         'branch',
+        'jabatan',
         'class',
         'password',
     ];

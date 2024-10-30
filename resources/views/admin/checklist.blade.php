@@ -28,16 +28,20 @@
                     <form action="{{ route('admin.checklist.update', $user->id) }}" method="POST">
                         @csrf
                         <td>
-                            <input type="checkbox" name="existing_grade_genap" {{ $user->modChecklists->existing_grade_genap ? 'checked' : '' }}>
+                            <input type="checkbox" name="existing_grade_genap" 
+                                   {{ optional($user->modChecklists)->existing_grade_genap ? 'checked' : '' }}>
                         </td>
                         <td>
-                            <input type="checkbox" name="ip" {{ $user->modChecklists->ip ? 'checked' : '' }}>
+                            <input type="checkbox" name="ip" 
+                                   {{ optional($user->modChecklists)->ip ? 'checked' : '' }}>
                         </td>
                         <td>
-                            <input type="checkbox" name="existing_grade_ganjil" {{ $user->modChecklists->existing_grade_ganjil ? 'checked' : '' }}>
+                            <input type="checkbox" name="existing_grade_ganjil" 
+                                   {{ optional($user->modChecklists)->existing_grade_ganjil ? 'checked' : '' }}>
                         </td>
                         <td>
-                            <input type="checkbox" name="mdp" {{ $user->modChecklists->mdp ? 'checked' : '' }}>
+                            <input type="checkbox" name="mdp" 
+                                   {{ optional($user->modChecklists)->mdp ? 'checked' : '' }}>
                         </td>
                         <td>
                             <button type="submit" class="btn btn-primary">Update</button>

@@ -27,13 +27,13 @@
                     <form action="{{ route('admin.gapknow.update', $user->id) }}" method="POST">
                         @csrf
                         <td>
-                            <input type="checkbox" name="OHK" {{ $user->gapknowledge->OHK ? 'checked' : '' }}>
+                            <input type="checkbox" name="OHK" {{ optional($user->gapknowledge)->OHK ? 'checked' : '' }}>
                         </td>
                         <td>
-                            <input type="checkbox" name="BPA" {{ $user->gapknowledge->BPA ? 'checked' : '' }}>
+                            <input type="checkbox" name="BPA" {{ optional($user->gapknowledge)->BPA ? 'checked' : '' }}>
                         </td>
                         <td>
-                            <input type="checkbox" name="MOM" {{ $user->gapknowledge->MOM ? 'checked' : '' }}>
+                            <input type="checkbox" name="MOM" {{ optional($user->gapknowledge)->MOM ? 'checked' : '' }}>
                         </td>
                       
                         <td>

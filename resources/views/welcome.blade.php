@@ -86,8 +86,20 @@
                                     <input type="text" id="fullname" name="fullname" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="fullname">NIK</label>
+                                    <label for="nik">NIK</label>
                                     <input type="text" id="nik" name="nik" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lokasi">Lokasi</label>
+                                    <input type="text" id="lokasi" name="lokasi" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="branch">Branch</label>
+                                    <input type="text" id="branch" name="branch" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jabatan">Jabatan</label>
+                                    <input type="text" id="jabatan" name="jabatan" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="kelas">Kelas</label>
@@ -135,12 +147,18 @@
             e.preventDefault();   
             const fullname = document.getElementById('fullname').value;
             const nik = document.getElementById('nik').value;
+            const lokasi = document.getElementById('lokasi').value;
+            const branch = document.getElementById('branch').value;
+            const jabatan = document.getElementById('jabatan').value;
             const kelas = document.getElementById('kelas').value;
             const email = document.getElementById('email').value;
 
             const whatsappMessage = `Halo kak! saya ingin mendaftar menjadi anggota midishare:%0A
 Nama: ${fullname}%0A
 Nik: ${nik}%0A
+Lokasi: ${lokasi}%0A
+Branch: ${branch}%0A
+Jabatan: ${jabatan}%0A
 Email: ${email}%0A
 kelas: ${kelas}`;
 
