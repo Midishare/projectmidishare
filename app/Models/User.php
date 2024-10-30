@@ -47,4 +47,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class);
     }
+    public function modChecklists()
+    {
+        return $this->hasOne(UserModChecklist::class);
+    }
+
+    public function gapknowledge()
+    {
+        return $this->hasOne(UserGapKnowledgeChecklist::class);
+    }
 }

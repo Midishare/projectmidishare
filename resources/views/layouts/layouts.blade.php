@@ -213,6 +213,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="col justify-content-center navbar-nav ms-auto mb-2 mb-lg-0">
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('ProfileController') }}">Profile</a>
+                    </li>
+                    @endauth
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
@@ -232,7 +237,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('repositoryall') }}">Knowledge Management</a></li>
-                            <li><a class="dropdown-item" href="{{ route('belajarmandiri.show') }}">Belajar Mandiri</a></li>
+                            <li><a class="dropdown-item" href="{{ route('belajarmandiriall') }}">Belajar Mandiri</a></li>
                         </ul>
                         @endauth
                     </li> 

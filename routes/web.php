@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\BelajarmandiriController;
@@ -19,6 +18,11 @@ use App\Http\Controllers\MvpController;
 use App\Http\Controllers\InoController;
 use App\Http\Controllers\FinlitController;
 use App\Http\Controllers\WebinController;
+use App\Http\Controllers\BukupintarwhController;
+use App\Http\Controllers\PapanilmutokoController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\ModchecklistController as ModchecklistController;
+use App\Http\Controllers\Admin\GapknowledgechecklistController as GapknowledgechecklistController;
 use App\Http\Controllers\Admin\DpController as AdminDpController;
 use App\Http\Controllers\Admin\IpController as AdminIpController;
 use App\Http\Controllers\Admin\IktController as AdminIktController;
@@ -51,13 +55,6 @@ Route::get('/helpcenter', [BeritaController::class, 'helpcenter'])->name('helpce
 
 
 Route::middleware('auth', 'role:admin')->group(function () {
-    // Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
-    // Route::get('/addresses/{address}/create', [AddressController::class, 'create'])->name('addresses.create');
-    // Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('addresses.edit');
-    // Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
-    // Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
-    // Route::delete('/addresses/deleteAll', [AddressController::class, 'destroy'])->name('addresses.deleteAll');
-    // Route::delete('/addresses/deleteAll', [AddressController::class, 'destroy'])->name('addresses.deleteAll');
 
     Route::get('users/import', [UserController::class, 'showImportForm'])->name('users.import.form');
     Route::post('users/import', [UserController::class, 'import'])->name('users.import');
@@ -70,6 +67,15 @@ Route::middleware('auth', 'role:admin')->group(function () {
     // Route::put('/users/{address}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::delete('/selected-users', [UserController::class, 'deleteCheckedUser'])->name('user.deleteSelected');
+
+    Route::prefix('admin')->group(function () {
+        Route::get('/checklist', [ModchecklistController::class, 'index'])->name('admin.checklist.index');
+        Route::post('/checklist/{user}', [ModchecklistController::class, 'update'])->name('admin.checklist.update');
+    });
+    Route::prefix('admin')->group(function () {
+        Route::get('/gapknow', [GapknowledgechecklistController::class, 'index'])->name('admin.gapknow.index');
+        Route::post('/gapknow/{user}', [GapknowledgechecklistController::class, 'update'])->name('admin.gapknow.update');
+    });
 
 
 
@@ -252,7 +258,7 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::post('/editmandiri_process', [BelajarmandiriController::class, 'editmandiri_process'])->name('belajarmandiri.editmandiri_process');
     Route::get('/deletemandiri/{id}', [BelajarmandiriController::class, 'deletemandiri'])->name('belajarmandiri.deletemandiri');
     Route::delete('/bulk_deleted', [BelajarmandiriController::class, 'bulkDeleteMandiri'])->name('belajarmandiri.berita_bulk_delete');
-    // Route::delete('/adminmandirisho/deleteSelected', [BelajarmandiriController::class, 'deleteSelected'])->name('belajarmandiri.deleteSelected');
+
 
     // SME
     Route::get('/materiadminmodogm', function () {
@@ -342,6 +348,8 @@ Route::middleware('auth', 'role:user')->group(function () {
         return view('repositorylinkogm');
     });
 
+
+
     Route::get('/detailkmogm/{id}', [KnowledgeogmController::class, 'detailkmogm'])->name('knowledgeogm.detailkmogm');
     Route::get('/repositorykmogm', [KnowledgeogmController::class, 'showkmogm'])->name('knowledgeogm.showkmogm');
 
@@ -349,6 +357,7 @@ Route::middleware('auth', 'role:user')->group(function () {
 
     Route::get('/repositoryall', [BeritaController::class, 'repositoryall'])->name('repositoryall');
 
+    Route::get('/belajarmandiriall', [BeritaController::class, 'belajarmandiriall'])->name('belajarmandiriall');
 
 
     Route::get('/ogmlink', [LinkogmController::class, 'showlinkogm'])->name('linkogm.showlinkogm');
@@ -356,6 +365,15 @@ Route::middleware('auth', 'role:user')->group(function () {
     // belajar mandiri
     Route::get('/belajarmandiri', [BelajarmandiriController::class, 'showmandiri'])->name('belajarmandiri.show');
     Route::get('/detailmandiri/{id}', [BelajarmandiriController::class, 'detailmandiri'])->name('belajarmandiri.detailmandiri');
+
+    // buku pintar wh
+    Route::get('/bukupintarwh', [BukupintarwhController::class, 'index'])->name('bukpin.index');
+
+    // papan ilmu toko
+    Route::get('/papanilmutoko', [PapanilmutokoController::class, 'index'])->name('papilmu.index');
+
+    // papan ilmu toko
+    Route::get('/ProfileController', [ProfileController::class, 'index'])->name('ProfileController');
 });
 
 //news

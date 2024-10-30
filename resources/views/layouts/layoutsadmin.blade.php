@@ -50,6 +50,15 @@
             padding-bottom: 2px; /* Jarak antara teks dan garis bawah */
         }
 
+        .dropdown-item {
+    color: #000000;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+.nav-item.dropdown {
+    position: relative; /* Ensure proper positioning context */
+}
+
         .dropdown-menu .dropdown-item:hover,
         .dropdown-menu .dropdown-item:focus,
         .dropdown-menu .dropdown-item.active {
@@ -57,8 +66,9 @@
             color: #ffffff !important; /* Warna teks dropdown saat hover dan aktif */
         }
         .dropdown-menu {
-            left: 50%;
-            transform: translateX(-18%);
+            left: 0 !important; /* Override any other positioning */
+    transform: none !important; /* Remove any transforms */
+    margin-top: 0.5rem; /* Add a small gap between nav link and dropdown */
         }
 
         /* Glassmorphism navbar */
@@ -218,6 +228,13 @@
                 <ul class="col justify-content-center navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cheklist</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('admin.checklist.index') }}">MOD</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.gapknow.index') }}">GAP Knowledge</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>

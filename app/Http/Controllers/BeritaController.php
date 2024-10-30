@@ -46,6 +46,11 @@ class BeritaController extends Controller
         return view('add');
     }
 
+    public function belajarmandiriall()
+    {
+        return view('belajarmandiriall');
+    }
+
     public function add_process(Request $request)
     {
         $request->validate([

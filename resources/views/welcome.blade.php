@@ -86,6 +86,10 @@
                                     <input type="text" id="fullname" name="fullname" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="fullname">NIK</label>
+                                    <input type="text" id="nik" name="nik" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="kelas">Kelas</label>
                                     <select id="kelas" name="kelas" required>
                                         <option value="Tidak">Tidak</option>
@@ -94,7 +98,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">Email kantor atau pribadi</label>
                                     <input type="email" id="email" name="email" required>
                                 </div>
                                 <button class="buton-form" type="submit">Kirim!</button>
@@ -130,11 +134,13 @@
     document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();   
             const fullname = document.getElementById('fullname').value;
+            const nik = document.getElementById('nik').value;
             const kelas = document.getElementById('kelas').value;
             const email = document.getElementById('email').value;
 
             const whatsappMessage = `Halo kak! saya ingin mendaftar menjadi anggota midishare:%0A
-Name: ${fullname}%0A
+Nama: ${fullname}%0A
+Nik: ${nik}%0A
 Email: ${email}%0A
 kelas: ${kelas}`;
 
