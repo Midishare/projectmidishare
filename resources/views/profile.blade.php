@@ -83,6 +83,17 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- Rekomendasi Belajar -->
+                <div class="form-container">
+                    <h2 class="text-center">Rekomendasi Belajar</h2>
+                    @if ($rekomendasi && $rekomendasi->count() > 0)
+                            @foreach ($rekomendasi as $item)
+                                <div>{!! $item->rekomendasi !!}</div> <!-- Pastikan field ini sesuai dengan yang ada di tabel -->
+                            @endforeach
+                    @else
+                        <p>Belum ada rekomendasi belajar untuk Anda.</p>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

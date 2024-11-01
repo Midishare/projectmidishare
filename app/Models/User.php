@@ -57,4 +57,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserGapKnowledgeChecklist::class);
     }
+    public function rekomendasiBelajar()
+    {
+        return $this->hasMany(RekomendasiBelajar::class, 'user_id');
+    }
 }

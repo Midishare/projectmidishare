@@ -21,6 +21,7 @@ use App\Http\Controllers\WebinController;
 use App\Http\Controllers\BukupintarwhController;
 use App\Http\Controllers\PapanilmutokoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\Admin\ModchecklistController as ModchecklistController;
 use App\Http\Controllers\Admin\GapknowledgechecklistController as GapknowledgechecklistController;
 use App\Http\Controllers\Admin\DpController as AdminDpController;
@@ -77,7 +78,9 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
         Route::post('/gapknow/{user}', [GapknowledgechecklistController::class, 'update'])->name('admin.gapknow.update');
     });
 
-
+    Route::get('/rekomendasi/create', [RekomendasiController::class, 'create'])->name('rekomendasi.create');
+    Route::post('/rekomendasi', [RekomendasiController::class, 'store'])->name('rekomendasi.store');
+    Route::get('/rekomendasi/get', [RekomendasiController::class, 'getRekomendasi'])->name('rekomendasi.get');
 
     // Route untuk Admin DP
     Route::prefix('admin/dp')->group(function () {
@@ -304,6 +307,8 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
 
 
 Route::middleware('auth', 'role:user')->group(function () {
+
+    Route::get('/rekomendasi', [RekomendasiController::class, 'showUserRekomendasi'])->name('rekomendasi.show');
     // Route untuk DP
     Route::get('/dp', [DpController::class, 'index'])->name('dp.index');
     Route::get('/dp/materi', [DpController::class, 'materiDokumen'])->name('dp.materi');
