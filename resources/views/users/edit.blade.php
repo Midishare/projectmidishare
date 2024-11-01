@@ -81,7 +81,6 @@
                 <label for="class" class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
                 <div class="col-md-6">
                     <select id="class" class="form-control @error('class') is-invalid @enderror" name="class" required>
-                        <option value="">-- Select Kelas --</option>
                         <option value="None" {{ old('class', $user->class) == null ? 'selected' : '' }}>None</option>
                         <option value="DP" {{ old('class', $user->class) == 'DP' ? 'selected' : '' }}>DP</option>
                         <option value="IP" {{ old('class', $user->class) == 'IP' ? 'selected' : '' }}>IP</option>
@@ -94,12 +93,27 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                <div class="col-md-6">
+                    <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required>
+                        <option value="user" {{ old('role', $user->getRoleNames()->first()) == 'user' ? 'selected' : '' }}>User</option>
+                        <option value="auditor" {{ old('role', $user->getRoleNames()->first()) == 'auditor' ? 'selected' : '' }}>Auditor</option>                        
+                        <!-- Add more roles as needed -->
+                    </select>
+                    @error('role')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
     
             <div class="form-group row">
                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
                 <div class="col-md-6">
                     <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}">
-                    <input type="checkbox" id="show-password"> Show Password
                     <small class="form-text text-muted">Leave blank if you don't want to change the password.</small>
                     @error('password')
                         <span class="invalid-feedback" role="alert">

@@ -22,12 +22,14 @@ class DashboardController extends Controller
         $home = DB::table('home')->orderBy('id', 'desc')->get();
         $onlineUsersCount = $this->countOnlineUsersToday();
 
-        if (Auth::check() && Auth::user()->hasRole('admin')) {
+        // Cek apakah user memiliki role admin atau auditor
+        if (Auth::check() && (Auth::user()->hasRole('admin') || Auth::user()->hasRole('auditor'))) {
             return view('welcomeadmin', compact('jml_user', 'jml_perhari', 'onlineUsersCount', 'home'));
         } else {
             return view('welcome', compact('home'));
         }
     }
+
 
     public function countOnlineUsersToday()
     {

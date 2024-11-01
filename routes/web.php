@@ -54,7 +54,7 @@ Route::get('/helpcenter', [BeritaController::class, 'helpcenter'])->name('helpce
 
 
 
-Route::middleware('auth', 'role:admin')->group(function () {
+Route::middleware('auth', 'role:admin|auditor')->group(function () {
 
     Route::get('users/import', [UserController::class, 'showImportForm'])->name('users.import.form');
     Route::post('users/import', [UserController::class, 'import'])->name('users.import');

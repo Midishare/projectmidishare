@@ -21,10 +21,16 @@ class AuthController extends Controller
         $credentials = $request->only('nik', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Log the login event
+            // Log login event
             Login::create(['user_id' => Auth::id()]);
 
-            return redirect()->intended(route('dashboard'));
+            $user = Auth::user();
+
+            if ($user->hasRole('admin') || $user->hasRole('auditor')) {
+                return redirect()->intended(route('dashboard')); // Arahkan admin & auditor ke dashboard admin
+            } else {
+                return redirect()->intended(route('dashboard')); // Arahkan user biasa ke halaman user
+            }
         } else {
             return redirect()->back()->withInput()->withErrors(['nik' => 'Nik atau password salah']);
         }

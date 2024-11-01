@@ -15,23 +15,29 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $query = $request->input('query');
+
+        // Initialize the users variable
         if ($query) {
             $users = User::where('name', 'LIKE', "%{$query}%")
                 ->orWhere('nik', 'LIKE', "%{$query}%")
                 ->orWhere('lokasi', 'LIKE', "%{$query}%")
-                ->orWhere('lokasi', 'LIKE', "%{$query}%")
                 ->orWhere('jabatan', 'LIKE', "%{$query}%")
-                ->with('address')
-                ->get();
+                ->paginate(10);
         } else {
-            $users = User::with('address')->get();
+            // Get all users when there's no search query
+            $users = User::paginate(10);
         }
 
         return view('users.index', compact('users'));
     }
 
+
     public function create()
     {
+        if (!Auth::user()->hasRole('admin')) {
+            abort(403, 'Anda tidak memiliki izin untuk mengakses halaman ini');
+        }
+
         return view('users.create');
     }
 
@@ -63,21 +69,24 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'nik' => 'required|string|max:255',
             'lokasi' => 'required|string|max:255',
             'branch' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
-            'class' => 'required|string|max:255', // Validate class input
+            'class' => 'required|string|max:255',
             'password' => 'required|string|min:8',
+            'role' => 'required|in:user,auditor',
         ]);
 
         $user = User::create($validatedData);
-        $userRole = Role::where('name', 'user')->first();
-        $user->assignRole($userRole);
+        $user->assignRole($validatedData['role']);
         if ($user->hasRole('user')) {
-            return redirect()->route('users.index')->with('success', 'User created successfully.');
+            return redirect()->route('users.index')->with('success', 'User ini created successfully.');
+        } elseif ($user->hasRole('auditor')) {
+            return redirect()->route('users.index')->with('success', 'auditor created successfully.');
         } else {
             var_dump($user);
         }
@@ -100,6 +109,7 @@ class UserController extends Controller
             'branch' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
             'class' => 'required|string|max:10',
+            'role' => 'required|in:user,auditor',
             'password' => 'nullable|string|min:8',
         ]);
 
@@ -115,6 +125,7 @@ class UserController extends Controller
             $user->password = $validatedData['password']; // Menyimpan password tanpa hashing
         }
         $user->class = ($request->class == 'None') ? null : $request->class;
+        $user->syncRoles([$validatedData['role']]);
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');

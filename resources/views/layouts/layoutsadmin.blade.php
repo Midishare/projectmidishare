@@ -226,9 +226,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="col justify-content-center navbar-nav ms-auto mb-2 mb-lg-0">
+                    @if (auth()->user()->hasRole('admin'))
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
+                    @endif
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cheklist</a>
                         <ul class="dropdown-menu">

@@ -100,7 +100,6 @@
 
                                 <div class="col-md-6">
                                     <select id="class" class="form-control @error('class') is-invalid @enderror" name="class" required>
-                                        <option value="">-- Select Kelas --</option>
                                         <option value="None" {{ old('class') == 'None' ? 'selected' : '' }}>None</option>
                                         <option value="DP" {{ old('class') == 'DP' ? 'selected' : '' }}>DP</option>
                                         <option value="IP" {{ old('class') == 'IP' ? 'selected' : '' }}>IP</option>
@@ -114,6 +113,24 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                            
+                                <div class="col-md-6">
+                                    <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required>
+                                        <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
+                                        <option value="auditor" {{ old('role') == 'auditor' ? 'selected' : '' }}>Auditor</option>
+                                    </select>
+                            
+                                    @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4 mt-3">
