@@ -22,6 +22,7 @@ use App\Http\Controllers\BukupintarwhController;
 use App\Http\Controllers\PapanilmutokoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekomendasiController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\Admin\ModchecklistController as ModchecklistController;
 use App\Http\Controllers\Admin\GapknowledgechecklistController as GapknowledgechecklistController;
 use App\Http\Controllers\Admin\DpController as AdminDpController;
@@ -39,6 +40,7 @@ use App\Http\Controllers\Admin\VideoInoController;
 use App\Http\Controllers\Admin\VideoFinlitController;
 use App\Http\Controllers\Admin\VideoWebinController;
 use App\Http\Controllers\RepositoryallController;
+use App\Models\History;
 
 Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
@@ -81,6 +83,10 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
     Route::get('/rekomendasi/create', [RekomendasiController::class, 'create'])->name('rekomendasi.create');
     Route::post('/rekomendasi', [RekomendasiController::class, 'store'])->name('rekomendasi.store');
     Route::get('/rekomendasi/get', [RekomendasiController::class, 'getRekomendasi'])->name('rekomendasi.get');
+
+    Route::get('/history/create', [HistoryController::class, 'create'])->name('history.create');
+    Route::post('/history', [HistoryController::class, 'store'])->name('history.store');
+    Route::get('/history/get', [HistoryController::class, 'getHistory'])->name('history.get');
 
     // Route untuk Admin DP
     Route::prefix('admin/dp')->group(function () {

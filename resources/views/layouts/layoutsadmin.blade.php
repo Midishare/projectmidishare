@@ -234,7 +234,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cheklist</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('rekomendasi.create') }}">History</a></li>
+                            <li><a class="dropdown-item" href="{{ route('history.create') }}">History</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.checklist.index') }}">MOD</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.gapknow.index') }}">GAP Knowledge</a></li>
                             <li><a class="dropdown-item" href="{{ route('rekomendasi.create') }}">Rekomendasi belajar</a></li>

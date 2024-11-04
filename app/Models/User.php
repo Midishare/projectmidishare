@@ -61,4 +61,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(RekomendasiBelajar::class, 'user_id');
     }
+    public function history()
+    {
+        return $this->hasMany(History::class, 'user_id');
+    }
 }

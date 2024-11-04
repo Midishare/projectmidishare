@@ -98,6 +98,20 @@
                       </div>
                 </div>
             </div>
+            <div>
+                <h1 class="text-start">History</h1>
+                <div class="card text-center ">
+                    <div class="card-body">
+                        <p class="card-text">@if ($history && $history->count() > 0)
+                            @foreach ($history as $item)
+                                <div>{!! $item->history !!}</div>
+                            @endforeach
+                    @else
+                        <p>Belum ada history belajar untuk Anda.</p>
+                    @endif</p>
+                    </div>
+                  </div>
+            </div>
         </div>
     </div>
 </div>
