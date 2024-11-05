@@ -18,7 +18,7 @@
             @csrf
             @method('PUT')
             <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
                 <div class="col-md-6">
                     <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $user->name) }}" required>
                     @error('name')
@@ -30,7 +30,7 @@
             </div>
             
             <div class="form-group row">
-                <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('NIK') }}</label>
+                <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('ID') }}</label>
                 <div class="col-md-6">
                     <input type="text" name="nik" id="nik" class="form-control @error('nik') is-invalid @enderror" value="{{ old('nik', $user->nik) }}" required>
                     @error('nik')

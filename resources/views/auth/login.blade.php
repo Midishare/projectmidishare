@@ -182,7 +182,7 @@
                 <div class="w-100 wow">
                     <form id="loginForm" action="{{ route('signin') }}" method="POST">
                         @csrf
-                        <input type="text" id="nik" name="nik" required placeholder="Masukkan Username Anda">
+                        <input type="text" id="nik" name="nik" required placeholder="Masukkan ID Anda">
                         <input type="password" id="password" name="password" required placeholder="Masukkan Password Anda">
                         <button class="bttn" type="submit">Login</button>
                     </form>

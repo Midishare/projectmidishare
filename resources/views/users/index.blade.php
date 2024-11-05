@@ -51,7 +51,7 @@
                     <thead class="table-primary">
                         <tr>
                             <th class="text-center"><input type="checkbox" id="chkCheckAll"/></th>
-                            <th class="text-center">Username</th>
+                            <th class="text-center">ID</th>
                             <th class="text-center">Name</th>
                             <th class="text-center">Lokasi</th>
                             <th class="text-center">Branch</th>
