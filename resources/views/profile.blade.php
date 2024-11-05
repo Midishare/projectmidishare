@@ -99,16 +99,39 @@
                 </div>
             </div>
             <div>
-                <h1 class="text-start">History</h1>
+                <h1 class="text-start">Unstructed learning</h1>
                 <div class="card text-center ">
                     <div class="card-body">
-                        <p class="card-text">@if ($history && $history->count() > 0)
-                            @foreach ($history as $item)
-                                <div>{!! $item->history !!}</div>
-                            @endforeach
-                    @else
-                        <p>Belum ada history belajar untuk Anda.</p>
-                    @endif</p>
+                        <table class="table table-bordered border-danger">
+                            <thead>
+                                <tr>
+                                  <th scope="col">KS</th>
+                                  <th scope="col">BS</th>
+                                  <th scope="col">Webinar</th>
+                                  <th scope="col">SME</th>
+                                  <th scope="col">Leader's Talk</th>
+                                  <th scope="col">Online Course</th>
+                                  <th scope="col">COP</th>
+                                  <th scope="col">Podcast</th>
+                                  <th scope="col">Jurnal</th>
+                                  <th scope="col">Forum Diskusi</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>{{ $user->unstructedlearningchecklist->ks ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->ks ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->webinar ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->sme ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->leaderstalk ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->onlinecourse ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->cop ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->podcast ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->jurnal ?? 0 }}</td>
+                                  <td>{{ $user->unstructedlearningchecklist->forumdiskusi ?? 0 }}</td>
+                                </tr>
+                              </tbody>
+                          </table>
                     </div>
                   </div>
             </div>

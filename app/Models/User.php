@@ -61,8 +61,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(RekomendasiBelajar::class, 'user_id');
     }
-    public function history()
+    public function unstructedlearningchecklist()
     {
-        return $this->hasMany(History::class, 'user_id');
+        return $this->hasOne(UserUnstructedLearning::class);
     }
 }

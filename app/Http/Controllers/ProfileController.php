@@ -14,6 +14,6 @@ class ProfileController extends Controller
         $rekomendasi = collect($user->rekomendasiBelajar); // Mengubah menjadi koleksi
         $history = collect($user->history); // Mengubah menjadi koleksi
 
-        return view('profile', compact('user', 'rekomendasi', 'history'));
+        return view('profile', compact('user', 'rekomendasi'));
     }
 }
