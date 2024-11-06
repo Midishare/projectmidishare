@@ -17,6 +17,21 @@
                 <th>OHK</th>
                 <th>BPA</th>
                 <th>MOM</th>
+                <th>INT</th>
+                <th>INO</th>
+                <th>KST</th>
+                <th>OPP</th>
+                <th>KPT</th>
+                <th>PBB</th>
+                <th>PDP</th>
+                <th>MDM</th>
+                <th>MKP</th>
+                <th>KPP</th>
+                <th>APM</th>
+                <th>KEF</th>
+                <th>PNG</th>
+                <th>MHK</th>
+                <th>KPD</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -35,7 +50,51 @@
                         <td>
                             <input type="checkbox" name="MOM" {{ optional($user->gapknowledge)->MOM ? 'checked' : '' }}>
                         </td>
-                      
+                        <td>
+                            <input type="checkbox" name="INT" {{ optional($user->gapknowledge)->INT ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="INO" {{ optional($user->gapknowledge)->INO ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="KST" {{ optional($user->gapknowledge)->KST ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="OPP" {{ optional($user->gapknowledge)->OPP ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="KPT" {{ optional($user->gapknowledge)->KPT ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="PBB" {{ optional($user->gapknowledge)->PBB ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="PDP" {{ optional($user->gapknowledge)->PDP ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="MDM" {{ optional($user->gapknowledge)->MDM ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="MKP" {{ optional($user->gapknowledge)->MKP ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="KPP" {{ optional($user->gapknowledge)->KPP ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="APM" {{ optional($user->gapknowledge)->APM ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="KEF" {{ optional($user->gapknowledge)->KEF ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="PNG" {{ optional($user->gapknowledge)->PNG ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="MHK" {{ optional($user->gapknowledge)->MHK ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="KPD" {{ optional($user->gapknowledge)->KPD ? 'checked' : '' }}>
+                        </td>
                         <td>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </td>

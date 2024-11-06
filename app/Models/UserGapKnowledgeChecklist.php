@@ -13,7 +13,22 @@ class UserGapKnowledgeChecklist extends Model
         'user_id',
         'OHK',
         'BPA',
-        'MOM'
+        'MOM',
+        'INT',
+        'INO',
+        'KST',
+        'OPP',
+        'KPT',
+        'PBB',
+        'PDP',
+        'MDM',
+        'MKP',
+        'KPP',
+        'APM',
+        'KEF',
+        'PNG',
+        'MHK',
+        'KPD'
     ];
 
     use HasFactory;
