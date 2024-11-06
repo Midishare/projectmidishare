@@ -34,7 +34,7 @@
               <h1 class="text-start">MOD</h1>
               <div class="card text-center">
                   <div class="card-body">
-                      <div class="table-responsive"> <!-- Wrapper for scrollable table -->
+                      <div class="table-responsive"> 
                           <table class="table table-bordered border-danger">
                               <thead>
                                   <tr>
@@ -61,7 +61,7 @@
               <h1 class="text-start">GAP Knowledge</h1>
               <div class="card text-center">
                   <div class="card-body">
-                      <div class="table-responsive"> <!-- Wrapper for scrollable table -->
+                      <div class="table-responsive"> 
                           <table class="table table-bordered border-danger">
                               <thead>
                                   <tr>
@@ -116,7 +116,7 @@
                 <h1 class="text-start">Unstructed learning</h1>
                 <div class="card text-center">
                     <div class="card-body">
-                        <div class="table-responsive"> <!-- Wrapper for scrollable table -->
+                        <div class="table-responsive">
                             <table class="table table-bordered border-danger">
                                 <thead>
                                     <tr>

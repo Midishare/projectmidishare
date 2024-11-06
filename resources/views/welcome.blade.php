@@ -257,7 +257,8 @@ kelas: ${kelas}`;
             max-width: 500px;
         }
         .icon-form img{
-            height: 50vh;
+            margin-top: 40px;
+            height: 80vh;
         }
         .form-header {
             color: white;
