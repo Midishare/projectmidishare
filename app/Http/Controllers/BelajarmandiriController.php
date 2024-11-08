@@ -27,6 +27,10 @@ class BelajarmandiriController extends Controller
     {
         return view('addmandiri');
     }
+    public function showallmandiri()
+    {
+        return view('belajarmandirichose');
+    }
 
     public function addmandiri_process(Request $request)
     {
@@ -137,6 +141,7 @@ class BelajarmandiriController extends Controller
             return $query->where('judul', 'like', '%' . $search . '%');
         })->orderBy('id', 'desc')->paginate(6);
 
+        // return view('belajarmandirichose', compact('belajarmandiri'));
         return view('adminmandirishow', compact('belajarmandiri'));
     }
 

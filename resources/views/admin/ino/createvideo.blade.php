@@ -16,7 +16,7 @@
         <div class="form-group mb-3">
             <label for="category">Category</label>
             <select name="category" class="form-control" id="category" required>
-                <option value="">-- Select All --</option>
+                <option value="">-- Semua Category --</option>
                 <option value="Ambon">Ambon</option>
                 <option value="Bekasi">Bekasi</option>
                 <option value="Bitung">Bitung</option>

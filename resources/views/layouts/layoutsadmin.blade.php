@@ -258,7 +258,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('kmadmin') }}">Knowledge Management</a></li>
-                            <li><a class="dropdown-item" href="{{ route('belajarmandiri.show_by_adminmandirishow') }}">Belajar Mandiri</a></li>
+                            <li><a class="dropdown-item" href="{{ route('belajarmandiri.showallmandiri') }}">Belajar Mandiri</a></li>
                         </ul>                            
                     </li>
                 </ul>

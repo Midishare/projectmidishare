@@ -27,7 +27,7 @@
         <div class="form-group mb-3">
             <label for="category">Category</label>
             <select name="category" class="form-control" id="category" required>
-                <option value="">-- Select All --</option>
+                <option value="">-- Semua Category --</option>
                 <option value="Ambon" {{ $video->category == 'Ambon' ? 'selected' : '' }}>Ambon</option>
                 <option value="Business Controlling" {{ $video->category == 'Business Controlling' ? 'selected' : '' }}>Business Controlling</option>
                 <option value="Bekasi" {{ $video->category == 'Bekasi' ? 'selected' : '' }}>Bekasi</option>

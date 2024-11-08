@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\MvpController as AdminMvpController;
 use App\Http\Controllers\Admin\InoController as AdminInoController;
 use App\Http\Controllers\Admin\FinlitController as AdminFinlitController;
 use App\Http\Controllers\Admin\WebinController as AdminWebinarController;
+use App\Http\Controllers\Admin\BukupintarwhController as AdminBukupintarwhController;
 use App\Http\Controllers\Admin\VideoDpController;
 use App\Http\Controllers\Admin\VideoIpController;
 use App\Http\Controllers\Admin\VideoIktController;
@@ -267,10 +268,30 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
     Route::get('/addmandiri', [BelajarmandiriController::class, 'addmandiri'])->name('belajarmandiri.addmandiri');
     Route::post('/addmandiri_process', [BelajarmandiriController::class, 'addmandiri_process'])->name('belajarmandiri.addmandiri_process');
     Route::get('/adminmandirishow', [BelajarmandiriController::class, 'show_by_adminmandirishow'])->name('belajarmandiri.show_by_adminmandirishow');
+    Route::get('/belajarmandiridanobat', [BelajarmandiriController::class, 'showallmandiri'])->name('belajarmandiri.showallmandiri');
     Route::get('/editmandiri/{id}', [BelajarmandiriController::class, 'editmandiri'])->name('belajarmandiri.editmandiri');
     Route::post('/editmandiri_process', [BelajarmandiriController::class, 'editmandiri_process'])->name('belajarmandiri.editmandiri_process');
     Route::get('/deletemandiri/{id}', [BelajarmandiriController::class, 'deletemandiri'])->name('belajarmandiri.deletemandiri');
     Route::delete('/bulk_deleted', [BelajarmandiriController::class, 'bulkDeleteMandiri'])->name('belajarmandiri.berita_bulk_delete');
+
+    //bukupintarwh
+    Route::prefix('admin/bukupintarwh')->group(function () {
+        Route::get('/', [AdminBukupintarwhController::class, 'index'])->name('admin.bukupintarwh.index');
+        Route::get('/materi', [AdminBukupintarwhController::class, 'materislide'])->name('admin.bukupintarwh.materi');
+        Route::post('/materi/create', [AdminBukupintarwhController::class, 'store'])->name('admin.bukupintarwh.materi.store');
+        Route::get('/materi/create', [AdminBukupintarwhController::class, 'create'])->name('admin.bukupintarwh.materi.create');
+        Route::get('/materi/{id}/edit', [AdminBukupintarwhController::class, 'edit'])->name('admin.bukupintarwh.materi.edit');
+        Route::put('/materi/{id}', [AdminBukupintarwhController::class, 'update'])->name('admin.bukupintarwh.materi.update');
+        Route::get('/materi/{id}', [AdminBukupintarwhController::class, 'destroy'])->name('admin.bukupintarwh.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminBukupintarwhController::class, 'bulkDelete'])->name('admin.bukupintarwh.materi.bulkDelete');
+        // Route::get('/video', [VideoFinlitController::class, 'index'])->name('admin.bukupintarwh.video');
+        // Route::get('/video/create', [VideoFinlitController::class, 'create'])->name('admin.bukupintarwh.video.create');
+        // Route::post('/video', [VideoFinlitController::class, 'store'])->name('admin.bukupintarwh.video.store');
+        // Route::get('/video/{id}/edit', [VideoFinlitController::class, 'edit'])->name('admin.bukupintarwh.video.edit');
+        // Route::put('/video/{id}', [VideoFinlitController::class, 'update'])->name('admin.bukupintarwh.video.update');
+        // Route::get('/video/{id}', [VideoFinlitController::class, 'destroy'])->name('admin.bukupintarwh.video.destroy');
+        // Route::post('/video/bulk-delete', [VideoFinlitController::class, 'bulkDelete'])->name('admin.bukupintarwh.video.bulkDelete');
+    });
 
 
     // SME

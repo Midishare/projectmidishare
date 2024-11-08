@@ -24,7 +24,7 @@
         <div class="form-group mb-3">
             <label for="category">Category</label>
             <select name="category" class="form-control" id="category" required>
-                <option value="">-- Select All --</option>
+                <option value="">-- Semua Category --</option>
                 <option value="Human Capital" {{ old('category') == 'Human Capital' ? 'selected' : '' }}>Human Capital</option>
                 <option value="Business Controlling" {{ old('category') == 'Business Controlling' ? 'selected' : '' }}>Business Controlling</option>
                 <option value="Corporate Audit" {{ old('category') == 'Corporate Audit' ? 'selected' : '' }}>Corporate Audit</option>

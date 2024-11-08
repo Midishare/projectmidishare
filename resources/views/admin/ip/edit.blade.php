@@ -37,7 +37,7 @@
         <div class="form-group mb-3">
             <label for="category">Category</label>
             <select name="category" class="form-control" id="category" required>
-                <option value="">-- Select All --</option>
+                <option value="">-- Semua Category --</option>
                 <option value="Human Capital" {{ $document->category == 'Human Capital' ? 'selected' : '' }}>Human Capital</option>
                 <option value="Corporate Audit" {{ $document->category == 'Corporate Audit' ? 'selected' : '' }}>Corporate Audit</option>
                 <option value="Finance" {{ $document->category == 'Finance' ? 'selected' : '' }}>Finance</option>

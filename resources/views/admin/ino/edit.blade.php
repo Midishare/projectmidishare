@@ -37,7 +37,7 @@
         <div class="mb-3">
             <label for="category">Category</label>
             <select name="category" class="form-control" id="category" required>
-                <option value="">-- Select All --</option>
+                <option value="">-- Semua category --</option>
                 <option value="Ambon" {{ $dokumen->category == 'Ambon' ? 'selected' : '' }}>Ambon</option>
                 <option value="Bekasi" {{ $dokumen->category == 'Bekasi' ? 'selected' : '' }}>Bekasi</option>
                 <option value="Bitung" {{ $dokumen->category == 'Bitung' ? 'selected' : '' }}>Bitung</option>
