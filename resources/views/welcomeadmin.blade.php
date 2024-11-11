@@ -8,7 +8,7 @@
                     <div class="card bg-primary" style="height: 180px;">
                         <div class="card-body">
                             <h3 class="card-title" style="color: #F0FFFF;">{{ $jml_user }}</h3>
-                            <p class="card-text" style="color: #F0FFFF;">Total Jumlah</p>
+                            <p class="card-text" style="color: #F0FFFF;">Total User</p>
                         </div>
                         <div class="card-footer" style="color: #F0FFFF;">
                             <i class="ion bi bi-box-arrow-in-down" style="color: #F0FFFF;"></i>
