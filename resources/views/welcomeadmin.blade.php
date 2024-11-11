@@ -70,8 +70,7 @@
                                                 <td>{{ $session['ip_address'] }}</td>
                                                 <td>
                                                     <span class="badge bg-info">
-                                                        {{ $session['device'] }}
-                                                        ({{ $session['browser'] }})
+                                                        {{ $session['device'] }} ({{ $session['browser'] }})
                                                     </span>
                                                 </td>
                                                 <td>{{ $session['login_time'] }}</td>
@@ -125,7 +124,7 @@
                                                         <td>{{ $login['login_time'] }}</td>
                                                         <td>
                                                             <span class="badge bg-info">
-                                                                {{ $login['device'] }}
+                                                                {{ $session['device'] }} ({{ $session['browser'] }})
                                                             </span>
                                                         </td>
                                                         <td>

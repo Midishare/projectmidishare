@@ -229,6 +229,40 @@
             // Show loading overlay
             document.getElementById('loadingOverlay').style.display = 'flex';
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize DeviceDetector
+            const deviceDetector = new DeviceDetector();
+            const device = deviceDetector.parse(navigator.userAgent);
+
+            // Extract device details
+            const deviceInfo = {
+                type: device.device.type,
+                brand: device.device.brand,
+                model: device.device.model, // This is often the series or model name
+                os: device.os.name + ' ' + device.os.version,
+                browser: device.client.name + ' ' + device.client.version
+            };
+
+            // Send device info to the server when the user logs in
+            document.getElementById('login-form').addEventListener('submit', function(event) {
+                // Append device details to form data
+                const formData = new FormData(this);
+                formData.append('device', `${deviceInfo.brand} ${deviceInfo.model}`);
+                formData.append('browser', deviceInfo.browser);
+
+                // Submit the form data via AJAX or other method
+                fetch('/login', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    // Handle the response as needed
+                }).catch(error => {
+                    console.error('Error sending device data:', error);
+                });
+
+                event.preventDefault(); // Prevent default form submission if using AJAX
+            });
+        });
     </script>
 </body>
 

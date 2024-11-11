@@ -9,7 +9,6 @@ use App\Models\Login;  // Import the Login model
 use App\Models\LoginActivity;
 use App\Models\Logout;
 use Carbon\Carbon;
-use Jenssegers\Agent\Agent;
 use Stevebauman\Location\Facades\Location;
 
 class AuthController extends Controller
@@ -71,13 +70,14 @@ class AuthController extends Controller
     protected function recordLoginActivity($user, $request)
     {
         // Detect device and browser
-        $agent = new Agent();
+        $deviceInfo = $request->input('device', 'Unknown Device');
+        $browserInfo = $request->input('browser', 'Unknown Browser');
 
         LoginActivity::create([
             'user_id' => $user->id,
             'ip_address' => $request->ip(),
-            'device' => $agent->device(),
-            'browser' => $agent->browser(),
+            'device' => $deviceInfo,
+            'browser' => $browserInfo,
             'location' => $this->getLocationFromIP($request->ip()),
             'status' => 'login',
             'login_at' => now(),
