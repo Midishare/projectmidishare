@@ -74,12 +74,25 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $video->judulvidogm }}</td>
                                 <td>
-                                    @if (strpos($video->linkogm, 'youtube.com') !== false || strpos($video->linkogm, 'youtu.be') !== false)
+                                    @php
+                                        $isYoutube = strpos($video->linkogm, 'youtube.com') !== false || strpos($video->linkogm, 'youtu.be') !== false;
+                                        $isGoogleDrive = strpos($video->linkogm, 'drive.google.com') !== false;
+                                        $googleDriveId = '';
+                                
+                                        // Extract Google Drive file ID if it's a Google Drive link
+                                        if ($isGoogleDrive) {
+                                            preg_match('/\/d\/(.*?)\//', $video->linkogm, $matches);
+                                            $googleDriveId = $matches[1] ?? '';
+                                        }
+                                    @endphp
+                                
+                                    @if ($isYoutube || ($isGoogleDrive && $googleDriveId))
+                                        <!-- Display a clickable link -->
                                         <a href="{{ $video->linkogm }}" target="_blank">Lihat Video</a>
                                     @else
                                         <span>Format tidak didukung</span>
                                     @endif
-                                </td>
+                                </td>                                                               
                                 <td>
                                     <a href="{{ route('videoogm.editvidogm', $video->id) }}" class="btn btn-warning">
                                         <i class="bi bi-pencil-square" style="color: azure"></i>

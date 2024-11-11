@@ -257,7 +257,10 @@
                             Repository
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('kmadmin') }}">Knowledge Management</a></li>
+                            {{-- <li><a class="dropdown-item" href="{{ route('kmadmin') }}">Knowledge Management</a></li> --}}
+                            <li><a class="dropdown-item" href="/materiadmin">Method Of Development</a></li>
+                            <li><a class="dropdown-item" href="/materiadminmodogm">Subject Matter Expert</a></li>
+                            <li><a class="dropdown-item" href="/generallearnadmin">General Learning</a></li>
                             <li><a class="dropdown-item" href="{{ route('belajarmandiri.showallmandiri') }}">Belajar Mandiri</a></li>
                         </ul>                            
                     </li>

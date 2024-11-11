@@ -71,13 +71,14 @@ class VideoogmController extends Controller
     {
         $request->validate([
             'judulvidogm' => 'required',
-            'linkogm' => 'required|url', // Memvalidasi bahwa input adalah URL
+            'linkogm' => 'required|url', // Validate that the input is a URL
         ]);
 
-        // Memeriksa apakah link adalah link YouTube
         $linkogm = $request->input('linkogm');
-        if (strpos($linkogm, 'youtube.com') === false && strpos($linkogm, 'youtu.be') === false) {
-            return redirect()->back()->withErrors(['error' => 'Harap masukkan URL YouTube yang valid.']);
+
+        // Check if the URL is either a YouTube or Google Drive URL
+        if (!(strpos($linkogm, 'youtube.com') !== false || strpos($linkogm, 'youtu.be') !== false || strpos($linkogm, 'drive.google.com') !== false)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter a valid YouTube or Google Drive URL.']);
         }
 
         try {
@@ -85,11 +86,12 @@ class VideoogmController extends Controller
                 'judulvidogm' => $request->input('judulvidogm'),
                 'linkogm' => $linkogm,
             ]);
-            return redirect()->route('videoogm.show_by_adminvidogmshow')->with('success', 'Video berhasil ditambahkan.');
+            return redirect()->route('videoogm.show_by_adminvidogmshow')->with('success', 'Video successfully added.');
         } catch (\Exception $e) {
-            return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
+            return redirect()->back()->withInput()->withErrors(['error' => 'An error occurred. Please try again.']);
         }
     }
+
 
 
     public function detailvidogm($id)
@@ -131,9 +133,9 @@ class VideoogmController extends Controller
         $id = $request->input('id');
         $linkogm = $request->input('linkogm');
 
-        // Memeriksa apakah link yang diedit adalah link YouTube
-        if (strpos($linkogm, 'youtube.com') === false && strpos($linkogm, 'youtu.be') === false) {
-            return redirect()->back()->withErrors(['error' => 'Harap masukkan URL YouTube yang valid.']);
+        // Check if the edited URL is either a YouTube or Google Drive URL
+        if (!(strpos($linkogm, 'youtube.com') !== false || strpos($linkogm, 'youtu.be') !== false || strpos($linkogm, 'drive.google.com') !== false)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter a valid YouTube or Google Drive URL.']);
         }
 
         try {
@@ -141,11 +143,12 @@ class VideoogmController extends Controller
                 'judulvidogm' => $request->input('judulvidogm'),
                 'linkogm' => $linkogm,
             ]);
-            return redirect()->route('videoogm.show_by_adminvidogmshow')->with('success', 'Video berhasil diupdate.');
+            return redirect()->route('videoogm.show_by_adminvidogmshow')->with('success', 'Video successfully updated.');
         } catch (\Exception $e) {
-            return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
+            return redirect()->back()->withInput()->withErrors(['error' => 'An error occurred. Please try again.']);
         }
     }
+
 
     public function deletevidmodogm($id)
     {

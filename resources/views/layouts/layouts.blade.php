@@ -236,7 +236,10 @@
                             Repository
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('repositoryall') }}">Knowledge Management</a></li>
+                            {{-- <li><a class="dropdown-item" href="{{ route('repositoryall') }}">Knowledge Management</a></li> --}}
+                            <li><a class="dropdown-item" href="{{ route('materimod') }}">Method Of Development</a></li>
+                            <li><a class="dropdown-item" href="{{ route('materiogm') }}">Subject Matter Expert</a></li>
+                            <li><a class="dropdown-item" href="{{ route('generallearn') }}">General Learning</a></li>
                             <li><a class="dropdown-item" href="{{ route('belajarmandiriall') }}">Belajar Mandiri</a></li>
                         </ul>
                         @endauth
