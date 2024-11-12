@@ -56,9 +56,7 @@
                                     <thead class="table-light">
                                         <tr>
                                             <th>Name</th>
-                                            {{-- <th>user_id</th> --}}
                                             <th>IP Address</th>
-                                            <th>Device</th>
                                             <th>Login Time</th>
                                         </tr>
                                     </thead>
@@ -66,13 +64,7 @@
                                         @forelse($currentSessions as $session)
                                             <tr>
                                                 <td>{{ $session['user_name'] }}</td>
-                                                {{-- <td>{{ $session['user_id'] }}</td> --}}
                                                 <td>{{ $session['ip_address'] }}</td>
-                                                <td>
-                                                    <span class="badge bg-info">
-                                                        {{ $session['device'] }} ({{ $session['browser'] }})
-                                                    </span>
-                                                </td>
                                                 <td>{{ $session['login_time'] }}</td>
                                             </tr>
                                         @empty
@@ -110,9 +102,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
-                                                    {{-- <th>user_id</th> --}}
                                                     <th>Login Time</th>
-                                                    <th>Device</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
@@ -120,13 +110,7 @@
                                                 @foreach ($logins as $login)
                                                     <tr>
                                                         <td>{{ $login['user_name'] }}</td>
-                                                        {{-- <td>{{ $login['user_id'] }}</td> --}}
                                                         <td>{{ $login['login_time'] }}</td>
-                                                        <td>
-                                                            <span class="badge bg-info">
-                                                                {{ $session['device'] }} ({{ $session['browser'] }})
-                                                            </span>
-                                                        </td>
                                                         <td>
                                                             <span
                                                                 class="badge {{ $login['status'] == 'login' ? 'bg-success' : 'bg-warning' }}">

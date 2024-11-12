@@ -9,10 +9,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Login;
 use App\Models\LoginActivity;
-use Stevebauman\Location\Facades\Location;
 use App\Models\Logout;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -43,8 +40,6 @@ class DashboardController extends Controller
                     'user_name' => $activity->user->name,
                     'nik' => $activity->user->nik,
                     'ip_address' => $activity->ip_address,
-                    'device' => $this->getDeviceName($activity), // Updated to use device name function
-                    'browser' => $activity->browser,
                     'login_time' => Carbon::parse($activity->login_at)->diffForHumans(),
                 ];
             });
@@ -62,7 +57,6 @@ class DashboardController extends Controller
                         'user_name' => $activity->user->name,
                         'nik' => $activity->user->nik,
                         'login_time' => Carbon::parse($activity->login_at)->format('d-m-Y H:i:s'),
-                        'device' => $this->getDeviceName($activity), // Updated to use device name function
                         'status' => $activity->status,
                     ];
                 });
@@ -72,13 +66,6 @@ class DashboardController extends Controller
             'currentSessions' => $currentSessions,
             'weeklyLogins' => $weeklyLogins
         ]);
-    }
-
-    protected function getDeviceName($activity)
-    {
-        // Modify this function to retrieve the device name.
-        // Assuming `device` in `LoginActivity` stores the device name, simply return it:
-        return $activity->device ?? 'Unknown Device';
     }
 
     protected function getCurrentSessions()
@@ -91,8 +78,6 @@ class DashboardController extends Controller
                     'user_name' => $activity->user->name,
                     'email' => $activity->user->email,
                     'ip_address' => $activity->ip_address,
-                    'device' => $this->getDeviceName($activity), // Updated to use device name function
-                    'browser' => $activity->browser,
                     'login_time' => Carbon::parse($activity->login_at)->timezone('Asia/Jakarta')->format('d-m-Y H:i:s'),
                 ];
             });
@@ -113,7 +98,6 @@ class DashboardController extends Controller
                         'user_name' => $activity->user->name,
                         'nik' => $activity->user->nik,
                         'login_time' => Carbon::parse($activity->login_at)->timezone('Asia/Jakarta')->format('d-m-Y H:i:s'),
-                        'device' => $this->getDeviceName($activity), // Updated to use device name function
                         'status' => $activity->status,
                     ];
                 });
