@@ -14,7 +14,6 @@ class VideoogmController extends Controller
 
     public function showvideomodogm(Request $request)
     {
-
         try {
             $search = $request->input('search');
             $videoogm = DB::table('videoogm')
@@ -22,38 +21,8 @@ class VideoogmController extends Controller
                     return $query->where('judulvidogm', 'like', '%' . $search . '%');
                 })
                 ->orderBy('id', 'desc')
-                ->paginate(9); // or paginate(10) based on your requirement
+                ->paginate(9);
 
-
-            // Looping untuk setiap video untuk menyiapkan thumbnail URL
-            foreach ($videoogm as $video) {
-                $video_id = '';
-                $video_url = $video->linkogm;
-
-                // Cek apakah URL adalah YouTube
-                if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
-                    $url_parts = parse_url($video_url);
-
-                    if (isset($url_parts['query'])) {
-                        parse_str($url_parts['query'], $query);
-                        if (isset($query['v'])) {
-                            $video_id = $query['v']; // Mendapatkan ID video dari parameter 'v'
-                        }
-                    } elseif (isset($url_parts['path'])) {
-                        $path_parts = explode('/', trim($url_parts['path'], '/'));
-                        $video_id = end($path_parts); // Untuk URL singkat youtu.be
-                    }
-
-                    // Set thumbnail URL jika ID video ditemukan
-                    if ($video_id) {
-                        $video->thumbnail_url = "https://img.youtube.com/vi/{$video_id}/hqdefault.jpg";
-                    } else {
-                        $video->thumbnail_url = null;
-                    }
-                } else {
-                    $video->thumbnail_url = null;
-                }
-            }
             return view('modogm', ['videoogm' => $videoogm]);
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
@@ -70,27 +39,35 @@ class VideoogmController extends Controller
     public function addvidmodogm_process(Request $request)
     {
         $request->validate([
-            'judulvidogm' => 'required',
-            'linkogm' => 'required|url', // Validate that the input is a URL
+            'judulvidogm' => 'required|string|max:255',
+            'linkogm' => 'required|url',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
 
         $linkogm = $request->input('linkogm');
 
-        // Check if the URL is either a YouTube or Google Drive URL
         if (!(strpos($linkogm, 'youtube.com') !== false || strpos($linkogm, 'youtu.be') !== false || strpos($linkogm, 'drive.google.com') !== false)) {
             return redirect()->back()->withErrors(['error' => 'Please enter a valid YouTube or Google Drive URL.']);
+        }
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
         }
 
         try {
             DB::table('videoogm')->insert([
                 'judulvidogm' => $request->input('judulvidogm'),
                 'linkogm' => $linkogm,
+                'image_path' => $imagePath,
             ]);
             return redirect()->route('videoogm.show_by_adminvidogmshow')->with('success', 'Video successfully added.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error' => 'An error occurred. Please try again.']);
         }
     }
+
 
 
 
@@ -126,28 +103,40 @@ class VideoogmController extends Controller
     {
         $request->validate([
             'id' => 'required',
-            'judulvidogm' => 'required',
+            'judulvidogm' => 'required|string|max:255',
             'linkogm' => 'required|url',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $id = $request->input('id');
         $linkogm = $request->input('linkogm');
 
-        // Check if the edited URL is either a YouTube or Google Drive URL
         if (!(strpos($linkogm, 'youtube.com') !== false || strpos($linkogm, 'youtu.be') !== false || strpos($linkogm, 'drive.google.com') !== false)) {
             return redirect()->back()->withErrors(['error' => 'Please enter a valid YouTube or Google Drive URL.']);
+        }
+
+        $videoogm = DB::table('videoogm')->where('id', $id)->first();
+        $imagePath = $videoogm->image_path;
+
+        if ($request->hasFile('image')) {
+            if ($imagePath) {
+                Storage::delete($imagePath); // Delete the old image if it exists
+            }
+            $imagePath = $request->file('image')->store('public/images');
         }
 
         try {
             DB::table('videoogm')->where('id', $id)->update([
                 'judulvidogm' => $request->input('judulvidogm'),
                 'linkogm' => $linkogm,
+                'image_path' => $imagePath,
             ]);
             return redirect()->route('videoogm.show_by_adminvidogmshow')->with('success', 'Video successfully updated.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error' => 'An error occurred. Please try again.']);
         }
     }
+
 
 
     public function deletevidmodogm($id)
