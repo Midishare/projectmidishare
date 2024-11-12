@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid mt-5">
             <div class="row">
                 {{-- Currently Active Sessions --}}
                 <div class="col-md-12">
