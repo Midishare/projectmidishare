@@ -131,6 +131,60 @@
                         </div>
                     </div>
                 </div>
+                {{-- Monthly Login Activities --}}
+                <div class="col-md-12 mt-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="bi bi-calendar-month me-2"></i>Monthly Login Activities
+                            </h5>
+                            <span class="badge bg-light text-dark">Last 30 Days</span>
+                        </div>
+                        <div class="card-body">
+                            @forelse($monthlyLogins as $month => $logins)
+                                <div class="mb-4">
+                                    <h5 class="mb-3">
+                                        {{ Carbon\Carbon::parse($month . '-01')->format('F Y') }}
+                                        <span
+                                            class="badge bg-secondary ms-2">{{ is_countable($logins) ? count($logins) : 0 }}
+                                            Logins</span>
+                                    </h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Login Time</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($logins as $login)
+                                                    <tr>
+                                                        <td>{{ $login['user_name'] }}</td>
+                                                        <td>{{ $login['login_time'] }}</td>
+                                                        <td>
+                                                            <span
+                                                                class="badge {{ $login['status'] == 'login' ? 'bg-success' : 'bg-warning' }}">
+                                                                {{ ucfirst($login['status']) }}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="alert alert-info text-center">
+                                    No login activities in the past month
+                                </div>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>

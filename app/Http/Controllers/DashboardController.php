@@ -17,6 +17,7 @@ class DashboardController extends Controller
     {
         $currentSessions = $this->getCurrentSessions() ?? [];
         $weeklyLogins = $this->getWeeklyLogins() ?? [];
+        $monthlyLogins = $this->getMonthlyLogins();
         $jml_user = User::count();
         $hari_ini = Carbon::today();
         $jml_perhari = User::whereDate('created_at', $hari_ini)->count();
@@ -24,7 +25,7 @@ class DashboardController extends Controller
         $onlineUsersCount = $this->countOnlineUsersToday();
 
         if (Auth::check() && (Auth::user()->hasRole('admin') || Auth::user()->hasRole('auditor'))) {
-            return view('welcomeadmin', compact('jml_user', 'jml_perhari', 'onlineUsersCount', 'home', 'currentSessions', 'weeklyLogins'));
+            return view('welcomeadmin', compact('jml_user', 'jml_perhari', 'onlineUsersCount', 'home', 'currentSessions', 'weeklyLogins', 'monthlyLogins'));
         } else {
             return view('welcome', compact('home'));
         }
@@ -103,6 +104,30 @@ class DashboardController extends Controller
                 });
             });
     }
+
+    protected function getMonthlyLogins()
+    {
+        return LoginActivity::with('user')
+            ->where('login_at', '>=', now()->subMonth())
+            ->orderBy('login_at', 'desc')
+            ->get()
+            ->groupBy(function ($activity) {
+                return Carbon::parse($activity->login_at)->timezone('Asia/Jakarta')->format('Y-m');
+            })
+            ->map(function ($monthlyLogins) {
+                return $monthlyLogins->map(function ($activity) {
+                    return [
+                        'user_name' => $activity->user->name,
+                        'nik' => $activity->user->nik,
+                        'login_time' => Carbon::parse($activity->login_at)->timezone('Asia/Jakarta')->format('d-m-Y H:i:s'),
+                        'status' => $activity->status,
+                    ];
+                });
+            })
+            ->toArray(); // Convert to array to ensure it's countable
+    }
+
+
 
     public function countOnlineUsersToday()
     {
