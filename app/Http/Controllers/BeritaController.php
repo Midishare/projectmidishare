@@ -30,6 +30,24 @@ class BeritaController extends Controller
         return view('kmadmin');
     }
 
+    public function materiadmin()
+    {
+
+        return view('materiadmin');
+    }
+
+    public function generallearnadmin()
+    {
+
+        return view('generallearnadmin');
+    }
+
+    public function materiadminmodogm()
+    {
+
+        return view('materiadminmodogm');
+    }
+
     public function repositoryall()
     {
 

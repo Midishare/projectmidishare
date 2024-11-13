@@ -295,9 +295,7 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
 
 
     // SME
-    Route::get('/materiadminmodogm', function () {
-        return view('materiadminmodogm');
-    });
+
     Route::get('/materilinkogm', function () {
         return view('materilinkogm');
     });
@@ -324,16 +322,23 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
     Route::get('/addlinkogm', [LinkogmController::class, 'addlinkogm'])->name('linkogm.addlinkogm');
     Route::post('/addlinkogm_process', [LinkogmController::class, 'addlinkogm_process'])->name('linkogm.addlinkogm_process');
 
-    Route::get('/materiadmin', function () {
-        return view('materiadmin');
-    });
+    // Route::get('/materiadmin', function () {
+    //     return view('materiadmin');
+    // });
 
 
-    Route::get('/generallearnadmin', function () {
-        return view('generallearnadmin');
-    });
+    // Route::get('/generallearnadmin', function () {
+    //     return view('generallearnadmin');
+    // });
+
+    // Route::get('/materiadminmodogm', function () {
+    //     return view('materiadminmodogm');
+    // });
 
     Route::get('/kmadmin', [BeritaController::class, 'kmadmin'])->name('kmadmin');
+    Route::get('/materiadmin', [BeritaController::class, 'materiadmin'])->name('materiadmin');
+    Route::get('/generallearnadmin', [BeritaController::class, 'generallearnadmin'])->name('generallearnadmin');
+    Route::get('/materiadminmodogm', [BeritaController::class, 'materiadminmodogm'])->name('materiadminmodogm');
 });
 
 

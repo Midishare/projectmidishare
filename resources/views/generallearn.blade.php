@@ -108,7 +108,7 @@
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
-                                    src="{{ asset('icon/ms10.png') }}" alt="inofest">
+                                    src="{{ asset('icon/ms10.png') }}" alt="COP">
                                 <div class="card-body">
                                     <h4 class="card-title text-center">COP</h4>
                                 </div>
