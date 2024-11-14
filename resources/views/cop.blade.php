@@ -73,7 +73,7 @@
                                     <h4 class="card-title text-center">Cop Fresh</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.materi') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
                                         &raquo;</a>
                                 </div>
                             </div>

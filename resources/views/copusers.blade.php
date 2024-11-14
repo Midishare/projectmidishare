@@ -1,4 +1,4 @@
-@extends('layouts.layoutsadmin')
+@extends('layouts.layouts')
 
 @section('content')
     <section>
@@ -73,7 +73,7 @@
                                     <h4 class="card-title text-center">Cop Fresh</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.materi') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View details
                                         &raquo;</a>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                     <h4 class="card-title text-center">Cop Inofest</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View details
                                         &raquo;</a>
                                 </div>
                                 {{-- admin.Cop Inofest.index --}}
@@ -102,7 +102,7 @@
                                     <h4 class="card-title text-center">COP Development Program</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View details
                                         &raquo;</a>
                                 </div>
                                 {{-- admin.copdevelopmentprogram.index --}}
@@ -116,7 +116,7 @@
                                     <h4 class="card-title text-center">Cop Trainer House</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View
+                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View
                                         details
                                         &raquo;</a>
                                 </div>
@@ -131,7 +131,7 @@
                                     <h4 class="card-title text-center">Cop Komunitas Prapensiun </h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View details
                                         &raquo;</a>
                                 </div>
                                 {{-- admin.copkomunitasprapensiun .index --}}

@@ -23,7 +23,7 @@
                             @endif
                         </small> --}}
                         </p>
-                        <div class="card-text mt-4 text-center">
+                        <div class="card-text mt-4">
                             {!! $event->description !!}
                         </div>
                     </div>

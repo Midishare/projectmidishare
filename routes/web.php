@@ -21,6 +21,7 @@ use App\Http\Controllers\WebinController;
 use App\Http\Controllers\BukupintarwhController;
 use App\Http\Controllers\PapanilmutokoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CopfreshController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\Admin\ModchecklistController as ModchecklistController;
 use App\Http\Controllers\Admin\GapknowledgechecklistController as GapknowledgechecklistController;
@@ -33,6 +34,7 @@ use App\Http\Controllers\Admin\InoController as AdminInoController;
 use App\Http\Controllers\Admin\FinlitController as AdminFinlitController;
 use App\Http\Controllers\Admin\WebinController as AdminWebinarController;
 use App\Http\Controllers\Admin\BukupintarwhController as AdminBukupintarwhController;
+use App\Http\Controllers\Admin\CopfreshController as AdminCopfreshController;
 use App\Http\Controllers\Admin\VideoDpController;
 use App\Http\Controllers\Admin\VideoIpController;
 use App\Http\Controllers\Admin\VideoIktController;
@@ -40,6 +42,7 @@ use App\Http\Controllers\Admin\VideoMvpController;
 use App\Http\Controllers\Admin\VideoInoController;
 use App\Http\Controllers\Admin\VideoFinlitController;
 use App\Http\Controllers\Admin\VideoWebinController;
+use App\Http\Controllers\Admin\VideoCopfreshController;
 use App\Http\Controllers\RepositoryallController;
 use App\Models\History;
 
@@ -217,6 +220,26 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
         Route::post('/video/bulk-delete', [VideoFinlitController::class, 'bulkDelete'])->name('admin.finlit.video.bulkDelete');
     });
 
+    Route::prefix('admin/copfresh')->group(function () {
+        Route::get('/', [AdminCopfreshController::class, 'index'])->name('admin.copfresh.index');
+        Route::get('/materi', [AdminCopfreshController::class, 'materiDokumen'])->name('admin.copfresh.materi');
+        Route::post('/materi/create', [AdminCopfreshController::class, 'store'])->name('admin.copfresh.materi.store');
+        Route::get('/materi/create', [AdminCopfreshController::class, 'create'])->name('admin.copfresh.materi.create');
+        Route::get('/materi/{id}/edit', [AdminCopfreshController::class, 'edit'])->name('admin.copfresh.materi.edit');
+        Route::put('/materi/{id}', [AdminCopfreshController::class, 'update'])->name('admin.copfresh.materi.update');
+        Route::get('/materi/{id}', [AdminCopfreshController::class, 'destroy'])->name('admin.copfresh.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminCopfreshController::class, 'bulkDelete'])->name('admin.copfresh.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoCopfreshController::class, 'index'])->name('admin.videocopfresh.video');
+        Route::get('/video/create', [VideoCopfreshController::class, 'create'])->name('admin.videocopfresh.video.create');
+        Route::post('/video', [VideoCopfreshController::class, 'store'])->name('admin.videocopfresh.video.store');
+        Route::get('/video/{id}/edit', [VideoCopfreshController::class, 'edit'])->name('admin.videocopfresh.video.edit');
+        Route::put('/video/{id}', [VideoCopfreshController::class, 'update'])->name('admin.videocopfresh.video.update');
+        Route::delete('/video/{id}', [VideoCopfreshController::class, 'destroy'])->name('admin.videocopfresh.video.destroy');
+        Route::delete('/video/bulk-delete', [VideoCopfreshController::class, 'bulkDelete'])->name('admin.videocopfresh.video.bulkDelete');
+    });
+
     Route::prefix('admin/webinar')->group(function () {
         Route::get('/', [AdminWebinarController::class, 'index'])->name('admin.webinar.index');
         Route::get('/materi', [AdminWebinarController::class, 'materiDokumen'])->name('admin.webinar.materi');
@@ -335,6 +358,11 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
     //     return view('materiadminmodogm');
     // });
 
+
+    // allcop admin
+    Route::get('/allcop', [AdminCopfreshController::class, 'allcop'])->name('allcop');
+
+
     Route::get('/kmadmin', [BeritaController::class, 'kmadmin'])->name('kmadmin');
     Route::get('/materiadmin', [BeritaController::class, 'materiadmin'])->name('materiadmin');
     Route::get('/generallearnadmin', [BeritaController::class, 'generallearnadmin'])->name('generallearnadmin');
@@ -384,6 +412,11 @@ Route::middleware('auth', 'role:user')->group(function () {
     Route::get('/materiogm', [RepositoryallController::class, 'materiogm'])->name('materiogm');
     Route::get('/generallearn', [RepositoryallController::class, 'generallearn'])->name('generallearn');
 
+    // Route untuk Webinar
+    Route::get('/copfresh', [CopfreshController::class, 'index'])->name('copfresh.index');
+    Route::get('/copfresh/materi', [CopfreshController::class, 'materiDokumen'])->name('copfresh.materi');
+    Route::get('/copfresh/video', [CopfreshController::class, 'video'])->name('copfresh.video');
+
     // SME
     Route::get('/repositorylinkogm', function () {
         return view('repositorylinkogm');
@@ -399,6 +432,9 @@ Route::middleware('auth', 'role:user')->group(function () {
     Route::get('/repositoryall', [BeritaController::class, 'repositoryall'])->name('repositoryall');
 
     Route::get('/belajarmandiriall', [BeritaController::class, 'belajarmandiriall'])->name('belajarmandiriall');
+
+    //allcop user
+    Route::get('/allcopusers', [CopfreshController::class, 'allcopuser'])->name('allcopuser');
 
 
     Route::get('/ogmlink', [LinkogmController::class, 'showlinkogm'])->name('linkogm.showlinkogm');

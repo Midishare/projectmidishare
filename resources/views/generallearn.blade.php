@@ -113,7 +113,7 @@
                                     <h4 class="card-title text-center">COP</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('ino.index') }}">View details &raquo;</a>
+                                    <a class="btn btn-secondary" href="{{ route('allcopuser') }}">View details &raquo;</a>
                                 </div>
                             </div>
                         </div>
