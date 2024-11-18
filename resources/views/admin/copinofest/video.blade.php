@@ -77,15 +77,15 @@
         }
     </style>
     <div class="container">
-        <h2 class="text-center">Video Cop Fresh</h2>
+        <h2 class="text-center">Video Cop Inofest</h2>
         <div class="col-md-12 bg-white p-4">
             <div class="row">
                 <div class="col-md-6">
-                    <a href="{{ route('admin.videocopfresh.video.create') }}" class="btn btn-primary">Add Video</a>
+                    <a href="{{ route('admin.videocopinofest.video.create') }}" class="btn btn-primary">Add Video</a>
                 </div>
                 <div class="col-md-6 text-right">
                     <div class="row g-2 align-items-center justify-content-end">
-                        <form action="{{ route('admin.videocopfresh.video') }}" method="GET">
+                        <form action="{{ route('admin.videocopinofest.video') }}" method="GET">
                             <div class="search-wrapper" style="position: relative;">
                                 <input type="text" name="search" placeholder="Search..." value="{{ request('search') }}"
                                     class="search-input">
@@ -98,16 +98,15 @@
                 </div>
             </div>
         </div>
-        <form id="bulkDeleteForm" method="POST" action="{{ route('admin.videocopfresh.video.bulkDelete') }}">
+        <form id="bulkDeleteForm" method="POST" action="{{ route('admin.videocopinofest.video.bulkDelete') }}">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger ms-4 mb-3" onclick="confirmBulkDelete()">Hapus yang
-                dipilih</button>
+            <button type="button" class="btn btn-danger mt-4" onclick="confirmBulkDelete()">Hapus yang dipilih</button>
 
             <table class="table">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="select-all"></th>
+                        <th><input type="checkbox" id="selectAll"></th>
                         <th>Title</th>
                         <th>Video Link</th>
                         <th>Image</th>
@@ -115,14 +114,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($videocopfresh as $video)
+                    @foreach ($videocopinofest as $video)
                         <tr>
-                            <td><input type="checkbox" name="video_ids[]" value="{{ $video->id }}"> </td>
+                            <td><input type="checkbox" name="video_ids[]" value="{{ $video->id }}"></td>
                             <td>{{ $video->title }}</td>
                             <td><a href="{{ $video->video_link }}" target="_blank">View Video</a></td>
                             <td><img src="{{ Storage::url($video->image_path) }}" width="100"></td>
                             <td>
-                                <a href="{{ route('admin.videocopfresh.video.edit', $video->id) }}"
+                                <a href="{{ route('admin.videocopinofest.video.edit', $video->id) }}"
                                     class="btn btn-info">Edit</a>
                                 <button type="button" class="btn btn-danger"
                                     onclick="confirmDelete({{ $video->id }})">Delete</button>
@@ -132,8 +131,7 @@
                 </tbody>
             </table>
         </form>
-
-        {{ $videocopfresh->links() }}
+        {{ $videocopinofest->links() }}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -179,7 +177,7 @@
                 if (result.isConfirmed) {
                     // Buat form dinamis untuk mengirimkan permintaan DELETE
                     const form = document.createElement('form');
-                    form.action = `/admin/copfresh/video/${videoId}`;
+                    form.action = `/admin/copinofest/video/${videoId}`;
                     form.method = 'POST';
 
                     // Tambahkan CSRF Token

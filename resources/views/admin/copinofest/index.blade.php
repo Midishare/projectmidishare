@@ -1,4 +1,4 @@
-@extends('layouts.layouts')
+@extends('layouts.layoutsadmin')
 
 @section('content')
     <section>
@@ -49,18 +49,15 @@
             }
         </style>
         <section class="gradient-bg py-5">
-            <div class="container-fluid row p-4 d-flex align-items-center justify-content-between">
-                <a href="javascript:history.back()" class="btn back-button col-12">
+            <div class="container-fluid p-4 d-flex align-items-center justify-content-between">
+                <a href="javascript:history.back()" class="btn back-button">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>
-                <div class="container text-center mt-3 col-12">
-                    <h2>COP Fresh - Pilih Materi</h3>
-                        <div></div>
+                <div class="container text-center mt-3">
+                    <h2>COP</h3>
+                        <div></div> <!-- Placeholder div to balance the flex container -->
                 </div>
-            </div>
         </section>
-
-
         <div class="container text-center">
             <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
                 <div class="col">
@@ -71,7 +68,7 @@
                             <h2 class="card-title">Materi Dokumen</h2>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-secondary" href="{{ route('copfresh.materi') }}"
+                            <a class="btn btn-secondary" href="{{ route('admin.copinofest.materi') }}"
                                 class="btn btn-primary btn-lg">Views Details</a>
                         </div>
                     </div>
@@ -84,7 +81,8 @@
                             <h2 class="card-title">Video</h2>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-secondary" href="{{ route('copfresh.video') }}">Views details &raquo;</a>
+                            <a class="btn btn-secondary" href="{{ route('admin.videocopinofest.video') }}">Views details
+                                &raquo;</a>
                         </div>
                     </div>
                 </div>
@@ -92,5 +90,5 @@
         </div>
     </section>
 
-    <div style="height: 100px;"></div> <!-- Spasi antara konten dan footer -->
+    <div style="height: 100px;"></div>
 @endsection

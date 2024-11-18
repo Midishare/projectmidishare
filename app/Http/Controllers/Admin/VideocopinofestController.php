@@ -4,31 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Videocopfresh;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use App\Models\Videocopinofest;
 
-class VideoCopfreshController extends Controller
+class VideocopinofestController extends Controller
 {
-
     public function index(Request $request)
     {
         $search = $request->input('search');
 
-        $videocopfresh = Videocopfresh::when($search, function ($query, $search) {
+        $videocopinofest = Videocopinofest::when($search, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%');
         })
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        return view('admin.copfresh.video', compact('videocopfresh', 'search'));
+        return view('admin.copinofest.video', compact('videocopinofest', 'search'));
     }
 
     public function create()
     {
-        return view('admin.copfresh.createvideo');
+        return view('admin.copinofest.createvideo');
     }
 
     public function store(Request $request)
@@ -41,19 +37,19 @@ class VideoCopfreshController extends Controller
 
         $imagePath = $request->file('image')->store('public/dokumen_images');
 
-        Videocopfresh::create([
+        Videocopinofest::create([
             'title' => $request->input('title'),
             'video_link' => $request->input('video_link'),
             'image_path' => $imagePath,
         ]);
 
-        return redirect()->route('admin.videocopfresh.video')->with('success', 'Video successfully added.');
+        return redirect()->route('admin.videocopinofest.video')->with('success', 'Video successfully added.');
     }
 
     public function edit($id)
     {
-        $videocopfresh = Videocopfresh::findOrFail($id);
-        return view('admin.copfresh.editvideo', compact('videocopfresh'));
+        $videocopinofest = Videocopinofest::findOrFail($id);
+        return view('admin.copinofest.editvideo', compact('videocopinofest'));
     }
 
     public function update(Request $request, $id)
@@ -64,31 +60,31 @@ class VideoCopfreshController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $videocopfresh = Videocopfresh::findOrFail($id);
+        $videocopinofest = Videocopinofest::findOrFail($id);
 
         if ($request->hasFile('image')) {
-            if ($videocopfresh->image_path) {
-                Storage::delete($videocopfresh->image_path);
+            if ($videocopinofest->image_path) {
+                Storage::delete($videocopinofest->image_path);
             }
             $imagePath = $request->file('image')->store('public/dokumen_images');
-            $videocopfresh->image_path = $imagePath;
+            $videocopinofest->image_path = $imagePath;
         }
 
-        $videocopfresh->update([
+        $videocopinofest->update([
             'title' => $request->input('title'),
             'video_link' => $request->input('video_link'),
-            'image_path' => $videocopfresh->image_path,
+            'image_path' => $videocopinofest->image_path,
         ]);
 
-        return redirect()->route('admin.videocopfresh.video')->with('success', 'Video successfully updated.');
+        return redirect()->route('admin.videocopinofest.video')->with('success', 'Video successfully updated.');
     }
 
     public function destroy($id)
     {
-        $video = Videocopfresh::find($id);
+        $video = VideoCopInoFest::find($id);
 
         if (!$video) {
-            return redirect()->route('admin.videocopfresh.video')
+            return redirect()->route('admin.videocopinofest.video')
                 ->with('error', 'Video tidak ditemukan!');
         }
         if ($video->image_path && Storage::exists($video->image_path)) {
@@ -96,19 +92,20 @@ class VideoCopfreshController extends Controller
         }
         $video->delete();
 
-        return redirect()->route('admin.videocopfresh.video')
+        return redirect()->route('admin.videocopinofest.video')
             ->with('success', 'Video berhasil dihapus!');
     }
+
 
     public function bulkDelete(Request $request)
     {
         $videoIds = $request->input('video_ids');
 
         if ($videoIds) {
-            Videocopfresh::whereIn('id', $videoIds)->delete();
-            return redirect()->route('admin.videocopfresh.video')->with('success', 'Selected videos deleted successfully.');
+            VideoCopInoFest::whereIn('id', $videoIds)->delete();
+            return redirect()->route('admin.videocopinofest.video')->with('success', 'Selected videos deleted successfully.');
         }
 
-        return redirect()->route('admin.videocopfresh.video')->with('error', 'No videos selected for deletion.');
+        return redirect()->route('admin.videocopinofest.video')->with('error', 'No videos selected for deletion.');
     }
 }

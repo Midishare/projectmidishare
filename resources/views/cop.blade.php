@@ -87,7 +87,7 @@
                                     <h4 class="card-title text-center">Cop Inofest</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('admin.copinofest.index') }}">View details
                                         &raquo;</a>
                                 </div>
                                 {{-- admin.Cop Inofest.index --}}

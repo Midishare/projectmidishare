@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\FinlitController as AdminFinlitController;
 use App\Http\Controllers\Admin\WebinController as AdminWebinarController;
 use App\Http\Controllers\Admin\BukupintarwhController as AdminBukupintarwhController;
 use App\Http\Controllers\Admin\CopfreshController as AdminCopfreshController;
+use App\Http\Controllers\Admin\CopinofestController as AdminCopinofestController;
 use App\Http\Controllers\Admin\VideoDpController;
 use App\Http\Controllers\Admin\VideoIpController;
 use App\Http\Controllers\Admin\VideoIktController;
@@ -43,6 +44,7 @@ use App\Http\Controllers\Admin\VideoInoController;
 use App\Http\Controllers\Admin\VideoFinlitController;
 use App\Http\Controllers\Admin\VideoWebinController;
 use App\Http\Controllers\Admin\VideoCopfreshController;
+use App\Http\Controllers\Admin\VideoCopinofestController;
 use App\Http\Controllers\RepositoryallController;
 use App\Models\History;
 
@@ -237,7 +239,29 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
         Route::get('/video/{id}/edit', [VideoCopfreshController::class, 'edit'])->name('admin.videocopfresh.video.edit');
         Route::put('/video/{id}', [VideoCopfreshController::class, 'update'])->name('admin.videocopfresh.video.update');
         Route::delete('/video/{id}', [VideoCopfreshController::class, 'destroy'])->name('admin.videocopfresh.video.destroy');
-        Route::delete('/video/bulk-delete', [VideoCopfreshController::class, 'bulkDelete'])->name('admin.videocopfresh.video.bulkDelete');
+        Route::delete('/admin/copfresh/video/bulk-delete', [VideoCopfreshController::class, 'bulkDelete'])
+            ->name('admin.videocopfresh.video.bulkDelete');
+    });
+
+    Route::prefix('admin/copinofest')->group(function () {
+        Route::get('/', [AdminCopinofestController::class, 'index'])->name('admin.copinofest.index');
+        Route::get('/materi', [AdminCopinofestController::class, 'materiDokumen'])->name('admin.copinofest.materi');
+        Route::post('/materi/create', [AdminCopinofestController::class, 'store'])->name('admin.copinofest.materi.store');
+        Route::get('/materi/create', [AdminCopinofestController::class, 'create'])->name('admin.copinofest.materi.create');
+        Route::get('/materi/{id}/edit', [AdminCopinofestController::class, 'edit'])->name('admin.copinofest.materi.edit');
+        Route::put('/materi/{id}', [AdminCopinofestController::class, 'update'])->name('admin.copinofest.materi.update');
+        Route::get('/materi/{id}', [AdminCopinofestController::class, 'destroy'])->name('admin.copinofest.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminCopinofestController::class, 'bulkDelete'])->name('admin.copinofest.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoCopinofestController::class, 'index'])->name('admin.videocopinofest.video');
+        Route::get('/video/create', [VideoCopinofestController::class, 'create'])->name('admin.videocopinofest.video.create');
+        Route::post('/video', [VideoCopinofestController::class, 'store'])->name('admin.videocopinofest.video.store');
+        Route::get('/video/{id}/edit', [VideoCopinofestController::class, 'edit'])->name('admin.videocopinofest.video.edit');
+        Route::put('/video/{id}', [VideoCopinofestController::class, 'update'])->name('admin.videocopinofest.video.update');
+        Route::delete('/video/{id}', [VideoCopinofestController::class, 'destroy'])->name('admin.videocopinofest.video.destroy');
+        Route::delete('/admin/copinofest/video/bulk-delete', [VideoCopInoFestController::class, 'bulkDelete'])
+            ->name('admin.videocopinofest.video.bulkDelete');
     });
 
     Route::prefix('admin/webinar')->group(function () {

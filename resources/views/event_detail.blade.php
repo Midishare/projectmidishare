@@ -13,15 +13,9 @@
                     <img src="{{ asset('storage/event_images/' . $event->image) }}" class="image-head text-center"
                         alt="{{ $event->title }}">
                     <div class="card-body">
-                        {{-- <span class="badge bg-primary mb-2">{{ $event->category }}</span> --}}
+
                         <h1 class="card-title">{{ $event->title }}</h1>
                         <p class="text-muted">
-                            {{-- <small>
-                            <i class="bi bi-clock"></i> {{ $event->created_at->diffForHumans() }}
-                            @if ($event->author)
-                                • <i class="bi bi-person"></i> {{ $event->author }}
-                            @endif
-                        </small> --}}
                         </p>
                         <div class="card-text mt-4">
                             {!! $event->description !!}
