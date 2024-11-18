@@ -102,7 +102,7 @@
                                     <h4 class="card-title text-center">COP Development Program</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('admin.copdevprog.index') }}">View details
                                         &raquo;</a>
                                 </div>
                                 {{-- admin.copdevelopmentprogram.index --}}
