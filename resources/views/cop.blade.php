@@ -116,7 +116,7 @@
                                     <h4 class="card-title text-center">Cop Trainer House</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View
+                                    <a class="btn btn-secondary" href="{{ route('admin.coptrahou.index') }}">View
                                         details
                                         &raquo;</a>
                                 </div>
