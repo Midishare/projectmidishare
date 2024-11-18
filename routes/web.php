@@ -38,6 +38,7 @@ use App\Http\Controllers\Admin\CopfreshController as AdminCopfreshController;
 use App\Http\Controllers\Admin\CopinofestController as AdminCopinofestController;
 use App\Http\Controllers\Admin\CopdevprogController as AdminCopdevprogController;
 use App\Http\Controllers\Admin\CoptrahouController as AdminCoptrahouController;
+use App\Http\Controllers\Admin\CopkompraController as AdminCopkompraController;
 use App\Http\Controllers\Admin\VideoDpController;
 use App\Http\Controllers\Admin\VideoIpController;
 use App\Http\Controllers\Admin\VideoIktController;
@@ -49,6 +50,7 @@ use App\Http\Controllers\Admin\VideoCopfreshController;
 use App\Http\Controllers\Admin\VideoCopinofestController;
 use App\Http\Controllers\Admin\VideocopdevprogController;
 use App\Http\Controllers\Admin\VideocoptrahouController;
+use App\Http\Controllers\Admin\VideoCopkompraController;
 use App\Http\Controllers\RepositoryallController;
 use App\Models\History;
 
@@ -308,6 +310,27 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
         Route::delete('/video/{id}', [VideocoptrahouController::class, 'destroy'])->name('admin.videocoptrahou.video.destroy');
         Route::delete('/admin/coptrahou/video/bulk-delete', [VideocoptrahouController::class, 'bulkDelete'])
             ->name('admin.videocoptrahou.video.bulkDelete');
+    });
+
+    Route::prefix('admin/copkompra')->group(function () {
+        Route::get('/', [AdminCopkompraController::class, 'index'])->name('admin.copkompra.index');
+        Route::get('/materi', [AdminCopkompraController::class, 'materiDokumen'])->name('admin.copkompra.materi');
+        Route::post('/materi/create', [AdminCopkompraController::class, 'store'])->name('admin.copkompra.materi.store');
+        Route::get('/materi/create', [AdminCopkompraController::class, 'create'])->name('admin.copkompra.materi.create');
+        Route::get('/materi/{id}/edit', [AdminCopkompraController::class, 'edit'])->name('admin.copkompra.materi.edit');
+        Route::put('/materi/{id}', [AdminCopkompraController::class, 'update'])->name('admin.copkompra.materi.update');
+        Route::get('/materi/{id}', [AdminCopkompraController::class, 'destroy'])->name('admin.copkompra.materi.destroy');
+        Route::post('/materi/bulk-delete', [AdminCopkompraController::class, 'bulkDelete'])->name('admin.copkompra.materi.bulkDelete');
+
+        // Video routes
+        Route::get('/video', [VideoCopkompraController::class, 'index'])->name('admin.videocopkompra.video');
+        Route::get('/video/create', [VideoCopkompraController::class, 'create'])->name('admin.videocopkompra.video.create');
+        Route::post('/video', [VideoCopkompraController::class, 'store'])->name('admin.videocopkompra.video.store');
+        Route::get('/video/{id}/edit', [VideoCopkompraController::class, 'edit'])->name('admin.videocopkompra.video.edit');
+        Route::put('/video/{id}', [VideoCopkompraController::class, 'update'])->name('admin.videocopkompra.video.update');
+        Route::delete('/video/{id}', [VideoCopkompraController::class, 'destroy'])->name('admin.videocopkompra.video.destroy');
+        Route::delete('/admin/copkompra/video/bulk-delete', [VideoCopkompraController::class, 'bulkDelete'])
+            ->name('admin.videocopkompra.video.bulkDelete');
     });
 
     Route::prefix('admin/webinar')->group(function () {
