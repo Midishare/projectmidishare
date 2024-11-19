@@ -3,16 +3,13 @@
 @section('content')
     <section>
         <style>
-            /* Gaya CSS tambahan */
             .back-button {
                 margin-top: 1rem;
-                /* Menambahkan margin-top untuk jarak antara judul dan navbar */
             }
 
             @media (max-width: 768px) {
                 .gradient-bg.py-5 {
                     padding-top: 2rem;
-                    /* Penyesuaian padding atas untuk tampilan responsif */
                 }
             }
 
@@ -55,7 +52,7 @@
                 </a>
                 <div class="container text-center mt-3">
                     <h2>COP</h3>
-                        <div></div> <!-- Placeholder div to balance the flex container -->
+                        <div></div>
                 </div>
         </section>
 
@@ -87,13 +84,11 @@
                                     <h4 class="card-title text-center">Cop Inofest</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('copinofest.index') }}">View details
                                         &raquo;</a>
                                 </div>
-                                {{-- admin.Cop Inofest.index --}}
                             </div>
                         </div>
-                        <!-- IP Card -->
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -102,10 +97,10 @@
                                     <h4 class="card-title text-center">COP Development Program</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('copdevprog.index') }}">View details
                                         &raquo;</a>
                                 </div>
-                                {{-- admin.copdevelopmentprogram.index --}}
+
                             </div>
                         </div>
                         <div class="col">
@@ -116,11 +111,11 @@
                                     <h4 class="card-title text-center">Cop Trainer House</h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View
+                                    <a class="btn btn-secondary" href="{{ route('coptrahou.index') }}">View
                                         details
                                         &raquo;</a>
                                 </div>
-                                {{-- admin.coptrainerhouse.index --}}
+
                             </div>
                         </div>
                         <div class="col">
@@ -131,45 +126,16 @@
                                     <h4 class="card-title text-center">Cop Komunitas Prapensiun </h4>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center">
-                                    <a class="btn btn-secondary" href="{{ route('copfresh.index') }}">View details
+                                    <a class="btn btn-secondary" href="{{ route('copkompra.index') }}">View details
                                         &raquo;</a>
                                 </div>
-                                {{-- admin.copkomunitasprapensiun .index --}}
+
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-        {{-- <div class="container text-center">
-            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
-                <div class="col">
-                    <div class="card h-100">
-                        <img class="bd-placeholder-img rounded-circle mx-auto" width="180" height="180"
-                            src="{{ asset('icon/dokumen.png') }}" alt="Operation General Manager">
-                        <div class="card-body">
-                            <h2 class="card-title">Materi Dokumen</h2>
-                        </div>
-                        <div class="card-footer">
-                            <a class="btn btn-secondary" href="{{ route('admin.ino.materi') }}"
-                                class="btn btn-primary btn-lg">Views Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img class="bd-placeholder-img rounded-circle mx-auto" width="180" height="180"
-                            src="{{ asset('icon/video player.png') }}" alt="Operation General Manager">
-                        <div class="card-body">
-                            <h2 class="card-title">Video</h2>
-                        </div>
-                        <div class="card-footer">
-                            <a class="btn btn-secondary" href="{{ route('admin.ino.video') }}">Views details &raquo;</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </section>
 
     <div style="height: 100px;"></div>

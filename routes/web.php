@@ -22,6 +22,10 @@ use App\Http\Controllers\BukupintarwhController;
 use App\Http\Controllers\PapanilmutokoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CopfreshController;
+use App\Http\Controllers\CopinofestController;
+use App\Http\Controllers\CopdevprogController;
+use App\Http\Controllers\CoptrahouController;
+use App\Http\Controllers\CopkompraController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\Admin\ModchecklistController as ModchecklistController;
 use App\Http\Controllers\Admin\GapknowledgechecklistController as GapknowledgechecklistController;
@@ -505,10 +509,30 @@ Route::middleware('auth', 'role:user')->group(function () {
     Route::get('/materiogm', [RepositoryallController::class, 'materiogm'])->name('materiogm');
     Route::get('/generallearn', [RepositoryallController::class, 'generallearn'])->name('generallearn');
 
-    // Route untuk Webinar
+    // Route untuk copfresh
     Route::get('/copfresh', [CopfreshController::class, 'index'])->name('copfresh.index');
     Route::get('/copfresh/materi', [CopfreshController::class, 'materiDokumen'])->name('copfresh.materi');
     Route::get('/copfresh/video', [CopfreshController::class, 'video'])->name('copfresh.video');
+
+    // Route untuk copinofest
+    Route::get('/copinofest', [CopinofestController::class, 'index'])->name('copinofest.index');
+    Route::get('/copinofest/materi', [CopinofestController::class, 'materiDokumen'])->name('copinofest.materi');
+    Route::get('/copinofest/video', [CopinofestController::class, 'video'])->name('copinofest.video');
+
+    // Route untuk copdevprog
+    Route::get('/copdevprog', [CopdevprogController::class, 'index'])->name('copdevprog.index');
+    Route::get('/copdevprog/materi', [CopdevprogController::class, 'materiDokumen'])->name('copdevprog.materi');
+    Route::get('/copdevprog/video', [CopdevprogController::class, 'video'])->name('copdevprog.video');
+
+    // Route untuk coptrahou
+    Route::get('/coptrahou', [CoptrahouController::class, 'index'])->name('coptrahou.index');
+    Route::get('/coptrahou/materi', [CoptrahouController::class, 'materiDokumen'])->name('coptrahou.materi');
+    Route::get('/coptrahou/video', [CoptrahouController::class, 'video'])->name('coptrahou.video');
+
+    // Route untuk copkompra
+    Route::get('/copkompra', [CopkompraController::class, 'index'])->name('copkompra.index');
+    Route::get('/copkompra/materi', [CopkompraController::class, 'materiDokumen'])->name('copkompra.materi');
+    Route::get('/copkompra/video', [CopkompraController::class, 'video'])->name('copkompra.video');
 
     // SME
     Route::get('/repositorylinkogm', function () {

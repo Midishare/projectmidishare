@@ -2,7 +2,6 @@
 
 @section('content')
     <style>
-        /* Gaya CSS tambahan */
         .back-button {
             margin-top: 1rem;
         }
@@ -49,7 +48,7 @@
             </a>
         </div>
         <div class="container text-center">
-            <h3>Cop Fresh - Video</h3>
+            <h3>Cop Inofest - Video</h3>
         </div>
     </section>
 
@@ -57,7 +56,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-end">
                 <div class="col-auto">
-                    <form action="{{ route('copfresh.video') }}" method="GET" class="flex-grow-4">
+                    <form action="{{ route('copinofest.video') }}" method="GET" class="flex-grow-4">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control" aria-describedby="searchHelpInline"
                                 placeholder="Search...">
