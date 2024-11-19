@@ -51,9 +51,9 @@ use App\Http\Controllers\Admin\VideoInoController;
 use App\Http\Controllers\Admin\VideoFinlitController;
 use App\Http\Controllers\Admin\VideoWebinController;
 use App\Http\Controllers\Admin\VideoCopfreshController;
-use App\Http\Controllers\Admin\VideoCopinofestController;
-use App\Http\Controllers\Admin\VideocopdevprogController;
-use App\Http\Controllers\Admin\VideocoptrahouController;
+use App\Http\Controllers\Admin\VideocopinofestController;
+use App\Http\Controllers\Admin\VideoCopdevprogController;
+use App\Http\Controllers\Admin\VideoCoptrahouController;
 use App\Http\Controllers\Admin\VideoCopkompraController;
 use App\Http\Controllers\RepositoryallController;
 use App\Models\History;
@@ -264,13 +264,13 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
         Route::post('/materi/bulk-delete', [AdminCopinofestController::class, 'bulkDelete'])->name('admin.copinofest.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideoCopinofestController::class, 'index'])->name('admin.videocopinofest.video');
-        Route::get('/video/create', [VideoCopinofestController::class, 'create'])->name('admin.videocopinofest.video.create');
-        Route::post('/video', [VideoCopinofestController::class, 'store'])->name('admin.videocopinofest.video.store');
-        Route::get('/video/{id}/edit', [VideoCopinofestController::class, 'edit'])->name('admin.videocopinofest.video.edit');
-        Route::put('/video/{id}', [VideoCopinofestController::class, 'update'])->name('admin.videocopinofest.video.update');
-        Route::delete('/video/{id}', [VideoCopinofestController::class, 'destroy'])->name('admin.videocopinofest.video.destroy');
-        Route::delete('/admin/copinofest/video/bulk-delete', [VideoCopInoFestController::class, 'bulkDelete'])
+        Route::get('/video', [VideocopinofestController::class, 'index'])->name('admin.videocopinofest.video');
+        Route::get('/video/create', [VideocopinofestController::class, 'create'])->name('admin.videocopinofest.video.create');
+        Route::post('/video', [VideocopinofestController::class, 'store'])->name('admin.videocopinofest.video.store');
+        Route::get('/video/{id}/edit', [VideocopinofestController::class, 'edit'])->name('admin.videocopinofest.video.edit');
+        Route::put('/video/{id}', [VideocopinofestController::class, 'update'])->name('admin.videocopinofest.video.update');
+        Route::delete('/video/{id}', [VideocopinofestController::class, 'destroy'])->name('admin.videocopinofest.video.destroy');
+        Route::delete('/admin/copinofest/video/bulk-delete', [VideocopInoFestController::class, 'bulkDelete'])
             ->name('admin.videocopinofest.video.bulkDelete');
     });
 
@@ -285,13 +285,13 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
         Route::post('/materi/bulk-delete', [AdminCopdevprogController::class, 'bulkDelete'])->name('admin.copdevprog.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideocopdevprogController::class, 'index'])->name('admin.videocopdevprog.video');
-        Route::get('/video/create', [VideocopdevprogController::class, 'create'])->name('admin.videocopdevprog.video.create');
-        Route::post('/video', [VideocopdevprogController::class, 'store'])->name('admin.videocopdevprog.video.store');
-        Route::get('/video/{id}/edit', [VideocopdevprogController::class, 'edit'])->name('admin.videocopdevprog.video.edit');
-        Route::put('/video/{id}', [VideocopdevprogController::class, 'update'])->name('admin.videocopdevprog.video.update');
-        Route::delete('/video/{id}', [VideocopdevprogController::class, 'destroy'])->name('admin.videocopdevprog.video.destroy');
-        Route::delete('/admin/copdevprog/video/bulk-delete', [VideocopdevprogController::class, 'bulkDelete'])
+        Route::get('/video', [VideoCopdevprogController::class, 'index'])->name('admin.videocopdevprog.video');
+        Route::get('/video/create', [VideoCopdevprogController::class, 'create'])->name('admin.videocopdevprog.video.create');
+        Route::post('/video', [VideoCopdevprogController::class, 'store'])->name('admin.videocopdevprog.video.store');
+        Route::get('/video/{id}/edit', [VideoCopdevprogController::class, 'edit'])->name('admin.videocopdevprog.video.edit');
+        Route::put('/video/{id}', [VideoCopdevprogController::class, 'update'])->name('admin.videocopdevprog.video.update');
+        Route::delete('/video/{id}', [VideoCopdevprogController::class, 'destroy'])->name('admin.videocopdevprog.video.destroy');
+        Route::delete('/admin/copdevprog/video/bulk-delete', [VideoCopdevprogController::class, 'bulkDelete'])
             ->name('admin.videocopdevprog.video.bulkDelete');
     });
 
@@ -306,13 +306,13 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
         Route::post('/materi/bulk-delete', [AdminCoptrahouController::class, 'bulkDelete'])->name('admin.coptrahou.materi.bulkDelete');
 
         // Video routes
-        Route::get('/video', [VideocoptrahouController::class, 'index'])->name('admin.videocoptrahou.video');
-        Route::get('/video/create', [VideocoptrahouController::class, 'create'])->name('admin.videocoptrahou.video.create');
-        Route::post('/video', [VideocoptrahouController::class, 'store'])->name('admin.videocoptrahou.video.store');
-        Route::get('/video/{id}/edit', [VideocoptrahouController::class, 'edit'])->name('admin.videocoptrahou.video.edit');
-        Route::put('/video/{id}', [VideocoptrahouController::class, 'update'])->name('admin.videocoptrahou.video.update');
-        Route::delete('/video/{id}', [VideocoptrahouController::class, 'destroy'])->name('admin.videocoptrahou.video.destroy');
-        Route::delete('/admin/coptrahou/video/bulk-delete', [VideocoptrahouController::class, 'bulkDelete'])
+        Route::get('/video', [VideoCoptrahouController::class, 'index'])->name('admin.videocoptrahou.video');
+        Route::get('/video/create', [VideoCoptrahouController::class, 'create'])->name('admin.videocoptrahou.video.create');
+        Route::post('/video', [VideoCoptrahouController::class, 'store'])->name('admin.videocoptrahou.video.store');
+        Route::get('/video/{id}/edit', [VideoCoptrahouController::class, 'edit'])->name('admin.videocoptrahou.video.edit');
+        Route::put('/video/{id}', [VideoCoptrahouController::class, 'update'])->name('admin.videocoptrahou.video.update');
+        Route::delete('/video/{id}', [VideoCoptrahouController::class, 'destroy'])->name('admin.videocoptrahou.video.destroy');
+        Route::delete('/admin/coptrahou/video/bulk-delete', [VideoCoptrahouController::class, 'bulkDelete'])
             ->name('admin.videocoptrahou.video.bulkDelete');
     });
 
