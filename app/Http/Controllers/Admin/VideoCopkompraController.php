@@ -13,7 +13,7 @@ class VideoCopkompraController extends Controller
     {
         $search = $request->input('search');
 
-        $Videocopkompra = Videocopkompra::when($search, function ($query, $search) {
+        $videocopkompra = Videocopkompra::when($search, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%');
         })
             ->orderBy('id', 'desc')
@@ -43,13 +43,13 @@ class VideoCopkompraController extends Controller
             'image_path' => $imagePath,
         ]);
 
-        return redirect()->route('admin.Videocopkompra.video')->with('success', 'Video successfully added.');
+        return redirect()->route('admin.videocopkompra.video')->with('success', 'Video successfully added.');
     }
 
     public function edit($id)
     {
-        $Videocopkompra = Videocopkompra::findOrFail($id);
-        return view('admin.copkompra.editvideo', compact('Videocopkompra'));
+        $videocopkompra = Videocopkompra::findOrFail($id);
+        return view('admin.copkompra.editvideo', compact('videocopkompra'));
     }
 
     public function update(Request $request, $id)
@@ -76,7 +76,7 @@ class VideoCopkompraController extends Controller
             'image_path' => $Videocopkompra->image_path,
         ]);
 
-        return redirect()->route('admin.Videocopkompra.video')->with('success', 'Video successfully updated.');
+        return redirect()->route('admin.videocopkompra.video')->with('success', 'Video successfully updated.');
     }
 
     public function destroy($id)
@@ -92,7 +92,7 @@ class VideoCopkompraController extends Controller
         }
         $video->delete();
 
-        return redirect()->route('admin.Videocopkompra.video')
+        return redirect()->route('admin.videocopkompra.video')
             ->with('success', 'Video berhasil dihapus!');
     }
 
@@ -103,9 +103,9 @@ class VideoCopkompraController extends Controller
 
         if ($videoIds) {
             Videocopkompra::whereIn('id', $videoIds)->delete();
-            return redirect()->route('admin.Videocopkompra.video')->with('success', 'Selected videos deleted successfully.');
+            return redirect()->route('admin.videocopkompra.video')->with('success', 'Selected videos deleted successfully.');
         }
 
-        return redirect()->route('admin.Videocopkompra.video')->with('error', 'No videos selected for deletion.');
+        return redirect()->route('admin.videocopkompra.video')->with('error', 'No videos selected for deletion.');
     }
 }
