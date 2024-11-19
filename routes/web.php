@@ -55,6 +55,7 @@ use App\Http\Controllers\Admin\VideocopinofestController;
 use App\Http\Controllers\Admin\VideoCopdevprogController;
 use App\Http\Controllers\Admin\VideoCoptrahouController;
 use App\Http\Controllers\Admin\VideoCopkompraController;
+use App\Http\Controllers\Admin\VideobukupintarwhController;
 use App\Http\Controllers\RepositoryallController;
 use App\Models\History;
 
@@ -404,13 +405,15 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
         Route::put('/materi/{id}', [AdminBukupintarwhController::class, 'update'])->name('admin.bukupintarwh.materi.update');
         Route::get('/materi/{id}', [AdminBukupintarwhController::class, 'destroy'])->name('admin.bukupintarwh.materi.destroy');
         Route::post('/materi/bulk-delete', [AdminBukupintarwhController::class, 'bulkDelete'])->name('admin.bukupintarwh.materi.bulkDelete');
-        // Route::get('/video', [VideoFinlitController::class, 'index'])->name('admin.bukupintarwh.video');
-        // Route::get('/video/create', [VideoFinlitController::class, 'create'])->name('admin.bukupintarwh.video.create');
-        // Route::post('/video', [VideoFinlitController::class, 'store'])->name('admin.bukupintarwh.video.store');
-        // Route::get('/video/{id}/edit', [VideoFinlitController::class, 'edit'])->name('admin.bukupintarwh.video.edit');
-        // Route::put('/video/{id}', [VideoFinlitController::class, 'update'])->name('admin.bukupintarwh.video.update');
-        // Route::get('/video/{id}', [VideoFinlitController::class, 'destroy'])->name('admin.bukupintarwh.video.destroy');
-        // Route::post('/video/bulk-delete', [VideoFinlitController::class, 'bulkDelete'])->name('admin.bukupintarwh.video.bulkDelete');
+
+        Route::get('/video', [VideobukupintarwhController::class, 'index'])->name('admin.videobukupintarwh.video');
+        Route::get('/video/create', [VideobukupintarwhController::class, 'create'])->name('admin.videobukupintarwh.video.create');
+        Route::post('/video', [VideobukupintarwhController::class, 'store'])->name('admin.videobukupintarwh.video.store');
+        Route::get('/video/{id}/edit', [VideobukupintarwhController::class, 'edit'])->name('admin.videobukupintarwh.video.edit');
+        Route::put('/video/{id}', [VideobukupintarwhController::class, 'update'])->name('admin.videobukupintarwh.video.update');
+        Route::delete('/video/{id}', [VideobukupintarwhController::class, 'destroy'])->name('admin.videobukupintarwh.video.destroy');
+        Route::delete('/admin/bukupintarwh/video/bulk-delete', [VideobukupintarwhController::class, 'bulkDelete'])
+            ->name('admin.videobukupintarwh.video.bulkDelete');
     });
 
 
@@ -562,6 +565,9 @@ Route::middleware('auth', 'role:user')->group(function () {
 
     // buku pintar wh
     Route::get('/bukupintarwh', [BukupintarwhController::class, 'index'])->name('bukpin.index');
+    Route::get('/bukupintarwh/materi', [BukupintarwhController::class, 'materi'])->name('bukpin.materi');
+    Route::get('/bukupintarwh/materi/{id}', [BukupintarwhController::class, 'materidetail'])->name('bukpin.materidetail');
+    Route::get('/bukupintarwh/video', [BukupintarwhController::class, 'video'])->name('bukpin.video');
 
     // papan ilmu toko
     Route::get('/papanilmutoko', [PapanilmutokoController::class, 'index'])->name('papilmu.index');

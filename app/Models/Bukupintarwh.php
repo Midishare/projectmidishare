@@ -13,10 +13,10 @@ class BukuPintarWh extends Model
 
     protected $fillable = [
         'title',
-        'file_paths', // use 'file_paths' to store multiple paths
+        'file_paths',
     ];
 
     protected $casts = [
-        'file_paths' => 'array', // casting to array
+        'file_paths' => 'array',
     ];
 }

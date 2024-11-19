@@ -44,8 +44,6 @@ class BelajarmandiriController extends Controller
         $judul = $request->judul;
         $deskripsi = $request->deskripsi;
         $published_at = $request->published_at;
-
-        // Proses konten dari Summernote sebelum disimpan
         $deskripsi = $this->processSummernoteContent($deskripsi);
 
         try {

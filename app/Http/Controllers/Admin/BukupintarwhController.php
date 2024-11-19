@@ -46,16 +46,16 @@ class BukupintarwhController extends Controller
             'file_paths' => $filePaths,
         ]);
 
-        return redirect()->route('admin.bukupintarwh.index')->with('success', 'Slide created successfully');
+        return redirect()->route('admin.bukupintarwh.materi')->with('success', 'Slide created successfully');
     }
 
-    public function edit($id)  // Modified to use $id parameter
+    public function edit($id)
     {
         $materiDokumen = BukuPintarWh::findOrFail($id);
         return view('admin.bukupintarwh.edit', compact('materiDokumen'));
     }
 
-    public function update(Request $request, $id)  // Modified to use $id parameter
+    public function update(Request $request, $id)
     {
         $materiDokumen = BukuPintarWh::findOrFail($id);
 
@@ -67,12 +67,10 @@ class BukupintarwhController extends Controller
         $materiDokumen->title = $request->title;
 
         if ($request->hasFile('files')) {
-            // Delete old images
             foreach ($materiDokumen->file_paths as $oldPath) {
                 Storage::disk('public')->delete($oldPath);
             }
 
-            // Upload new images and save their paths
             $filePaths = [];
             foreach ($request->file('files') as $file) {
                 $path = $file->store('images', 'public');
@@ -87,7 +85,7 @@ class BukupintarwhController extends Controller
             ->with('success', 'Slide berhasil diperbarui');
     }
 
-    public function destroy($id)  // Modified to use $id parameter
+    public function destroy($id)
     {
         $materiDokumen = BukuPintarWh::findOrFail($id);
         $materiDokumen->delete();
