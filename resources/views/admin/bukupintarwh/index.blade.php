@@ -76,7 +76,7 @@
                     </div>
                     <div class="card-footer">
 
-                        <a class="btn btn-secondary" href="{{ route('admin.bukupintarwh.video') }}"">View details
+                        <a class="btn btn-secondary" href="{{ route('admin.videobukupintarwh.video') }}"">View details
                             &raquo;</a>
                     </div>
                 </div>
