@@ -3,16 +3,13 @@
 @section('content')
     <section>
         <style>
-            /* Gaya CSS tambahan */
             .back-button {
                 margin-top: 1rem;
-                /* Menambahkan margin-top untuk jarak antara judul dan navbar */
             }
 
             @media (max-width: 768px) {
                 .gradient-bg.py-5 {
                     padding-top: 2rem;
-                    /* Penyesuaian padding atas untuk tampilan responsif */
                 }
             }
 
@@ -55,7 +52,7 @@
                 </a>
                 <div class="container text-center mt-3">
                     <h2>COP</h3>
-                        <div></div> <!-- Placeholder div to balance the flex container -->
+                        <div></div>
                 </div>
         </section>
 
@@ -64,7 +61,6 @@
             <section class="py-1">
                 <div class="container">
                     <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-                        <!-- MDP Card -->
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -78,7 +74,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- DP Card -->
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -90,10 +85,8 @@
                                     <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
                                         &raquo;</a>
                                 </div>
-                                {{-- admin.Cop Inofest.index --}}
                             </div>
                         </div>
-                        <!-- IP Card -->
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -105,7 +98,6 @@
                                     <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
                                         &raquo;</a>
                                 </div>
-                                {{-- admin.copdevelopmentprogram.index --}}
                             </div>
                         </div>
                         <div class="col">
@@ -120,7 +112,6 @@
                                         details
                                         &raquo;</a>
                                 </div>
-                                {{-- admin.coptrainerhouse.index --}}
                             </div>
                         </div>
                         <div class="col">
@@ -134,7 +125,6 @@
                                     <a class="btn btn-secondary" href="{{ route('admin.copfresh.index') }}">View details
                                         &raquo;</a>
                                 </div>
-                                {{-- admin.copkomunitasprapensiun .index --}}
                             </div>
                         </div>
                     </div>

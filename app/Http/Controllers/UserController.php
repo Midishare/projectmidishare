@@ -16,7 +16,6 @@ class UserController extends Controller
     {
         $query = $request->input('query');
 
-        // Initialize the users variable
         if ($query) {
             $users = User::where('name', 'LIKE', "%{$query}%")
                 ->orWhere('nik', 'LIKE', "%{$query}%")
@@ -24,7 +23,6 @@ class UserController extends Controller
                 ->orWhere('jabatan', 'LIKE', "%{$query}%")
                 ->paginate(10);
         } else {
-            // Get all users when there's no search query
             $users = User::paginate(10);
         }
 
@@ -120,9 +118,8 @@ class UserController extends Controller
         $user->jabatan = $validatedData['jabatan'];
         $user->class = $validatedData['class'];
 
-        // Hanya mengupdate password jika ada perubahan
         if ($request->filled('password')) {
-            $user->password = $validatedData['password']; // Menyimpan password tanpa hashing
+            $user->password = $validatedData['password'];
         }
         $user->class = ($request->class == 'None') ? null : $request->class;
         $user->syncRoles([$validatedData['role']]);

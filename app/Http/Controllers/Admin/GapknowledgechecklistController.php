@@ -49,8 +49,6 @@ class GapknowledgechecklistController extends Controller
     public function update(Request $request, $userId)
     {
         $checklist = UserGapKnowledgeChecklist::firstOrCreate(['user_id' => $userId]);
-
-        // Update modul checklist berdasarkan request dari admin
         $checklist->update([
             'OHK' => $request->has('OHK'),
             'BPA' => $request->has('BPA'),

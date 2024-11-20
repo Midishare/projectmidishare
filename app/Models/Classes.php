@@ -9,13 +9,10 @@ class Classes extends Model
 {
     use HasFactory;
 
-    // Nama tabel yang terkait dengan model ini
     protected $table = 'classes';
 
-    // Kolom-kolom yang bisa diisi
     protected $fillable = ['name'];
 
-    // Relasi ke model ClassUser
     public function classUsers()
     {
         return $this->hasMany(ClassUser::class, 'class_id');

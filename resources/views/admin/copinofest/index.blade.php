@@ -3,16 +3,13 @@
 @section('content')
     <section>
         <style>
-            /* Gaya CSS tambahan */
             .back-button {
                 margin-top: 1rem;
-                /* Menambahkan margin-top untuk jarak antara judul dan navbar */
             }
 
             @media (max-width: 768px) {
                 .gradient-bg.py-5 {
                     padding-top: 2rem;
-                    /* Penyesuaian padding atas untuk tampilan responsif */
                 }
             }
 
@@ -55,7 +52,7 @@
                 </a>
                 <div class="container text-center mt-3">
                     <h2>COP</h3>
-                        <div></div> <!-- Placeholder div to balance the flex container -->
+                        <div></div>
                 </div>
         </section>
         <div class="container text-center">

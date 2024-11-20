@@ -11,17 +11,12 @@ class ModchecklistController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil query pencarian dari request
         $search = $request->input('search');
-
-        // Dapatkan pengguna dengan modChecklists, dengan pencarian dan paginasi
         $users = User::with('modChecklists')
             ->when($search, function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");
             })
-            ->paginate(10); // Batasi 10 pengguna per halaman
-
-        // Buat data checklist jika belum ada
+            ->paginate(10);
         foreach ($users as $user) {
             if (!$user->modChecklists) {
                 $user->modChecklists()->create([
@@ -41,8 +36,6 @@ class ModchecklistController extends Controller
     public function update(Request $request, $userId)
     {
         $checklist = UserModChecklist::firstOrCreate(['user_id' => $userId]);
-
-        // Update modul checklist berdasarkan request dari admin
         $checklist->update([
             'existing_grade_genap' => $request->has('existing_grade_genap'),
             'ip' => $request->has('ip'),

@@ -7,7 +7,7 @@
         <form action="{{ route('admin.copinofest.materi.update', $dokumen->id) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
-            @method('PUT') <!-- Indicate that this is a PUT request for updating -->
+            @method('PUT')
 
             <div class="mb-3">
                 <label for="title" class="form-label">Judul</label>
@@ -21,7 +21,6 @@
             <div class="mb-3">
                 <label for="image" class="form-label">Gambar</label>
                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
-                <!-- Display current image if exists -->
                 @if ($dokumen->image)
                     <img src="{{ asset('storage/icon/' . $dokumen->image) }}" alt="Current Image"
                         style="width: 100px; margin-top: 10px;">

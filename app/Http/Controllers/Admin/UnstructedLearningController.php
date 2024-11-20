@@ -11,17 +11,12 @@ class UnstructedLearningController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil query pencarian dari request
         $search = $request->input('search');
-
-        // Dapatkan pengguna dengan unstructedlearningchecklist, dengan pencarian dan paginasi
         $users = User::with('unstructedlearningchecklist')
             ->when($search, function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");
             })
-            ->paginate(10); // Batasi 10 pengguna per halaman
-
-        // Buat data checklist jika belum ada
+            ->paginate(10);
         foreach ($users as $user) {
             if (!$user->unstructedlearningchecklist) {
                 $user->unstructedlearningchecklist()->create([
@@ -45,8 +40,6 @@ class UnstructedLearningController extends Controller
     public function update(Request $request, $userId)
     {
         $checklist = UserUnstructedLearning::firstOrCreate(['user_id' => $userId]);
-
-        // Update modul checklist berdasarkan input angka dari admin
         $checklist->update([
             'ks' => $request->input('ks', 0),
             'bs' => $request->input('bs', 0),

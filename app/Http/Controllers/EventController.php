@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
-    // Show all events (for users)
     public function showAll(Request $request)
     {
         $search = $request->input('search');
@@ -33,7 +32,7 @@ class EventController extends Controller
 
     public function detail($id)
     {
-        $event = Event::find($id); 
+        $event = Event::find($id);
         if (!$event) {
             return redirect()->route('events.show')->with('error', 'Event not found.');
         }
@@ -46,7 +45,7 @@ class EventController extends Controller
 
         $events = Event::when($search, function ($query) use ($search) {
             return $query->where('title', 'like', '%' . $search . '%');
-        })->orderBy('created_at', 'desc')->paginate(10); 
+        })->orderBy('created_at', 'desc')->paginate(10);
 
         return view('events.index', compact('events'));
     }
@@ -74,7 +73,7 @@ class EventController extends Controller
         Event::create([
             'title' => $request->title,
             'description' => $request->description,
-            'image' => $imageName, 
+            'image' => $imageName,
         ]);
 
         return redirect()->route('events.admin')->with('success', 'Event created successfully.');

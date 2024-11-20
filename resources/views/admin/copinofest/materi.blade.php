@@ -16,7 +16,6 @@
             </a>
         </div>
         <div class="col-md-12 text-right">
-            <!-- Form Pencarian -->
             <div class="row g-2 align-items-center justify-content-end">
                 <div class="col-auto">
                     <input type="text" id="searchInput" class="form-control" placeholder="Search...">

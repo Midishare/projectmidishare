@@ -9,7 +9,7 @@ class Dokumenfinlit extends Model
 {
     use HasFactory;
 
-    protected $table = 'dokumenfinlit'; // Nama tabel
+    protected $table = 'dokumenfinlit';
     protected $fillable = [
         'title',
         'image_path',

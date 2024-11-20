@@ -26,7 +26,6 @@ class LoginActivity extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Scope for currently active sessions
     public function scopeCurrentlyActive($query)
     {
         return $query->where('status', 'login')

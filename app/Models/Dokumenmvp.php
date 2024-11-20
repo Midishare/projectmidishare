@@ -9,7 +9,7 @@ class Dokumenmvp extends Model
 {
     use HasFactory;
 
-    protected $table = 'dokumenmvp'; // Nama tabel
+    protected $table = 'dokumenmvp';
     protected $fillable = [
         'title',
         'image_path',

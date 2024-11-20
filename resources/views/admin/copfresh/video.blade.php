@@ -23,7 +23,6 @@
             transition: all 0.2s ease;
             width: 100%;
             padding-right: 40px;
-            /* Space for the search icon */
         }
 
         .search-input:focus {
@@ -196,7 +195,6 @@
                     methodInput.value = 'DELETE';
                     form.appendChild(methodInput);
 
-                    // Tambahkan form ke body dan submit
                     document.body.appendChild(form);
                     form.submit();
                 }

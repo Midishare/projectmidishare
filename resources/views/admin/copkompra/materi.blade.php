@@ -16,7 +16,6 @@
             </a>
         </div>
         <div class="col-md-12 text-right">
-            <!-- Form Pencarian -->
             <div class="row g-2 align-items-center justify-content-end">
                 <div class="col-auto">
                     <input type="text" id="searchInput" class="form-control" placeholder="Search...">
@@ -66,10 +65,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Function to handle search
         function searchBerita() {
             let keyword = document.getElementById('searchInput').value;
-            // Redirect to the route with search query
             window.location.href = "{{ route('admin.copkompra.materi') }}?search=" + encodeURIComponent(keyword);
         }
 
@@ -108,7 +105,6 @@
             });
         }
 
-        // Event listener for the "Select All" checkbox
         const selectAllCheckbox = document.getElementById('selectAll');
         if (selectAllCheckbox) {
             selectAllCheckbox.addEventListener('click', function(e) {

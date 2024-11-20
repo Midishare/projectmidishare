@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\VideoIkt; // Updated to reference VideoIp
+use App\Models\VideoIkt;
 use Illuminate\Http\Request;
 
 class VideoIktController extends Controller
@@ -15,50 +15,43 @@ class VideoIktController extends Controller
             return $queryBuilder->where('title', 'like', '%' . $query . '%');
         })->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('admin.ikt.video', compact('videos')); // Updated view path to match VideoIkt
+        return view('admin.ikt.video', compact('videos'));
     }
 
     public function create()
     {
-        return view('admin.ikt.createvideo'); // Updated view path to match VideoIkt
+        return view('admin.ikt.createvideo');
     }
 
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'title' => 'required|string|max:255',
-            'video_link' => 'required|url', // Consistent with VideoIkt
+            'video_link' => 'required|url',
         ]);
 
-        // Store the video in the database
-        VideoIkt::create([ // Changed to use VideoIkt
+        VideoIkt::create([
             'title' => $request->input('title'),
-            'video_link' => $request->input('video_link'), // Updated field name
+            'video_link' => $request->input('video_link'),
         ]);
 
-        // Redirect to the video list with a success message
         return redirect()->route('admin.ikt.video')->with('success', 'Video added successfully');
     }
 
     public function edit($id)
     {
-        $video = VideoIkt::findOrFail($id); // Ambil data video berdasarkan ID
-        return view('admin.ikt.editvideo', compact('video')); // Kirim data ke view
+        $video = VideoIkt::findOrFail($id);
+        return view('admin.ikt.editvideo', compact('video'));
     }
 
 
     public function update(Request $request, $id)
     {
         $video = VideoIkt::findOrFail($id);
-
-        // Validasi dan pembaruan
         $request->validate([
             'title' => 'required|string|max:255',
             'video_link' => 'required|url',
         ]);
-
-        // Update video
         $video->title = $request->input('title');
         $video->video_link = $request->input('video_link');
         $video->save();
@@ -69,7 +62,7 @@ class VideoIktController extends Controller
 
     public function destroy($id)
     {
-        $video = VideoIkt::findOrFail($id); // Changed to use VideoIkt
+        $video = VideoIkt::findOrFail($id);
         $video->delete();
 
         return redirect()->route('admin.ikt.video')->with('success', 'Video deleted successfully.');

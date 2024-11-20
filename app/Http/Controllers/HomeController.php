@@ -15,7 +15,7 @@ class HomeController extends Controller
         $home = DB::table('home')->orderBy('id', 'desc')->get();
         return view('welcome', ['home' => $home]);
     }
-   
+
     public function addhome()
     {
         return view('addhome');
@@ -28,7 +28,6 @@ class HomeController extends Controller
         ]);
 
         try {
-            // Simpan file gambar
             $gambarPath = $request->file('image')->store('public/gambar');
             $gambarNama = basename($gambarPath);
 

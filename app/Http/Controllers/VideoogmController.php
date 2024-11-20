@@ -120,7 +120,7 @@ class VideoogmController extends Controller
 
         if ($request->hasFile('image')) {
             if ($imagePath) {
-                Storage::delete($imagePath); // Delete the old image if it exists
+                Storage::delete($imagePath);
             }
             $imagePath = $request->file('image')->store('public/images');
         }
@@ -144,18 +144,15 @@ class VideoogmController extends Controller
         $videoogm = DB::table('videoogm')->where('id', $id)->first();
 
         if (!$videoogm) {
-            // Handle video not found
             return redirect()->back()->withErrors(['error' => 'Video tidak ditemukan.']);
         }
 
-        // Periksa apakah properti 'dokumenvideoogm' ada sebelum mencoba menghapus file
         if (isset($videoogm->dokumenvideoogm)) {
             $dokumenPath = $videoogm->dokumenvideoogm;
 
             try {
                 Storage::delete('public/dokumen/' . $dokumenPath);
             } catch (\Exception $e) {
-                // Handle file deletion error
                 return redirect()->back()->withErrors(['error' => 'Gagal menghapus file.']);
             }
         }
@@ -164,7 +161,6 @@ class VideoogmController extends Controller
             DB::table('videoogm')->where('id', $id)->delete();
             Session::flash('success', 'Video berhasil dihapus.');
         } catch (\Exception $e) {
-            // Handle database deletion error
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan. Silakan coba lagi.']);
         }
 
@@ -180,7 +176,6 @@ class VideoogmController extends Controller
             $videos = DB::table('videoogm')->whereIn('id', $ids)->get();
 
             foreach ($videos as $video) {
-                // Periksa apakah properti 'dokumenvideoogm' ada sebelum menghapus file
                 if (isset($video->dokumenvideoogm)) {
                     Storage::delete('public/dokumen/' . $video->dokumenvideoogm);
                 }

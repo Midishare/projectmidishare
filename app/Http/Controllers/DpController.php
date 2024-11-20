@@ -49,12 +49,10 @@ class DpController extends Controller
                 return $queryBuilder->where('title', 'like', '%' . $query . '%');
             })
                 ->when($category, function ($queryBuilder) use ($category) {
-                    return $queryBuilder->where('category', $category); // Filter berdasarkan kategori
+                    return $queryBuilder->where('category', $category);
                 })
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-
-            // Kirim variabel dokumens dan categories ke view
             return view('users.dp.materi', compact('dokumens', 'categories'));
         } else {
             return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);

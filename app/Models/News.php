@@ -11,7 +11,6 @@ class News extends Model
 
     protected $table = 'news';
 
-    // Kolom yang dapat diisi
     protected $fillable = ['judul', 'deskripsi', 'gambar', 'published_at'];
 
     protected $dates = ['published_at'];

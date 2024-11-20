@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Login;  // Import the Login model
+use App\Models\Login;
 use App\Models\LoginActivity;
 use App\Models\Logout;
 use Carbon\Carbon;
@@ -23,16 +23,15 @@ class AuthController extends Controller
         $credentials = $request->only('nik', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Log login event
             Login::create(['user_id' => Auth::id()]);
 
             $user = Auth::user();
 
             $this->recordLoginActivity($user, $request);
             if ($user->hasRole('admin') || $user->hasRole('auditor')) {
-                return redirect()->intended(route('dashboard')); // Arahkan admin & auditor ke dashboard admin
+                return redirect()->intended(route('dashboard'));
             } else {
-                return redirect()->intended(route('dashboard')); // Arahkan user biasa ke halaman user
+                return redirect()->intended(route('dashboard'));
             }
         } else {
             return redirect()->back()->withInput()->withErrors(['nik' => 'Nik atau password salah']);
@@ -41,7 +40,6 @@ class AuthController extends Controller
 
     public function logout()
     {
-        // Log the logout event
         Logout::create(['user_id' => Auth::id()]);
 
         $lastLogin = LoginActivity::where('user_id', Auth::id())

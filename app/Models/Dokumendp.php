@@ -9,7 +9,7 @@ class Dokumendp extends Model
 {
     use HasFactory;
 
-    protected $table = 'dokumendp'; // Nama tabel
+    protected $table = 'dokumendp';
     protected $fillable = [
         'title',
         'image_path',

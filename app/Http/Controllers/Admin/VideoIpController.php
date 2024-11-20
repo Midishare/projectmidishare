@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\VideoIp; // Updated to reference VideoIp
+use App\Models\VideoIp;
 use Illuminate\Http\Request;
 
 class VideoIpController extends Controller
@@ -15,38 +15,34 @@ class VideoIpController extends Controller
             return $queryBuilder->where('title', 'like', '%' . $query . '%');
         })->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('admin.ip.video', compact('videos')); // Updated view path to match VideoIp
+        return view('admin.ip.video', compact('videos'));
     }
 
     public function create()
     {
-        return view('admin.ip.createvideo'); // Updated view path to match VideoIp
+        return view('admin.ip.createvideo');
     }
 
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'title' => 'required|string|max:255',
-            'video_link' => 'required|url', // Consistent with VideoIp
+            'video_link' => 'required|url',
             'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
         ]);
-
-        // Store the video in the database
-        VideoIp::create([ // Changed to use VideoIp
+        VideoIp::create([
             'title' => $request->input('title'),
-            'video_link' => $request->input('video_link'), // Updated field name
+            'video_link' => $request->input('video_link'),
             'category' => $request->input('category'),
         ]);
 
-        // Redirect to the video list with a success message
         return redirect()->route('admin.ip.video')->with('success', 'Video added successfully');
     }
 
     public function edit($id)
     {
-        $video = VideoIp::findOrFail($id); // Ambil data video berdasarkan ID
-        return view('admin.ip.editvideo', compact('video')); // Kirim data ke view
+        $video = VideoIp::findOrFail($id);
+        return view('admin.ip.editvideo', compact('video'));
     }
 
 
@@ -54,14 +50,12 @@ class VideoIpController extends Controller
     {
         $video = VideoIp::findOrFail($id);
 
-        // Validasi dan pembaruan
         $request->validate([
             'title' => 'required|string|max:255',
             'video_link' => 'required|url',
             'category' => 'required|in:Business Controlling,Corporate Audit,Finance,IT,Merchandising,Marketing,Operation,Property Development,Service Quality,Corporate Legal & Compliance',
         ]);
 
-        // Update video
         $video->title = $request->input('title');
         $video->video_link = $request->input('video_link');
         $video->category = $request->input('category');
@@ -73,7 +67,7 @@ class VideoIpController extends Controller
 
     public function destroy($id)
     {
-        $video = VideoIp::findOrFail($id); // Changed to use VideoIp
+        $video = VideoIp::findOrFail($id);
         $video->delete();
 
         return redirect()->route('admin.ip.video')->with('success', 'Video deleted successfully.');
@@ -84,7 +78,7 @@ class VideoIpController extends Controller
         $ids = $request->input('ids');
 
         if (!empty($ids)) {
-            VideoIp::whereIn('id', $ids)->delete(); // Changed to use VideoIp
+            VideoIp::whereIn('id', $ids)->delete();
             return redirect()->route('admin.ip.video')->with('success', 'Selected videos deleted successfully.');
         } else {
             return redirect()->route('admin.ip.video')->with('error', 'No videos selected for deletion.');

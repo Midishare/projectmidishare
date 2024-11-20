@@ -8,25 +8,19 @@ use Illuminate\Http\Request;
 
 class RekomendasiController extends Controller
 {
-    // Form untuk menambahkan rekomendasi baru (akses admin)
     public function create()
     {
-        $users = User::all(); // Mendapatkan daftar semua pengguna
+        $users = User::all();
         return view('admin.rekomendasi.create', compact('users'));
     }
 
-    // Menyimpan rekomendasi baru
     public function store(Request $request)
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'rekomendasi' => 'required|string',
         ]);
-
-        // Hapus semua rekomendasi yang lama untuk user_id yang sama
         RekomendasiBelajar::where('user_id', $request->user_id)->delete();
-
-        // Buat rekomendasi baru
         $rekomendasiBaru = new RekomendasiBelajar();
         $rekomendasiBaru->user_id = $request->user_id;
         $rekomendasiBaru->rekomendasi = $request->rekomendasi;
@@ -36,10 +30,9 @@ class RekomendasiController extends Controller
     }
 
 
-    // Menampilkan rekomendasi untuk pengguna
     public function showUserRekomendasi()
     {
-        $rekomendasi = auth()->user()->rekomendasiBelajar; // Mengambil rekomendasi berdasarkan pengguna
+        $rekomendasi = auth()->user()->rekomendasiBelajar;
         return view('rekomendasi', compact('rekomendasi'));
     }
 
@@ -48,8 +41,6 @@ class RekomendasiController extends Controller
         $request->validate([
             'user_id' => 'required|exists:users,id',
         ]);
-
-        // Ambil rekomendasi yang sesuai dengan user_id
         $rekomendasi = RekomendasiBelajar::where('user_id', $request->user_id)->first();
 
         return response()->json([

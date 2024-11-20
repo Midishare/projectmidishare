@@ -11,8 +11,8 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $rekomendasi = collect($user->rekomendasiBelajar); // Mengubah menjadi koleksi
-        $history = collect($user->history); // Mengubah menjadi koleksi
+        $rekomendasi = collect($user->rekomendasiBelajar);
+        $history = collect($user->history);
 
         return view('profile', compact('user', 'rekomendasi'));
     }

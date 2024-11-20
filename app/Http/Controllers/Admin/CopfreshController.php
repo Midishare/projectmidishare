@@ -80,7 +80,6 @@ class CopfreshController extends Controller
         $dokumen = Copfresh::findOrFail($id);
         $dokumen->title = $request->title;
         $dokumen->link = $request->link;
-        // $dokumen->category = $request->category;
 
         if ($request->hasFile('image')) {
             if ($dokumen->image_path) {

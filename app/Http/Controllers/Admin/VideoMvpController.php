@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\VideoMvp; // Updated to reference VideoIp
+use App\Models\VideoMvp;
 use Illuminate\Http\Request;
 
 class VideoMvpController extends Controller
@@ -15,36 +15,32 @@ class VideoMvpController extends Controller
             return $queryBuilder->where('title', 'like', '%' . $query . '%');
         })->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('admin.mvp.video', compact('videos')); // Updated view path to match VideoIkt
+        return view('admin.mvp.video', compact('videos'));
     }
 
     public function create()
     {
-        return view('admin.mvp.createvideo'); // Updated view path to match VideoIkt
+        return view('admin.mvp.createvideo');
     }
 
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'title' => 'required|string|max:255',
-            'video_link' => 'required|url', // Consistent with VideoIkt
+            'video_link' => 'required|url',
         ]);
-
-        // Store the video in the database
-        VideoMvp::create([ // Changed to use VideoIkt
+        VideoMvp::create([
             'title' => $request->input('title'),
-            'video_link' => $request->input('video_link'), // Updated field name
+            'video_link' => $request->input('video_link'),
         ]);
 
-        // Redirect to the video list with a success message
         return redirect()->route('admin.mvp.video')->with('success', 'Video added successfully');
     }
 
     public function edit($id)
     {
-        $video = VideoMvp::findOrFail($id); // Ambil data video berdasarkan ID
-        return view('admin.mvp.editvideo', compact('video')); // Kirim data ke view
+        $video = VideoMvp::findOrFail($id);
+        return view('admin.mvp.editvideo', compact('video'));
     }
 
 
@@ -52,13 +48,11 @@ class VideoMvpController extends Controller
     {
         $video = VideoMvp::findOrFail($id);
 
-        // Validasi dan pembaruan
         $request->validate([
             'title' => 'required|string|max:255',
             'video_link' => 'required|url',
         ]);
 
-        // Update video
         $video->title = $request->input('title');
         $video->video_link = $request->input('video_link');
         $video->save();
@@ -69,7 +63,7 @@ class VideoMvpController extends Controller
 
     public function destroy($id)
     {
-        $video = VideoMvp::findOrFail($id); // Changed to use VideoIkt
+        $video = VideoMvp::findOrFail($id);
         $video->delete();
 
         return redirect()->route('admin.mvp.video')->with('success', 'Video deleted successfully.');

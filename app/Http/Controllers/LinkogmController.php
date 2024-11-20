@@ -39,13 +39,11 @@ class LinkogmController extends Controller
         ]);
 
         try {
-            // Ensure the storage directory exists
             $storage_path = storage_path('app/public/dokumen_images');
             if (!file_exists($storage_path)) {
                 mkdir($storage_path, 0755, true);
             }
 
-            // Upload image
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -53,8 +51,6 @@ class LinkogmController extends Controller
             } else {
                 throw new \Exception('Image file not found in the request.');
             }
-
-            // Insert data into database
             $id = DB::table('linkogm')->insertGetId([
                 'judullinkogm' => $request->input('judullinkogm'),
                 'linkdriveogm' => $request->input('linkdriveogm'),
@@ -71,7 +67,6 @@ class LinkogmController extends Controller
         } catch (\Exception $e) {
 
 
-            // If image was uploaded but database insert failed, remove the uploaded image
             if (isset($imagePath) && Storage::disk('public')->exists($imagePath)) {
                 Storage::disk('public')->delete($imagePath);
             }
@@ -118,7 +113,7 @@ class LinkogmController extends Controller
             'id' => 'required',
             'judullinkogm' => 'required',
             'linkdriveogm' => 'required|url',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Validasi opsional untuk gambar
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $id = $request->id;
@@ -128,21 +123,16 @@ class LinkogmController extends Controller
         }
 
         try {
-            // Jika ada gambar baru, upload dan hapus gambar lama
             if ($request->hasFile('image')) {
-                // Hapus gambar lama jika ada
                 if ($linkogm->image_path) {
                     Storage::disk('public')->delete($linkogm->image_path);
                 }
-
-                // Simpan gambar baru
                 $imagePath = $request->file('image')->store('dokumen_images', 'public');
                 DB::table('linkogm')->where('id', $id)->update([
                     'image_path' => $imagePath,
                 ]);
             }
 
-            // Update data lainnya
             DB::table('linkogm')->where('id', $id)->update([
                 'judullinkogm' => $request->input('judullinkogm'),
                 'linkdriveogm' => $request->input('linkdriveogm'),
@@ -165,12 +155,9 @@ class LinkogmController extends Controller
         }
 
         try {
-            // Hapus gambar dari storage jika ada
             if ($linkogm->image_path) {
                 Storage::disk('public')->delete($linkogm->image_path);
             }
-
-            // Hapus data dari database
             DB::table('linkogm')->where('id', $id)->delete();
 
             Session::flash('success', 'Link berhasil dihapus.');
@@ -188,14 +175,11 @@ class LinkogmController extends Controller
         $linkogmRecords = DB::table('linkogm')->whereIn('id', $selectedItems)->get();
 
         try {
-            // Hapus setiap gambar dari storage
             foreach ($linkogmRecords as $linkogm) {
                 if ($linkogm->image_path) {
                     Storage::disk('public')->delete($linkogm->image_path);
                 }
             }
-
-            // Hapus data dari database
             DB::table('linkogm')->whereIn('id', $selectedItems)->delete();
 
             Session::flash('success', 'Link terpilih berhasil dihapus.');

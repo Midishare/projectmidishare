@@ -23,7 +23,6 @@
             transition: all 0.2s ease;
             width: 100%;
             padding-right: 40px;
-            /* Space for the search icon */
         }
 
         .search-input:focus {
@@ -175,26 +174,22 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Buat form dinamis untuk mengirimkan permintaan DELETE
                     const form = document.createElement('form');
                     form.action = `/admin/copinofest/video/${videoId}`;
                     form.method = 'POST';
 
-                    // Tambahkan CSRF Token
                     const csrfInput = document.createElement('input');
                     csrfInput.type = 'hidden';
                     csrfInput.name = '_token';
-                    csrfInput.value = '{{ csrf_token() }}'; // Pastikan token CSRF ini sesuai dengan Laravel Anda
+                    csrfInput.value = '{{ csrf_token() }}';
                     form.appendChild(csrfInput);
 
-                    // Tambahkan Method Spoofing DELETE
                     const methodInput = document.createElement('input');
                     methodInput.type = 'hidden';
                     methodInput.name = '_method';
                     methodInput.value = 'DELETE';
                     form.appendChild(methodInput);
 
-                    // Tambahkan form ke body dan submit
                     document.body.appendChild(form);
                     form.submit();
                 }

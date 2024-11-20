@@ -84,7 +84,7 @@ class KnowledgeogmController extends Controller
             'id' => 'required',
             'judulrepoogm' => 'required',
             'gambarrepoogm' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'dokumenfilerepoogm' => 'mimes:pdf,doc,docx,ppt,pptx|max:2048', // Memperbarui validasi untuk memasukkan doc dan docx
+            'dokumenfilerepoogm' => 'mimes:pdf,doc,docx,ppt,pptx|max:2048',
         ]);
 
         $id = $request->id;
@@ -106,8 +106,6 @@ class KnowledgeogmController extends Controller
                 $gambarPath = $request->file('gambarrepoogm')->store('public/gambar');
                 $gambarNama = basename($gambarPath);
                 $updateData['gambarrepoogm'] = $gambarNama;
-
-                // Hapus gambar lama jika ada
                 Storage::delete('public/gambar/' . $gambarLama);
             }
 

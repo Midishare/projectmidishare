@@ -47,13 +47,10 @@ class BelajarmandiriController extends Controller
         $deskripsi = $this->processSummernoteContent($deskripsi);
 
         try {
-            // Simpan berita ke database
             $belajarmandiri = new Belajarmandiri();
             $belajarmandiri->judul = $judul;
             $belajarmandiri->deskripsi = $deskripsi;
             $belajarmandiri->published_at = Carbon::parse($published_at);
-
-            // Simpan gambar
             if ($request->hasFile('gambar')) {
                 $gambarPath = $request->file('gambar')->store('public/icon');
                 $gambarNama = basename($gambarPath);
@@ -70,7 +67,6 @@ class BelajarmandiriController extends Controller
         }
     }
 
-    // Fungsi edit juga perlu diperbaiki dengan cara yang sama
     public function editmandiri_process(Request $request)
     {
         $request->validate([
@@ -138,8 +134,6 @@ class BelajarmandiriController extends Controller
         $belajarmandiri = Belajarmandiri::when($search, function ($query) use ($search) {
             return $query->where('judul', 'like', '%' . $search . '%');
         })->orderBy('id', 'desc')->paginate(6);
-
-        // return view('belajarmandirichose', compact('belajarmandiri'));
         return view('adminmandirishow', compact('belajarmandiri'));
     }
 

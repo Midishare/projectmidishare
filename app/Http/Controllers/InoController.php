@@ -48,7 +48,7 @@ class InoController extends Controller
             return $queryBuilder->where('title', 'like', '%' . $query . '%');
         })
             ->when($category, function ($queryBuilder) use ($category) {
-                return $queryBuilder->where('category', $category); // Filter berdasarkan kategori
+                return $queryBuilder->where('category', $category);
             })
             ->orderBy('created_at', 'desc')
             ->paginate(10);
@@ -62,7 +62,6 @@ class InoController extends Controller
         try {
 
             $query = $request->input('search');
-            // $query = Videoino::query();
             $category = $request->input('category');
             $categories = [
                 'Ambon',

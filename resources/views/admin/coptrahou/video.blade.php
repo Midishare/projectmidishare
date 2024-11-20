@@ -23,7 +23,6 @@
             transition: all 0.2s ease;
             width: 100%;
             padding-right: 40px;
-            /* Space for the search icon */
         }
 
         .search-input:focus {

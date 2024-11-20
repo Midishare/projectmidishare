@@ -124,7 +124,7 @@ class DashboardController extends Controller
                     ];
                 });
             })
-            ->toArray(); // Convert to array to ensure it's countable
+            ->toArray();
     }
 
 

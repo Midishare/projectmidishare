@@ -9,7 +9,7 @@ class Dokumenino extends Model
 {
     use HasFactory;
 
-    protected $table = 'dokumenino'; // Nama tabel
+    protected $table = 'dokumenino';
     protected $fillable = [
         'title',
         'image_path',

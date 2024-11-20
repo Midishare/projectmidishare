@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DokumenIp extends Model
 {
     use HasFactory;
-    protected $table = 'dokumenip'; // Nama tabel
+    protected $table = 'dokumenip';
     protected $fillable = [
         'title',
         'image_path',

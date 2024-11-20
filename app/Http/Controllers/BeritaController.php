@@ -82,17 +82,13 @@ class BeritaController extends Controller
         $deskripsi = $request->deskripsi;
         $published_at = $request->published_at;
 
-        // Proses konten dari Summernote sebelum disimpan
         $deskripsi = $this->processSummernoteContent($deskripsi);
 
         try {
-            // Simpan berita ke database
             $news = new News();
             $news->judul = $judul;
             $news->deskripsi = $deskripsi;
             $news->published_at = Carbon::parse($published_at);
-
-            // Simpan gambar
             if ($request->hasFile('gambar')) {
                 $gambarPath = $request->file('gambar')->store('public/icon');
                 $gambarNama = basename($gambarPath);
