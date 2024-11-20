@@ -41,7 +41,6 @@
             z-index: 999;
         }
 
-        /* Disable text selection */
         .card-body {
             user-select: none;
             -webkit-user-select: none;
@@ -54,9 +53,6 @@
             background-color: #E62323;
         }
     </style>
-
-    <!-- Main Section -->
-
     <div id="copyrightPopup" class="copyright-popup">
         <h4 class="mb-3">Peringatan!</h4>
         <img class="" src="{{ asset('icon/attention.png') }}" width="150" alt="attention logo">
@@ -78,7 +74,6 @@
             <section class="py-1">
                 <div class="container">
                     <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-                        <!-- MDP Card -->
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -91,7 +86,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- DP Card -->
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -104,7 +98,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- IP Card -->
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -148,45 +141,35 @@
         </div>
 
         <script>
-            // Show popup when page loads
             document.addEventListener('DOMContentLoaded', function() {
                 const hasSeenWarning = localStorage.getItem('hasSeenCopyrightWarning');
                 if (!hasSeenWarning) {
                     showPopup();
                 }
             });
-
-            // Prevent right-click
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
             });
-
-            // Prevent copy
             document.addEventListener('copy', function(e) {
                 e.preventDefault();
                 return false;
             });
-
-            // Prevent cut
             document.addEventListener('cut', function(e) {
                 e.preventDefault();
                 return false;
             });
 
-            // Show popup function
             function showPopup() {
                 document.getElementById('copyrightPopup').style.display = 'block';
                 document.getElementById('popupOverlay').style.display = 'block';
             }
 
-            // Close popup function
             function acceptWarning() {
                 localStorage.setItem('hasSeenCopyrightWarning', 'true');
                 document.getElementById('copyrightPopup').style.display = 'none';
                 document.getElementById('popupOverlay').style.display = 'none';
             }
 
-            // Detect keyboard shortcuts for copy
             document.addEventListener('keydown', function(e) {
                 if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C')) {
                     e.preventDefault();
@@ -196,7 +179,5 @@
         </script>
 
     </section>
-
-    <!-- Spacer -->
     <div style="height: 60px;"></div>
 @endsection

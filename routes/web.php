@@ -57,7 +57,6 @@ use App\Http\Controllers\Admin\VideoCoptrahouController;
 use App\Http\Controllers\Admin\VideoCopkompraController;
 use App\Http\Controllers\Admin\VideobukupintarwhController;
 use App\Http\Controllers\RepositoryallController;
-use App\Models\History;
 
 Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 

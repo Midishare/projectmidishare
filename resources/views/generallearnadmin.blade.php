@@ -1,9 +1,7 @@
 @extends('layouts.layoutsadmin')
 
 @section('content')
-    <!-- Bootstrap and Custom Styles -->
     <style>
-        /* Custom styles */
         .card:hover {
             transform: translateY(-5px);
             transition: transform 0.3s ease;
@@ -15,8 +13,6 @@
             transition: transform 0.3s ease;
         }
     </style>
-
-    <!-- Main Section -->
     <section>
         <div class="container text-center p-5 mt-5">
             <h2>General Learning</h2>
@@ -25,7 +21,7 @@
             <section class="py-1">
                 <div class="container">
                     <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-                        <!-- MDP Card -->
+
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -39,7 +35,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- DP Card -->
+
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -53,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- IP Card -->
+
                         <div class="col">
                             <div class="card h-100 p-3">
                                 <img class="bd-placeholder-img rounded-circle mx-auto" width="200" height="150"
@@ -98,7 +94,5 @@
             </section>
         </div>
     </section>
-
-    <!-- Spacer -->
     <div style="height: 60px;"></div>
 @endsection

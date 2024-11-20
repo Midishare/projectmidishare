@@ -3,16 +3,14 @@
 @section('content')
     <section>
         <style>
-            /* Gaya CSS tambahan */
             .back-button {
                 margin-top: 1rem;
-                /* Menambahkan margin-top untuk jarak antara judul dan navbar */
+
             }
 
             @media (max-width: 768px) {
                 .gradient-bg.py-5 {
                     padding-top: 2rem;
-                    /* Penyesuaian padding atas untuk tampilan responsif */
                 }
             }
 
@@ -74,7 +72,6 @@
                 z-index: 999;
             }
 
-            /* Disable text selection */
             .card-body {
                 user-select: none;
                 -webkit-user-select: none;
@@ -108,7 +105,7 @@
                 </a>
                 <div class="container text-center mt-3">
                     <h2>Materi Pembelajaran SME</h3>
-                        <div></div> <!-- Placeholder div to balance the flex container -->
+                        <div></div>
                 </div>
         </section>
 
@@ -121,7 +118,7 @@
                             src="{{ asset('icon/dokumen.png') }}" alt="Operation General Manager">
                         <div class="card-body">
                             <h2 class="card-title">Materi Dokumen</h2>
-                            {{-- <p class="card-text">Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p> --}}
+
                         </div>
                         <div class="card-footer">
                             <a class="btn btn-secondary" href="{{ route('linkogm.showlinkogm') }}">View details &raquo;</a>
@@ -134,7 +131,7 @@
                             src="{{ asset('icon/video player.png') }}" alt="Operation General Manager">
                         <div class="card-body">
                             <h2 class="card-title">Video</h2>
-                            {{-- <p class="card-text">Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p> --}}
+
                         </div>
                         <div class="card-footer">
                             <a class="btn btn-secondary" href="{{ route('videoogm.showvideomodogm') }}">View details
@@ -146,7 +143,6 @@
         </div>
 
         <script>
-            // Show popup when page loads
             document.addEventListener('DOMContentLoaded', function() {
                 const hasSeenWarning = localStorage.getItem('hasSeenCopyrightWarning');
                 if (!hasSeenWarning) {
@@ -154,37 +150,29 @@
                 }
             });
 
-            // Prevent right-click
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
             });
-
-            // Prevent copy
             document.addEventListener('copy', function(e) {
                 e.preventDefault();
                 return false;
             });
-
-            // Prevent cut
             document.addEventListener('cut', function(e) {
                 e.preventDefault();
                 return false;
             });
 
-            // Show popup function
             function showPopup() {
                 document.getElementById('copyrightPopup').style.display = 'block';
                 document.getElementById('popupOverlay').style.display = 'block';
             }
 
-            // Close popup function
             function acceptWarning() {
                 localStorage.setItem('hasSeenCopyrightWarning', 'true');
                 document.getElementById('copyrightPopup').style.display = 'none';
                 document.getElementById('popupOverlay').style.display = 'none';
             }
 
-            // Detect keyboard shortcuts for copy
             document.addEventListener('keydown', function(e) {
                 if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C')) {
                     e.preventDefault();
@@ -195,5 +183,4 @@
 
     </section>
 
-    <div style="height: 100px;"></div> <!-- Spasi antara konten dan footer -->
-@endsection
+    <div style="height: 100px;"></div>

@@ -2,7 +2,6 @@
 
 @section('content')
     <style>
-        /* Gaya CSS tambahan */
         .back-button {
             margin-top: 1rem;
         }

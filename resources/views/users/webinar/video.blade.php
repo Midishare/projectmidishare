@@ -2,7 +2,6 @@
 
 @section('content')
     <style>
-        /* Gaya CSS tambahan */
         .back-button {
             margin-top: 1rem;
         }
@@ -81,27 +80,20 @@
                                         $video_id = '';
                                         $video_url = $video->video_link;
                                         $thumbnail_url = '';
-
-                                        // Check if the URL is from YouTube
                                         if (
                                             strpos($video_url, 'youtube.com') !== false ||
                                             strpos($video_url, 'youtu.be') !== false
                                         ) {
                                             if (strpos($video_url, 'youtu.be') !== false) {
-                                                // Short format (youtu.be)
                                                 $url_parts = explode('/', $video_url);
                                                 $video_id = end($url_parts);
-                                                // Remove parameters after the question mark if any
                                                 $video_id = explode('?', $video_id)[0];
                                             } elseif (strpos($video_url, 'youtube.com') !== false) {
-                                                // Long format (youtube.com)
                                                 parse_str(parse_url($video_url, PHP_URL_QUERY), $query);
                                                 $video_id = $query['v'] ?? '';
                                             }
                                             $thumbnail_url = "https://img.youtube.com/vi/{$video_id}/0.jpg";
-                                        }
-                                        // Check if the URL is from Google Drive
-                                        elseif (strpos($video_url, 'drive.google.com') !== false) {
+                                        } elseif (strpos($video_url, 'drive.google.com') !== false) {
                                             $pattern = '/[-\w]{25,}(?!.*[-\w]{25,})/';
                                             if (preg_match($pattern, $video_url, $matches)) {
                                                 $video_id = $matches[0];

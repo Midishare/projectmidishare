@@ -41,7 +41,6 @@
         </div>
         <div class="container-fluid mt-5">
             <div class="row">
-                {{-- Currently Active Sessions --}}
                 <div class="col-md-12">
                     <div class="card shadow-sm">
                         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
@@ -80,8 +79,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- Weekly Login Activities --}}
                 <div class="col-md-12 mt-5">
                     <div class="card shadow-sm">
                         <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
@@ -131,7 +128,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- Monthly Login Activities --}}
                 <div class="col-md-12 mt-5">
                     <div class="card shadow-sm">
                         <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">

@@ -41,7 +41,6 @@
 
         .navbar-nav .nav-link {
             color: #000000 !important;
-            /* Warna teks navbar hitam */
         }
 
         .navbar-nav .nav-item {
@@ -52,13 +51,9 @@
         .navbar-nav .nav-link:focus,
         .navbar-nav .nav-link.active {
             color: #E62323 !important;
-            /* Warna teks saat hover dan aktif */
             text-decoration: none;
-            /* Menghapus underline default */
             border-bottom: 2px solid #E62323;
-            /* Menambahkan garis bawah custom */
             padding-bottom: 2px;
-            /* Jarak antara teks dan garis bawah */
         }
 
         .dropdown-item {
@@ -69,46 +64,34 @@
 
         .nav-item.dropdown {
             position: relative;
-            /* Ensure proper positioning context */
         }
 
         .dropdown-menu .dropdown-item:hover,
         .dropdown-menu .dropdown-item:focus,
         .dropdown-menu .dropdown-item.active {
             background-color: #0056b3;
-            /* Warna latar belakang dropdown saat hover dan aktif */
             color: #ffffff !important;
-            /* Warna teks dropdown saat hover dan aktif */
         }
 
         .dropdown-menu {
             left: 0 !important;
-            /* Override any other positioning */
             transform: none !important;
-            /* Remove any transforms */
             margin-top: 0.5rem;
-            /* Add a small gap between nav link and dropdown */
         }
 
-        /* Glassmorphism navbar */
         .navbar-glass {
 
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Navbar saat di-scroll */
         .navbar-scroll {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            /* Shadow lebih tajam */
             background-color: rgba(255, 255, 255, 0.2);
-            /* Transparansi */
             backdrop-filter: blur(10px);
-            /* Efek blur */
         }
 
         .custom-footer {
             background-color: #E62323;
-            /* Warna latar belakang footer */
             color: #ffffff;
             padding: 1rem 0;
             text-align: center;
@@ -210,7 +193,6 @@
             .navbar-glass {
 
                 background-color: rgba(255, 255, 255, 0.7);
-                /* Background lebih solid saat di-scroll */
                 transition: background-color 0.3s ease, box-shadow 0.3s ease;
             }
 
@@ -218,14 +200,10 @@
             .navbar-nav .nav-link:focus,
             .navbar-nav .nav-link.active {
                 color: #E62323 !important;
-                /* Warna teks saat hover dan aktif */
                 text-decoration: underline;
                 text-underline-offset: 5px;
-                /* Jarak antara teks dan underline */
                 border-bottom: 0px;
-                /* Menambahkan garis bawah custom */
                 padding-bottom: 0px;
-                /* Jarak antara teks dan garis bawah */
             }
 
             .dropdown-menu {
@@ -305,7 +283,6 @@
                             Repository
                         </a>
                         <ul class="dropdown-menu">
-                            {{-- <li><a class="dropdown-item" href="{{ route('kmadmin') }}">Knowledge Management</a></li> --}}
                             <li><a class="dropdown-item" href="{{ route('materiadmin') }}">Method Of Development</a>
                             </li>
                             <li><a class="dropdown-item" href="{{ route('materiadminmodogm') }}">Subject Matter
@@ -385,7 +362,6 @@
             }
         });
         document.getElementById('logoutForm').addEventListener('submit', function(e) {
-            // Show loading overlay
             document.getElementById('loadingOverlay').style.display = 'flex';
         });
     </script>

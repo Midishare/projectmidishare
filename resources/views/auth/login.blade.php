@@ -44,16 +44,12 @@
         .container {
             background-color: #fff;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            /* Shadow */
             display: flex;
             justify-content: space-between;
             align-items: center;
             max-width: 1000px;
-            /* Adjusted max-width */
             width: 65%;
-            /* Adjusted width */
             height: 80%;
-            /* Adjusted height */
             padding: 60px;
             border-radius: 10px;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -97,7 +93,6 @@
             text-align: center;
         }
 
-        /* Mengatur ukuran gambar */
         .book-image {
             margin-top: -40px;
             max-width: 300px;
@@ -226,7 +221,6 @@
     </footer>
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            // Show loading overlay
             document.getElementById('loadingOverlay').style.display = 'flex';
         });
     </script>

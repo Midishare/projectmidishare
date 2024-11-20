@@ -3,16 +3,13 @@
 @section('content')
     <section>
         <style>
-            /* Gaya CSS tambahan */
             .back-button {
                 margin-top: 1rem;
-                /* Menambahkan margin-top untuk jarak antara judul dan navbar */
             }
 
             @media (max-width: 768px) {
                 .gradient-bg.py-5 {
                     padding-top: 2rem;
-                    /* Penyesuaian padding atas untuk tampilan responsif */
                 }
             }
 
@@ -92,5 +89,5 @@
         </div>
     </section>
 
-    <div style="height: 100px;"></div> <!-- Spasi antara konten dan footer -->
+    <div style="height: 100px;"></div>
 @endsection

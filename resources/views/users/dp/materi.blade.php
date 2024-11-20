@@ -56,7 +56,7 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    {{ $dokumens->appends(request()->input())->links() }} <!-- Ensure pagination is working -->
+                    {{ $dokumens->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>

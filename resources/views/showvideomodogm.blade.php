@@ -2,7 +2,6 @@
 
 @section('content')
     <style>
-        /* Animasi untuk fadeIn */
         .animated {
             animation-duration: 0.5s;
         }
@@ -17,25 +16,20 @@
             }
         }
 
-        /* Efek hover untuk tombol tambah */
         .btn-primary:hover {
             transform: scale(1.05);
-            /* Memperbesar tombol saat dihover */
             transition: transform 0.3s ease;
         }
 
-        /* Efek hover untuk tombol edit dan hapus */
         .btn-warning:hover,
         .btn-danger:hover {
             filter: brightness(1.2);
-            /* Meningkatkan kecerahan tombol saat dihover */
             transition: filter 0.3s ease;
         }
 
         .back-button {
             position: absolute;
             top: 100px;
-            /* Menyesuaikan tinggi dari bagian atas */
             left: 20px;
             z-index: 999;
         }
@@ -54,7 +48,6 @@
                 <a href="{{ route('videoogm.addvidmodogm') }}">
                     <button class="btn btn-primary mb-3"><strong>+</strong>Tambah</button>
                 </a>
-                <!-- [search form remains the same] -->
 
                 <form action="{{ route('videoogm.delete_multiple') }}" method="POST" id="bulkDeleteForm">
                     @csrf

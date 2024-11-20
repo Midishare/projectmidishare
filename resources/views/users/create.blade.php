@@ -12,10 +12,13 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
+                                <label for="name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -26,10 +29,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="nik" class="col-md-4 col-form-label text-md-right">{{ __('ID') }}</label>
+                                <label for="nik"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('ID') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="nik" type="text" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required>
+                                    <input id="nik" type="text"
+                                        class="form-control @error('nik') is-invalid @enderror" name="nik"
+                                        value="{{ old('nik') }}" required>
 
                                     @error('nik')
                                         <span class="invalid-feedback" role="alert">
@@ -40,10 +46,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="password"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -54,10 +63,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="lokasi" class="col-md-4 col-form-label text-md-right">{{ __('Lokasi') }}</label>
+                                <label for="lokasi"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Lokasi') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="lokasi" type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ old('lokasi') }}" required autocomplete="lokasi" autofocus>
+                                    <input id="lokasi" type="text"
+                                        class="form-control @error('lokasi') is-invalid @enderror" name="lokasi"
+                                        value="{{ old('lokasi') }}" required autocomplete="lokasi" autofocus>
 
                                     @error('lokasi')
                                         <span class="invalid-feedback" role="alert">
@@ -68,10 +80,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="branch" class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
+                                <label for="branch"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="branch" type="text" class="form-control @error('branch') is-invalid @enderror" name="branch" value="{{ old('branch') }}" required autocomplete="branch" autofocus>
+                                    <input id="branch" type="text"
+                                        class="form-control @error('branch') is-invalid @enderror" name="branch"
+                                        value="{{ old('branch') }}" required autocomplete="branch" autofocus>
 
                                     @error('branch')
                                         <span class="invalid-feedback" role="alert">
@@ -82,10 +97,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="jabatan" class="col-md-4 col-form-label text-md-right">{{ __('Jabatan') }}</label>
+                                <label for="jabatan"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Jabatan') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="jabatan" type="text" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan" value="{{ old('jabatan') }}" required autocomplete="jabatan" autofocus>
+                                    <input id="jabatan" type="text"
+                                        class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"
+                                        value="{{ old('jabatan') }}" required autocomplete="jabatan" autofocus>
 
                                     @error('jabatan')
                                         <span class="invalid-feedback" role="alert">
@@ -96,14 +114,15 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="class" class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
+                                <label for="class"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
 
                                 <div class="col-md-6">
-                                    <select id="class" class="form-control @error('class') is-invalid @enderror" name="class" required>
+                                    <select id="class" class="form-control @error('class') is-invalid @enderror"
+                                        name="class" required>
                                         <option value="None" {{ old('class') == 'None' ? 'selected' : '' }}>None</option>
                                         <option value="DP" {{ old('class') == 'DP' ? 'selected' : '' }}>DP</option>
                                         <option value="IP" {{ old('class') == 'IP' ? 'selected' : '' }}>IP</option>
-                                        <!-- Add more classes as needed -->
                                     </select>
 
                                     @error('class')
@@ -115,14 +134,17 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
-                            
+                                <label for="role"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
                                 <div class="col-md-6">
-                                    <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" required>
+                                    <select id="role" class="form-control @error('role') is-invalid @enderror"
+                                        name="role" required>
                                         <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
-                                        <option value="auditor" {{ old('role') == 'auditor' ? 'selected' : '' }}>Auditor</option>
+                                        <option value="auditor" {{ old('role') == 'auditor' ? 'selected' : '' }}>Auditor
+                                        </option>
                                     </select>
-                            
+
                                     @error('role')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -130,7 +152,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4 mt-3">

@@ -2,7 +2,6 @@
 
 @section('content')
     <style>
-        /* Additional CSS Styles */
         .back-button {
             margin-top: 1rem;
         }
@@ -44,9 +43,7 @@
         .video-thumbnail {
             width: 100%;
             height: 200px;
-            /* Fixed height for consistency */
             object-fit: cover;
-            /* This ensures the image covers the area without distortion */
         }
     </style>
 
