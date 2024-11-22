@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\BukuPintarWh;
+use App\Models\Bukupintarwh;
 use App\Models\Videobukupintarwh;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +21,7 @@ class BukupintarwhController extends Controller
     public function materi(Request $request)
     {
         $search = $request->input('search');
-        $bukupintarwh = BukuPintarWH::where('title', 'LIKE', '%' . $search . '%')
+        $bukupintarwh = Bukupintarwh::where('title', 'LIKE', '%' . $search . '%')
             ->paginate(6);
         foreach ($bukupintarwh as $book) {
             $filePaths = is_array($book->file_paths) ? $book->file_paths : json_decode($book->file_paths, true);
@@ -34,7 +34,7 @@ class BukupintarwhController extends Controller
 
     public function materidetail($id)
     {
-        $book = BukuPintarWH::find($id);
+        $book = Bukupintarwh::find($id);
         if (!$book) {
             abort(404, 'Buku tidak ditemukan.');
         }
@@ -44,18 +44,12 @@ class BukupintarwhController extends Controller
 
     public function video(Request $request)
     {
-
-        try {
-
-            $query = $request->input('search');
-            $videos = Videobukupintarwh::when($query, function ($queryBuilder) use ($query) {
-                return $queryBuilder->where('title', 'like', '%' . $query . '%');
-            })
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-            return view('users.bukpinwh.video', compact('videos'));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['access' => 'You do not have access to this section.']);
-        }
+        $query = $request->input('search');
+        $videos = Videobukupintarwh::when($query, function ($queryBuilder) use ($query) {
+            return $queryBuilder->where('title', 'like', '%' . $query . '%');
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('users.bukpinwh.video', compact('videos'));
     }
 }
