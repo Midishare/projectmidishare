@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin User',
             'nik' => 'Midishareadmin99777', // NIK disimpan sebagai string
-            'password' => 'M1d1s4har3@', // Gunakan Hash::make() untuk mengenkripsi password
+            'password' => 'M1d1s4har3@',
             'lokasi' => 'HO',
             'branch' => 'Head office',
         ]);

@@ -81,7 +81,11 @@
         <div class="book-container">
             <div class="book">
                 @foreach ($filePaths as $index => $path)
-                    <div class="book-page {{ $index === 0 ? 'active' : 'inactive' }}" data-page="{{ $index }}">
+                    <div class="book-page {{ $index === 0
+                        ? 'active'
+                        : 'in
+                                        active' }}"
+                        data-page="{{ $index }}">
                         <img src="{{ asset('storage/' . $path) }}" alt="Page {{ $index + 1 }}">
                     </div>
                 @endforeach

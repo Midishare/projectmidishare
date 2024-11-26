@@ -56,7 +56,9 @@ use App\Http\Controllers\Admin\VideoCopdevprogController;
 use App\Http\Controllers\Admin\VideoCoptrahouController;
 use App\Http\Controllers\Admin\VideoCopkompraController;
 use App\Http\Controllers\Admin\VideobukupintarwhController;
+use App\Http\Controllers\BloodSugarController;
 use App\Http\Controllers\RepositoryallController;
+use App\Http\Controllers\StandarisasiobatController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
@@ -460,6 +462,14 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
 
     // allcop admin
     Route::get('/allcop', [AdminCopfreshController::class, 'allcop'])->name('allcop');
+
+    // standarisasi dan cekgula
+    Route::get('/healthcare', [StandarisasiobatController::class, 'content'])->name('healthcare');
+    Route::get('/healthcare/bloodsugar', [StandarisasiobatController::class, 'bloodsugarcontent'])->name('bloodsugarcontent');
+    Route::get('/healthcare/bloodsugar/check', [BloodSugarController::class, 'create'])->name('blood-sugar.create');
+    Route::post('/healthcare/bloodsugar/check', [BloodSugarController::class, 'store'])->name('blood-sugar.store');
+    Route::get('/healthcare/bloodsugar/{bloodSugar}', [BloodSugarController::class, 'show'])->name('blood-sugar.analysis');
+    Route::get('/healthcare/bloodsugarhistory', [BloodSugarController::class, 'historyblood'])->name('blood-sugar.history');
 
 
     Route::get('/kmadmin', [BeritaController::class, 'kmadmin'])->name('kmadmin');
