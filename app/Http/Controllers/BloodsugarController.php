@@ -60,4 +60,9 @@ class BloodSugarController extends Controller
 
         return view('admin.bloodsugar.history', compact('bloodSugars'));
     }
+
+    public function standarisasiobatmidi()
+    {
+        return view('standarisasiobatalfamidi');
+    }
 }

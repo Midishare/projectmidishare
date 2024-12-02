@@ -62,7 +62,7 @@
                         <h2 class="card-title">Standar Obat - Obatan</h2>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-secondary" href="">View details
+                        <a class="btn btn-secondary" href="{{ route('standarobatmidi') }}">View details
                             &raquo;</a>
                     </div>
                 </div>

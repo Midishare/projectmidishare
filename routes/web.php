@@ -59,6 +59,7 @@ use App\Http\Controllers\Admin\VideobukupintarwhController;
 use App\Http\Controllers\BloodSugarController;
 use App\Http\Controllers\RepositoryallController;
 use App\Http\Controllers\StandarisasiobatController;
+use App\Http\Controllers\StandarisasiobatusersController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
@@ -466,10 +467,7 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
     // standarisasi dan cekgula
     Route::get('/healthcare', [StandarisasiobatController::class, 'content'])->name('healthcare');
     Route::get('/healthcare/bloodsugar', [StandarisasiobatController::class, 'bloodsugarcontent'])->name('bloodsugarcontent');
-    Route::get('/healthcare/bloodsugar/check', [BloodSugarController::class, 'create'])->name('blood-sugar.create');
-    Route::post('/healthcare/bloodsugar/check', [BloodSugarController::class, 'store'])->name('blood-sugar.store');
-    Route::get('/healthcare/bloodsugar/{bloodSugar}', [BloodSugarController::class, 'show'])->name('blood-sugar.analysis');
-    Route::get('/healthcare/bloodsugarhistory', [BloodSugarController::class, 'historyblood'])->name('blood-sugar.history');
+
 
 
     Route::get('/kmadmin', [BeritaController::class, 'kmadmin'])->name('kmadmin');
@@ -583,6 +581,19 @@ Route::middleware('auth', 'role:user')->group(function () {
 
     // papan ilmu toko
     Route::get('/ProfileController', [ProfileController::class, 'index'])->name('ProfileController');
+
+    // standarisasi dan cekgula users
+    Route::get('/healthinfo', [StandarisasiobatusersController::class, 'healthcare'])->name('healthcareusers');
+    Route::get('/healthinfo/bloodsugar', [StandarisasiobatusersController::class, 'bloodsugarusers'])->name('bloodsugarusers');
+});
+
+Route::middleware('auth', 'role:admin|auditor|user')->group(function () {
+    Route::get('/healthcare/bloodsugar/check', [BloodSugarController::class, 'create'])->name('blood-sugar.create');
+    Route::post('/healthcare/bloodsugar/check', [BloodSugarController::class, 'store'])->name('blood-sugar.store');
+    Route::get('/healthcare/bloodsugar/{bloodSugar}', [BloodSugarController::class, 'show'])->name('blood-sugar.analysis');
+    Route::get('/healthcare/bloodsugarhistory', [BloodSugarController::class, 'historyblood'])->name('blood-sugar.history');
+    Route::get('/healthcare/bloodsugarhistory', [BloodSugarController::class, 'historyblood'])->name('blood-sugar.history');
+    Route::get('/standarisasiobat', [BloodSugarController::class, 'standarisasiobatmidi'])->name('standarobatmidi');
 });
 
 //news

@@ -49,7 +49,7 @@
             <a href="javascript:history.back()" class="btn back-button" style="margin-right: 20px;">
                 <i class="bi bi-arrow-left"></i> Kembali
             </a>
-            <h2>Standarisasi dan Cek Kesehatan</h2>
+            <h2>Cek Gula</h2>
         </div>
     </section>
     <div class="container text-center mt-4 animated fadeIn">
@@ -59,10 +59,10 @@
                     <img class="bd-placeholder-img rounded-circle mx-auto p-2" width="" height="180"
                         src="{{ asset('icon/obat.jpg') }}" alt="Operation General Manager">
                     <div class="card-body">
-                        <h2 class="card-title">Standar Obat - Obatan</h2>
+                        <h2 class="card-title">Cek</h2>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-secondary" href="{{ route('standarobatmidi') }}">View details
+                        <a class="btn btn-secondary" href="{{ route('blood-sugar.create') }}">View details
                             &raquo;</a>
                     </div>
                 </div>
@@ -72,11 +72,32 @@
                     <img class="bd-placeholder-img rounded-circle mx-auto p-2" width="" height="180"
                         src="{{ asset('icon/blood.jpg') }}" alt="Operation General Manager">
                     <div class="card-body">
-                        <h2 class="card-title">Cek Kesehatan</h2>
+                        <h2 class="card-title">Hasil Analisis</h2>
+                    </div>
+                    <div class="card-footer">
+                        @if ($latestBloodSugar)
+                            <a class="btn btn-secondary"
+                                href="{{ route('blood-sugar.analysis', ['bloodSugar' => $latestBloodSugar->id]) }}">
+                                View details &raquo;
+                            </a>
+                        @else
+                            <span class="text-muted">No analysis data available</span>
+                        @endif
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img class="bd-placeholder-img rounded-circle mx-auto p-2" width="" height="180"
+                        src="{{ asset('icon/blood.jpg') }}" alt="Operation General Manager">
+                    <div class="card-body">
+                        <h2 class="card-title">Riwayat Cek</h2>
                     </div>
                     <div class="card-footer">
 
-                        <a class="btn btn-secondary" href="{{ route('bloodsugarusers') }}">View details
+                        <a class="btn btn-secondary" href="{{ route('blood-sugar.history') }}">View details
                             &raquo;</a>
                     </div>
                 </div>

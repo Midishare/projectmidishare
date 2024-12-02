@@ -71,7 +71,7 @@
                             <h4 class="card-title text-center">Standard Obat - Obatan</h4>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <a class="btn btn-secondary" href="">View details &raquo;</a>
+                            <a class="btn btn-secondary" href="{{ route('healthcareusers') }}">View details &raquo;</a>
                         </div>
                     </div>
                 </div>

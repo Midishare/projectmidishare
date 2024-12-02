@@ -1,7 +1,6 @@
 @extends('layouts.layouts')
 
 @section('content')
-    <!-- Carousel Section -->
     <section style="margin-top: 100px;">
         <div class="container">
             <div class="row align-items-center">
@@ -53,22 +52,18 @@
     </section>
     <section>
         <div class="container" style="margin-top: 2rem;">
-            <div class="row">
+            <div class="wrap">
                 @foreach ($news as $berita)
-                    <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
-                        <div class="card shadow-sm h-100 w-100 p-1">
-                            <img class="card-img-top card-img-headline" src="{{ asset('storage/icon/' . $berita->gambar) }}"
-                                alt="Card image cap" style="height: 200px; width: auto; object-fit: cover;">
-                            <div class="card-body d-flex flex-row justify-content-between">
-                                <h5 class="">
-                                    <a href="{{ route('berita.detail', ['id' => $berita->id]) }}" class="news-title-link">
-                                        {{ \Illuminate\Support\Str::limit($berita->judul, 20, '...') }}
-                                    </a>
-                                </h5>
-                            </div>
-                            <p class="card-text ms-auto"><small
-                                    class="text-muted">{{ \Carbon\Carbon::parse($berita->published_at)->format('d M Y') }}</small>
-                            </p>
+                    <div class="card m-2">
+                        <div class="poster">
+                            <img src="{{ asset('storage/icon/' . $berita->gambar) }}" alt="Card image cap">
+                        </div>
+                        <div class="details">
+                            <a href="{{ route('berita.detail', ['id' => $berita->id]) }}"
+                                class="text-white text-decoration-none">
+                                <h3>{{ \Illuminate\Support\Str::limit($berita->judul, 20, '...') }}</h3>
+                                <p>{{ \Carbon\Carbon::parse($berita->published_at)->format('d M Y') }}</p>
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -85,7 +80,89 @@
 @endsection
 
 <style>
-    .card:hover {
+    .card {
+
+        position: relative;
+        width: 300px;
+        height: 450px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .card .poster {
+
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card .poster::before {
+
+        content: '';
+        position: absolute;
+        bottom: -180px;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, #272727 20%,
+                transparent);
+        transition: 0.5s;
+        z-index: 10;
+    }
+
+    .card:hover .poster::before {
+        bottom: 0px;
+    }
+
+    .card .poster img {
+        width: 320px;
+        height: 450px;
+        transition: 0.5s;
+        object-fit: cover;
+    }
+
+    .card:hover .poster img {
+        transform: translateY(-50px);
+        filter: blur(5px);
+    }
+
+    .card .details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 20px;
+        width: 100%;
+        z-index: 11;
+        transition: 0.5s;
+    }
+
+    .card:hover .details {
+        bottom: 40px;
+    }
+
+    .card .details a h3 {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .wrap {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+
+
+
+
+
+    /* .card:hover {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
@@ -121,7 +198,7 @@
         }
 
         .carousel-caption {
-            display: block !important;
+            display: block ;
             padding: 10px;
         }
 
@@ -132,5 +209,5 @@
         .carousel-caption p {
             font-size: 0.8rem;
         }
-    }
+    } */
 </style>
