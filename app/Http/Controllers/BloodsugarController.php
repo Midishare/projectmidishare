@@ -15,11 +15,7 @@ class BloodSugarController extends Controller
         $this->expertSystem = $expertSystem;
     }
 
-    public function create()
-    {
 
-        return view('admin.bloodsugar.check');
-    }
 
     public function store(Request $request)
     {
@@ -47,22 +43,27 @@ class BloodSugarController extends Controller
             ->with('result', $result);
     }
 
-    public function show(BloodSugar $bloodSugar)
+    public function create(BloodSugar $bloodSugar)
     {
-        return view('admin.bloodsugar.analysis', compact('bloodSugar'));
-    }
+        $userRole = auth()->user()->getRoleNames()->first();
+        $layout = ($userRole === 'user') ? 'layouts.layouts' : 'layouts.layoutsadmin';
 
-    public function historyblood()
-    {
         $bloodSugars = BloodSugar::where('user_id', auth()->id())
             ->latest('checked_at')
             ->paginate(10);
 
-        return view('admin.bloodsugar.history', compact('bloodSugars'));
+        // Assess overall status based on all user's blood sugar records
+        $bloodSugar = $this->expertSystem->assessOverallStatus($bloodSugars);
+
+        return view('admin.bloodsugar.check', compact('layout', 'bloodSugars', 'bloodSugar'));
     }
 
     public function standarisasiobatmidi()
     {
-        return view('standarisasiobatalfamidi');
+        $userRole = auth()->user()->getRoleNames()->first();
+        $layout = ($userRole === 'user') ? 'layouts.layouts' : 'layouts.layoutsadmin';
+
+        return view('standarisasiobatalfamidi', compact('layout'));
+        // return view('standarisasiobatalfamidi');
     }
 }

@@ -57,6 +57,7 @@ use App\Http\Controllers\Admin\VideoCoptrahouController;
 use App\Http\Controllers\Admin\VideoCopkompraController;
 use App\Http\Controllers\Admin\VideobukupintarwhController;
 use App\Http\Controllers\BloodSugarController;
+use App\Http\Controllers\CholesterolController;
 use App\Http\Controllers\RepositoryallController;
 use App\Http\Controllers\StandarisasiobatController;
 use App\Http\Controllers\StandarisasiobatusersController;
@@ -466,7 +467,7 @@ Route::middleware('auth', 'role:admin|auditor')->group(function () {
 
     // standarisasi dan cekgula
     Route::get('/healthcare', [StandarisasiobatController::class, 'content'])->name('healthcare');
-    Route::get('/healthcare/bloodsugar', [StandarisasiobatController::class, 'bloodsugarcontent'])->name('bloodsugarcontent');
+    Route::get('/healthcare/check', [StandarisasiobatController::class, 'bloodsugarcontent'])->name('bloodsugarcontent');
 
 
 
@@ -584,13 +585,15 @@ Route::middleware('auth', 'role:user')->group(function () {
 
     // standarisasi dan cekgula users
     Route::get('/healthinfo', [StandarisasiobatusersController::class, 'healthcare'])->name('healthcareusers');
-    Route::get('/healthinfo/bloodsugar', [StandarisasiobatusersController::class, 'bloodsugarusers'])->name('bloodsugarusers');
+    Route::get('/healthinfo/check', [StandarisasiobatusersController::class, 'bloodsugarusers'])->name('bloodsugarusers');
 });
 
 Route::middleware('auth', 'role:admin|auditor|user')->group(function () {
-    Route::get('/healthcare/bloodsugar/check', [BloodSugarController::class, 'create'])->name('blood-sugar.create');
-    Route::post('/healthcare/bloodsugar/check', [BloodSugarController::class, 'store'])->name('blood-sugar.store');
-    Route::get('/healthcare/bloodsugar/{bloodSugar}', [BloodSugarController::class, 'show'])->name('blood-sugar.analysis');
+    Route::get('/healthcare/check/check', [BloodSugarController::class, 'create'])->name('blood-sugar.create');
+    Route::get('/healthcare/check/cholestrol', [CholesterolController::class, 'create'])->name('cholesterol.create');
+    Route::post('/healthcare/check/cholestrol', [CholesterolController::class, 'store'])->name('cholesterol.store');
+    Route::post('/healthcare/check/check', [BloodSugarController::class, 'store'])->name('blood-sugar.store');
+    Route::get('/healthcare/check/{bloodSugar}', [BloodSugarController::class, 'show'])->name('blood-sugar.analysis');
     Route::get('/healthcare/bloodsugarhistory', [BloodSugarController::class, 'historyblood'])->name('blood-sugar.history');
     Route::get('/healthcare/bloodsugarhistory', [BloodSugarController::class, 'historyblood'])->name('blood-sugar.history');
     Route::get('/standarisasiobat', [BloodSugarController::class, 'standarisasiobatmidi'])->name('standarobatmidi');

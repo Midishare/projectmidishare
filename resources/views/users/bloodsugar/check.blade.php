@@ -1,4 +1,4 @@
-@extends('layouts.layoutsadmin')
+@extends($layout)
 
 @section('content')
     <div class="container">

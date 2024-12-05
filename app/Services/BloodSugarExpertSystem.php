@@ -81,4 +81,60 @@ class BloodSugarExpertSystem
             }
         }
     }
+
+    public function assessOverallStatus($userBloodSugars)
+    {
+        $statusCounts = [
+            'normal' => 0,
+            'prediabetes' => 0,
+            'diabetes' => 0,
+            'hipoglikemia' => 0
+        ];
+
+        $latestRecord = null;
+        foreach ($userBloodSugars as $record) {
+            switch (strtolower($record->result_status)) {
+                case 'normal':
+                    $statusCounts['normal']++;
+                    break;
+                case 'prediabetes':
+                    $statusCounts['prediabetes']++;
+                    break;
+                case 'diabetes':
+                    $statusCounts['diabetes']++;
+                    break;
+                case 'hipoglikemia':
+                    $statusCounts['hipoglikemia']++;
+                    break;
+            }
+
+            // Assign the latest record
+            $latestRecord = $record;
+        }
+
+        $maxStatus = array_search(max($statusCounts), $statusCounts);
+
+        switch ($maxStatus) {
+            case 'diabetes':
+                $latestRecord->result_status = 'Diabetes';
+                $latestRecord->result_level = 'Sangat Tinggi';
+                $latestRecord->result_risk = 'Tinggi';
+                return $latestRecord;
+            case 'prediabetes':
+                $latestRecord->result_status = 'Prediabetes';
+                $latestRecord->result_level = 'Tinggi';
+                $latestRecord->result_risk = 'Sedang';
+                return $latestRecord;
+            case 'hipoglikemia':
+                $latestRecord->result_status = 'Hipoglikemia';
+                $latestRecord->result_level = 'Rendah';
+                $latestRecord->result_risk = 'Tinggi';
+                return $latestRecord;
+            default:
+                $latestRecord->result_status = 'Normal';
+                $latestRecord->result_level = 'Normal';
+                $latestRecord->result_risk = 'Rendah';
+                return $latestRecord;
+        }
+    }
 }

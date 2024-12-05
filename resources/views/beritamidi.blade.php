@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
-                    <h4>Latest News</h4>
+                    <h4>Berita Terbaru</h4>
                 </div>
                 <div class="col-auto">
                     <form action="{{ route('berita.show') }}" method="GET">
@@ -45,7 +45,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
-                    <h4>News</h4>
+                    <h4>Berita</h4>
                 </div>
             </div>
         </div>

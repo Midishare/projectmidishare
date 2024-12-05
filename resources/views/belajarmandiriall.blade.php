@@ -59,7 +59,7 @@
                             <h4 class="card-title text-center">Papan Ilmu Toko</h4>
                         </div>
                         <div class="card-footer d-flex justify-content-center">
-                            <a class="btn btn-secondary" href="{{ route('papilmu.index') }}">View details &raquo;</a>
+                            <a class="btn btn-secondary" href="">View details &raquo;</a>
                         </div>
                     </div>
                 </div>
