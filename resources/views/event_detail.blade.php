@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <a href="{{ route('berita.show') }}" class="btn" style="margin-top:100px;">
-            <i class="bi bi-arrow-left"></i>Kembali
+            <i class="bi bi-arrow-left"></i> Kembali
         </a>
     </div>
     <div class="container margin-news">
