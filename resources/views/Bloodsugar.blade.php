@@ -70,12 +70,25 @@
             <div class="col">
                 <div class="card h-100">
                     <img class="bd-placeholder-img rounded-circle mx-auto p-2" width="" height="180"
-                        src="{{ asset('icon/obat.jpg') }}" alt="Operation General Manager">
+                        src="{{ asset('icon/cholesterol.png') }}" alt="Operation General Manager">
                     <div class="card-body">
                         <h2 class="card-title">Cek Kolestrol</h2>
                     </div>
                     <div class="card-footer">
                         <a class="btn btn-secondary" href="{{ route('cholesterol.create') }}">View details
+                            &raquo;</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col m-2">
+                <div class="card h-100">
+                    <img class="bd-placeholder-img rounded-circle mx-auto p-2" width="" height="180"
+                        src="{{ asset('icon/cholesterol.png') }}" alt="Operation General Manager">
+                    <div class="card-body">
+                        <h2 class="card-title">Cek Asam Urat</h2>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-secondary" href="{{ route('uricacid.create') }}">View details
                             &raquo;</a>
                     </div>
                 </div>

@@ -9,29 +9,30 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h2>Cek Kadar Gula Darah</h2>
+                <h2>Cek Kadar Asam Urat</h2>
             </div>
             <div class="card-body">
-                <form action="{{ route('blood-sugar.store') }}" method="POST">
+                <form action="{{ route('uricacid.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="blood_sugar_level" class="form-label">Kadar Gula Darah (mg/dL)</label>
-                        <input type="number" class="form-control @error('blood_sugar_level') is-invalid @enderror"
-                            id="blood_sugar_level" name="blood_sugar_level" required>
-                        @error('blood_sugar_level')
+                        <label for="uric_acid_level" class="form-label">Kadar Asam Urat (mg/dL)</label>
+                        <input type="number" step="0.1"
+                            class="form-control @error('uric_acid_level') is-invalid @enderror" id="uric_acid_level"
+                            name="uric_acid_level" required>
+                        @error('uric_acid_level')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="mb-3">
-                        <label for="condition" class="form-label">Kondisi</label>
-                        <select class="form-select @error('condition') is-invalid @enderror" id="condition" name="condition"
+                        <label for="gender" class="form-label">Jenis Kelamin</label>
+                        <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender"
                             required>
-                            <option value="">Pilih kondisi...</option>
-                            <option value="puasa">Puasa</option>
-                            <option value="setelah_makan">Setelah Makan</option>
+                            <option value="">Pilih jenis kelamin...</option>
+                            <option value="male">Laki-laki</option>
+                            <option value="female">Perempuan</option>
                         </select>
-                        @error('condition')
+                        @error('gender')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -49,27 +50,27 @@
                     <thead>
                         <tr>
                             <th>Tanggal</th>
-                            <th>Kadar Gula</th>
-                            <th>Kondisi</th>
+                            <th>Kadar Asam Urat</th>
+                            <th>Jenis Kelamin</th>
                             <th>Status</th>
                             <th>Level</th>
                             <th>Risiko</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($bloodSugars as $bloodSugar)
+                        @foreach ($uricAcids as $uricAcid)
                             <tr>
-                                <td>{{ $bloodSugar->checked_at->format('d/m/Y H:i') }}</td>
-                                <td>{{ $bloodSugar->blood_sugar_level }} mg/dL</td>
-                                <td>{{ ucfirst($bloodSugar->condition) }}</td>
-                                <td>{{ $bloodSugar->result_status }}</td>
-                                <td>{{ $bloodSugar->result_level }}</td>
-                                <td>{{ $bloodSugar->result_risk }}</td>
+                                <td>{{ $uricAcid->checked_at->format('d/m/Y H:i') }}</td>
+                                <td>{{ $uricAcid->uric_acid_level }} mg/dL</td>
+                                <td>{{ $uricAcid->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}</td>
+                                <td>{{ $uricAcid->result_status }}</td>
+                                <td>{{ $uricAcid->result_level }}</td>
+                                <td>{{ $uricAcid->result_risk }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{ $bloodSugars->links() }}
+                {{ $uricAcids->links() }}
             </div>
         </div>
         <div class="card mt-3">
@@ -78,9 +79,12 @@
             </div>
             <div class="card-body">
                 <div class="alert alert-info">
-                    <h4>Status: {{ $bloodSugar->result_status }}</h4>
-                    <p>Level: {{ $bloodSugar->result_level }}</p>
-                    <p>Risiko: {{ $bloodSugar->result_risk }}</p>
+                    <div>
+                        <p>Status: {{ $latestAnalysis->result_status }}</p>
+                        <p>Level: {{ $latestAnalysis->result_level }}</p>
+                        <p>Risiko: {{ $latestAnalysis->result_risk }}</p>
+                    </div>
+
                 </div>
 
                 @if (session('result'))
@@ -96,3 +100,4 @@
             </div>
         </div>
     </div>
+@endsection

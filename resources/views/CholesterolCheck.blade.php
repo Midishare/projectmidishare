@@ -23,37 +23,6 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="ldl_cholesterol" class="form-label">LDL Kolesterol (mg/dL)</label>
-                        <input type="number" step="0.01"
-                            class="form-control @error('ldl_cholesterol') is-invalid @enderror" id="ldl_cholesterol"
-                            name="ldl_cholesterol">
-                        @error('ldl_cholesterol')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="hdl_cholesterol" class="form-label">HDL Kolesterol (mg/dL)</label>
-                        <input type="number" step="0.01"
-                            class="form-control @error('hdl_cholesterol') is-invalid @enderror" id="hdl_cholesterol"
-                            name="hdl_cholesterol">
-                        @error('hdl_cholesterol')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="triglycerides" class="form-label">Trigliserida (mg/dL)</label>
-                        <input type="number" step="0.01"
-                            class="form-control @error('triglycerides') is-invalid @enderror" id="triglycerides"
-                            name="triglycerides">
-                        @error('triglycerides')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
                     <button type="submit" class="btn btn-primary">Analisis</button>
                 </form>
             </div>
@@ -69,9 +38,7 @@
                         <tr>
                             <th>Tanggal</th>
                             <th>Total Kolesterol</th>
-                            <th>LDL</th>
-                            <th>HDL</th>
-                            <th>Trigliserida</th>
+
                             <th>Status</th>
                             <th>Level</th>
                             <th>Risiko</th>
@@ -82,9 +49,6 @@
                             <tr>
                                 <td>{{ $record->checked_at->format('d/m/Y H:i') }}</td>
                                 <td>{{ $record->total_cholesterol }} mg/dL</td>
-                                <td>{{ $record->ldl_cholesterol }} mg/dL</td>
-                                <td>{{ $record->hdl_cholesterol }} mg/dL</td>
-                                <td>{{ $record->triglycerides }} mg/dL</td>
                                 <td>{{ $record->result_status }}</td>
                                 <td>{{ $record->result_level }}</td>
                                 <td>{{ $record->result_risk }}</td>
