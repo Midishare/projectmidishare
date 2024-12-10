@@ -22,11 +22,10 @@ class BukupintarwhController extends Controller
 
     public function materislide(Request $request)
     {
-        // $materiDokumen = BukuPintarWh::all();
+
 
         $search = $request->input('search');
 
-        // Check if there's a search query, and if so, filter based on title
         $materiDokumen = BukuPintarWh::when($search, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%');
         })->get();
