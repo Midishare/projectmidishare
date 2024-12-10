@@ -29,10 +29,21 @@
 
         <form id="bulkDeleteForm" method="POST" action="{{ route('admin.bukupintarwh.materi.bulkDelete') }}">
             @csrf
-            <button type="button" class="btn btn-danger mt-4" onclick="confirmBulkDelete()">Hapus yang dipilih</button>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-danger" onclick="confirmBulkDelete()">Hapus yang dipilih</button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <input type="checkbox" id="selectAll"> Pilih Semua
+                </div>
+            </div>
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>
+                            <input type="checkbox" id="selectAll">
+                        </th>
                         <th>No</th>
                         <th>Judul</th>
                         <th>Gambar</th>
@@ -43,12 +54,21 @@
                 <tbody>
                     @foreach ($materiDokumen as $index => $document)
                         <tr>
+                            <td>
+                                <input type="checkbox" name="document_ids[]" value="{{ $document->id }}">
+                            </td>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $document->title }}</td>
                             <td>
-                                @foreach ($document->file_paths as $path)
-                                    <img src="{{ asset('storage/' . $path) }}" width="100" alt="Image">
-                                @endforeach
+                                @if (is_string($document->file_paths))
+                                    @foreach (json_decode($document->file_paths) as $path)
+                                        <img src="{{ asset($path) }}" width="100" alt="Image">
+                                    @endforeach
+                                @elseif (is_array($document->file_paths))
+                                    @foreach ($document->file_paths as $path)
+                                        <img src="{{ asset($path) }}" width="100" alt="Image">
+                                    @endforeach
+                                @endif
                             </td>
                             <td>{{ $document->created_at->format('d-m-Y') }}</td>
                             <td>
@@ -56,13 +76,13 @@
                                     class="btn btn-primary">Edit</a>
                                 <a href="javascript:void(0);" class="btn btn-danger"
                                     onclick="confirmDelete({{ $document->id }})">Delete</a>
-                                <input type="checkbox" name="document_ids[]" value="{{ $document->id }}">
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </form>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -16,6 +16,7 @@ class BukupintarwhController extends Controller
 
     public function create()
     {
+
         return view('admin.bukupintarwh.create');
     }
 
@@ -29,25 +30,27 @@ class BukupintarwhController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'files.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'files.*' => 'mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        $filePaths = [];
+        $document = new BukuPintarWh();
+        $document->title = $request->title;
 
         if ($request->hasFile('files')) {
+            $filePaths = [];
             foreach ($request->file('files') as $file) {
-                $path = $file->store('dokumen_images', 'public');
-                $filePaths[] = $path;
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('dokumen_images'), $filename);
+                $filePaths[] = 'dokumen_images/' . $filename;
             }
+            $document->file_paths = json_encode($filePaths);
         }
 
-        BukuPintarWh::create([
-            'title' => $request->input('title'),
-            'file_paths' => $filePaths,
-        ]);
+        $document->save();
 
-        return redirect()->route('admin.bukupintarwh.materi')->with('success', 'Slide created successfully');
+        return redirect()->route('admin.bukupintarwh.materi')->with('success', 'Materi berhasil ditambahkan!');
     }
+
 
     public function edit($id)
     {
@@ -94,7 +97,25 @@ class BukupintarwhController extends Controller
 
     public function bulkDelete(Request $request)
     {
-        BukuPintarWh::whereIn('id', $request->ids)->delete();
+        $documentIds = $request->input('document_ids');
+
+        if (!is_array($documentIds) || empty($documentIds)) {
+            return redirect()->route('admin.bukupintarwh.materi');
+        }
+
+
+        foreach ($documentIds as $id) {
+            $document = BukuPintarWh::find($id);
+            if ($document) {
+                foreach ($document->file_paths as $path) {
+                    if (Storage::exists($path)) {
+                        Storage::delete($path);
+                    }
+                }
+                $document->delete();
+            }
+        }
+
         return redirect()->route('admin.bukupintarwh.materi');
     }
 }
