@@ -99,9 +99,6 @@ class BukupintarwhController extends Controller
     }
 
 
-
-
-
     public function destroy($id)
     {
         $materiDokumen = BukuPintarWh::findOrFail($id);
