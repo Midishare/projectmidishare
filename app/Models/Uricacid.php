@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UricAcid extends Model
+class Uricacid extends Model
 {
     protected $table = 'uric_acids';
 

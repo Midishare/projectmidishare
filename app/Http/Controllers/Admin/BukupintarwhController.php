@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BukuPintarWh;
+use App\Models\BukupintarWh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,9 +20,16 @@ class BukupintarwhController extends Controller
         return view('admin.bukupintarwh.create');
     }
 
-    public function materislide()
+    public function materislide(Request $request)
     {
-        $materiDokumen = BukuPintarWh::all();
+        // $materiDokumen = BukuPintarWh::all();
+
+        $search = $request->input('search');
+
+        // Check if there's a search query, and if so, filter based on title
+        $materiDokumen = BukuPintarWh::when($search, function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%');
+        })->get();
         return view('admin.bukupintarwh.materi', compact('materiDokumen'));
     }
 
@@ -66,27 +73,34 @@ class BukupintarwhController extends Controller
             'title' => 'required|string|max:255',
             'files.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
         $materiDokumen->title = $request->title;
 
         if ($request->hasFile('files')) {
-            foreach ($materiDokumen->file_paths as $oldPath) {
+            $filePaths = json_decode($materiDokumen->file_paths, true);
+
+            if (!is_array($filePaths)) {
+                $filePaths = [];
+            }
+            foreach ($filePaths as $oldPath) {
                 Storage::disk('public')->delete($oldPath);
             }
-
-            $filePaths = [];
+            $newFilePaths = [];
             foreach ($request->file('files') as $file) {
-                $path = $file->store('images', 'public');
-                $filePaths[] = $path;
-            }
-            $materiDokumen->file_paths = $filePaths;
-        }
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('dokumen_images'), $filename);
 
+                $newFilePaths[] = 'dokumen_images/' . $filename;
+            }
+            $materiDokumen->file_paths = json_encode($newFilePaths);
+        }
         $materiDokumen->save();
 
-        return redirect()->route('admin.bukupintarwh.materi')
-            ->with('success', 'Slide berhasil diperbarui');
+        return redirect()->route('admin.bukupintarwh.materi')->with('success', 'Slide berhasil diperbarui');
     }
+
+
+
+
 
     public function destroy($id)
     {
@@ -103,15 +117,20 @@ class BukupintarwhController extends Controller
             return redirect()->route('admin.bukupintarwh.materi');
         }
 
-
         foreach ($documentIds as $id) {
             $document = BukuPintarWh::find($id);
+
             if ($document) {
-                foreach ($document->file_paths as $path) {
-                    if (Storage::exists($path)) {
-                        Storage::delete($path);
+                $filePaths = json_decode($document->file_paths);
+
+                if (is_array($filePaths)) {
+                    foreach ($filePaths as $path) {
+                        if (Storage::exists($path)) {
+                            Storage::delete($path);
+                        }
                     }
                 }
+
                 $document->delete();
             }
         }

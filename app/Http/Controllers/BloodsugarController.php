@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BloodSugar;
+use App\Models\Bloodsugar;
 use App\Services\BloodSugarExpertSystem;
 use Illuminate\Http\Request;
 
-class BloodSugarController extends Controller
+class BloodsugarController extends Controller
 {
     private $expertSystem;
 
@@ -29,7 +29,7 @@ class BloodSugarController extends Controller
             $request->condition
         );
 
-        $bloodSugar = BloodSugar::create([
+        $bloodSugar = Bloodsugar::create([
             'user_id' => auth()->id(),
             'blood_sugar_level' => $request->blood_sugar_level,
             'condition' => $request->condition,
@@ -43,16 +43,15 @@ class BloodSugarController extends Controller
             ->with('result', $result);
     }
 
-    public function create(BloodSugar $bloodSugar)
+    public function create(Bloodsugar $bloodSugar)
     {
         $userRole = auth()->user()->getRoleNames()->first();
         $layout = ($userRole === 'user') ? 'layouts.layouts' : 'layouts.layoutsadmin';
 
-        $bloodSugars = BloodSugar::where('user_id', auth()->id())
+        $bloodSugars = Bloodsugar::where('user_id', auth()->id())
             ->latest('checked_at')
             ->paginate(10);
 
-        // Assess overall status based on all user's blood sugar records
         $bloodSugar = $this->expertSystem->assessOverallStatus($bloodSugars);
 
         return view('admin.bloodsugar.check', compact('layout', 'bloodSugars', 'bloodSugar'));
@@ -64,6 +63,5 @@ class BloodSugarController extends Controller
         $layout = ($userRole === 'user') ? 'layouts.layouts' : 'layouts.layoutsadmin';
 
         return view('standarisasiobatalfamidi', compact('layout'));
-        // return view('standarisasiobatalfamidi');
     }
 }

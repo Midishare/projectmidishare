@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UricAcid;
+use App\Models\Uricacid;
 use App\Services\UricAcidExpertSystem;
 use Illuminate\Http\Request;
 
-class UricAcidController extends Controller
+class UricacidController extends Controller
 {
     private $expertSystem;
 

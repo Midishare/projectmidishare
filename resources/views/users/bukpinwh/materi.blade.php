@@ -30,8 +30,18 @@
                         @forelse ($bukupintarwh as $book)
                             <div class="col-md-4 mb-4">
                                 <div class="card">
-                                    <img src="{{ $book->thumbnail ? Storage::url($book->thumbnail) : 'https://via.placeholder.com/150' }}"
-                                        class="card-img-top" alt="{{ $book->title }}">
+                                    @if (is_string($book->file_paths))
+                                        @php
+                                            $filePaths = json_decode($book->file_paths);
+                                        @endphp
+                                        @if (isset($filePaths[0]))
+                                            <img src="{{ asset($filePaths[0]) }}" alt="Image" class="w-full">
+                                        @endif
+                                    @elseif (is_array($book->file_paths))
+                                        @if (isset($book->file_paths[0]))
+                                            <img src="{{ asset($book->file_paths[0]) }}" alt="Image">
+                                        @endif
+                                    @endif
                                     <div class="card-body text-center">
                                         <h5 class="card-title">{{ $book->title }}</h5>
                                         <a href="{{ route('bukpin.materidetail', $book->id) }}" class="btn btn-primary">Baca

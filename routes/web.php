@@ -61,7 +61,7 @@ use App\Http\Controllers\CholesterolController;
 use App\Http\Controllers\RepositoryallController;
 use App\Http\Controllers\StandarisasiobatController;
 use App\Http\Controllers\StandarisasiobatusersController;
-use App\Http\Controllers\UricAcidController;
+use App\Http\Controllers\UricacidController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
@@ -590,16 +590,16 @@ Route::middleware('auth', 'role:user')->group(function () {
 });
 
 Route::middleware('auth', 'role:admin|auditor|user')->group(function () {
-    Route::get('/healthcare/check/check', [BloodSugarController::class, 'create'])->name('blood-sugar.create');
+    Route::get('/healthcare/check/check', [BloodsugarController::class, 'create'])->name('blood-sugar.create');
     Route::get('/healthcare/check/cholestrol', [CholesterolController::class, 'create'])->name('cholesterol.create');
     Route::post('/healthcare/check/cholestrol', [CholesterolController::class, 'store'])->name('cholesterol.store');
-    Route::get('/healthcare/check/uricacid', [UricAcidController::class, 'create'])->name('uricacid.create');
-    Route::post('/healthcare/check/uricacid', [UricAcidController::class, 'store'])->name('uricacid.store');
-    Route::post('/healthcare/check/check', [BloodSugarController::class, 'store'])->name('blood-sugar.store');
-    Route::get('/healthcare/check/{bloodSugar}', [BloodSugarController::class, 'show'])->name('blood-sugar.analysis');
-    Route::get('/healthcare/bloodsugarhistory', [BloodSugarController::class, 'historyblood'])->name('blood-sugar.history');
-    Route::get('/healthcare/bloodsugarhistory', [BloodSugarController::class, 'historyblood'])->name('blood-sugar.history');
-    Route::get('/standarisasiobat', [BloodSugarController::class, 'standarisasiobatmidi'])->name('standarobatmidi');
+    Route::get('/healthcare/check/uricacid', [UricacidController::class, 'create'])->name('uricacid.create');
+    Route::post('/healthcare/check/uricacid', [UricacidController::class, 'store'])->name('uricacid.store');
+    Route::post('/healthcare/check/check', [BloodsugarController::class, 'store'])->name('blood-sugar.store');
+    Route::get('/healthcare/check/{bloodSugar}', [BloodsugarController::class, 'show'])->name('blood-sugar.analysis');
+    Route::get('/healthcare/bloodsugarhistory', [BloodsugarController::class, 'historyblood'])->name('blood-sugar.history');
+    Route::get('/healthcare/bloodsugarhistory', [BloodsugarController::class, 'historyblood'])->name('blood-sugar.history');
+    Route::get('/standarisasiobat', [BloodsugarController::class, 'standarisasiobatmidi'])->name('standarobatmidi');
 });
 
 //news

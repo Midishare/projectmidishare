@@ -33,9 +33,7 @@
                 <div class="col-md-6">
                     <button type="button" class="btn btn-danger" onclick="confirmBulkDelete()">Hapus yang dipilih</button>
                 </div>
-                <div class="col-md-6 text-right">
-                    <input type="checkbox" id="selectAll"> Pilih Semua
-                </div>
+
             </div>
 
             <table class="table table-bordered">

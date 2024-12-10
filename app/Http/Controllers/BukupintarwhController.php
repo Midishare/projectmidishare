@@ -23,13 +23,20 @@ class BukupintarwhController extends Controller
         $search = $request->input('search');
         $bukupintarwh = Bukupintarwh::where('title', 'LIKE', '%' . $search . '%')
             ->paginate(6);
+
         foreach ($bukupintarwh as $book) {
-            $filePaths = is_array($book->file_paths) ? $book->file_paths : json_decode($book->file_paths, true);
+            $filePaths = json_decode($book->file_paths, true);
+
             $book->thumbnail = $filePaths[0] ?? null;
+
+            if ($book->thumbnail) {
+                $book->thumbnail = Storage::url($book->thumbnail);
+            }
         }
 
         return view('users.bukpinwh.materi', compact('bukupintarwh'));
     }
+
 
 
     public function materidetail($id)
@@ -38,9 +45,16 @@ class BukupintarwhController extends Controller
         if (!$book) {
             abort(404, 'Buku tidak ditemukan.');
         }
+
         $filePaths = is_array($book->file_paths) ? $book->file_paths : json_decode($book->file_paths, true);
+
+        $filePaths = array_map(function ($path) {
+            return $path;
+        }, $filePaths);
+
         return view('users.bukpinwh.materidetail', compact('book', 'filePaths'));
     }
+
 
     public function video(Request $request)
     {

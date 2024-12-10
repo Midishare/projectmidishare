@@ -118,12 +118,14 @@
                             <td><input type="checkbox" name="video_ids[]" value="{{ $video->id }}"></td>
                             <td>{{ $video->title }}</td>
                             <td><a href="{{ $video->video_link }}" target="_blank">View Video</a></td>
-                            <td><img src="{{ Storage::url($video->image_path) }}" width="100"></td>
+                            <td><img src="{{ Storage::url('dokumen_images/' . basename($video->image_path)) }}"
+                                    width="100"></td>
                             <td>
                                 <a href="{{ route('admin.videobukupintarwh.video.edit', $video->id) }}"
                                     class="btn btn-info">Edit</a>
-                                <button type="button" class="btn btn-danger"
-                                    onclick="confirmDelete({{ $video->id }})">Delete</button>
+                                <a href="javascript:void(0);" class="btn btn-danger"
+                                    onclick="confirmDelete({{ $video->id }})">Delete</a>
+
                             </td>
                         </tr>
                     @endforeach
@@ -164,29 +166,32 @@
 
         function confirmDelete(videoId) {
             Swal.fire({
-                title: 'Hapus Video Ini?',
-                text: "Apakah Anda yakin ingin menghapus video ini?",
+                title: 'Ingin Menghapus Video Ini?',
+                text: "Apakah anda yakin ingin menghapus video ini?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Hapus',
-                cancelButtonText: 'Batal'
+                confirmButtonText: 'Hapus!',
+                cancelButtonText: 'Batal',
             }).then((result) => {
                 if (result.isConfirmed) {
                     const form = document.createElement('form');
-                    form.action = `/admin/bukupintarwh/video/${videoId}`;
+                    form.action = "{{ route('admin.videobukupintarwh.video.destroy', '') }}/" + videoId;
                     form.method = 'POST';
+
                     const csrfInput = document.createElement('input');
                     csrfInput.type = 'hidden';
                     csrfInput.name = '_token';
                     csrfInput.value = '{{ csrf_token() }}';
                     form.appendChild(csrfInput);
+
                     const methodInput = document.createElement('input');
                     methodInput.type = 'hidden';
                     methodInput.name = '_method';
                     methodInput.value = 'DELETE';
                     form.appendChild(methodInput);
+
                     document.body.appendChild(form);
                     form.submit();
                 }
