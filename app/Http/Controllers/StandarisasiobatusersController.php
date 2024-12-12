@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BloodSugar;
+use App\Models\Bloodsugar;
 
 class StandarisasiobatusersController extends Controller
 {
@@ -15,7 +15,7 @@ class StandarisasiobatusersController extends Controller
     {
         $userRole = auth()->user()->getRoleNames()->first();
         $layout = ($userRole === 'user') ? 'layouts.layouts' : 'layouts.layoutsadmin';
-        $latestBloodSugar = BloodSugar::where('user_id', auth()->id())->latest('checked_at')->first();
+        $latestBloodSugar = Bloodsugar::where('user_id', auth()->id())->latest('checked_at')->first();
         return view('Bloodsugar', compact('latestBloodSugar', 'layout'));
     }
 }
