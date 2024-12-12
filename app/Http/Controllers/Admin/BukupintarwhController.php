@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BukupintarWh;
+use App\Models\Bukupintarwh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,7 +26,7 @@ class BukupintarwhController extends Controller
 
         $search = $request->input('search');
 
-        $materiDokumen = BukuPintarWh::when($search, function ($query, $search) {
+        $materiDokumen = BukuPintarwh::when($search, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%');
         })->get();
         return view('admin.bukupintarwh.materi', compact('materiDokumen'));
@@ -39,15 +39,15 @@ class BukupintarwhController extends Controller
             'files.*' => 'mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        $document = new BukuPintarWh();
+        $document = new BukuPintarwh();
         $document->title = $request->title;
 
         if ($request->hasFile('files')) {
             $filePaths = [];
             foreach ($request->file('files') as $file) {
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $path = $file->move(public_path('dokumen_images'), $filename);
-                $filePaths[] = 'dokumen_images/' . $filename;
+                $path = $file->storeAs('dokumen_images', $filename, 'public');
+                $filePaths[] = 'storage/' . $path;
             }
             $document->file_paths = json_encode($filePaths);
         }
@@ -60,13 +60,13 @@ class BukupintarwhController extends Controller
 
     public function edit($id)
     {
-        $materiDokumen = BukuPintarWh::findOrFail($id);
+        $materiDokumen = BukuPintarwh::findOrFail($id);
         return view('admin.bukupintarwh.edit', compact('materiDokumen'));
     }
 
     public function update(Request $request, $id)
     {
-        $materiDokumen = BukuPintarWh::findOrFail($id);
+        $materiDokumen = BukuPintarwh::findOrFail($id);
 
         $request->validate([
             'title' => 'required|string|max:255',
@@ -86,9 +86,9 @@ class BukupintarwhController extends Controller
             $newFilePaths = [];
             foreach ($request->file('files') as $file) {
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $path = $file->move(public_path('dokumen_images'), $filename);
+                $path = $file->storeAs('dokumen_images', $filename, 'public');
 
-                $newFilePaths[] = 'dokumen_images/' . $filename;
+                $newFilePaths[] = 'storage/' . $path;
             }
             $materiDokumen->file_paths = json_encode($newFilePaths);
         }
@@ -100,7 +100,7 @@ class BukupintarwhController extends Controller
 
     public function destroy($id)
     {
-        $materiDokumen = BukuPintarWh::findOrFail($id);
+        $materiDokumen = BukuPintarwh::findOrFail($id);
         $materiDokumen->delete();
         return redirect()->route('admin.bukupintarwh.materi');
     }
@@ -114,7 +114,7 @@ class BukupintarwhController extends Controller
         }
 
         foreach ($documentIds as $id) {
-            $document = BukuPintarWh::find($id);
+            $document = BukuPintarwh::find($id);
 
             if ($document) {
                 $filePaths = json_decode($document->file_paths);

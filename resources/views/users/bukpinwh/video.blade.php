@@ -103,8 +103,8 @@
                                 <div class="h-180">
                                     @if (!empty($video->image_path))
                                         <a href="{{ $video->video_link }}" target="_blank" class="card-link">
-                                            <img src="{{ Storage::url($video->image_path) }}" alt="Thumbnail"
-                                                class="video-thumbnail rounded" width="100%" height="200">
+                                            <img src="{{ Storage::url($video->image_path) }}" alt="{{ $video->title }}"
+                                                width="100">
                                         </a>
                                         <h5 class="card-subtitle mb-2 text-bold p-2 ms-2 mt-2">{{ $video->title }}
                                         </h5>
