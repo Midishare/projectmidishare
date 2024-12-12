@@ -104,7 +104,7 @@
                                     @if (!empty($video->image_path))
                                         <a href="{{ $video->video_link }}" target="_blank" class="card-link">
                                             <img src="{{ asset('storage/dokumen_images/' . $video->image_path) }}"
-                                                alt="{{ $video->title }}" width="100">
+                                                alt="{{ $video->title }}" width="100%" class="video-thumbnail rounded">
                                         </a>
                                         <h5 class="card-subtitle mb-2 text-bold p-2 ms-2 mt-2">{{ $video->title }}
                                         </h5>

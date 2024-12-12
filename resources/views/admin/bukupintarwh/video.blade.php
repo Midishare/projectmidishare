@@ -118,7 +118,7 @@
                             <td><input type="checkbox" name="video_ids[]" value="{{ $video->id }}"></td>
                             <td>{{ $video->title }}</td>
                             <td><a href="{{ $video->video_link }}" target="_blank">View Video</a></td>
-                            <td><img src="{{ Storage::url('dokumen_images/' . basename($video->image_path)) }}"
+                            <td><img src="{{ asset('storage/dokumen_images/' . basename($video->image_path)) }}"
                                     width="100"></td>
                             <td>
                                 <a href="{{ route('admin.videobukupintarwh.video.edit', $video->id) }}"
