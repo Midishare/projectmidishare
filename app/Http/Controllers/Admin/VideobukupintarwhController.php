@@ -35,24 +35,19 @@ class VideobukupintarwhController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $destinationPath = 'public/dokumen_images';
-            $file->storeAs($destinationPath, $filename);
-            $imagePath = $destinationPath . '/' . $filename;
-        } else {
-            $imagePath = null;
-        }
+        $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
+        $imagePath = $request->file('image')->storeAs('public/dokumen_images', $imageName);
 
         Videobukupintarwh::create([
             'title' => $request->input('title'),
             'video_link' => $request->input('video_link'),
-            'image_path' => $imagePath,
+            'image_path' => $imageName,
         ]);
+
 
         return redirect()->route('admin.videobukupintarwh.video')->with('success', 'Video successfully added.');
     }
+
 
     public function edit($id)
     {
