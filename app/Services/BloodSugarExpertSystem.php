@@ -84,6 +84,14 @@ class BloodSugarExpertSystem
 
     public function assessOverallStatus($userBloodSugars)
     {
+        if (empty($userBloodSugars)) {
+            return (object) [
+                'result_status' => 'Tidak Ada Data',
+                'result_level' => 'Tidak Ada Data',
+                'result_risk' => 'Tidak Ada Data'
+            ];
+        }
+
         $statusCounts = [
             'normal' => 0,
             'prediabetes' => 0,
@@ -113,6 +121,14 @@ class BloodSugarExpertSystem
         }
 
         $maxStatus = array_search(max($statusCounts), $statusCounts);
+
+        if (!$latestRecord) {
+            return (object) [
+                'result_status' => 'Tidak Ada Data',
+                'result_level' => 'Tidak Ada Data',
+                'result_risk' => 'Tidak Ada Data'
+            ];
+        }
 
         switch ($maxStatus) {
             case 'diabetes':
