@@ -88,6 +88,16 @@ class UricAcidExpertSystem
 
         $latestRecord = $userUricAcids->sortByDesc('checked_at')->first();
 
+        if (!$latestRecord) {
+            return (object)[
+                'result_status' => 'Belum Ada Data',
+                'result_level' => 'Tidak Diketahui',
+                'result_risk' => 'Perlu Pemeriksaan',
+                'uric_acid_level' => 0,
+                'checked_at' => now()
+            ];
+        }
+
         $result = $this->analyze($latestRecord->uric_acid_level, $latestRecord->gender);
 
         return (object)[

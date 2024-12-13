@@ -83,7 +83,7 @@
             <div class="col m-2">
                 <div class="card h-100">
                     <img class="bd-placeholder-img rounded-circle mx-auto p-2" width="" height="180"
-                        src="{{ asset('icon/cholesterol.png') }}" alt="Operation General Manager">
+                        src="{{ asset('icon/uric.png') }}" alt="Operation General Manager">
                     <div class="card-body">
                         <h2 class="card-title">Cek Asam Urat</h2>
                     </div>
