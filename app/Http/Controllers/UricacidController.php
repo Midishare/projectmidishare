@@ -46,7 +46,6 @@ class UricacidController extends Controller
         $userRole = auth()->user()->getRoleNames()->first();
         $layout = ($userRole === 'admin') ? 'layouts.layoutsadmin' : 'layouts.layouts';
 
-        // Filter data berdasarkan tanggal, jika ada
         $uricAcidsQuery = UricAcid::where('user_id', auth()->id());
         if ($request->has('start_date') && $request->has('end_date')) {
             $uricAcidsQuery->whereBetween('checked_at', [
@@ -57,10 +56,16 @@ class UricacidController extends Controller
 
         $uricAcids = $uricAcidsQuery->latest('checked_at')->paginate(10);
 
-        $latestAnalysis = null;
-        if ($uricAcids->isNotEmpty()) {
-            $latestAnalysis = $this->expertSystem->assessOverallStatus($uricAcids);
-        }
+        $latestAnalysis = $uricAcids->isNotEmpty()
+            ? $this->expertSystem->assessOverallStatus($uricAcids)
+            : (object)[
+                'result_status' => 'Belum Ada Data',
+                'result_level' => 'Tidak Diketahui',
+                'result_risk' => 'Perlu Pemeriksaan',
+                'uric_acid_level' => 0,
+                'checked_at' => now()
+            ];
+
 
         return view('uricacids', compact('layout', 'uricAcids', 'latestAnalysis'))
             ->with('message', $latestAnalysis ? null : 'Tidak ada data analisis terbaru.');

@@ -79,11 +79,17 @@
             </div>
             <div class="card-body">
                 <div class="alert alert-info">
-                    <div>
-                        <p>Status: {{ $latestAnalysis->result_status }}</p>
-                        <p>Level: {{ $latestAnalysis->result_level }}</p>
-                        <p>Risiko: {{ $latestAnalysis->result_risk }}</p>
-                    </div>
+                    @if ($latestAnalysis->result_status === 'Belum Ada Data')
+                        <div class="alert alert-warning">
+                            <p>Tidak ada data analisis terbaru.</p>
+                        </div>
+                    @else
+                        <div class="alert alert-info">
+                            <p>Status: {{ $latestAnalysis->result_status }}</p>
+                            <p>Level: {{ $latestAnalysis->result_level }}</p>
+                            <p>Risiko: {{ $latestAnalysis->result_risk }}</p>
+                        </div>
+                    @endif
 
                 </div>
 
